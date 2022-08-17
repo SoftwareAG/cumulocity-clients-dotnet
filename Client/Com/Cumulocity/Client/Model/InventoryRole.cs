@@ -1,0 +1,60 @@
+///
+/// InventoryRole.cs
+/// CumulocityCoreLibrary
+///
+/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+///
+
+using System.Collections.Generic;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
+
+namespace Com.Cumulocity.Client.Model 
+{
+	/// <summary>
+	/// An inventory role.
+	/// </summary>
+	public class InventoryRole 
+	{
+	
+		/// <summary>
+		/// A description for this inventory role.
+		/// </summary>
+		[JsonPropertyName("description")]
+		public string? Description { get; set; }
+	
+		/// <summary>
+		/// A unique identifier for this inventory role.
+		/// </summary>
+		[JsonPropertyName("id")]
+		public int? Id { get; set; }
+	
+		/// <summary>
+		/// The name of this inventory role.
+		/// </summary>
+		[JsonPropertyName("name")]
+		public string? Name { get; set; }
+	
+		/// <summary>
+		/// A set of permissions for this inventory role.
+		/// </summary>
+		[JsonPropertyName("permissions")]
+		public List<InventoryRolePermission>? Permissions { get; set; }
+	
+		/// <summary>
+		/// A URL linking to this resource.
+		/// </summary>
+		[JsonPropertyName("self")]
+		public string? Self { get; set; }
+	
+		public override string ToString()
+		{
+			return JsonSerializer.Serialize(this);
+		}
+	}
+}

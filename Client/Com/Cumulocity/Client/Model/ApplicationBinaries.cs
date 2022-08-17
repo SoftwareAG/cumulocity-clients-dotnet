@@ -1,0 +1,84 @@
+///
+/// ApplicationBinaries.cs
+/// CumulocityCoreLibrary
+///
+/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+///
+
+using System.Collections.Generic;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
+
+namespace Com.Cumulocity.Client.Model 
+{
+	public class ApplicationBinaries 
+	{
+	
+		/// <summary>
+		/// An array of attachments.
+		/// </summary>
+		[JsonPropertyName("attachments")]
+		public List<Attachments>? PAttachments { get; set; }
+	
+		public class Attachments 
+		{
+		
+			/// <summary>
+			/// The application context path.
+			/// </summary>
+			[JsonPropertyName("contextPath")]
+			public string? ContextPath { get; set; }
+		
+			/// <summary>
+			/// The date and time when the attachment was created.
+			/// </summary>
+			[JsonPropertyName("created")]
+			public System.DateTime? Created { get; set; }
+		
+			/// <summary>
+			/// A description for the attachment.
+			/// </summary>
+			[JsonPropertyName("description")]
+			public string? Description { get; set; }
+		
+			/// <summary>
+			/// A download URL for the attachment.
+			/// </summary>
+			[JsonPropertyName("downloadUrl")]
+			public string? DownloadUrl { get; set; }
+		
+			/// <summary>
+			/// The ID of the attachment.
+			/// </summary>
+			[JsonPropertyName("id")]
+			public string? Id { get; set; }
+		
+			/// <summary>
+			/// The length of the attachment, in bytes.
+			/// </summary>
+			[JsonPropertyName("length")]
+			public int? Length { get; set; }
+		
+			/// <summary>
+			/// The name of the attachment.
+			/// </summary>
+			[JsonPropertyName("name")]
+			public string? Name { get; set; }
+		
+			public override string ToString()
+			{
+				return JsonSerializer.Serialize(this);
+			}
+		}
+	
+		public override string ToString()
+		{
+			return JsonSerializer.Serialize(this);
+		}
+	}
+}

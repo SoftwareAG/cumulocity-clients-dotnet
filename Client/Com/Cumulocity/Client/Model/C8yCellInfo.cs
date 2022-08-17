@@ -1,0 +1,51 @@
+///
+/// C8yCellInfo.cs
+/// CumulocityCoreLibrary
+///
+/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+///
+
+using System.Collections.Generic;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
+
+namespace Com.Cumulocity.Client.Model 
+{
+	/// <summary>
+	/// Provides detailed information about the closest mobile cell towers. When the functionality is activated, the location of the device is determined based on this fragment, in order to track the device whereabouts when GPS tracking is not available.
+	/// </summary>
+	public class C8yCellInfo 
+	{
+	
+		/// <summary>
+		/// The radio type of this cell tower.
+		/// </summary>
+		[JsonPropertyName("radioType")]
+		public string? RadioType { get; set; }
+	
+		/// <summary>
+		/// Detailed information about the neighbouring cell towers.
+		/// </summary>
+		[JsonPropertyName("cellTowers")]
+		public List<C8yCellTower>? CellTowers { get; set; }
+	
+		public C8yCellInfo() 
+		{
+		}
+	
+		public C8yCellInfo(List<C8yCellTower> cellTowers)
+		{
+			this.CellTowers = cellTowers;
+		}
+	
+		public override string ToString()
+		{
+			return JsonSerializer.Serialize(this);
+		}
+	}
+}

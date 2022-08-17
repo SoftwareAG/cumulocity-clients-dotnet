@@ -1,0 +1,54 @@
+///
+/// DeviceStatistics.cs
+/// CumulocityCoreLibrary
+///
+/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+///
+
+using System.Collections.Generic;
+using System.Reflection;
+using System.Collections;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
+
+namespace Com.Cumulocity.Client.Model 
+{
+	/// <summary>
+	/// Statistics of a specific device (identified by an ID).
+	/// </summary>
+	public class DeviceStatistics 
+	{
+	
+		/// <summary>
+		/// Sum of measurements, events and alarms created and updated for the specified device.
+		/// </summary>
+		[JsonPropertyName("count")]
+		public int? Count { get; set; }
+	
+		/// <summary>
+		/// Unique identifier of the device.
+		/// </summary>
+		[JsonPropertyName("deviceId")]
+		public string? DeviceId { get; set; }
+	
+		/// <summary>
+		/// List of unique identifiers of parents for the corresponding device. Available only with monthly data.
+		/// </summary>
+		[JsonPropertyName("deviceParents")]
+		public List<string>? DeviceParents { get; set; }
+	
+		/// <summary>
+		/// Value of the `type` field from the corresponding device. Available only with monthly data.
+		/// </summary>
+		[JsonPropertyName("deviceType")]
+		public string? DeviceType { get; set; }
+	
+		public override string ToString()
+		{
+			return JsonSerializer.Serialize(this);
+		}
+	}
+}

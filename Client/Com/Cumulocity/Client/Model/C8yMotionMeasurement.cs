@@ -1,0 +1,57 @@
+///
+/// C8yMotionMeasurement.cs
+/// CumulocityCoreLibrary
+///
+/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+///
+
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
+
+namespace Com.Cumulocity.Client.Model 
+{
+	/// <summary>
+	/// Measurement of the motion sensor.
+	/// </summary>
+	public class C8yMotionMeasurement 
+	{
+	
+		/// <summary>
+		/// Boolean value indicating if motion has been detected (non-zero value) or not (zero value).
+		/// </summary>
+		[JsonPropertyName("motionDetected")]
+		public MotionDetected? PMotionDetected { get; set; }
+	
+		/// <summary>
+		/// A measurement is a value with a unit.
+		/// </summary>
+		[JsonPropertyName("speed")]
+		public C8yMeasurementValue? Speed { get; set; }
+	
+		/// <summary>
+		/// Boolean value indicating if motion has been detected (non-zero value) or not (zero value).
+		/// </summary>
+		public class MotionDetected 
+		{
+		
+			[JsonPropertyName("value")]
+			public decimal? Value { get; set; }
+		
+			[JsonPropertyName("type")]
+			public string? Type { get; set; }
+		
+			public override string ToString()
+			{
+				return JsonSerializer.Serialize(this);
+			}
+		}
+	
+		public override string ToString()
+		{
+			return JsonSerializer.Serialize(this);
+		}
+	}
+}

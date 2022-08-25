@@ -64,6 +64,7 @@ namespace Com.Cumulocity.Client.Supplementary
 		{
 			public TenantsApi TenantsApi => new(Instance.HttpClient);
 			public TenantApplicationsApi TenantApplicationsApi => new(Instance.HttpClient);
+			public TrustedCertificatesApi TrustedCertificatesApi => new(Instance.HttpClient);
 			public DeviceStatisticsApi DeviceStatisticsApi => new(Instance.HttpClient);
 			public UsageStatisticsApi UsageStatisticsApi => new(Instance.HttpClient);
 			public OptionsApi OptionsApi => new(Instance.HttpClient);

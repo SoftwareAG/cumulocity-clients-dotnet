@@ -138,9 +138,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		public async Task<ManagedObject?> CreateManagedObject(ManagedObject body)
+		public async Task<TResponse?> CreateManagedObject<TResponse, TBody>(TBody body) where TBody:ManagedObject
 		{
-			var jsonNode = ToJsonNode<ManagedObject>(body);
+			var jsonNode = ToJsonNode<TBody>(body);
 			jsonNode?.RemoveFromNode("owner");
 			jsonNode?.RemoveFromNode("additionParents");
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -165,7 +165,7 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObject?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TResponse?>(responseStream);
 		}
 		
 		/// <summary>
@@ -249,7 +249,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withChildrenCount">When set to `true`, the returned result will contain the total number of children in the respective objects (`childAdditions`, `childAssets` and `childDevices`).</param>
 		/// <param name="withParents">When set to `true`, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array.</param>
 		/// <returns></returns>
-		public async Task<ManagedObject?> GetManagedObject(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null)
+		public async Task<TResponse?> GetManagedObject<TResponse>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null) where TResponse:ManagedObject
 		{
 			var client = HttpClient;
 			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/inventory/managedObjects/{id}"));
@@ -274,7 +274,7 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObject?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TResponse?>(responseStream);
 		}
 		
 		/// <summary>
@@ -299,9 +299,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		public async Task<ManagedObject?> UpdateManagedObject(ManagedObject body, string id)
+		public async Task<TBody?> UpdateManagedObject<TBody>(TBody body, string id) where TBody:ManagedObject
 		{
-			var jsonNode = ToJsonNode<ManagedObject>(body);
+			var jsonNode = ToJsonNode<TBody>(body);
 			jsonNode?.RemoveFromNode("owner");
 			jsonNode?.RemoveFromNode("additionParents");
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -326,7 +326,7 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObject?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TBody?>(responseStream);
 		}
 		
 		/// <summary>

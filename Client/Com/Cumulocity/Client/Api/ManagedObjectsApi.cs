@@ -73,7 +73,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		public async Task<ManagedObjectCollection?> GetManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ManagedObjectCollection<T>?> GetManagedObjects<T>(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null) where T:ManagedObject
 		{
 			var client = HttpClient;
 			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/inventory/managedObjects"));
@@ -114,7 +114,7 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObjectCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<ManagedObjectCollection<T>?>(responseStream);
 		}
 		
 		/// <summary>
@@ -138,7 +138,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		public async Task<TResponse?> CreateManagedObject<TResponse, TBody>(TBody body) where TBody:ManagedObject
+		public async Task<TBody?> CreateManagedObject<TBody>(TBody body) where TBody:ManagedObject
 		{
 			var jsonNode = ToJsonNode<TBody>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -165,7 +165,7 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<TResponse?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TBody?>(responseStream);
 		}
 		
 		/// <summary>

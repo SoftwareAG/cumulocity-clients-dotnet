@@ -60,7 +60,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<RetentionRuleCollection?> GetRetentionRules(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/retention/retentions"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}retention/retentions"));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -116,7 +116,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/retention/retentions"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}retention/retentions"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.retentionrule+json"),
@@ -159,7 +159,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<RetentionRule?> GetRetentionRule(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/retention/retentions/{id}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}retention/retentions/{id}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -208,7 +208,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/retention/retentions/{id}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}retention/retentions/{id}"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.retentionrule+json"),
@@ -250,7 +250,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteRetentionRule(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/retention/retentions/{id}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}retention/retentions/{id}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

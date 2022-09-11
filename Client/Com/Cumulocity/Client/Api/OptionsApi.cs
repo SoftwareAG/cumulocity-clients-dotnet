@@ -55,7 +55,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/options"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/options"));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -105,7 +105,7 @@ namespace Com.Cumulocity.Client.Api
 			var jsonNode = ToJsonNode<Option>(body);
 			jsonNode?.RemoveFromNode("self");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/options"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/options"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.option+json"),
@@ -140,7 +140,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<CategoryOptions?> GetOptionsByCategory(string category)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/options/{category}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/options/{category}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -179,7 +179,7 @@ namespace Com.Cumulocity.Client.Api
 		{
 			var jsonNode = ToJsonNode<CategoryOptions>(body);
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/options/{category}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/options/{category}"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
@@ -219,7 +219,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Option?> GetOption(string category, string key)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/options/{category}/{key}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/options/{category}/{key}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -263,7 +263,7 @@ namespace Com.Cumulocity.Client.Api
 		{
 			var jsonNode = ToJsonNode<CategoryKeyOption>(body);
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/options/{category}/{key}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/options/{category}/{key}"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
@@ -302,7 +302,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteOption(string category, string key)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/options/{category}/{key}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/options/{category}/{key}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

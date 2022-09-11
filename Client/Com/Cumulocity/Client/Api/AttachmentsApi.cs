@@ -53,7 +53,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> GetEventAttachment(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/event/events/{id}/binaries"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//event/events/{id}/binaries"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -91,7 +91,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/event/events/{id}/binaries"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//event/events/{id}/binaries"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new ByteArrayContent(body),
@@ -135,7 +135,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/event/events/{id}/binaries"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//event/events/{id}/binaries"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new ByteArrayContent(body),
@@ -180,7 +180,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/event/events/{id}/binaries"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//event/events/{id}/binaries"));
 			var requestContent = new MultipartFormDataContent();
 			var fileContentObject = new StringContent(JsonSerializer.Serialize(pObject));
 			fileContentObject.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
@@ -225,7 +225,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteEventAttachment(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/event/events/{id}/binaries"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//event/events/{id}/binaries"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

@@ -67,7 +67,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/trusted-certificates"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}/trusted-certificates"));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -135,7 +135,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("issuer");
 			jsonNode?.RemoveFromNode("notBefore");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/trusted-certificates"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}/trusted-certificates"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
@@ -188,7 +188,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("statistics");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/trusted-certificates/bulk"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}/trusted-certificates/bulk"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
@@ -224,7 +224,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<TrustedCertificate?> GetTrustedCertificate(string tenantId, string fingerprint)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -278,7 +278,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("issuer");
 			jsonNode?.RemoveFromNode("notBefore");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
@@ -317,7 +317,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

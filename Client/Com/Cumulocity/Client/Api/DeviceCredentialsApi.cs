@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("username");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/devicecontrol/deviceCredentials"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//devicecontrol/deviceCredentials"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.devicecredentials+json"),
@@ -99,7 +99,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/devicecontrol/bulkNewDeviceRequests"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//devicecontrol/bulkNewDeviceRequests"));
 			var requestContent = new MultipartFormDataContent();
 			var fileContentFile = new ByteArrayContent(file);
 			fileContentFile.Headers.ContentType = MediaTypeHeaderValue.Parse("text/csv");

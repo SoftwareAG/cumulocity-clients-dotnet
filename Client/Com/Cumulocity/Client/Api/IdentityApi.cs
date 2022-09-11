@@ -54,7 +54,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<IdentityApiResource?> GetIdentityApiResource()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//identity"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,

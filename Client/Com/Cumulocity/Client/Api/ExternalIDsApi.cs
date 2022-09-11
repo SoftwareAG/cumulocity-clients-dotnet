@@ -53,7 +53,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ExternalIds?> GetExternalIds(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity/globalIds/{id}/externalIds"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//identity/globalIds/{id}/externalIds"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -94,7 +94,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("managedObject");
 			jsonNode?.RemoveFromNode("self");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity/globalIds/{id}/externalIds"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//identity/globalIds/{id}/externalIds"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.externalid+json"),
@@ -134,7 +134,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ExternalId?> GetExternalId(string type, string externalId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity/externalIds/{type}/{externalId}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//identity/externalIds/{type}/{externalId}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -171,7 +171,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteExternalId(string type, string externalId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity/externalIds/{type}/{externalId}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//identity/externalIds/{type}/{externalId}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

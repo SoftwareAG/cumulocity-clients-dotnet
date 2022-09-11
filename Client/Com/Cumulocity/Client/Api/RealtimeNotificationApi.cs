@@ -262,7 +262,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("error");
 			jsonNode?.RemoveFromNode("successful");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//notification/realtime"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}notification/realtime"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),

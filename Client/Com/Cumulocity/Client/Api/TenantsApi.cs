@@ -81,7 +81,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<TenantCollection?> GetTenants(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/tenants"));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -147,7 +147,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("applications");
 			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/tenants"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenant+json"),
@@ -181,7 +181,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<CurrentTenant?> GetCurrentTenant()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/currentTenant"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/currentTenant"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -222,7 +222,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Tenant?> GetTenant(string tenantId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/tenants/{tenantId}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -278,7 +278,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("applications");
 			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/tenants/{tenantId}"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenant+json"),
@@ -320,7 +320,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteTenant(string tenantId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//tenant/tenants/{tenantId}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/tenants/{tenantId}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

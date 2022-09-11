@@ -55,7 +55,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Application?> GetCurrentApplication()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//application/currentApplication"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/currentApplication"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -99,7 +99,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("resourcesUrl");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//application/currentApplication"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/currentApplication"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.application+json"),
@@ -137,7 +137,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<List<ApplicationSettings>?> GetCurrentApplicationSettings()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//application/currentApplication/settings"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/currentApplication/settings"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -169,7 +169,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ApplicationUserCollection?> GetSubscribedUsers()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}//application/currentApplication/subscriptions"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/currentApplication/subscriptions"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,

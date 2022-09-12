@@ -62,7 +62,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}inventory/binaries"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/inventory/binaries"));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -122,7 +122,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}inventory/binaries"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/inventory/binaries"));
 			var requestContent = new MultipartFormDataContent();
 			var fileContentObject = new StringContent(JsonSerializer.Serialize(pObject));
 			fileContentObject.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
@@ -163,7 +163,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> GetBinary(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}inventory/binaries/{id}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/inventory/binaries/{id}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -197,7 +197,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Binary?> ReplaceBinary(byte[] body, string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}inventory/binaries/{id}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/inventory/binaries/{id}"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new ByteArrayContent(body),
@@ -231,7 +231,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> RemoveBinary(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}inventory/binaries/{id}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/inventory/binaries/{id}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

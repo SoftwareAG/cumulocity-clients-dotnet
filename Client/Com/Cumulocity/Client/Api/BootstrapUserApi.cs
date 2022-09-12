@@ -54,7 +54,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<BootstrapUser?> GetBootstrapUser(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}/bootstrapUser"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/application/applications/{id}/bootstrapUser"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,

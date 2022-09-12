@@ -69,7 +69,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<AuditRecordCollection?> GetAuditRecords(string? application = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, string? source = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}audit/auditRecords"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/audit/auditRecords"));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -129,7 +129,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("source", "self");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}audit/auditRecords"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/audit/auditRecords"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.auditrecord+json"),
@@ -164,7 +164,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<AuditRecord?> GetAuditRecord(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}audit/auditRecords/{id}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/audit/auditRecords/{id}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,

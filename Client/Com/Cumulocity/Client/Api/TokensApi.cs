@@ -59,7 +59,7 @@ namespace Com.Cumulocity.Client.Api
 		{
 			var jsonNode = ToJsonNode<NotificationTokenClaims>(body);
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/notification2/token"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}notification2/token"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),

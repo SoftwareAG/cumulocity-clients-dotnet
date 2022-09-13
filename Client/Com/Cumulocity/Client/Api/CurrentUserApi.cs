@@ -52,7 +52,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<CurrentUser?> GetCurrentUser()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/currentUser"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/currentUser"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -96,7 +96,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("lastPasswordChange");
 			jsonNode?.RemoveFromNode("devicePermissions");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/currentUser"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/currentUser"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.currentuser+json"),

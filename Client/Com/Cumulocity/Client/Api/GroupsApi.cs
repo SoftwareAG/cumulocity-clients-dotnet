@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<UserGroupCollection?> GetUserGroups(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/{tenantId}/groups"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groups"));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -128,7 +128,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("users");
 			jsonNode?.RemoveFromNode("applications");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/{tenantId}/groups"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groups"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.group+json"),
@@ -172,7 +172,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Group?> GetUserGroup(string tenantId, int groupId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/{tenantId}/groups/{groupId}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groups/{groupId}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -226,7 +226,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("users");
 			jsonNode?.RemoveFromNode("applications");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/{tenantId}/groups/{groupId}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groups/{groupId}"));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.group+json"),
@@ -269,7 +269,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteUserGroup(string tenantId, int groupId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/{tenantId}/groups/{groupId}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groups/{groupId}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,
@@ -311,7 +311,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Group?> GetUserGroupByName(string tenantId, string groupName)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/{tenantId}/groupByName/{groupName}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groupByName/{groupName}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -357,7 +357,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<GroupReferenceCollection?> GetUserGroups(string tenantId, string userId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/user/{tenantId}/users/{userId}/groups"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/users/{userId}/groups"));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{

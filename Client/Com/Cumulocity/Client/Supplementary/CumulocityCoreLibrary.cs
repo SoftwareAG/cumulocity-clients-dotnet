@@ -52,7 +52,7 @@ namespace Com.Cumulocity.Client.Supplementary
 	
 		public class MeasurementsFactory
 		{
-			public MeasurementsApi MeasurementsApi => new(Instance.HttpClient);
+			public IMeasurementsApi MeasurementsApi => new MeasurementsApi(Instance.HttpClient);
 		}
 	
 		public class AlarmsFactory
@@ -112,12 +112,12 @@ namespace Com.Cumulocity.Client.Supplementary
 		public class IdentityFactory
 		{
 			public IdentityApi IdentityApi => new(Instance.HttpClient);
-			public ExternalIDsApi ExternalIDsApi => new(Instance.HttpClient);
+			public IExternalIDsApi ExternalIDsApi => new ExternalIDsApi(Instance.HttpClient);
 		}
 	
 		public class DevicecontrolFactory
 		{
-			public OperationsApi OperationsApi => new(Instance.HttpClient);
+			public IOperationsApi OperationsApi => new OperationsApi(Instance.HttpClient);
 			public BulkOperationsApi BulkOperationsApi => new(Instance.HttpClient);
 			public DeviceCredentialsApi DeviceCredentialsApi => new(Instance.HttpClient);
 			public NewDeviceRequestsApi NewDeviceRequestsApi => new(Instance.HttpClient);
@@ -126,9 +126,9 @@ namespace Com.Cumulocity.Client.Supplementary
 		public class InventoryFactory
 		{
 			public InventoryApi InventoryApi => new(Instance.HttpClient);
-			public ManagedObjectsApi ManagedObjectsApi => new(Instance.HttpClient);
+			public IManagedObjectsApi ManagedObjectsApi => new ManagedObjectsApi(Instance.HttpClient);
 			public BinariesApi BinariesApi => new(Instance.HttpClient);
-			public ChildOperationsApi ChildOperationsApi => new(Instance.HttpClient);
+			public IChildOperationsApi ChildOperationsApi => new ChildOperationsApi(Instance.HttpClient);
 		}
 	}
 }

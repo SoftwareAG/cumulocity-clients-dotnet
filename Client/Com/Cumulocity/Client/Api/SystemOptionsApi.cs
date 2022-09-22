@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<SystemOptionCollection?> GetSystemOptions()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/system/options"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/system/options"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -83,7 +83,7 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<SystemOption?> GetSystemOption(string category, string key)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/system/options/{category}/{key}"));
+			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/system/options/{category}/{key}"));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,

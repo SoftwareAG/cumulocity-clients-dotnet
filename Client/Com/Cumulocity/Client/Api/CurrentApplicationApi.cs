@@ -26,32 +26,13 @@ namespace Com.Cumulocity.Client.Api
 	/// 
 	/// </summary>
 	#nullable enable
-	public class CurrentApplicationApi : AdaptableApi 
+	public class CurrentApplicationApi : AdaptableApi, ICurrentApplicationApi
 	{
 		public CurrentApplicationApi(HttpClient httpClient) : base(httpClient)
 		{
 		}
 	
-		/// <summary>
-		/// Retrieve the current application<br/>
-		/// Retrieve the current application. This only works inside an application, for example, a microservice.  <section><h5>Required roles</h5> Microservice bootstrap user required. </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the current application sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<Application?> GetCurrentApplication()
 		{
 			var client = HttpClient;
@@ -68,28 +49,7 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<Application?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Update the current application<br/>
-		/// Update the current application. This only works inside an application, for example, a microservice. This method is deprecated as it is only used by legacy microservices that are not running on Kubernetes.  <section><h5>Required roles</h5> Microservice bootstrap user required. </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The current application was updated.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <returns></returns>
-		[Obsolete]
+		/// <inheritdoc />
 		public async Task<Application?> UpdateCurrentApplication(Application body)
 		{
 			var jsonNode = ToJsonNode<Application>(body);
@@ -114,26 +74,7 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<Application?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Retrieve the current application settings<br/>
-		/// Retrieve the current application settings. This only works inside an application, for example, a microservice.  <section><h5>Required roles</h5> Microservice bootstrap user <b>OR</b> microservice service user required. </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the current application settings are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<List<ApplicationSettings>?> GetCurrentApplicationSettings()
 		{
 			var client = HttpClient;
@@ -150,22 +91,7 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<List<ApplicationSettings>?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Retrieve the subscribed users of the current application<br/>
-		/// Retrieve the subscribed users of the current application.  <section><h5>Required roles</h5> Microservice bootstrap user required. </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the list of subscribed users for the current application is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<ApplicationUserCollection?> GetSubscribedUsers()
 		{
 			var client = HttpClient;

@@ -27,28 +27,13 @@ namespace Com.Cumulocity.Client.Api
 	/// 
 	/// </summary>
 	#nullable enable
-	public class CurrentUserApi : AdaptableApi 
+	public class CurrentUserApi : AdaptableApi, ICurrentUserApi
 	{
 		public CurrentUserApi(HttpClient httpClient) : base(httpClient)
 		{
 		}
 	
-		/// <summary>
-		/// Retrieve the current user<br/>
-		/// Retrieve the user reference of the current user.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the current user is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<CurrentUser?> GetCurrentUser()
 		{
 			var client = HttpClient;
@@ -65,27 +50,7 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<CurrentUser?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Update the current user<br/>
-		/// Update the current user.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The current user was updated.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 422</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<CurrentUser?> UpdateCurrentUser(CurrentUser body)
 		{
 			var jsonNode = ToJsonNode<CurrentUser>(body);

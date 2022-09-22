@@ -29,32 +29,18 @@ namespace Com.Cumulocity.Client.Api
 	/// 
 	/// </summary>
 	#nullable enable
-	public class IdentityApi : AdaptableApi 
+	public class IdentityApi : AdaptableApi, IIdentityApi
 	{
 		public IdentityApi(HttpClient httpClient) : base(httpClient)
 		{
 		}
 	
-		/// <summary>
-		/// Retrieve URIs to collections of external IDs<br/>
-		/// Retrieve URIs and URI templates for associating external identifiers with unique identifiers.  <section><h5>Required roles</h5> ROLE_IDENTITY_READ </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the URIs are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<IdentityApiResource?> GetIdentityApiResource()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity"));
+			var resourcePath = $"/identity";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,

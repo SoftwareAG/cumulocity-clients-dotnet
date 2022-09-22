@@ -44,91 +44,91 @@ namespace Com.Cumulocity.Client.Supplementary
 	
 		public class ApplicationsFactory
 		{
-			public ApplicationsApi ApplicationsApi => new(Instance.HttpClient);
-			public ApplicationBinariesApi ApplicationBinariesApi => new(Instance.HttpClient);
-			public BootstrapUserApi BootstrapUserApi => new(Instance.HttpClient);
-			public CurrentApplicationApi CurrentApplicationApi => new(Instance.HttpClient);
+			public IApplicationsApi ApplicationsApi => new ApplicationsApi(Instance.HttpClient);
+			public IApplicationBinariesApi ApplicationBinariesApi => new ApplicationBinariesApi(Instance.HttpClient);
+			public IBootstrapUserApi BootstrapUserApi => new BootstrapUserApi(Instance.HttpClient);
+			public ICurrentApplicationApi CurrentApplicationApi => new CurrentApplicationApi(Instance.HttpClient);
 		}
 	
 		public class MeasurementsFactory
 		{
-			public MeasurementsApi MeasurementsApi => new(Instance.HttpClient);
+			public IMeasurementsApi MeasurementsApi => new MeasurementsApi(Instance.HttpClient);
 		}
 	
 		public class AlarmsFactory
 		{
-			public AlarmsApi AlarmsApi => new(Instance.HttpClient);
+			public IAlarmsApi AlarmsApi => new AlarmsApi(Instance.HttpClient);
 		}
 	
 		public class TenantsFactory
 		{
-			public TenantsApi TenantsApi => new(Instance.HttpClient);
-			public TenantApplicationsApi TenantApplicationsApi => new(Instance.HttpClient);
-			public TrustedCertificatesApi TrustedCertificatesApi => new(Instance.HttpClient);
-			public DeviceStatisticsApi DeviceStatisticsApi => new(Instance.HttpClient);
-			public UsageStatisticsApi UsageStatisticsApi => new(Instance.HttpClient);
-			public OptionsApi OptionsApi => new(Instance.HttpClient);
-			public LoginOptionsApi LoginOptionsApi => new(Instance.HttpClient);
-			public LoginTokensApi LoginTokensApi => new(Instance.HttpClient);
-			public SystemOptionsApi SystemOptionsApi => new(Instance.HttpClient);
+			public ITenantsApi TenantsApi => new TenantsApi(Instance.HttpClient);
+			public ITenantApplicationsApi TenantApplicationsApi => new TenantApplicationsApi(Instance.HttpClient);
+			public ITrustedCertificatesApi TrustedCertificatesApi => new TrustedCertificatesApi(Instance.HttpClient);
+			public IDeviceStatisticsApi DeviceStatisticsApi => new DeviceStatisticsApi(Instance.HttpClient);
+			public IUsageStatisticsApi UsageStatisticsApi => new UsageStatisticsApi(Instance.HttpClient);
+			public IOptionsApi OptionsApi => new OptionsApi(Instance.HttpClient);
+			public ILoginOptionsApi LoginOptionsApi => new LoginOptionsApi(Instance.HttpClient);
+			public ILoginTokensApi LoginTokensApi => new LoginTokensApi(Instance.HttpClient);
+			public ISystemOptionsApi SystemOptionsApi => new SystemOptionsApi(Instance.HttpClient);
 		}
 	
 		public class UsersFactory
 		{
-			public CurrentUserApi CurrentUserApi => new(Instance.HttpClient);
-			public UsersApi UsersApi => new(Instance.HttpClient);
-			public GroupsApi GroupsApi => new(Instance.HttpClient);
-			public RolesApi RolesApi => new(Instance.HttpClient);
-			public InventoryRolesApi InventoryRolesApi => new(Instance.HttpClient);
+			public ICurrentUserApi CurrentUserApi => new CurrentUserApi(Instance.HttpClient);
+			public IUsersApi UsersApi => new UsersApi(Instance.HttpClient);
+			public IGroupsApi GroupsApi => new GroupsApi(Instance.HttpClient);
+			public IRolesApi RolesApi => new RolesApi(Instance.HttpClient);
+			public IInventoryRolesApi InventoryRolesApi => new InventoryRolesApi(Instance.HttpClient);
 		}
 	
 		public class AuditsFactory
 		{
-			public AuditsApi AuditsApi => new(Instance.HttpClient);
+			public IAuditsApi AuditsApi => new AuditsApi(Instance.HttpClient);
 		}
 	
 		public class RealtimenotificationsFactory
 		{
-			public RealtimeNotificationApi RealtimeNotificationApi => new(Instance.HttpClient);
+			public IRealtimeNotificationApi RealtimeNotificationApi => new RealtimeNotificationApi(Instance.HttpClient);
 		}
 	
 		public class EventsFactory
 		{
-			public EventsApi EventsApi => new(Instance.HttpClient);
-			public AttachmentsApi AttachmentsApi => new(Instance.HttpClient);
+			public IEventsApi EventsApi => new EventsApi(Instance.HttpClient);
+			public IAttachmentsApi AttachmentsApi => new AttachmentsApi(Instance.HttpClient);
 		}
 	
 		public class Notifications20Factory
 		{
-			public SubscriptionsApi SubscriptionsApi => new(Instance.HttpClient);
-			public TokensApi TokensApi => new(Instance.HttpClient);
+			public ISubscriptionsApi SubscriptionsApi => new SubscriptionsApi(Instance.HttpClient);
+			public ITokensApi TokensApi => new TokensApi(Instance.HttpClient);
 		}
 	
 		public class RetentionsFactory
 		{
-			public RetentionRulesApi RetentionRulesApi => new(Instance.HttpClient);
+			public IRetentionRulesApi RetentionRulesApi => new RetentionRulesApi(Instance.HttpClient);
 		}
 	
 		public class IdentityFactory
 		{
-			public IdentityApi IdentityApi => new(Instance.HttpClient);
-			public ExternalIDsApi ExternalIDsApi => new(Instance.HttpClient);
+			public IIdentityApi IdentityApi => new IdentityApi(Instance.HttpClient);
+			public IExternalIDsApi ExternalIDsApi => new ExternalIDsApi(Instance.HttpClient);
 		}
 	
 		public class DevicecontrolFactory
 		{
-			public OperationsApi OperationsApi => new(Instance.HttpClient);
-			public BulkOperationsApi BulkOperationsApi => new(Instance.HttpClient);
-			public DeviceCredentialsApi DeviceCredentialsApi => new(Instance.HttpClient);
-			public NewDeviceRequestsApi NewDeviceRequestsApi => new(Instance.HttpClient);
+			public IOperationsApi OperationsApi => new OperationsApi(Instance.HttpClient);
+			public IBulkOperationsApi BulkOperationsApi => new BulkOperationsApi(Instance.HttpClient);
+			public IDeviceCredentialsApi DeviceCredentialsApi => new DeviceCredentialsApi(Instance.HttpClient);
+			public INewDeviceRequestsApi NewDeviceRequestsApi => new NewDeviceRequestsApi(Instance.HttpClient);
 		}
 	
 		public class InventoryFactory
 		{
-			public InventoryApi InventoryApi => new(Instance.HttpClient);
-			public ManagedObjectsApi ManagedObjectsApi => new(Instance.HttpClient);
-			public BinariesApi BinariesApi => new(Instance.HttpClient);
-			public ChildOperationsApi ChildOperationsApi => new(Instance.HttpClient);
+			public IInventoryApi InventoryApi => new InventoryApi(Instance.HttpClient);
+			public IManagedObjectsApi ManagedObjectsApi => new ManagedObjectsApi(Instance.HttpClient);
+			public IBinariesApi BinariesApi => new BinariesApi(Instance.HttpClient);
+			public IChildOperationsApi ChildOperationsApi => new ChildOperationsApi(Instance.HttpClient);
 		}
 	}
 }

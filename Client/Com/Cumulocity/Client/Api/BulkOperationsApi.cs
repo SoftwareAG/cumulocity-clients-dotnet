@@ -40,35 +40,18 @@ namespace Com.Cumulocity.Client.Api
 	/// 
 	/// </summary>
 	#nullable enable
-	public class BulkOperationsApi : AdaptableApi 
+	public class BulkOperationsApi : AdaptableApi, IBulkOperationsApi
 	{
 		public BulkOperationsApi(HttpClient httpClient) : base(httpClient)
 		{
 		}
 	
-		/// <summary>
-		/// Retrieve a list of bulk operations<br/>
-		/// Retrieve a list of bulk operations.  <section><h5>Required roles</h5> ROLE_BULK_OPERATION_READ </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the list of bulk operations sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="currentPage">The current page of the paginated results.</param>
-		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
-		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<BulkOperationCollection?> GetBulkOperations(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/devicecontrol/bulkoperations"));
+			var resourcePath = $"/devicecontrol/bulkoperations";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -92,23 +75,7 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<BulkOperationCollection?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Create a bulk operation<br/>
-		/// Create a bulk operation.  <section><h5>Required roles</h5> ROLE_BULK_OPERATION_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>A bulk operation was created.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<BulkOperation?> CreateBulkOperation(BulkOperation body)
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
@@ -119,7 +86,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/devicecontrol/bulkoperations"));
+			var resourcePath = $"/devicecontrol/bulkoperations";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.bulkoperation+json"),
@@ -134,31 +102,12 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<BulkOperation?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Retrieve a specific bulk operation<br/>
-		/// Retrieve a specific bulk operation (by a given ID).  <section><h5>Required roles</h5> ROLE_BULK_OPERATION_READ </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the bulk operation is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Bulk operation not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="id">Unique identifier of the bulk operation.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<BulkOperation?> GetBulkOperation(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/devicecontrol/bulkoperations/{id}"));
+			var resourcePath = $"/devicecontrol/bulkoperations/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -171,28 +120,7 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<BulkOperation?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Update a specific bulk operation<br/>
-		/// Update a specific bulk operation (by a given ID).  <section><h5>Required roles</h5> ROLE_BULK_OPERATION_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>A bulk operation was updated.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Bulk operation not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <param name="id">Unique identifier of the bulk operation.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id)
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
@@ -203,7 +131,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/devicecontrol/bulkoperations/{id}"));
+			var resourcePath = $"/devicecontrol/bulkoperations/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.bulkoperation+json"),
@@ -218,34 +147,12 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<BulkOperation?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Delete a specific bulk operation<br/>
-		/// Delete a specific bulk operation (by a given ID).  <section><h5>Required roles</h5> ROLE_BULK_OPERATION_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>A bulk operation was removed.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Bulk operation not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="id">Unique identifier of the bulk operation.</param>
+		/// <inheritdoc />
 		public async Task<System.IO.Stream> DeleteBulkOperation(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/devicecontrol/bulkoperations/{id}"));
+			var resourcePath = $"/devicecontrol/bulkoperations/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

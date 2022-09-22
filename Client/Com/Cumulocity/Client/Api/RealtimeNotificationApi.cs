@@ -227,33 +227,13 @@ namespace Com.Cumulocity.Client.Api
 	/// 
 	/// </summary>
 	#nullable enable
-	public class RealtimeNotificationApi : AdaptableApi 
+	public class RealtimeNotificationApi : AdaptableApi, IRealtimeNotificationApi
 	{
 		public RealtimeNotificationApi(HttpClient httpClient) : base(httpClient)
 		{
 		}
 	
-		/// <summary>
-		/// Responsive communication<br/>
-		/// The Real-time notification API enables responsive communication from Cumulocity IoT over restricted networks towards clients such as web browser and mobile devices. All clients subscribe to so-called channels to receive messages. These channels are filled by Cumulocity IoT with the output of [Operations](#tag/Operations). In addition, particular system channels are used for the initial handshake with clients, subscription to channels, removal from channels and connection. The [Bayeux protocol](https://docs.cometd.org/current/reference/#_concepts_bayeux_protocol) over HTTPS or WSS is used as communication mechanism.
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The operation was completed and the result is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 400</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body)
 		{
 			var jsonNode = ToJsonNode<RealtimeNotification>(body);
@@ -262,7 +242,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("error");
 			jsonNode?.RemoveFromNode("successful");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/notification/realtime"));
+			var resourcePath = $"/notification/realtime";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),

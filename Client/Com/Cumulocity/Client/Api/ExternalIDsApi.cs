@@ -27,33 +27,18 @@ namespace Com.Cumulocity.Client.Api
 	/// 
 	/// </summary>
 	#nullable enable
-	public class ExternalIDsApi : AdaptableApi 
+	public class ExternalIDsApi : AdaptableApi, IExternalIDsApi
 	{
 		public ExternalIDsApi(HttpClient httpClient) : base(httpClient)
 		{
 		}
 	
-		/// <summary>
-		/// Retrieve all external IDs of a specific managed object<br/>
-		/// Retrieve all external IDs of a existing managed object (identified by ID).  <section><h5>Required roles</h5> ROLE_IDENTITY_READ <b>OR</b> owner of the resource <b>OR</b> MANAGED_OBJECT_READ permission on the resource </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and all the external IDs are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="id">Unique identifier of the managed object.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<ExternalIds?> GetExternalIds(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity/globalIds/{id}/externalIds"));
+			var resourcePath = $"/identity/globalIds/{id}/externalIds";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -66,35 +51,15 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<ExternalIds?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Create an external ID<br/>
-		/// Create an external ID for an existing managed object (identified by ID).  <section><h5>Required roles</h5> ROLE_IDENTITY_ADMIN <b>OR</b> owner of the resource <b>OR</b> MANAGED_OBJECT_ADMIN permission on the resource </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 201</term>
-		/// <description>An external ID was created.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 409</term>
-		/// <description>Duplicate – Identity already bound to a different Global ID.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <param name="id">Unique identifier of the managed object.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<ExternalId?> CreateExternalId(ExternalId body, string id)
 		{
 			var jsonNode = ToJsonNode<ExternalId>(body);
 			jsonNode?.RemoveFromNode("managedObject");
 			jsonNode?.RemoveFromNode("self");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity/globalIds/{id}/externalIds"));
+			var resourcePath = $"/identity/globalIds/{id}/externalIds";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.externalid+json"),
@@ -109,32 +74,12 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<ExternalId?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Retrieve a specific external ID<br/>
-		/// Retrieve a specific external ID of a particular type.  <section><h5>Required roles</h5> ROLE_IDENTITY_READ <b>OR</b> owner of the resource <b>OR</b> MANAGED_OBJECT_READ permission on the resource </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the external ID is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>External ID not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with.</param>
-		/// <param name="externalId">The type of the external identifier.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<ExternalId?> GetExternalId(string type, string externalId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity/externalIds/{type}/{externalId}"));
+			var resourcePath = $"/identity/externalIds/{type}/{externalId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -147,31 +92,12 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<ExternalId?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Remove a specific external ID<br/>
-		/// Remove a specific external ID of a particular type.  <section><h5>Required roles</h5> ROLE_IDENTITY_ADMIN <b>OR</b> owner of the resource <b>OR</b> MANAGED_OBJECT_ADMIN permission on the resource </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>An external ID was deleted.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>External ID not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with.</param>
-		/// <param name="externalId">The type of the external identifier.</param>
+		/// <inheritdoc />
 		public async Task<System.IO.Stream> DeleteExternalId(string type, string externalId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/identity/externalIds/{type}/{externalId}"));
+			var resourcePath = $"/identity/externalIds/{type}/{externalId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

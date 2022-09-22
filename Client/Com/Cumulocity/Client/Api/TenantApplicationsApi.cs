@@ -26,45 +26,18 @@ namespace Com.Cumulocity.Client.Api
 	/// 
 	/// </summary>
 	#nullable enable
-	public class TenantApplicationsApi : AdaptableApi 
+	public class TenantApplicationsApi : AdaptableApi, ITenantApplicationsApi
 	{
 		public TenantApplicationsApi(HttpClient httpClient) : base(httpClient)
 		{
 		}
 	
-		/// <summary>
-		/// Retrieve subscribed applications<br/>
-		/// Retrieve the tenant subscribed applications by a given tenant ID.  <section><h5>Required roles</h5> (ROLE_TENANT_MANAGEMENT_READ <b>OR</b> ROLE_TENANT_ADMIN) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant) </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the tenant applications are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Tenant not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="currentPage">The current page of the paginated results.</param>
-		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
-		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
-		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<ApplicationReferenceCollection?> GetSubscribedApplications(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/applications"));
+			var resourcePath = $"/tenant/tenants/{tenantId}/applications";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -89,37 +62,13 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<ApplicationReferenceCollection?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Subscribe to an application<br/>
-		/// Subscribe a tenant (by a given ID) to an application.  <section><h5>Required roles</h5> (ROLE_APPLICATION_MANAGEMENT_ADMIN <b>AND</b> is the application owner <b>AND</b> is the current tenant) <b>OR</b> ((ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant)) </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 201</term>
-		/// <description>A tenant was subscribed to an application.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Application not found.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 409</term>
-		/// <description>The application is already assigned to the tenant.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId)
 		{
 			var jsonNode = ToJsonNode<SubscribedApplicationReference>(body);
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/applications"));
+			var resourcePath = $"/tenant/tenants/{tenantId}/applications";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.applicationreference+json"),
@@ -134,31 +83,12 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<ApplicationReference?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Unsubscribe from an application<br/>
-		/// Unsubscribe a tenant (by a given tenant ID) from an application (by a given application ID).  <section><h5>Required roles</h5> (ROLE_APPLICATION_MANAGEMENT_ADMIN <b>AND</b> is the application owner <b>AND</b> is the current tenant) <b>OR</b> ((ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant)) </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>A tenant was unsubscribed from an application.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Tenant not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="applicationId">Unique identifier of the application.</param>
+		/// <inheritdoc />
 		public async Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}/applications/{applicationId}"));
+			var resourcePath = $"/tenant/tenants/{tenantId}/applications/{applicationId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

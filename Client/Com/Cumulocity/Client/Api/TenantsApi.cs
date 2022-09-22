@@ -52,36 +52,18 @@ namespace Com.Cumulocity.Client.Api
 	/// 
 	/// </summary>
 	#nullable enable
-	public class TenantsApi : AdaptableApi 
+	public class TenantsApi : AdaptableApi, ITenantsApi
 	{
 		public TenantsApi(HttpClient httpClient) : base(httpClient)
 		{
 		}
 	
-		/// <summary>
-		/// Retrieve all subtenants<br/>
-		/// Retrieve all subtenants of the current tenant.  <section><h5>Required roles</h5> ROLE_TENANT_MANAGEMENT_READ </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the subtenants are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="currentPage">The current page of the paginated results.</param>
-		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
-		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
-		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<TenantCollection?> GetTenants(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants"));
+			var resourcePath = $"/tenant/tenants";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -106,35 +88,7 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<TenantCollection?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Create a tenant<br/>
-		/// Create a subtenant for the current tenant.  <section><h5>Required roles</h5> (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_CREATE) <b>AND</b> the current tenant is allowed to create subtenants </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 201</term>
-		/// <description>A tenant was created.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 409</term>
-		/// <description>Conflict – The tenant domain/ID already exists.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 422</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<Tenant?> CreateTenant(Tenant body)
 		{
 			var jsonNode = ToJsonNode<Tenant>(body);
@@ -147,7 +101,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("applications");
 			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants"));
+			var resourcePath = $"/tenant/tenants";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenant+json"),
@@ -162,26 +117,12 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<Tenant?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Retrieve the current tenant<br/>
-		/// Retrieve information about the current tenant.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_OWN_READ <b>OR</b> ROLE_SYSTEM </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the information is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<CurrentTenant?> GetCurrentTenant()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/currentTenant"));
+			var resourcePath = $"/tenant/currentTenant";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -194,35 +135,12 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<CurrentTenant?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Retrieve a specific tenant<br/>
-		/// Retrieve a specific tenant by a given ID.  <section><h5>Required roles</h5> ROLE_TENANT_MANAGEMENT_READ <b>AND</b> the current tenant is its parent <b>OR</b> is the management tenant </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the tenant is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Tenant not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<Tenant?> GetTenant(string tenantId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}"));
+			var resourcePath = $"/tenant/tenants/{tenantId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -235,36 +153,7 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<Tenant?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Update a specific tenant<br/>
-		/// Update a specific tenant by a given ID.  <section><h5>Required roles</h5> (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>AND</b> the current tenant is allowed to create subtenants) <b>OR</b> is the management tenant </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 201</term>
-		/// <description>A tenant was updated.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Tenant not found.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 422</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="body"></param>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <returns></returns>
+		/// <inheritdoc />
 		public async Task<Tenant?> UpdateTenant(Tenant body, string tenantId)
 		{
 			var jsonNode = ToJsonNode<Tenant>(body);
@@ -278,7 +167,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("applications");
 			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}"));
+			var resourcePath = $"/tenant/tenants/{tenantId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenant+json"),
@@ -293,34 +183,12 @@ namespace Com.Cumulocity.Client.Api
 			return await JsonSerializer.DeserializeAsync<Tenant?>(responseStream);
 		}
 		
-		/// <summary>
-		/// Remove a specific tenant<br/>
-		/// Remove a specific tenant by a given ID.  > **⚠️ Important:** Deleting a subtenant cannot be reverted. For security reasons, it is therefore only available in the management tenant. You cannot delete tenants from any tenant but the management tenant. > > Administrators in Enterprise Tenants are only allowed to suspend active subtenants, but not to delete them.  <section><h5>Required roles</h5> ROLE_TENANT_MANAGEMENT_ADMIN <b>AND</b> is the management tenant </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
-		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>A tenant was removed.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Tenant not found.</description>
-		/// </item>
-		/// </list>
-		/// </summary>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <inheritdoc />
 		public async Task<System.IO.Stream> DeleteTenant(string tenantId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}/tenant/tenants/{tenantId}"));
+			var resourcePath = $"/tenant/tenants/{tenantId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

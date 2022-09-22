@@ -37,7 +37,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<OperationCollection?> GetOperations(string? agentId = null, string? bulkOperationId = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? fragmentType = null, int? pageSize = null, bool? revert = null, string? status = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/operations"));
+			var resourcePath = $"/devicecontrol/operations";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -81,7 +82,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/operations"));
+			var resourcePath = $"/devicecontrol/operations";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.operation+json"),
@@ -100,7 +102,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteOperations(string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/operations"));
+			var resourcePath = $"/devicecontrol/operations";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -130,7 +133,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Operation?> GetOperation(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/operations/{id}"));
+			var resourcePath = $"/devicecontrol/operations/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -156,7 +160,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("deviceId");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/operations/{id}"));
+			var resourcePath = $"/devicecontrol/operations/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.operation+json"),

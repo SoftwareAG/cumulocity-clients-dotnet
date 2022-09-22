@@ -37,7 +37,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<NewDeviceRequestCollection?> GetNewDeviceRequests(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/newDeviceRequests"));
+			var resourcePath = $"/devicecontrol/newDeviceRequests";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -69,7 +70,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/newDeviceRequests"));
+			var resourcePath = $"/devicecontrol/newDeviceRequests";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.newdevicerequest+json"),
@@ -88,7 +90,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/newDeviceRequests/{requestId}"));
+			var resourcePath = $"/devicecontrol/newDeviceRequests/{requestId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -108,7 +111,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/newDeviceRequests/{requestId}"));
+			var resourcePath = $"/devicecontrol/newDeviceRequests/{requestId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.newdevicerequest+json"),
@@ -127,7 +131,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}devicecontrol/newDeviceRequests/{requestId}"));
+			var resourcePath = $"/devicecontrol/newDeviceRequests/{requestId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

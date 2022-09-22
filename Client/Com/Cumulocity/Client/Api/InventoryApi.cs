@@ -34,7 +34,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<InventoryApiResource?> GetInventoryApiResource()
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}inventory"));
+			var resourcePath = $"/inventory";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,

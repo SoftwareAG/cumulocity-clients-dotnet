@@ -37,7 +37,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<InventoryRoleCollection?> GetInventoryRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/inventoryroles"));
+			var resourcePath = $"/user/inventoryroles";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -68,7 +69,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/inventoryroles"));
+			var resourcePath = $"/user/inventoryroles";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.inventoryrole+json"),
@@ -87,7 +89,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<InventoryRole?> GetInventoryRole(int id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/inventoryroles/{id}"));
+			var resourcePath = $"/user/inventoryroles/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -107,7 +110,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/inventoryroles/{id}"));
+			var resourcePath = $"/user/inventoryroles/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.inventoryrole+json"),
@@ -126,7 +130,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteInventoryRole(int id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/inventoryroles/{id}"));
+			var resourcePath = $"/user/inventoryroles/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,
@@ -143,7 +148,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<InventoryAssignmentCollection?> GetUserInventoryRoles(string tenantId, string userId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/users/{userId}/roles/inventory"));
+			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/inventory";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -163,7 +169,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/users/{userId}/roles/inventory"));
+			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/inventory";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.inventoryassignment+json"),
@@ -182,7 +189,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<InventoryAssignment?> GetUserInventoryRole(string tenantId, string userId, int id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/users/{userId}/roles/inventory/{id}"));
+			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/inventory/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -200,7 +208,8 @@ namespace Com.Cumulocity.Client.Api
 		{
 			var jsonNode = ToJsonNode<InventoryAssignmentReference>(body);
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/users/{userId}/roles/inventory/{id}"));
+			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/inventory/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.inventoryassignment+json"),
@@ -219,7 +228,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/users/{userId}/roles/inventory/{id}"));
+			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/inventory/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

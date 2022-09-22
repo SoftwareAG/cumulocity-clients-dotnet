@@ -44,7 +44,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications"));
+			var resourcePath = $"/application/applications";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -86,7 +87,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("resourcesUrl");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications"));
+			var resourcePath = $"/application/applications";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.application+json"),
@@ -105,7 +107,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Application?> GetApplication(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}"));
+			var resourcePath = $"/application/applications/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -129,7 +132,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("type");
 			jsonNode?.RemoveFromNode("resourcesUrl");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}"));
+			var resourcePath = $"/application/applications/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.application+json"),
@@ -148,7 +152,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteApplication(string id, bool? force = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}"));
+			var resourcePath = $"/application/applications/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -174,7 +179,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Application?> CopyApplication(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}/clone"));
+			var resourcePath = $"/application/applications/{id}/clone";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Post,
@@ -191,7 +197,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ApplicationCollection?> GetApplicationsByName(string name)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applicationsByName/{name}"));
+			var resourcePath = $"/application/applicationsByName/{name}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -208,7 +215,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ApplicationCollection?> GetApplicationsByTenant(string tenantId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applicationsByTenant/{tenantId}"));
+			var resourcePath = $"/application/applicationsByTenant/{tenantId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -225,7 +233,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ApplicationCollection?> GetApplicationsByOwner(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applicationsByOwner/{tenantId}"));
+			var resourcePath = $"/application/applicationsByOwner/{tenantId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -254,7 +263,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ApplicationCollection?> GetApplicationsByUser(string username, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applicationsByUser/{username}"));
+			var resourcePath = $"/application/applicationsByUser/{username}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{

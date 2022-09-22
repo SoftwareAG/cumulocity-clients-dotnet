@@ -38,7 +38,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/loginOptions"));
+			var resourcePath = $"/tenant/loginOptions";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -67,7 +68,8 @@ namespace Com.Cumulocity.Client.Api
 			var jsonNode = ToJsonNode<AuthConfig>(body);
 			jsonNode?.RemoveFromNode("self");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}tenant/loginOptions"));
+			var resourcePath = $"/tenant/loginOptions";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.authconfig+json"),

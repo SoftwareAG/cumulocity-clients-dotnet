@@ -34,7 +34,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<NotificationSubscriptionCollection?> GetSubscriptions(string? context = null, int? currentPage = null, int? pageSize = null, string? source = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}notification2/subscriptions"));
+			var resourcePath = $"/notification2/subscriptions";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -68,7 +69,8 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("source", "self");
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}notification2/subscriptions"));
+			var resourcePath = $"/notification2/subscriptions";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.subscription+json"),
@@ -87,7 +89,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteSubscriptions(string? context = null, string? source = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}notification2/subscriptions"));
+			var resourcePath = $"/notification2/subscriptions";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -114,7 +117,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<NotificationSubscription?> GetSubscription(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}notification2/subscriptions/{id}"));
+			var resourcePath = $"/notification2/subscriptions/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -131,7 +135,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteSubscription(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}notification2/subscriptions/{id}"));
+			var resourcePath = $"/notification2/subscriptions/{id}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

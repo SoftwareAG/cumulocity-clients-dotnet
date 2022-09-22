@@ -34,7 +34,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<ApplicationBinaries?> GetApplicationAttachments(string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}/binaries"));
+			var resourcePath = $"/application/applications/{id}/binaries";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -51,7 +52,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Application?> UploadApplicationAttachment(byte[] file, string id)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}/binaries"));
+			var resourcePath = $"/application/applications/{id}/binaries";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var requestContent = new MultipartFormDataContent();
 			var fileContentFile = new ByteArrayContent(file);
 			fileContentFile.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
@@ -74,7 +76,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> GetApplicationAttachment(string id, string binaryId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}/binaries/{binaryId}"));
+			var resourcePath = $"/application/applications/{id}/binaries/{binaryId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -91,7 +94,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}application/applications/{id}/binaries/{binaryId}"));
+			var resourcePath = $"/application/applications/{id}/binaries/{binaryId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

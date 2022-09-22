@@ -37,7 +37,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<UserRoleCollection?> GetUserRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/roles"));
+			var resourcePath = $"/user/roles";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -66,7 +67,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<Role?> GetUserRole(string name)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/roles/{name}"));
+			var resourcePath = $"/user/roles/{name}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
@@ -83,7 +85,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<RoleReferenceCollection?> GetGroupRoles(string tenantId, int groupId, int? currentPage = null, int? pageSize = null)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groups/{groupId}/roles"));
+			var resourcePath = $"/user/{tenantId}/groups/{groupId}/roles";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			var allQueryParameter = new Dictionary<string, object>()
 			{
@@ -111,7 +114,8 @@ namespace Com.Cumulocity.Client.Api
 		{
 			var jsonNode = ToJsonNode<SubscribedRole>(body);
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groups/{groupId}/roles"));
+			var resourcePath = $"/user/{tenantId}/groups/{groupId}/roles";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.rolereference+json"),
@@ -130,7 +134,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/groups/{groupId}/roles/{roleId}"));
+			var resourcePath = $"/user/{tenantId}/groups/{groupId}/roles/{roleId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,
@@ -148,7 +153,8 @@ namespace Com.Cumulocity.Client.Api
 		{
 			var jsonNode = ToJsonNode<SubscribedRole>(body);
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/users/{userId}/roles"));
+			var resourcePath = $"/user/{tenantId}/users/{userId}/roles";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.rolereference+json"),
@@ -167,7 +173,8 @@ namespace Com.Cumulocity.Client.Api
 		public async Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId)
 		{
 			var client = HttpClient;
-			var uriBuilder = new UriBuilder(new Uri($"{client?.BaseAddress?.AbsoluteUri}user/{tenantId}/users/{userId}/roles/{roleId}"));
+			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/{roleId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,

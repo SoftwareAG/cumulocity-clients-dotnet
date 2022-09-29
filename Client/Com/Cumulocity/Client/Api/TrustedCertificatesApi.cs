@@ -155,6 +155,7 @@ namespace Com.Cumulocity.Client.Api
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
 			{
 				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
 				Method = HttpMethod.Put,

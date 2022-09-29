@@ -112,7 +112,7 @@ namespace Com.Cumulocity.Client.Model
 		/// A list of settings objects for this microservice application.
 		/// </summary>
 		[JsonPropertyName("settings")]
-		public List<Settings>? PSettings { get; set; }
+		public List<ApplicationSettings>? Settings { get; set; }
 	
 		/// <summary>
 		/// Allows to specify a custom category for microservice settings.
@@ -272,63 +272,6 @@ namespace Com.Cumulocity.Client.Model
 			}
 		}
 	
-	
-		public class Settings 
-		{
-		
-			/// <summary>
-			/// The name of the setting.
-			/// </summary>
-			[JsonPropertyName("key")]
-			public string? Key { get; set; }
-		
-			/// <summary>
-			/// The value schema determines the values that the microservice can process.
-			/// </summary>
-			[JsonPropertyName("valueSchema")]
-			public ValueSchema? PValueSchema { get; set; }
-		
-			/// <summary>
-			/// The default value.
-			/// </summary>
-			[JsonPropertyName("defaultValue")]
-			public string? DefaultValue { get; set; }
-		
-			/// <summary>
-			/// Indicates if the value is editable.
-			/// </summary>
-			[JsonPropertyName("editable")]
-			public bool? Editable { get; set; }
-		
-			/// <summary>
-			/// Indicated wether this setting is inherited.
-			/// </summary>
-			[JsonPropertyName("inheritFromOwner")]
-			public bool? InheritFromOwner { get; set; }
-		
-			/// <summary>
-			/// The value schema determines the values that the microservice can process.
-			/// </summary>
-			public class ValueSchema 
-			{
-			
-				/// <summary>
-				/// The value schema type.
-				/// </summary>
-				[JsonPropertyName("type")]
-				public string? Type { get; set; }
-			
-				public override string ToString()
-				{
-					return JsonSerializer.Serialize(this);
-				}
-			}
-		
-			public override string ToString()
-			{
-				return JsonSerializer.Serialize(this);
-			}
-		}
 	
 		public override string ToString()
 		{

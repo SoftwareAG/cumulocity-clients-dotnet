@@ -125,7 +125,6 @@ namespace Com.Cumulocity.Client.Supplementary
 	
 		public class InventoryFactory
 		{
-			public IInventoryApi InventoryApi => new InventoryApi(Instance.HttpClient);
 			public IManagedObjectsApi ManagedObjectsApi => new ManagedObjectsApi(Instance.HttpClient);
 			public IBinariesApi BinariesApi => new BinariesApi(Instance.HttpClient);
 			public IChildOperationsApi ChildOperationsApi => new ChildOperationsApi(Instance.HttpClient);

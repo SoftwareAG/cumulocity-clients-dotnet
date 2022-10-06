@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class TenantApiResource 
+	public class TenantApiResource<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Collection of subtenants
 		/// </summary>
 		[JsonPropertyName("tenants")]
-		public Tenants? PTenants { get; set; }
+		public Tenants<TCustomProperties>? PTenants { get; set; }
 	
 		/// <summary>
 		/// Retrieves subscribed applications.
@@ -103,7 +103,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// Collection of subtenants
 		/// </summary>
-		public class Tenants 
+		public class Tenants<TCustomProperties> where TCustomProperties : CustomProperties
 		{
 		
 			/// <summary>
@@ -113,7 +113,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("tenants")]
-			public List<Tenant>? PTenants { get; set; }
+			public List<Tenant<TCustomProperties>>? PTenants { get; set; }
 		
 			public override string ToString()
 			{

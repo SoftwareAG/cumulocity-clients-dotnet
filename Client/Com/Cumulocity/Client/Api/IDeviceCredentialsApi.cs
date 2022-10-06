@@ -45,7 +45,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<DeviceCredentials?> CreateDeviceCredentials(DeviceCredentials body);
+		Task<DeviceCredentials?> CreateDeviceCredentials(DeviceCredentials body) ;
 		
 		/// <summary>
 		/// Create a bulk device credentials request<br/>
@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="file">The CSV file to be uploaded.</param>
 		/// <returns></returns>
-		Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file);
+		Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file) ;
 	}
 	#nullable disable
 }

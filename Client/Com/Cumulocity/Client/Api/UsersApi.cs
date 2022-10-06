@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<UserCollection?> GetUsers(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<UserCollection<TCustomProperties>?> GetUsers<TCustomProperties>(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users";
@@ -65,13 +65,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<UserCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<UserCollection<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<User?> CreateUser(User body, string tenantId)
+		public async Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties
 		{
-			var jsonNode = ToJsonNode<User>(body);
+			var jsonNode = ToJsonNode<User<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("passwordStrength");
 			jsonNode?.RemoveFromNode("roles");
 			jsonNode?.RemoveFromNode("groups");
@@ -95,11 +95,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<User?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<User<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<User?> GetUser(string tenantId, string userId)
+		public async Task<User<TCustomProperties>?> GetUser<TCustomProperties>(string tenantId, string userId) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}";
@@ -113,13 +113,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<User?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<User<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<User?> UpdateUser(User body, string tenantId, string userId)
+		public async Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId) where TCustomProperties : CustomProperties
 		{
-			var jsonNode = ToJsonNode<User>(body);
+			var jsonNode = ToJsonNode<User<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("passwordStrength");
 			jsonNode?.RemoveFromNode("roles");
 			jsonNode?.RemoveFromNode("groups");
@@ -144,11 +144,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<User?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<User<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteUser(string tenantId, string userId)
+		public async Task<System.IO.Stream> DeleteUser(string tenantId, string userId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}";
@@ -166,7 +166,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<User?> GetUserByUsername(string tenantId, string username)
+		public async Task<User<TCustomProperties>?> GetUserByUsername<TCustomProperties>(string tenantId, string username) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/userByName/{username}";
@@ -180,11 +180,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<User?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<User<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<UserReferenceCollection?> GetUsersFromUserGroup(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null)
+		public async Task<UserReferenceCollection<TCustomProperties>?> GetUsersFromUserGroup<TCustomProperties>(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/users";
@@ -209,11 +209,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<UserReferenceCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<UserReferenceCollection<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<UserReference?> AssignUserToUserGroup(SubscribedUser body, string tenantId, int groupId)
+		public async Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<SubscribedUser>(body);
 			var client = HttpClient;
@@ -230,11 +230,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<UserReference?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<UserReference<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId)
+		public async Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/users/{userId}";
@@ -252,7 +252,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> Logout(string cookie, string xXSRFTOKEN)
+		public async Task<System.IO.Stream> Logout(string cookie, string xXSRFTOKEN) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/logout";

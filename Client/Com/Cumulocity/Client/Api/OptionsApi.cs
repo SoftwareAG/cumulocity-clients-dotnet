@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null)
+		public async Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/options";
@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Option?> CreateOption(Option body)
+		public async Task<Option?> CreateOption(Option body) 
 		{
 			var jsonNode = ToJsonNode<Option>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -85,7 +85,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<CategoryOptions?> GetOptionsByCategory(string category)
+		public async Task<TCategoryOptions?> GetOptionsByCategory<TCategoryOptions>(string category) where TCategoryOptions : CategoryOptions
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/options/{category}";
@@ -99,13 +99,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<CategoryOptions?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TCategoryOptions?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<CategoryOptions?> UpdateOptionsByCategory(CategoryOptions body, string category)
+		public async Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category) where TCategoryOptions : CategoryOptions
 		{
-			var jsonNode = ToJsonNode<CategoryOptions>(body);
+			var jsonNode = ToJsonNode<TCategoryOptions>(body);
 			var client = HttpClient;
 			var resourcePath = $"/tenant/options/{category}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -120,11 +120,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<CategoryOptions?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TCategoryOptions?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Option?> GetOption(string category, string key)
+		public async Task<Option?> GetOption(string category, string key) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/options/{category}/{key}";
@@ -142,7 +142,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key)
+		public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key) 
 		{
 			var jsonNode = ToJsonNode<CategoryKeyOption>(body);
 			var client = HttpClient;
@@ -163,7 +163,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteOption(string category, string key)
+		public async Task<System.IO.Stream> DeleteOption(string category, string key) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/options/{category}/{key}";

@@ -31,7 +31,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<SystemOptionCollection?> GetSystemOptions()
+		public async Task<SystemOptionCollection?> GetSystemOptions() 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/system/options";
@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<SystemOption?> GetSystemOption(string category, string key)
+		public async Task<SystemOption?> GetSystemOption(string category, string key) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/system/options/{category}/{key}";

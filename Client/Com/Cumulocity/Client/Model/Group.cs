@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class Group 
+	public class Group<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -30,7 +30,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An object with a list of custom properties.
 		/// </summary>
 		[JsonPropertyName("customProperties")]
-		public CustomProperties? PCustomProperties { get; set; }
+		public TCustomProperties? PCustomProperties { get; set; }
 	
 		/// <summary>
 		/// A description of the group.
@@ -73,7 +73,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The list of users in this group.
 		/// </summary>
 		[JsonPropertyName("users")]
-		public Users? PUsers { get; set; }
+		public Users<TCustomProperties>? PUsers { get; set; }
 	
 		public Group() 
 		{
@@ -117,7 +117,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// The list of users in this group.
 		/// </summary>
-		public class Users 
+		public class Users<TCustomProperties> where TCustomProperties : CustomProperties
 		{
 		
 			/// <summary>
@@ -130,7 +130,7 @@ namespace Com.Cumulocity.Client.Model
 			/// The list of users in this group.
 			/// </summary>
 			[JsonPropertyName("references")]
-			public List<User>? References { get; set; }
+			public List<User<TCustomProperties>>? References { get; set; }
 		
 			public override string ToString()
 			{

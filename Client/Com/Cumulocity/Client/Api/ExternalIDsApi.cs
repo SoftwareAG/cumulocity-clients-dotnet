@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<ExternalIds?> GetExternalIds(string id)
+		public async Task<ExternalIds?> GetExternalIds(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/identity/globalIds/{id}/externalIds";
@@ -52,7 +52,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ExternalId?> CreateExternalId(ExternalId body, string id)
+		public async Task<ExternalId?> CreateExternalId(ExternalId body, string id) 
 		{
 			var jsonNode = ToJsonNode<ExternalId>(body);
 			jsonNode?.RemoveFromNode("managedObject");
@@ -75,7 +75,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ExternalId?> GetExternalId(string type, string externalId)
+		public async Task<ExternalId?> GetExternalId(string type, string externalId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/identity/externalIds/{type}/{externalId}";
@@ -93,7 +93,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteExternalId(string type, string externalId)
+		public async Task<System.IO.Stream> DeleteExternalId(string type, string externalId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/identity/externalIds/{type}/{externalId}";

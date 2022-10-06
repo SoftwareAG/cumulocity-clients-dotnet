@@ -54,7 +54,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Add a new certificate<br/>
@@ -86,7 +86,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId);
+		Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId) ;
 		
 		/// <summary>
 		/// Add multiple certificates<br/>
@@ -118,7 +118,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId);
+		Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId) ;
 		
 		/// <summary>
 		/// Retrieve a stored certificate<br/>
@@ -138,7 +138,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
 		/// <returns></returns>
-		Task<TrustedCertificate?> GetTrustedCertificate(string tenantId, string fingerprint);
+		Task<TrustedCertificate?> GetTrustedCertificate(string tenantId, string fingerprint) ;
 		
 		/// <summary>
 		/// Update a stored certificate<br/>
@@ -167,7 +167,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
 		/// <returns></returns>
-		Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint);
+		Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint) ;
 		
 		/// <summary>
 		/// Remove a stored certificate<br/>
@@ -190,7 +190,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
-		Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint);
+		Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint) ;
 	}
 	#nullable disable
 }

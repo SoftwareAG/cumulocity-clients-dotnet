@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<NewDeviceRequestCollection?> GetNewDeviceRequests(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<NewDeviceRequestCollection?> GetNewDeviceRequests(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/newDeviceRequests";
@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body)
+		public async Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body) 
 		{
 			var jsonNode = ToJsonNode<NewDeviceRequest>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -87,7 +87,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId)
+		public async Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/newDeviceRequests/{requestId}";
@@ -105,7 +105,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId)
+		public async Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId) 
 		{
 			var jsonNode = ToJsonNode<NewDeviceRequest>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -128,7 +128,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId)
+		public async Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/newDeviceRequests/{requestId}";

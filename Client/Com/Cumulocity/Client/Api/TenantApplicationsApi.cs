@@ -33,7 +33,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<ApplicationReferenceCollection?> GetSubscribedApplications(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ApplicationReferenceCollection?> GetSubscribedApplications(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/applications";
@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId)
+		public async Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId) 
 		{
 			var jsonNode = ToJsonNode<SubscribedApplicationReference>(body);
 			var client = HttpClient;
@@ -84,7 +84,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId)
+		public async Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/applications/{applicationId}";

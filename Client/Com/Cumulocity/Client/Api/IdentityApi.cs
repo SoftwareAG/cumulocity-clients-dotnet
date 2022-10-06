@@ -36,7 +36,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<IdentityApiResource?> GetIdentityApiResource()
+		public async Task<IdentityApiResource?> GetIdentityApiResource() 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/identity";

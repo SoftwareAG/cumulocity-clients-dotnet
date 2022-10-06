@@ -51,7 +51,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<OperationCollection?> GetOperations(string? agentId = null, string? bulkOperationId = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? fragmentType = null, int? pageSize = null, bool? revert = null, string? status = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<OperationCollection<TOperation>?> GetOperations<TOperation>(string? agentId = null, string? bulkOperationId = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? fragmentType = null, int? pageSize = null, bool? revert = null, string? status = null, bool? withTotalElements = null, bool? withTotalPages = null) where TOperation : Operation;
 		
 		/// <summary>
 		/// Create an operation<br/>
@@ -70,7 +70,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<Operation?> CreateOperation(Operation body);
+		Task<TOperation?> CreateOperation<TOperation>(TOperation body) where TOperation : Operation;
 		
 		/// <summary>
 		/// Delete a list of operations<br/>
@@ -96,7 +96,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="dateTo">End date or date and time of the operation.</param>
 		/// <param name="deviceId">The ID of the device the operation is performed for.</param>
 		/// <param name="status">Status of the operation.</param>
-		Task<System.IO.Stream> DeleteOperations(string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null);
+		Task<System.IO.Stream> DeleteOperations(string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific operation<br/>
@@ -119,7 +119,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the operation.</param>
 		/// <returns></returns>
-		Task<Operation?> GetOperation(string id);
+		Task<TOperation?> GetOperation<TOperation>(string id) where TOperation : Operation;
 		
 		/// <summary>
 		/// Update a specific operation status<br/>
@@ -147,7 +147,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the operation.</param>
 		/// <returns></returns>
-		Task<Operation?> UpdateOperation(Operation body, string id);
+		Task<TOperation?> UpdateOperation<TOperation>(TOperation body, string id) where TOperation : Operation;
 	}
 	#nullable disable
 }

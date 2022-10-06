@@ -45,7 +45,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="source">The managed object ID to which the subscription is associated.</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<NotificationSubscriptionCollection?> GetSubscriptions(string? context = null, int? currentPage = null, int? pageSize = null, string? source = null, bool? withTotalPages = null);
+		Task<NotificationSubscriptionCollection?> GetSubscriptions(string? context = null, int? currentPage = null, int? pageSize = null, string? source = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Create a subscription<br/>
@@ -80,7 +80,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body);
+		Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body) ;
 		
 		/// <summary>
 		/// Remove subscriptions by source<br/>
@@ -107,7 +107,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="context">The context to which the subscription is associated. > **&#9432; Info:** If the value is `mo`, then `source` must also be provided in the query. </param>
 		/// <param name="source">The managed object ID to which the subscription is associated.</param>
-		Task<System.IO.Stream> DeleteSubscriptions(string? context = null, string? source = null);
+		Task<System.IO.Stream> DeleteSubscriptions(string? context = null, string? source = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific subscription<br/>
@@ -134,7 +134,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the notification subscription.</param>
 		/// <returns></returns>
-		Task<NotificationSubscription?> GetSubscription(string id);
+		Task<NotificationSubscription?> GetSubscription(string id) ;
 		
 		/// <summary>
 		/// Remove a specific subscription<br/>
@@ -160,7 +160,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the notification subscription.</param>
-		Task<System.IO.Stream> DeleteSubscription(string id);
+		Task<System.IO.Stream> DeleteSubscription(string id) ;
 	}
 	#nullable disable
 }

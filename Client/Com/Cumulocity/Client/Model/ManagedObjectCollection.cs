@@ -16,14 +16,14 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class ManagedObjectCollection 
+	public class ManagedObjectCollection<TManagedObject> where TManagedObject : ManagedObject
 	{
 	
 		/// <summary>
 		/// An array containing the results (managed objects) of the request.
 		/// </summary>
 		[JsonPropertyName("managedObjects")]
-		public List<ManagedObject>? ManagedObjects { get; set; }
+		public List<TManagedObject>? ManagedObjects { get; set; }
 	
 		/// <summary>
 		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.

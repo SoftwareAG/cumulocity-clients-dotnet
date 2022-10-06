@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class UserReferenceCollection 
+	public class UserReferenceCollection<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An array of user references.
 		/// </summary>
 		[JsonPropertyName("references")]
-		public List<UserReference>? References { get; set; }
+		public List<UserReference<TCustomProperties>>? References { get; set; }
 	
 		/// <summary>
 		/// A URL linking to this resource.

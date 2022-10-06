@@ -41,7 +41,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <returns></returns>
-		Task<ApplicationBinaries?> GetApplicationAttachments(string id);
+		Task<ApplicationBinaries?> GetApplicationAttachments(string id) ;
 		
 		/// <summary>
 		/// Upload an application attachment<br/>
@@ -61,7 +61,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="file">The ZIP file to be uploaded.</param>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <returns></returns>
-		Task<Application?> UploadApplicationAttachment(byte[] file, string id);
+		Task<Application?> UploadApplicationAttachment(byte[] file, string id) ;
 		
 		/// <summary>
 		/// Retrieve a specific application attachment<br/>
@@ -80,7 +80,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <param name="binaryId">Unique identifier of the binary.</param>
-		Task<System.IO.Stream> GetApplicationAttachment(string id, string binaryId);
+		Task<System.IO.Stream> GetApplicationAttachment(string id, string binaryId) ;
 		
 		/// <summary>
 		/// Delete a specific application attachment<br/>
@@ -103,7 +103,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <param name="binaryId">Unique identifier of the binary.</param>
-		Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId);
+		Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId) ;
 	}
 	#nullable disable
 }

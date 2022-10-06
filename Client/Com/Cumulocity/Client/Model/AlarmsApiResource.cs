@@ -16,14 +16,14 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class AlarmsApiResource 
+	public class AlarmsApiResource<TAlarm> where TAlarm : Alarm
 	{
 	
 		/// <summary>
 		/// Collection of all alarms
 		/// </summary>
 		[JsonPropertyName("alarms")]
-		public Alarms? PAlarms { get; set; }
+		public Alarms<TAlarm>? PAlarms { get; set; }
 	
 		/// <summary>
 		/// Read-only collection of all alarms for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.
@@ -76,7 +76,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// Collection of all alarms
 		/// </summary>
-		public class Alarms 
+		public class Alarms<TAlarm> where TAlarm : Alarm
 		{
 		
 			/// <summary>
@@ -86,7 +86,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("alarms")]
-			public List<Alarm>? PAlarms { get; set; }
+			public List<TAlarm>? PAlarms { get; set; }
 		
 			public override string ToString()
 			{

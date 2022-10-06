@@ -40,7 +40,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<DeviceCredentials?> CreateDeviceCredentials(DeviceCredentials body)
+		public async Task<DeviceCredentials?> CreateDeviceCredentials(DeviceCredentials body) 
 		{
 			var jsonNode = ToJsonNode<DeviceCredentials>(body);
 			jsonNode?.RemoveFromNode("password");
@@ -65,7 +65,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file)
+		public async Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/bulkNewDeviceRequests";

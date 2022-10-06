@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<CurrentUser?> GetCurrentUser()
+		public async Task<CurrentUser?> GetCurrentUser() 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/currentUser";
@@ -52,7 +52,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<CurrentUser?> UpdateCurrentUser(CurrentUser body)
+		public async Task<CurrentUser?> UpdateCurrentUser(CurrentUser body) 
 		{
 			var jsonNode = ToJsonNode<CurrentUser>(body);
 			jsonNode?.RemoveFromNode("self");

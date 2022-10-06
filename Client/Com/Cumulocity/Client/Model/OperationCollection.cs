@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class OperationCollection 
+	public class OperationCollection<TOperation> where TOperation : Operation
 	{
 	
 		/// <summary>
@@ -29,7 +29,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An array of operations.
 		/// </summary>
 		[JsonPropertyName("operations")]
-		public List<Operation>? Operations { get; set; }
+		public List<TOperation>? Operations { get; set; }
 	
 		/// <summary>
 		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.

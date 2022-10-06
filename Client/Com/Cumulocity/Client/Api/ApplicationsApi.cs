@@ -41,7 +41,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications";
@@ -78,7 +78,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> CreateApplication(Application body)
+		public async Task<Application?> CreateApplication(Application body) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -104,7 +104,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> GetApplication(string id)
+		public async Task<Application?> GetApplication(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}";
@@ -122,7 +122,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> UpdateApplication(Application body, string id)
+		public async Task<Application?> UpdateApplication(Application body, string id) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -149,7 +149,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteApplication(string id, bool? force = null)
+		public async Task<System.IO.Stream> DeleteApplication(string id, bool? force = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}";
@@ -176,7 +176,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> CopyApplication(string id)
+		public async Task<Application?> CopyApplication(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/clone";
@@ -194,7 +194,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ApplicationCollection?> GetApplicationsByName(string name)
+		public async Task<ApplicationCollection?> GetApplicationsByName(string name) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applicationsByName/{name}";
@@ -212,7 +212,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ApplicationCollection?> GetApplicationsByTenant(string tenantId)
+		public async Task<ApplicationCollection?> GetApplicationsByTenant(string tenantId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applicationsByTenant/{tenantId}";
@@ -230,7 +230,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ApplicationCollection?> GetApplicationsByOwner(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ApplicationCollection?> GetApplicationsByOwner(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applicationsByOwner/{tenantId}";
@@ -260,7 +260,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ApplicationCollection?> GetApplicationsByUser(string username, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ApplicationCollection?> GetApplicationsByUser(string username, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applicationsByUser/{username}";

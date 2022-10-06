@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null)
+		public async Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/loginOptions";
@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body)
+		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body) 
 		{
 			var jsonNode = ToJsonNode<AuthConfig>(body);
 			jsonNode?.RemoveFromNode("self");

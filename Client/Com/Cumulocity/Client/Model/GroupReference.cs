@@ -13,11 +13,11 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class GroupReference 
+	public class GroupReference<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		[JsonPropertyName("group")]
-		public Group? PGroup { get; set; }
+		public Group<TCustomProperties>? PGroup { get; set; }
 	
 		/// <summary>
 		/// A URL linking to this resource.

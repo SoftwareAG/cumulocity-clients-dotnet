@@ -31,7 +31,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> GetEventAttachment(string id)
+		public async Task<System.IO.Stream> GetEventAttachment(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id)
+		public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -69,7 +69,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id)
+		public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -89,7 +89,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id)
+		public async Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -116,7 +116,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteEventAttachment(string id)
+		public async Task<System.IO.Stream> DeleteEventAttachment(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";

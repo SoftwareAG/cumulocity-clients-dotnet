@@ -17,7 +17,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class User 
+	public class User<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -30,7 +30,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An object with a list of custom properties.
 		/// </summary>
 		[JsonPropertyName("customProperties")]
-		public CustomProperties? PCustomProperties { get; set; }
+		public TCustomProperties? PCustomProperties { get; set; }
 	
 		/// <summary>
 		/// The user's display name in Cumulocity IoT.
@@ -60,7 +60,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An object with a list of user groups.
 		/// </summary>
 		[JsonPropertyName("groups")]
-		public Groups? PGroups { get; set; }
+		public Groups<TCustomProperties>? PGroups { get; set; }
 	
 		/// <summary>
 		/// A unique identifier for this user.
@@ -165,7 +165,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// An object with a list of user groups.
 		/// </summary>
-		public class Groups 
+		public class Groups<TCustomProperties> where TCustomProperties : CustomProperties
 		{
 		
 			/// <summary>
@@ -178,7 +178,7 @@ namespace Com.Cumulocity.Client.Model
 			/// A list of user group references.
 			/// </summary>
 			[JsonPropertyName("references")]
-			public List<GroupReference>? References { get; set; }
+			public List<GroupReference<TCustomProperties>>? References { get; set; }
 		
 			/// <summary>
 			/// Information about paging statistics.

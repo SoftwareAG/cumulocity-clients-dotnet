@@ -13,7 +13,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class UserReference 
+	public class UserReference<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -23,7 +23,7 @@ namespace Com.Cumulocity.Client.Model
 		public string? Self { get; set; }
 	
 		[JsonPropertyName("user")]
-		public User? PUser { get; set; }
+		public User<TCustomProperties>? PUser { get; set; }
 	
 		public override string ToString()
 		{

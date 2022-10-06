@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<AlarmCollection?> GetAlarms(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null) where TAlarm : Alarm
 		{
 			var client = HttpClient;
 			var resourcePath = $"/alarm/alarms";
@@ -73,13 +73,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<AlarmCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<AlarmCollection<TAlarm>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UpdateAlarms(Alarm body, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null)
+		public async Task<System.IO.Stream> UpdateAlarms<TAlarm>(TAlarm body, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null) where TAlarm : Alarm
 		{
-			var jsonNode = ToJsonNode<Alarm>(body);
+			var jsonNode = ToJsonNode<TAlarm>(body);
 			jsonNode?.RemoveFromNode("firstOccurrenceTime");
 			jsonNode?.RemoveFromNode("severity");
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -127,9 +127,9 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Alarm?> CreateAlarm(Alarm body)
+		public async Task<TAlarm?> CreateAlarm<TAlarm>(TAlarm body) where TAlarm : Alarm
 		{
-			var jsonNode = ToJsonNode<Alarm>(body);
+			var jsonNode = ToJsonNode<TAlarm>(body);
 			jsonNode?.RemoveFromNode("firstOccurrenceTime");
 			jsonNode?.RemoveFromNode("lastUpdated");
 			jsonNode?.RemoveFromNode("creationTime");
@@ -151,11 +151,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Alarm?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TAlarm?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteAlarms(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null)
+		public async Task<System.IO.Stream> DeleteAlarms(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/alarm/alarms";
@@ -192,7 +192,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Alarm?> GetAlarm(string id)
+		public async Task<TAlarm?> GetAlarm<TAlarm>(string id) where TAlarm : Alarm
 		{
 			var client = HttpClient;
 			var resourcePath = $"/alarm/alarms/{id}";
@@ -206,13 +206,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Alarm?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TAlarm?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Alarm?> UpdateAlarm(Alarm body, string id)
+		public async Task<TAlarm?> UpdateAlarm<TAlarm>(TAlarm body, string id) where TAlarm : Alarm
 		{
-			var jsonNode = ToJsonNode<Alarm>(body);
+			var jsonNode = ToJsonNode<TAlarm>(body);
 			jsonNode?.RemoveFromNode("firstOccurrenceTime");
 			jsonNode?.RemoveFromNode("lastUpdated");
 			jsonNode?.RemoveFromNode("creationTime");
@@ -236,11 +236,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Alarm?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TAlarm?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null)
+		public async Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/alarm/alarms/count";

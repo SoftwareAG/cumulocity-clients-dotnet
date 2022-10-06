@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class GroupReferenceCollection 
+	public class GroupReferenceCollection<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -29,7 +29,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An array of group references.
 		/// </summary>
 		[JsonPropertyName("references")]
-		public List<GroupReference>? References { get; set; }
+		public List<GroupReference<TCustomProperties>>? References { get; set; }
 	
 		/// <summary>
 		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.

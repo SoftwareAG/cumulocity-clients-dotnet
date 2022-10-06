@@ -41,7 +41,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="management">If this is set to `true`, the management tenant login options will be returned.  > **&#9432; Info:** The `tenantId` parameter must not be present in the request when using the `management` parameter, otherwise it will cause an error. </param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null);
+		Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null) ;
 		
 		/// <summary>
 		/// Create a login option<br/>
@@ -68,7 +68,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<AuthConfig?> CreateLoginOption(AuthConfig body);
+		Task<AuthConfig?> CreateLoginOption(AuthConfig body) ;
 	}
 	#nullable disable
 }

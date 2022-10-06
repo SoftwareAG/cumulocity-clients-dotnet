@@ -38,7 +38,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <returns></returns>
-		Task<CurrentUser?> GetCurrentUser();
+		Task<CurrentUser?> GetCurrentUser() ;
 		
 		/// <summary>
 		/// Update the current user<br/>
@@ -61,7 +61,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<CurrentUser?> UpdateCurrentUser(CurrentUser body);
+		Task<CurrentUser?> UpdateCurrentUser(CurrentUser body) ;
 	}
 	#nullable disable
 }

@@ -16,14 +16,14 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class EventsApiResource 
+	public class EventsApiResource<TEvent> where TEvent : Event
 	{
 	
 		/// <summary>
 		/// Collection of all events
 		/// </summary>
 		[JsonPropertyName("events")]
-		public Events? PEvents { get; set; }
+		public Events<TEvent>? PEvents { get; set; }
 	
 		/// <summary>
 		/// Read-only collection of all events for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.
@@ -70,7 +70,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// Collection of all events
 		/// </summary>
-		public class Events 
+		public class Events<TEvent> where TEvent : Event
 		{
 		
 			/// <summary>
@@ -80,7 +80,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("events")]
-			public List<Event>? PEvents { get; set; }
+			public List<TEvent>? PEvents { get; set; }
 		
 			public override string ToString()
 			{

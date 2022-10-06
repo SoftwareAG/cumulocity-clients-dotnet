@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class SummaryAllTenantsUsageStatistics 
+	public class SummaryAllTenantsUsageStatistics<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -169,7 +169,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An object with a list of custom properties.
 		/// </summary>
 		[JsonPropertyName("tenantCustomProperties")]
-		public CustomProperties? TenantCustomProperties { get; set; }
+		public TCustomProperties? TenantCustomProperties { get; set; }
 	
 		/// <summary>
 		/// URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots `.`, hyphens `-` and underscores `_`.

@@ -36,7 +36,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates";
@@ -66,7 +66,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId)
+		public async Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId) 
 		{
 			var jsonNode = ToJsonNode<TrustedCertificate>(body);
 			jsonNode?.RemoveFromNode("notAfter");
@@ -96,7 +96,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId)
+		public async Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId) 
 		{
 			var jsonNode = ToJsonNode<TrustedCertificateCollection>(body);
 			jsonNode?.RemoveFromNode("next");
@@ -121,7 +121,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificate?> GetTrustedCertificate(string tenantId, string fingerprint)
+		public async Task<TrustedCertificate?> GetTrustedCertificate(string tenantId, string fingerprint) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}";
@@ -139,7 +139,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint)
+		public async Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint) 
 		{
 			var jsonNode = ToJsonNode<TrustedCertificate>(body);
 			jsonNode?.RemoveFromNode("notAfter");
@@ -170,7 +170,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint)
+		public async Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}";

@@ -55,7 +55,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<ManagedObjectReferenceCollection?> GetChildAdditions(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAdditions<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Assign a managed object as child addition<br/>
@@ -78,7 +78,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddOne body, string id);
+		Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddOne body, string id) ;
 		
 		/// <summary>
 		/// Assign a managed object as child addition<br/>
@@ -101,7 +101,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddMultiple body, string id);
+		Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddMultiple body, string id) ;
 		
 		/// <summary>
 		/// Assign a managed object as child addition<br/>
@@ -124,7 +124,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAddition(ManagedObject body, string id);
+		Task<System.IO.Stream> AssignAsChildAddition<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove specific child additions from its parent<br/>
@@ -151,7 +151,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> UnassignChildAdditions(ChildOperationsAddMultiple body, string id);
+		Task<System.IO.Stream> UnassignChildAdditions(ChildOperationsAddMultiple body, string id) ;
 		
 		/// <summary>
 		/// Retrieve a specific child addition of a specific managed object<br/>
@@ -179,7 +179,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
 		/// <returns></returns>
-		Task<ManagedObjectReference?> GetChildAddition(string id, string childId);
+		Task<ManagedObjectReference<TManagedObject>?> GetChildAddition<TManagedObject>(string id, string childId) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove a specific child addition from its parent<br/>
@@ -206,7 +206,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
-		Task<System.IO.Stream> UnassignChildAddition(string id, string childId);
+		Task<System.IO.Stream> UnassignChildAddition(string id, string childId) ;
 		
 		/// <summary>
 		/// Retrieve all child assets of a specific managed object<br/>
@@ -240,7 +240,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<ManagedObjectReferenceCollection?> GetChildAssets(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAssets<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Assign a managed object as child asset<br/>
@@ -263,7 +263,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddOne body, string id);
+		Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddOne body, string id) ;
 		
 		/// <summary>
 		/// Assign a managed object as child asset<br/>
@@ -286,7 +286,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddMultiple body, string id);
+		Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddMultiple body, string id) ;
 		
 		/// <summary>
 		/// Assign a managed object as child asset<br/>
@@ -309,7 +309,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAsset(ManagedObject body, string id);
+		Task<System.IO.Stream> AssignAsChildAsset<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove specific child assets from its parent<br/>
@@ -336,7 +336,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> UnassignChildAssets(ChildOperationsAddMultiple body, string id);
+		Task<System.IO.Stream> UnassignChildAssets(ChildOperationsAddMultiple body, string id) ;
 		
 		/// <summary>
 		/// Retrieve a specific child asset of a specific managed object<br/>
@@ -364,7 +364,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
 		/// <returns></returns>
-		Task<ManagedObjectReference?> GetChildAsset(string id, string childId);
+		Task<ManagedObjectReference<TManagedObject>?> GetChildAsset<TManagedObject>(string id, string childId) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove a specific child asset from its parent<br/>
@@ -391,7 +391,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
-		Task<System.IO.Stream> UnassignChildAsset(string id, string childId);
+		Task<System.IO.Stream> UnassignChildAsset(string id, string childId) ;
 		
 		/// <summary>
 		/// Retrieve all child devices of a specific managed object<br/>
@@ -425,7 +425,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<ManagedObjectReferenceCollection?> GetChildDevices(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildDevices<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Assign a managed object as child device<br/>
@@ -448,7 +448,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddOne body, string id);
+		Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddOne body, string id) ;
 		
 		/// <summary>
 		/// Assign a managed object as child device<br/>
@@ -471,7 +471,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddMultiple body, string id);
+		Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddMultiple body, string id) ;
 		
 		/// <summary>
 		/// Assign a managed object as child device<br/>
@@ -494,7 +494,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildDevice(ManagedObject body, string id);
+		Task<System.IO.Stream> AssignAsChildDevice<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove specific child devices from its parent<br/>
@@ -521,7 +521,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> UnassignChildDevices(ChildOperationsAddMultiple body, string id);
+		Task<System.IO.Stream> UnassignChildDevices(ChildOperationsAddMultiple body, string id) ;
 		
 		/// <summary>
 		/// Retrieve a specific child device of a specific managed object<br/>
@@ -549,7 +549,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
 		/// <returns></returns>
-		Task<ManagedObjectReference?> GetChildDevice(string id, string childId);
+		Task<ManagedObjectReference<TManagedObject>?> GetChildDevice<TManagedObject>(string id, string childId) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove a specific child device from its parent<br/>
@@ -576,7 +576,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
-		Task<System.IO.Stream> UnassignChildDevice(string id, string childId);
+		Task<System.IO.Stream> UnassignChildDevice(string id, string childId) ;
 	}
 	#nullable disable
 }

@@ -40,7 +40,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<ExternalIds?> GetExternalIds(string id);
+		Task<ExternalIds?> GetExternalIds(string id) ;
 		
 		/// <summary>
 		/// Create an external ID<br/>
@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<ExternalId?> CreateExternalId(ExternalId body, string id);
+		Task<ExternalId?> CreateExternalId(ExternalId body, string id) ;
 		
 		/// <summary>
 		/// Retrieve a specific external ID<br/>
@@ -88,7 +88,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with.</param>
 		/// <param name="externalId">The type of the external identifier.</param>
 		/// <returns></returns>
-		Task<ExternalId?> GetExternalId(string type, string externalId);
+		Task<ExternalId?> GetExternalId(string type, string externalId) ;
 		
 		/// <summary>
 		/// Remove a specific external ID<br/>
@@ -111,7 +111,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with.</param>
 		/// <param name="externalId">The type of the external identifier.</param>
-		Task<System.IO.Stream> DeleteExternalId(string type, string externalId);
+		Task<System.IO.Stream> DeleteExternalId(string type, string externalId) ;
 	}
 	#nullable disable
 }

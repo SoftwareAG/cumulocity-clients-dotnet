@@ -16,14 +16,14 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class EventCollection 
+	public class EventCollection<TEvent> where TEvent : Event
 	{
 	
 		/// <summary>
 		/// An array containing the results (events) of the request.
 		/// </summary>
 		[JsonPropertyName("events")]
-		public List<Event>? Events { get; set; }
+		public List<TEvent>? Events { get; set; }
 	
 		/// <summary>
 		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.

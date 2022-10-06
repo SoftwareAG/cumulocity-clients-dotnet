@@ -42,7 +42,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <returns></returns>
-		Task<Application?> GetCurrentApplication();
+		Task<Application?> GetCurrentApplication() ;
 		
 		/// <summary>
 		/// Update the current application<br/>
@@ -66,7 +66,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <returns></returns>
 		[Obsolete]
-		Task<Application?> UpdateCurrentApplication(Application body);
+		Task<Application?> UpdateCurrentApplication(Application body) ;
 		
 		/// <summary>
 		/// Retrieve the current application settings<br/>
@@ -88,7 +88,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <returns></returns>
-		Task<List<ApplicationSettings>?> GetCurrentApplicationSettings();
+		Task<List<ApplicationSettings>?> GetCurrentApplicationSettings() ;
 		
 		/// <summary>
 		/// Retrieve the subscribed users of the current application<br/>
@@ -106,7 +106,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <returns></returns>
-		Task<ApplicationUserCollection?> GetSubscribedUsers();
+		Task<ApplicationUserCollection?> GetSubscribedUsers() ;
 	}
 	#nullable disable
 }

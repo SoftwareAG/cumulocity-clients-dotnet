@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <returns></returns>
-		Task<SystemOptionCollection?> GetSystemOptions();
+		Task<SystemOptionCollection?> GetSystemOptions() ;
 		
 		/// <summary>
 		/// Retrieve a specific system option<br/>
@@ -55,7 +55,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="category">The category of the system options.</param>
 		/// <param name="key">The key of a system option.</param>
 		/// <returns></returns>
-		Task<SystemOption?> GetSystemOption(string category, string key);
+		Task<SystemOption?> GetSystemOption(string category, string key) ;
 	}
 	#nullable disable
 }

@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class AuditRecordCollection 
+	public class AuditRecordCollection<TAuditRecord> where TAuditRecord : AuditRecord
 	{
 	
 		/// <summary>
@@ -47,7 +47,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An array containing the results of the request.
 		/// </summary>
 		[JsonPropertyName("auditRecords")]
-		public List<AuditRecord>? AuditRecords { get; set; }
+		public List<TAuditRecord>? AuditRecords { get; set; }
 	
 		public override string ToString()
 		{

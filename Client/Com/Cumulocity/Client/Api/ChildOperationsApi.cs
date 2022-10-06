@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<ManagedObjectReferenceCollection?> GetChildAdditions(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAdditions<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TManagedObject : ManagedObject
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childAdditions";
@@ -63,11 +63,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddOne body, string id)
+		public async Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddOne body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddOne>(body);
 			var client = HttpClient;
@@ -88,7 +88,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddMultiple body, string id)
+		public async Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddMultiple body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -109,9 +109,9 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAddition(ManagedObject body, string id)
+		public async Task<System.IO.Stream> AssignAsChildAddition<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject
 		{
-			var jsonNode = ToJsonNode<ManagedObject>(body);
+			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
 			jsonNode?.RemoveFromNode("additionParents");
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -141,7 +141,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildAdditions(ChildOperationsAddMultiple body, string id)
+		public async Task<System.IO.Stream> UnassignChildAdditions(ChildOperationsAddMultiple body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -162,7 +162,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectReference?> GetChildAddition(string id, string childId)
+		public async Task<ManagedObjectReference<TManagedObject>?> GetChildAddition<TManagedObject>(string id, string childId) where TManagedObject : ManagedObject
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childAdditions/{childId}";
@@ -176,11 +176,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObjectReference?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildAddition(string id, string childId)
+		public async Task<System.IO.Stream> UnassignChildAddition(string id, string childId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childAdditions/{childId}";
@@ -198,7 +198,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectReferenceCollection?> GetChildAssets(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAssets<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TManagedObject : ManagedObject
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childAssets";
@@ -227,11 +227,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddOne body, string id)
+		public async Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddOne body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddOne>(body);
 			var client = HttpClient;
@@ -252,7 +252,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddMultiple body, string id)
+		public async Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddMultiple body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -273,9 +273,9 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAsset(ManagedObject body, string id)
+		public async Task<System.IO.Stream> AssignAsChildAsset<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject
 		{
-			var jsonNode = ToJsonNode<ManagedObject>(body);
+			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
 			jsonNode?.RemoveFromNode("additionParents");
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -305,7 +305,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildAssets(ChildOperationsAddMultiple body, string id)
+		public async Task<System.IO.Stream> UnassignChildAssets(ChildOperationsAddMultiple body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -326,7 +326,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectReference?> GetChildAsset(string id, string childId)
+		public async Task<ManagedObjectReference<TManagedObject>?> GetChildAsset<TManagedObject>(string id, string childId) where TManagedObject : ManagedObject
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childAssets/{childId}";
@@ -340,11 +340,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObjectReference?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildAsset(string id, string childId)
+		public async Task<System.IO.Stream> UnassignChildAsset(string id, string childId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childAssets/{childId}";
@@ -362,7 +362,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectReferenceCollection?> GetChildDevices(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildDevices<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TManagedObject : ManagedObject
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childDevices";
@@ -391,11 +391,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddOne body, string id)
+		public async Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddOne body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddOne>(body);
 			var client = HttpClient;
@@ -416,7 +416,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddMultiple body, string id)
+		public async Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddMultiple body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -437,9 +437,9 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildDevice(ManagedObject body, string id)
+		public async Task<System.IO.Stream> AssignAsChildDevice<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject
 		{
-			var jsonNode = ToJsonNode<ManagedObject>(body);
+			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
 			jsonNode?.RemoveFromNode("additionParents");
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -469,7 +469,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildDevices(ChildOperationsAddMultiple body, string id)
+		public async Task<System.IO.Stream> UnassignChildDevices(ChildOperationsAddMultiple body, string id) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -490,7 +490,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectReference?> GetChildDevice(string id, string childId)
+		public async Task<ManagedObjectReference<TManagedObject>?> GetChildDevice<TManagedObject>(string id, string childId) where TManagedObject : ManagedObject
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childDevices/{childId}";
@@ -504,11 +504,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObjectReference?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildDevice(string id, string childId)
+		public async Task<System.IO.Stream> UnassignChildDevice(string id, string childId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childDevices/{childId}";

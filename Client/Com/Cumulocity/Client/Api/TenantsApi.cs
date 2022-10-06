@@ -59,7 +59,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<TenantCollection?> GetTenants(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<TenantCollection<TCustomProperties>?> GetTenants<TCustomProperties>(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants";
@@ -85,13 +85,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<TenantCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TenantCollection<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Tenant?> CreateTenant(Tenant body)
+		public async Task<Tenant<TCustomProperties>?> CreateTenant<TCustomProperties>(Tenant<TCustomProperties> body) where TCustomProperties : CustomProperties
 		{
-			var jsonNode = ToJsonNode<Tenant>(body);
+			var jsonNode = ToJsonNode<Tenant<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("allowCreateTenants");
 			jsonNode?.RemoveFromNode("parent");
 			jsonNode?.RemoveFromNode("creationTime");
@@ -114,11 +114,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Tenant?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<CurrentTenant?> GetCurrentTenant()
+		public async Task<CurrentTenant<TCustomProperties>?> GetCurrentTenant<TCustomProperties>() where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/currentTenant";
@@ -132,11 +132,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<CurrentTenant?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<CurrentTenant<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Tenant?> GetTenant(string tenantId)
+		public async Task<Tenant<TCustomProperties>?> GetTenant<TCustomProperties>(string tenantId) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}";
@@ -150,13 +150,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Tenant?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Tenant?> UpdateTenant(Tenant body, string tenantId)
+		public async Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties
 		{
-			var jsonNode = ToJsonNode<Tenant>(body);
+			var jsonNode = ToJsonNode<Tenant<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("adminName");
 			jsonNode?.RemoveFromNode("allowCreateTenants");
 			jsonNode?.RemoveFromNode("parent");
@@ -180,11 +180,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Tenant?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteTenant(string tenantId)
+		public async Task<System.IO.Stream> DeleteTenant(string tenantId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}";

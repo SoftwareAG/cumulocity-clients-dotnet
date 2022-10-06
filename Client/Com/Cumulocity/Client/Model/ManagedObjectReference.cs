@@ -13,11 +13,11 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class ManagedObjectReference 
+	public class ManagedObjectReference<TManagedObject> where TManagedObject : ManagedObject
 	{
 	
 		[JsonPropertyName("managedObject")]
-		public ManagedObject? PManagedObject { get; set; }
+		public TManagedObject? PManagedObject { get; set; }
 	
 		/// <summary>
 		/// A URL linking to this resource.

@@ -40,7 +40,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <returns></returns>
-		Task<BootstrapUser?> GetBootstrapUser(string id);
+		Task<BootstrapUser?> GetBootstrapUser(string id) ;
 	}
 	#nullable disable
 }

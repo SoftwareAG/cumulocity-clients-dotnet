@@ -50,7 +50,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<MeasurementCollection?> GetMeasurements(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, string? valueFragmentSeries = null, string? valueFragmentType = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<MeasurementCollection<TMeasurement>?> GetMeasurements<TMeasurement>(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, string? valueFragmentSeries = null, string? valueFragmentType = null, bool? withTotalElements = null, bool? withTotalPages = null) where TMeasurement : Measurement;
 		
 		/// <summary>
 		/// Create a measurement<br/>
@@ -77,7 +77,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<Measurement?> CreateMeasurement(Measurement body);
+		Task<TMeasurement?> CreateMeasurement<TMeasurement>(TMeasurement body) where TMeasurement : Measurement;
 		
 		/// <summary>
 		/// Create a measurement<br/>
@@ -104,7 +104,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<MeasurementCollection?> CreateMeasurement(MeasurementCollection body);
+		Task<MeasurementCollection<TMeasurement>?> CreateMeasurement<TMeasurement>(MeasurementCollection<TMeasurement> body) where TMeasurement : Measurement;
 		
 		/// <summary>
 		/// Remove measurement collections<br/>
@@ -130,7 +130,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="fragmentType">A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.</param>
 		/// <param name="source">The managed object ID to which the measurement is associated.</param>
 		/// <param name="type">The type of measurement to search for.</param>
-		Task<System.IO.Stream> DeleteMeasurements(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null);
+		Task<System.IO.Stream> DeleteMeasurements(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific measurement<br/>
@@ -153,7 +153,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the measurement.</param>
 		/// <returns></returns>
-		Task<Measurement?> GetMeasurement(string id);
+		Task<TMeasurement?> GetMeasurement<TMeasurement>(string id) where TMeasurement : Measurement;
 		
 		/// <summary>
 		/// Remove a specific measurement<br/>
@@ -179,7 +179,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the measurement.</param>
-		Task<System.IO.Stream> DeleteMeasurement(string id);
+		Task<System.IO.Stream> DeleteMeasurement(string id) ;
 		
 		/// <summary>
 		/// Retrieve a list of series and their values<br/>
@@ -203,7 +203,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="series">The specific series to search for.</param>
 		/// <param name="source">The managed object ID to which the measurement is associated.</param>
 		/// <returns></returns>
-		Task<MeasurementSeries?> GetMeasurementSeries(string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null);
+		Task<MeasurementSeries?> GetMeasurementSeries(string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null) ;
 	}
 	#nullable disable
 }

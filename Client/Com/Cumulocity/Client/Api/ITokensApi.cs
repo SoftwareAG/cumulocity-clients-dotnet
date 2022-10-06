@@ -44,7 +44,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<NotificationToken?> CreateToken(NotificationTokenClaims body);
+		Task<NotificationToken?> CreateToken(NotificationTokenClaims body) ;
 	}
 	#nullable disable
 }

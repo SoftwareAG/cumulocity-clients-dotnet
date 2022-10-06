@@ -16,7 +16,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class UserCollection 
+	public class UserCollection<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -47,7 +47,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An array of users.
 		/// </summary>
 		[JsonPropertyName("users")]
-		public List<User>? Users { get; set; }
+		public List<User<TCustomProperties>>? Users { get; set; }
 	
 		public override string ToString()
 		{

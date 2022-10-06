@@ -41,7 +41,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<AuditRecordCollection?> GetAuditRecords(string? application = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, string? source = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<AuditRecordCollection<TAuditRecord>?> GetAuditRecords<TAuditRecord>(string? application = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, string? source = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null) where TAuditRecord : AuditRecord
 		{
 			var client = HttpClient;
 			var resourcePath = $"/audit/auditRecords";
@@ -73,13 +73,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<AuditRecordCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<AuditRecordCollection<TAuditRecord>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<AuditRecord?> CreateAuditRecord(AuditRecord body)
+		public async Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body) where TAuditRecord : AuditRecord
 		{
-			var jsonNode = ToJsonNode<AuditRecord>(body);
+			var jsonNode = ToJsonNode<TAuditRecord>(body);
 			jsonNode?.RemoveFromNode("severity");
 			jsonNode?.RemoveFromNode("application");
 			jsonNode?.RemoveFromNode("creationTime");
@@ -102,11 +102,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<AuditRecord?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TAuditRecord?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<AuditRecord?> GetAuditRecord(string id)
+		public async Task<TAuditRecord?> GetAuditRecord<TAuditRecord>(string id) where TAuditRecord : AuditRecord
 		{
 			var client = HttpClient;
 			var resourcePath = $"/audit/auditRecords/{id}";
@@ -120,7 +120,7 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<AuditRecord?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TAuditRecord?>(responseStream);
 		}
 	}
 	#nullable disable

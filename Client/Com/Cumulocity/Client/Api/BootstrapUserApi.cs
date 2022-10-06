@@ -31,7 +31,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<BootstrapUser?> GetBootstrapUser(string id)
+		public async Task<BootstrapUser?> GetBootstrapUser(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/bootstrapUser";

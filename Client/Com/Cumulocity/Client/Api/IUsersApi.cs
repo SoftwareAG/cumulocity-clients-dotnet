@@ -53,7 +53,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<UserCollection?> GetUsers(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<UserCollection<TCustomProperties>?> GetUsers<TCustomProperties>(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Create a user for a specific tenant<br/>
@@ -85,7 +85,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<User?> CreateUser(User body, string tenantId);
+		Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve a specific user for a specific tenant<br/>
@@ -113,7 +113,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <returns></returns>
-		Task<User?> GetUser(string tenantId, string userId);
+		Task<User<TCustomProperties>?> GetUser<TCustomProperties>(string tenantId, string userId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Update a specific user for a specific tenant<br/>
@@ -146,7 +146,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <returns></returns>
-		Task<User?> UpdateUser(User body, string tenantId, string userId);
+		Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Delete a specific user for a specific tenant<br/>
@@ -173,7 +173,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
-		Task<System.IO.Stream> DeleteUser(string tenantId, string userId);
+		Task<System.IO.Stream> DeleteUser(string tenantId, string userId) ;
 		
 		/// <summary>
 		/// Retrieve a user by username in a specific tenant<br/>
@@ -201,7 +201,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="username">The username of the a user.</param>
 		/// <returns></returns>
-		Task<User?> GetUserByUsername(string tenantId, string username);
+		Task<User<TCustomProperties>?> GetUserByUsername<TCustomProperties>(string tenantId, string username) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve the users of a specific user group of a specific tenant<br/>
@@ -232,7 +232,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<UserReferenceCollection?> GetUsersFromUserGroup(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null);
+		Task<UserReferenceCollection<TCustomProperties>?> GetUsersFromUserGroup<TCustomProperties>(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Add a user to a specific user group of a specific tenant<br/>
@@ -265,7 +265,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <returns></returns>
-		Task<UserReference?> AssignUserToUserGroup(SubscribedUser body, string tenantId, int groupId);
+		Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Remove a specific user from a specific user group of a specific tenant<br/>
@@ -293,7 +293,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
-		Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId);
+		Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId) ;
 		
 		/// <summary>
 		/// Terminate a user's session<br/>
@@ -312,7 +312,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="cookie">The authorization cookie storing the access token of the user. This parameter is specific to OAI-Secure authentication.</param>
 		/// <param name="xXSRFTOKEN">Prevents XRSF attack of the authenticated user. This parameter is specific to OAI-Secure authentication.</param>
-		Task<System.IO.Stream> Logout(string cookie, string xXSRFTOKEN);
+		Task<System.IO.Stream> Logout(string cookie, string xXSRFTOKEN) ;
 	}
 	#nullable disable
 }

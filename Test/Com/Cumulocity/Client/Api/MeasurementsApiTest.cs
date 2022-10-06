@@ -8,12 +8,11 @@
 
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Net;
 using System.Net.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Com.Cumulocity.Client.Supplementary;
+using Com.Cumulocity.Client.Model;
 
 namespace Com.Cumulocity.Client.Api 
 {
@@ -44,7 +43,7 @@ namespace Com.Cumulocity.Client.Api
 		public void TestGetMeasurements()
 		{
 			var api = new MeasurementsApi(HttpClient!);
-			var response = api.GetMeasurements();
+			var response = api.GetMeasurements<Measurement>();
 			Debug.Assert(response != null);
 		}
 	}

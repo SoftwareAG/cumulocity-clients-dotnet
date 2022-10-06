@@ -243,7 +243,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body);
+		Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body) ;
 	}
 	#nullable disable
 }

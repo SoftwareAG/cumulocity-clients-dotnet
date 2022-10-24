@@ -26,6 +26,19 @@ var uri = new Uri(...);
 factory.HttpClient.BaseAddress = uri;
 ```
 
+### Use your own domain model
+
+The CumulocityCoreLibrary allows custom data models. The following classes are designed to be extendible:
+
+- `Alarm`, `AuditRecord`, `CategoryOptions`, `CustomProperties`, `Event`, `ManagedObject`, `Measurement`, `Operation`
+
+Those classes allow to add an arbitrary number of additional properties as a list of key-value pairs. These properties are known as custom fragments and can be of any type. Each custom fragment is identified by a unique name. Thus, developers can propagate their custom fragments using:
+
+```csharp
+Alarm.Serialization.RegisterAdditionalProperty(String, Type);
+```
+
+Each of the extensible objects contains a dictionary object holding instances of custom fragments. Use the custom fragment's key to access it's value.
 ### Tests
 
 Example usage is explained within the `Test` project. To configure the tests, it's required to specify host and credentials. Locate the appsettings.test.json file and configure the settings:

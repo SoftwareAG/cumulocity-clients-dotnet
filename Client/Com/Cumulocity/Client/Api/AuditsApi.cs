@@ -62,7 +62,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalPages", withTotalPages}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

@@ -25,7 +25,7 @@ namespace Com.Cumulocity.Client.Api
 	
 		/// <summary>
 		/// Retrieve all alarms<br/>
-		/// Retrieve all alarms on your tenant, or a specific subset based on queries.  #### Query parameters  The query parameter `withTotalPages` only works when the user has the ROLE_ALARM_READ role, otherwise it is ignored.  <section><h5>Required roles</h5> The role ROLE_ALARM_READ is not required, but if a user has this role, all the alarms on the tenant are returned. If a user has access to alarms through inventory roles, only those alarms are returned. </section> 
+		/// Retrieve all alarms on your tenant, or a specific subset based on queries. The results are sorted by the newest alarms first.  #### Query parameters  The query parameter `withTotalPages` only works when the user has the ROLE_ALARM_READ role, otherwise it is ignored.  <section><h5>Required roles</h5> The role ROLE_ALARM_READ is not required, but if a user has this role, all the alarms on the tenant are returned. If a user has access to alarms through inventory roles, only those alarms are returned. </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>

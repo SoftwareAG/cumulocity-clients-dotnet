@@ -45,7 +45,13 @@ namespace Com.Cumulocity.Client.Model
 		/// 
 		/// </summary>
 		[JsonPropertyName("customFragments")]
-		public Dictionary<string, string>? CustomFragments { get; set; }
+		public Dictionary<string, string> CustomFragments { get; set; } = new Dictionary<string, string>();
+		
+		public string this[string key]
+		{
+			get => CustomFragments[key];
+			set => CustomFragments[key] = value;
+		}
 	
 		public C8yMobile() 
 		{

@@ -35,7 +35,13 @@ namespace Com.Cumulocity.Client.Model
 		/// 
 		/// </summary>
 		[JsonPropertyName("customProperties")]
-		public Dictionary<string, object>? PCustomProperties { get; set; }
+		public Dictionary<string, object> PCustomProperties { get; set; } = new Dictionary<string, object>();
+		
+		public object this[string key]
+		{
+			get => PCustomProperties[key];
+			set => PCustomProperties[key] = value;
+		}
 	
 		public override string ToString()
 		{

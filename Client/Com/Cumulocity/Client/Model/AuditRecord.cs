@@ -104,7 +104,13 @@ namespace Com.Cumulocity.Client.Model
 		/// 
 		/// </summary>
 		[JsonPropertyName("customProperties")]
-		public Dictionary<string, object>? CustomProperties { get; set; }
+		public Dictionary<string, object> CustomProperties { get; set; } = new Dictionary<string, object>();
+		
+		public object this[string key]
+		{
+			get => CustomProperties[key];
+			set => CustomProperties[key] = value;
+		}
 	
 		public AuditRecord() 
 		{

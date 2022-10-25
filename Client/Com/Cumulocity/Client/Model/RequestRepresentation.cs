@@ -92,7 +92,13 @@ namespace Com.Cumulocity.Client.Model
 			/// 
 			/// </summary>
 			[JsonPropertyName("requestHeaders")]
-			public Dictionary<string, string>? RequestHeaders { get; set; }
+			public Dictionary<string, string> RequestHeaders { get; set; } = new Dictionary<string, string>();
+			
+			public string this[string key]
+			{
+				get => RequestHeaders[key];
+				set => RequestHeaders[key] = value;
+			}
 		
 			public override string ToString()
 			{
@@ -113,7 +119,13 @@ namespace Com.Cumulocity.Client.Model
 			/// 
 			/// </summary>
 			[JsonPropertyName("requestParameters")]
-			public Dictionary<string, string>? RequestParameters { get; set; }
+			public Dictionary<string, string> RequestParameters { get; set; } = new Dictionary<string, string>();
+			
+			public string this[string key]
+			{
+				get => RequestParameters[key];
+				set => RequestParameters[key] = value;
+			}
 		
 			public override string ToString()
 			{

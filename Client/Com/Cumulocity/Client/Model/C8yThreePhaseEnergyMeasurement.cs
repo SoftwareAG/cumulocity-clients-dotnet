@@ -23,7 +23,13 @@ namespace Com.Cumulocity.Client.Model
 	{
 	
 		[JsonPropertyName("additionalProperties")]
-		public Dictionary<string, C8yMeasurementValue>? AdditionalProperties { get; set; }
+		public Dictionary<string, C8yMeasurementValue> AdditionalProperties { get; set; } = new Dictionary<string, C8yMeasurementValue>();
+		
+		public C8yMeasurementValue this[string key]
+		{
+			get => AdditionalProperties[key];
+			set => AdditionalProperties[key] = value;
+		}
 	
 		public override string ToString()
 		{

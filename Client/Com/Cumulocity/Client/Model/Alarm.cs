@@ -100,7 +100,13 @@ namespace Com.Cumulocity.Client.Model
 		/// 
 		/// </summary>
 		[JsonPropertyName("customFragments")]
-		public Dictionary<string, object>? CustomFragments { get; set; }
+		public Dictionary<string, object> CustomFragments { get; set; } = new Dictionary<string, object>();
+		
+		public object this[string key]
+		{
+			get => CustomFragments[key];
+			set => CustomFragments[key] = value;
+		}
 	
 		/// <summary>
 		/// The severity of the alarm.

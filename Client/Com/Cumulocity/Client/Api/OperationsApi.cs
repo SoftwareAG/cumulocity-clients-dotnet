@@ -81,6 +81,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("failureReason");
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
+			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/operations";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -153,7 +154,6 @@ namespace Com.Cumulocity.Client.Api
 			var jsonNode = ToJsonNode<TOperation>(body);
 			jsonNode?.RemoveFromNode("creationTime");
 			jsonNode?.RemoveFromNode("deviceExternalIDs", "self");
-			jsonNode?.RemoveFromNode("com_cumulocity_model_WebCamDevice");
 			jsonNode?.RemoveFromNode("bulkOperationId");
 			jsonNode?.RemoveFromNode("failureReason");
 			jsonNode?.RemoveFromNode("self");

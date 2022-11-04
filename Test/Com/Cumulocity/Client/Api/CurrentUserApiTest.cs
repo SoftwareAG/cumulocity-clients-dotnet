@@ -46,6 +46,14 @@ namespace Com.Cumulocity.Client.Api
 			var response = api.GetCurrentUser();
 			Debug.Assert(response != null);
 		}
+		
+		[TestMethod]
+		public void TestGetTfaState()
+		{
+			var api = new CurrentUserApi(HttpClient!);
+			var response = api.GetTfaState();
+			Debug.Assert(response != null);
+		}
 	}
 	#nullable disable
 }

@@ -203,6 +203,29 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		Task<System.IO.Stream> DeleteTenant(string tenantId) ;
+		
+		/// <summary>
+		/// Retrieve TFA settings of a specific tenant<br/>
+		/// Retrieve the two-factor authentication settings of a specific tenant by a given tenant ID.  <section><h5>Required roles</h5> ((ROLE_TENANT_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_READ) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant <b>OR</b> the current user belongs to the tenant)) <b>OR</b> (the user belongs to the tenant <b>AND</b> ROLE_USER_MANAGEMENT_OWN_READ) </section> 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>The request has succeeded and the TFA settings are sent in the response.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 401</term>
+		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 404</term>
+		/// <description>Tenant not found.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <returns></returns>
+		Task<TenantTfaData?> GetTenantTfaSettings(string tenantId) ;
 	}
 	#nullable disable
 }

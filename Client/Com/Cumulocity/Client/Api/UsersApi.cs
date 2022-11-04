@@ -79,6 +79,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("shouldResetPassword");
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("lastPasswordChange");
+			jsonNode?.RemoveFromNode("twoFactorAuthenticationEnabled");
 			jsonNode?.RemoveFromNode("devicePermissions");
 			jsonNode?.RemoveFromNode("applications");
 			var client = HttpClient;
@@ -128,6 +129,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("lastPasswordChange");
 			jsonNode?.RemoveFromNode("userName");
+			jsonNode?.RemoveFromNode("twoFactorAuthenticationEnabled");
 			jsonNode?.RemoveFromNode("devicePermissions");
 			jsonNode?.RemoveFromNode("applications");
 			var client = HttpClient;
@@ -163,6 +165,45 @@ namespace Com.Cumulocity.Client.Api
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;
+		}
+		
+		/// <inheritdoc />
+		public async Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId) 
+		{
+			var jsonNode = ToJsonNode<PasswordChange>(body);
+			var client = HttpClient;
+			var resourcePath = $"/user/{tenantId}/users/{userId}/password";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
+				Method = HttpMethod.Put,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+			request.Headers.TryAddWithoutValidation("Accept", "application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return responseStream;
+		}
+		
+		/// <inheritdoc />
+		public async Task<UserTfaData?> GetUserTfaSettings(string tenantId, string userId) 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/user/{tenantId}/users/{userId}/tfa";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Get,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<UserTfaData?>(responseStream);
 		}
 		
 		/// <inheritdoc />

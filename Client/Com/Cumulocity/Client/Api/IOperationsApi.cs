@@ -55,7 +55,7 @@ namespace Com.Cumulocity.Client.Api
 		
 		/// <summary>
 		/// Create an operation<br/>
-		/// Create an operation.  <section><h5>Required roles</h5> ROLE_DEVICE_CONTROL_ADMIN <b>OR</b> owner of the device <b>OR</b> ADMIN permissions on the device </section> 
+		/// Create an operation.  It is possible to add custom fragments to operations, for example `com_cumulocity_model_WebCamDevice` is a custom object of the webcam operation.  <section><h5>Required roles</h5> ROLE_DEVICE_CONTROL_ADMIN <b>OR</b> owner of the device <b>OR</b> ADMIN permissions on the device </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
@@ -65,6 +65,10 @@ namespace Com.Cumulocity.Client.Api
 		/// <item>
 		/// <term>HTTP 401</term>
 		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 422</term>
+		/// <description>Unprocessable Entity – invalid payload.</description>
 		/// </item>
 		/// </list>
 		/// </summary>

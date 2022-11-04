@@ -176,6 +176,62 @@ namespace Com.Cumulocity.Client.Api
 		Task<System.IO.Stream> DeleteUser(string tenantId, string userId) ;
 		
 		/// <summary>
+		/// Update a specific user's password of a specific tenant<br/>
+		/// Update a specific user's password (by a given user ID) of a specific tenant (by a given tenant ID).  Changing the user's password creates a corresponding audit record of type "User" and activity "User updated", and specifying that the password has been changed.  > **⚠️ Important:** If the tenant uses OAI-Secure authentication, the target user will be logged out.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> has access to device permissions and applications </section> 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>A user was updated.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 401</term>
+		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 403</term>
+		/// <description>Not enough permissions/roles to perform this operation.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 422</term>
+		/// <description>Unprocessable Entity – invalid payload.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="body"></param>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <param name="userId">Unique identifier of the a user.</param>
+		Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId) ;
+		
+		/// <summary>
+		/// Retrieve the TFA settings of a specific user<br/>
+		/// Retrieve the two-factor authentication settings for the specified user.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> (ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user) <b>OR</b> is the current user </section> 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>The request has succeeded and the TFA settings are sent in the response.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 401</term>
+		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 403</term>
+		/// <description>Not enough permissions/roles to perform this operation.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 404</term>
+		/// <description>User not found.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <param name="userId">Unique identifier of the a user.</param>
+		/// <returns></returns>
+		Task<UserTfaData?> GetUserTfaSettings(string tenantId, string userId) ;
+		
+		/// <summary>
 		/// Retrieve a user by username in a specific tenant<br/>
 		/// Retrieve a user by username in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>

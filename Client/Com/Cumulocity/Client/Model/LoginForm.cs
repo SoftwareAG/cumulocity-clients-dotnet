@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Model
 		public string? Password { get; set; }
 	
 		/// <summary>
-		/// Used if TFA code is required.
+		/// Current TFA code, sent by the user, if a TFA code is required to log in.
 		/// </summary>
 		[JsonPropertyName("tfa_code")]
 		public string? TfaCode { get; set; }

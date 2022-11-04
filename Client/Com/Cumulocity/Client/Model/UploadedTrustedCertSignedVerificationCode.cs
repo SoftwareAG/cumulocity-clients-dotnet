@@ -1,0 +1,33 @@
+///
+/// UploadedTrustedCertSignedVerificationCode.cs
+/// CumulocityCoreLibrary
+///
+/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+///
+
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Runtime.Serialization;
+
+namespace Com.Cumulocity.Client.Model 
+{
+	/// <summary>
+	/// The signed verification code to prove the user's possession of the certificate.
+	/// </summary>
+	public class UploadedTrustedCertSignedVerificationCode 
+	{
+	
+		/// <summary>
+		/// A signed verification code that proves the right to use the certificate.
+		/// </summary>
+		[JsonPropertyName("proofOfPossessionSignedVerificationCode")]
+		public string? ProofOfPossessionSignedVerificationCode { get; set; }
+	
+		public override string ToString()
+		{
+			return JsonSerializer.Serialize(this);
+		}
+	}
+}

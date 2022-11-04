@@ -60,6 +60,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("shouldResetPassword");
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("lastPasswordChange");
+			jsonNode?.RemoveFromNode("twoFactorAuthenticationEnabled");
 			jsonNode?.RemoveFromNode("devicePermissions");
 			var client = HttpClient;
 			var resourcePath = $"/user/currentUser";
@@ -76,6 +77,105 @@ namespace Com.Cumulocity.Client.Api
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return await JsonSerializer.DeserializeAsync<CurrentUser?>(responseStream);
+		}
+		
+		/// <inheritdoc />
+		public async Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body) 
+		{
+			var jsonNode = ToJsonNode<PasswordChange>(body);
+			var client = HttpClient;
+			var resourcePath = $"/user/currentUser/password";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
+				Method = HttpMethod.Put,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+			request.Headers.TryAddWithoutValidation("Accept", "application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return responseStream;
+		}
+		
+		/// <inheritdoc />
+		public async Task<CurrentUserTotpSecret?> GenerateTfaSecret() 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/user/currentUser/totpSecret";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Post,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<CurrentUserTotpSecret?>(responseStream);
+		}
+		
+		/// <inheritdoc />
+		public async Task<CurrentUserTotpSecretActivity?> GetTfaState() 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/user/currentUser/totpSecret/activity";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Get,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<CurrentUserTotpSecretActivity?>(responseStream);
+		}
+		
+		/// <inheritdoc />
+		public async Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body) 
+		{
+			var jsonNode = ToJsonNode<CurrentUserTotpSecretActivity>(body);
+			var client = HttpClient;
+			var resourcePath = $"/user/currentUser/totpSecret/activity";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
+				Method = HttpMethod.Post,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+			request.Headers.TryAddWithoutValidation("Accept", "application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return responseStream;
+		}
+		
+		/// <inheritdoc />
+		public async Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body) 
+		{
+			var jsonNode = ToJsonNode<CurrentUserTotpCode>(body);
+			var client = HttpClient;
+			var resourcePath = $"/user/currentUser/totpSecret/verify";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
+				Method = HttpMethod.Post,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+			request.Headers.TryAddWithoutValidation("Accept", "application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return responseStream;
 		}
 	}
 	#nullable disable

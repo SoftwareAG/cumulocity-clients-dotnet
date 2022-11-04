@@ -58,6 +58,10 @@ namespace Com.Cumulocity.Client.Api
 		/// <term>HTTP 401</term>
 		/// <description>Authentication information is missing or invalid.</description>
 		/// </item>
+		/// <item>
+		/// <term>HTTP 422</term>
+		/// <description>Unprocessable Entity – invalid payload.</description>
+		/// </item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>

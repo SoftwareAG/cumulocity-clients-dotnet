@@ -200,6 +200,24 @@ namespace Com.Cumulocity.Client.Api
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;
 		}
+		
+		/// <inheritdoc />
+		public async Task<TenantTfaData?> GetTenantTfaSettings(string tenantId) 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/tenant/tenants/{tenantId}/tfa";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Get,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<TenantTfaData?>(responseStream);
+		}
 	}
 	#nullable disable
 }

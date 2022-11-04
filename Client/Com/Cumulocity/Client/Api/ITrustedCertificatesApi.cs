@@ -191,6 +191,91 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
 		Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint) ;
+		
+		/// <summary>
+		/// Provide the proof of possession for an already uploaded certificate<br/>
+		/// Provide the proof of possession for a specific uploaded certificate (by a given fingerprint) for a specific tenant (by a given ID).  <div class="reqRoles"><div><h5></h5></div><div> (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_ADMIN) <b>AND</b> is the current tenant </div></div> 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>The provided signed verification code check was successful.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 400</term>
+		/// <description>The provided signed verification code is not correct.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 401</term>
+		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 404</term>
+		/// <description>Trusted certificate not found.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 422</term>
+		/// <description>Proof of possession for the certificate was not confirmed.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="body"></param>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
+		/// <returns></returns>
+		Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint) ;
+		
+		/// <summary>
+		/// Confirm an already uploaded certificate<br/>
+		/// Confirm an already uploaded certificate (by a given fingerprint) for a specific tenant (by a given ID).  <div class="reqRoles"><div><h5></h5></div><div> (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_ADMIN) <b>AND</b> is the management tenant </div></div> 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>The certificate is confirmed.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 401</term>
+		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 404</term>
+		/// <description>Trusted certificate not found.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 422</term>
+		/// <description>The verification was not successful. Certificate not confirmed.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
+		/// <returns></returns>
+		Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint) ;
+		
+		/// <summary>
+		/// Generate a verification code for the proof of possession operation for the given certificate<br/>
+		/// Generate a verification code for the proof of possession operation for the certificate (by a given fingerprint).  <div class="reqRoles"><div><h5></h5></div><div> (ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_ADMIN) <b>AND</b> is the current tenant </div></div> 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>The verification code was generated.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 401</term>
+		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 404</term>
+		/// <description>Trusted certificate not found.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
+		/// <returns></returns>
+		Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint) ;
 	}
 	#nullable disable
 }

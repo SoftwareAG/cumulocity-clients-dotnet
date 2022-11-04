@@ -135,6 +135,12 @@ namespace Com.Cumulocity.Client.Model
 		public bool? ShouldResetPassword { get; set; }
 	
 		/// <summary>
+		/// Indicates if the user has to use two-factor authentication to log in.
+		/// </summary>
+		[JsonPropertyName("twoFactorAuthenticationEnabled")]
+		public bool? TwoFactorAuthenticationEnabled { get; set; }
+	
+		/// <summary>
 		/// The user's username. It can have a maximum of 1000 characters.
 		/// </summary>
 		[JsonPropertyName("userName")]

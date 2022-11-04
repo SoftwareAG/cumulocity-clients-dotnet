@@ -186,6 +186,63 @@ namespace Com.Cumulocity.Client.Api
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;
 		}
+		
+		/// <inheritdoc />
+		public async Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint) 
+		{
+			var jsonNode = ToJsonNode<UploadedTrustedCertSignedVerificationCode>(body);
+			var client = HttpClient;
+			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates-pop/{fingerprint}/pop";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
+				Method = HttpMethod.Post,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<TrustedCertificate?>(responseStream);
+		}
+		
+		/// <inheritdoc />
+		public async Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint) 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates-pop/{fingerprint}/confirmed";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Post,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<TrustedCertificate?>(responseStream);
+		}
+		
+		/// <inheritdoc />
+		public async Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint) 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates-pop/{fingerprint}/verification-code";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Post,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<TrustedCertificate?>(responseStream);
+		}
 	}
 	#nullable disable
 }

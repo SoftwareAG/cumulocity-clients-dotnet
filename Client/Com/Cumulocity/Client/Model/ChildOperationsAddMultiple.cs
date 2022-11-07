@@ -7,9 +7,6 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -60,19 +57,34 @@ namespace Com.Cumulocity.Client.Model
 			
 				public override string ToString()
 				{
-					return JsonSerializer.Serialize(this);
+					var jsonOptions = new JsonSerializerOptions() 
+					{ 
+						WriteIndented = true,
+						DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+					};
+					return JsonSerializer.Serialize(this, jsonOptions);
 				}
 			}
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

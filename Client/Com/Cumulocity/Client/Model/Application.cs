@@ -6,11 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
-using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -154,7 +150,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// URL to the application base directory hosted on an external server. Only present in legacy hosted applications.
 		/// </summary>
-		[ObsoleteAttribute("This property might be removed in future releases.", false)]
+		[System.ObsoleteAttribute("This property might be removed in future releases.", false)]
 		[JsonPropertyName("resourcesUrl")]
 		public string? ResourcesUrl { get; set; }
 	
@@ -190,7 +186,12 @@ namespace Com.Cumulocity.Client.Model
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

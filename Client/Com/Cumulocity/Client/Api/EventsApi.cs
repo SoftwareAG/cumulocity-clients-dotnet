@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<EventCollection?> GetEvents(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? fragmentValue = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<EventCollection<TEvent>?> GetEvents<TEvent>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? fragmentValue = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null) where TEvent : Event
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events";
@@ -62,7 +62,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalPages", withTotalPages}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -73,13 +73,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<EventCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<EventCollection<TEvent>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Event?> CreateEvent(Event body)
+		public async Task<TEvent?> CreateEvent<TEvent>(TEvent body) where TEvent : Event
 		{
-			var jsonNode = ToJsonNode<Event>(body);
+			var jsonNode = ToJsonNode<TEvent>(body);
 			jsonNode?.RemoveFromNode("lastUpdated");
 			jsonNode?.RemoveFromNode("creationTime");
 			jsonNode?.RemoveFromNode("self");
@@ -99,11 +99,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Event?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TEvent?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteEvents(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null)
+		public async Task<System.IO.Stream> DeleteEvents(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events";
@@ -121,7 +121,7 @@ namespace Com.Cumulocity.Client.Api
 				{"type", type}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -136,7 +136,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Event?> GetEvent(string id)
+		public async Task<TEvent?> GetEvent<TEvent>(string id) where TEvent : Event
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}";
@@ -150,13 +150,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Event?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TEvent?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Event?> UpdateEvent(Event body, string id)
+		public async Task<TEvent?> UpdateEvent<TEvent>(TEvent body, string id) where TEvent : Event
 		{
-			var jsonNode = ToJsonNode<Event>(body);
+			var jsonNode = ToJsonNode<TEvent>(body);
 			jsonNode?.RemoveFromNode("lastUpdated");
 			jsonNode?.RemoveFromNode("creationTime");
 			jsonNode?.RemoveFromNode("self");
@@ -178,11 +178,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Event?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TEvent?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteEvent(string id)
+		public async Task<System.IO.Stream> DeleteEvent(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}";

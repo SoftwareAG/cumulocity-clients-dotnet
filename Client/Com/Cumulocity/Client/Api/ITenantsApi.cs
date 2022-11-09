@@ -68,7 +68,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<TenantCollection?> GetTenants(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<TenantCollection<TCustomProperties>?> GetTenants<TCustomProperties>(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Create a tenant<br/>
@@ -99,7 +99,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<Tenant?> CreateTenant(Tenant body);
+		Task<Tenant<TCustomProperties>?> CreateTenant<TCustomProperties>(Tenant<TCustomProperties> body) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve the current tenant<br/>
@@ -117,7 +117,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <returns></returns>
-		Task<CurrentTenant?> GetCurrentTenant();
+		Task<CurrentTenant<TCustomProperties>?> GetCurrentTenant<TCustomProperties>() where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve a specific tenant<br/>
@@ -144,7 +144,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<Tenant?> GetTenant(string tenantId);
+		Task<Tenant<TCustomProperties>?> GetTenant<TCustomProperties>(string tenantId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Update a specific tenant<br/>
@@ -176,7 +176,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<Tenant?> UpdateTenant(Tenant body, string tenantId);
+		Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Remove a specific tenant<br/>
@@ -202,7 +202,30 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		Task<System.IO.Stream> DeleteTenant(string tenantId);
+		Task<System.IO.Stream> DeleteTenant(string tenantId) ;
+		
+		/// <summary>
+		/// Retrieve TFA settings of a specific tenant<br/>
+		/// Retrieve the two-factor authentication settings of a specific tenant by a given tenant ID.  <section><h5>Required roles</h5> ((ROLE_TENANT_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_READ) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant <b>OR</b> the current user belongs to the tenant)) <b>OR</b> (the user belongs to the tenant <b>AND</b> ROLE_USER_MANAGEMENT_OWN_READ) </section> 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>The request has succeeded and the TFA settings are sent in the response.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 401</term>
+		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 404</term>
+		/// <description>Tenant not found.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <returns></returns>
+		Task<TenantTfaData?> GetTenantTfaSettings(string tenantId) ;
 	}
 	#nullable disable
 }

@@ -51,7 +51,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<ApplicationReferenceCollection?> GetSubscribedApplications(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<ApplicationReferenceCollection?> GetSubscribedApplications(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Subscribe to an application<br/>
@@ -79,7 +79,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId);
+		Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId) ;
 		
 		/// <summary>
 		/// Unsubscribe from an application<br/>
@@ -102,7 +102,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="applicationId">Unique identifier of the application.</param>
-		Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId);
+		Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId) ;
 	}
 	#nullable disable
 }

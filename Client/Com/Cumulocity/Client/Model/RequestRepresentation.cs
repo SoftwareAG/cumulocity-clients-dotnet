@@ -7,9 +7,6 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -92,11 +89,22 @@ namespace Com.Cumulocity.Client.Model
 			/// 
 			/// </summary>
 			[JsonPropertyName("requestHeaders")]
-			public Dictionary<string, string>? RequestHeaders { get; set; }
+			public Dictionary<string, string> RequestHeaders { get; set; } = new Dictionary<string, string>();
+			
+			public string this[string key]
+			{
+				get => RequestHeaders[key];
+				set => RequestHeaders[key] = value;
+			}
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
@@ -113,17 +121,33 @@ namespace Com.Cumulocity.Client.Model
 			/// 
 			/// </summary>
 			[JsonPropertyName("requestParameters")]
-			public Dictionary<string, string>? RequestParameters { get; set; }
+			public Dictionary<string, string> RequestParameters { get; set; } = new Dictionary<string, string>();
+			
+			public string this[string key]
+			{
+				get => RequestParameters[key];
+				set => RequestParameters[key] = value;
+			}
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

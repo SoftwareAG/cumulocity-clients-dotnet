@@ -7,23 +7,20 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class MeasurementApiResource 
+	public class MeasurementApiResource<TMeasurement> where TMeasurement : Measurement
 	{
 	
 		/// <summary>
 		/// Collection of all measurements
 		/// </summary>
 		[JsonPropertyName("measurements")]
-		public Measurements? PMeasurements { get; set; }
+		public Measurements<TMeasurement>? PMeasurements { get; set; }
 	
 		/// <summary>
 		/// Read-only collection of all measurements for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.
@@ -82,11 +79,11 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// Collection of all measurements
 		/// </summary>
-		public class Measurements 
+		public class Measurements<TMeasurement> where TMeasurement : Measurement
 		{
 		
 			[JsonPropertyName("measurements")]
-			public List<Measurement>? PMeasurements { get; set; }
+			public List<TMeasurement>? PMeasurements { get; set; }
 		
 			/// <summary>
 			/// A URL linking to this resource.
@@ -96,13 +93,23 @@ namespace Com.Cumulocity.Client.Model
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

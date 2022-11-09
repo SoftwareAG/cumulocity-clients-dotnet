@@ -47,7 +47,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<BulkOperationCollection?> GetBulkOperations(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null)
+		public async Task<BulkOperationCollection?> GetBulkOperations(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/bulkoperations";
@@ -61,7 +61,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalElements", withTotalElements}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -76,7 +76,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<BulkOperation?> CreateBulkOperation(BulkOperation body)
+		public async Task<BulkOperation?> CreateBulkOperation(BulkOperation body) 
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
 			jsonNode?.RemoveFromNode("generalStatus");
@@ -103,7 +103,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<BulkOperation?> GetBulkOperation(string id)
+		public async Task<BulkOperation?> GetBulkOperation(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/bulkoperations/{id}";
@@ -121,7 +121,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id)
+		public async Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id) 
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
 			jsonNode?.RemoveFromNode("generalStatus");
@@ -148,7 +148,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteBulkOperation(string id)
+		public async Task<System.IO.Stream> DeleteBulkOperation(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/bulkoperations/{id}";

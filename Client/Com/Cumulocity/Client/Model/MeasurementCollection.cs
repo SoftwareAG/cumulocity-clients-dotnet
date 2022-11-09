@@ -7,23 +7,20 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class MeasurementCollection 
+	public class MeasurementCollection<TMeasurement> where TMeasurement : Measurement
 	{
 	
 		/// <summary>
 		/// An array containing the measurements of the request.
 		/// </summary>
 		[JsonPropertyName("measurements")]
-		public List<Measurement>? Measurements { get; set; }
+		public List<TMeasurement>? Measurements { get; set; }
 	
 		/// <summary>
 		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.
@@ -53,14 +50,19 @@ namespace Com.Cumulocity.Client.Model
 		{
 		}
 	
-		public MeasurementCollection(List<Measurement> measurements)
+		public MeasurementCollection(List<TMeasurement> measurements)
 		{
 			this.Measurements = measurements;
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

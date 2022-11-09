@@ -7,16 +7,13 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class TenantCollection 
+	public class TenantCollection<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -47,11 +44,16 @@ namespace Com.Cumulocity.Client.Model
 		/// An array containing the results (subtenants) of the request.
 		/// </summary>
 		[JsonPropertyName("tenants")]
-		public List<Tenant>? Tenants { get; set; }
+		public List<Tenant<TCustomProperties>>? Tenants { get; set; }
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

@@ -50,7 +50,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<UserGroupCollection?> GetUserGroups(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<UserGroupCollection<TCustomProperties>?> GetTenantUserGroups<TCustomProperties>(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Create a user group for a specific tenant<br/>
@@ -82,7 +82,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<Group?> CreateUserGroup(Group body, string tenantId);
+		Task<Group<TCustomProperties>?> CreateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve a specific user group for a specific tenant<br/>
@@ -110,7 +110,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <returns></returns>
-		Task<Group?> GetUserGroup(string tenantId, int groupId);
+		Task<Group<TCustomProperties>?> GetUserGroup<TCustomProperties>(string tenantId, int groupId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Update a specific user group for a specific tenant<br/>
@@ -143,7 +143,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <returns></returns>
-		Task<Group?> UpdateUserGroup(Group body, string tenantId, int groupId);
+		Task<Group<TCustomProperties>?> UpdateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, int groupId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Delete a specific user group for a specific tenant<br/>
@@ -170,7 +170,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
-		Task<System.IO.Stream> DeleteUserGroup(string tenantId, int groupId);
+		Task<System.IO.Stream> DeleteUserGroup(string tenantId, int groupId) ;
 		
 		/// <summary>
 		/// Retrieve a user group by group name for a specific tenant<br/>
@@ -198,7 +198,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupName">The name of the user group.</param>
 		/// <returns></returns>
-		Task<Group?> GetUserGroupByName(string tenantId, string groupName);
+		Task<Group<TCustomProperties>?> GetUserGroupByName<TCustomProperties>(string tenantId, string groupName) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Get all user groups for specific user in a specific tenant<br/>
@@ -230,7 +230,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<GroupReferenceCollection?> GetUserGroups(string tenantId, string userId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<GroupReferenceCollection<TCustomProperties>?> GetUserGroups<TCustomProperties>(string tenantId, string userId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties;
 	}
 	#nullable disable
 }

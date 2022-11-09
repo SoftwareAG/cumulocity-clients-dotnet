@@ -42,7 +42,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<InventoryRoleCollection?> GetInventoryRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null);
+		Task<InventoryRoleCollection?> GetInventoryRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null) ;
 		
 		/// <summary>
 		/// Create an inventory role<br/>
@@ -65,7 +65,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<InventoryRole?> CreateInventoryRole(InventoryRole body);
+		Task<InventoryRole?> CreateInventoryRole(InventoryRole body) ;
 		
 		/// <summary>
 		/// Retrieve a specific inventory role<br/>
@@ -88,7 +88,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the inventory role.</param>
 		/// <returns></returns>
-		Task<InventoryRole?> GetInventoryRole(int id);
+		Task<InventoryRole?> GetInventoryRole(int id) ;
 		
 		/// <summary>
 		/// Update a specific inventory role<br/>
@@ -116,7 +116,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the inventory role.</param>
 		/// <returns></returns>
-		Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id);
+		Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id) ;
 		
 		/// <summary>
 		/// Remove a specific inventory role<br/>
@@ -142,7 +142,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the inventory role.</param>
-		Task<System.IO.Stream> DeleteInventoryRole(int id);
+		Task<System.IO.Stream> DeleteInventoryRole(int id) ;
 		
 		/// <summary>
 		/// Retrieve all inventory roles assigned to a user<br/>
@@ -170,7 +170,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <returns></returns>
-		Task<InventoryAssignmentCollection?> GetUserInventoryRoles(string tenantId, string userId);
+		Task<InventoryAssignmentCollection?> GetUserInventoryRoles(string tenantId, string userId) ;
 		
 		/// <summary>
 		/// Assign an inventory role to a user<br/>
@@ -203,7 +203,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <returns></returns>
-		Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId);
+		Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId) ;
 		
 		/// <summary>
 		/// Retrieve a specific inventory role assigned to a user<br/>
@@ -232,7 +232,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="id">Unique identifier of the inventory assignment.</param>
 		/// <returns></returns>
-		Task<InventoryAssignment?> GetUserInventoryRole(string tenantId, string userId, int id);
+		Task<InventoryAssignment?> GetUserInventoryRole(string tenantId, string userId, int id) ;
 		
 		/// <summary>
 		/// Update a specific inventory role assigned to a user<br/>
@@ -266,7 +266,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="id">Unique identifier of the inventory assignment.</param>
 		/// <returns></returns>
-		Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id);
+		Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id) ;
 		
 		/// <summary>
 		/// Remove a specific inventory role assigned to a user<br/>
@@ -294,7 +294,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="id">Unique identifier of the inventory assignment.</param>
-		Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id);
+		Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id) ;
 	}
 	#nullable disable
 }

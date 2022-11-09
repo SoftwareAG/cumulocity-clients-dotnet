@@ -7,16 +7,13 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class TenantApiResource 
+	public class TenantApiResource<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -35,7 +32,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Collection of subtenants
 		/// </summary>
 		[JsonPropertyName("tenants")]
-		public Tenants? PTenants { get; set; }
+		public Tenants<TCustomProperties>? PTenants { get; set; }
 	
 		/// <summary>
 		/// Retrieves subscribed applications.
@@ -96,14 +93,19 @@ namespace Com.Cumulocity.Client.Model
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		/// <summary>
 		/// Collection of subtenants
 		/// </summary>
-		public class Tenants 
+		public class Tenants<TCustomProperties> where TCustomProperties : CustomProperties
 		{
 		
 			/// <summary>
@@ -113,17 +115,27 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("tenants")]
-			public List<Tenant>? PTenants { get; set; }
+			public List<Tenant<TCustomProperties>>? PTenants { get; set; }
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

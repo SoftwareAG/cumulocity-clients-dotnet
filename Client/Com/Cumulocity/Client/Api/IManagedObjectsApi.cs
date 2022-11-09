@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<ManagedObjectCollection?> GetManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<ManagedObjectCollection<TManagedObject>?> GetManagedObjects<TManagedObject>(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Create a managed object<br/>
@@ -86,7 +86,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<ManagedObject?> CreateManagedObject(ManagedObject body);
+		Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Retrieve the total number of managed objects<br/>
@@ -112,7 +112,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="text">Search for managed objects where any property value is equal to the given one. Only string values are supported.</param>
 		/// <param name="type">The type of managed object to search for.</param>
 		/// <returns></returns>
-		Task<int> GetNumberOfManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, string? fragmentType = null, List<string>? ids = null, string? owner = null, string? text = null, string? type = null);
+		Task<int> GetNumberOfManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, string? fragmentType = null, List<string>? ids = null, string? owner = null, string? text = null, string? type = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific managed object<br/>
@@ -139,7 +139,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withChildrenCount">When set to `true`, the returned result will contain the total number of children in the respective objects (`childAdditions`, `childAssets` and `childDevices`).</param>
 		/// <param name="withParents">When set to `true`, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array.</param>
 		/// <returns></returns>
-		Task<ManagedObject?> GetManagedObject(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null);
+		Task<TManagedObject?> GetManagedObject<TManagedObject>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Update a specific managed object<br/>
@@ -163,7 +163,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<ManagedObject?> UpdateManagedObject(ManagedObject body, string id);
+		Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove a specific managed object<br/>
@@ -188,7 +188,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="cascade">When set to `true` and the managed object is a device or group, all the hierarchy will be deleted.</param>
 		/// <param name="forceCascade">When set to `true` all the hierarchy will be deleted without checking the type of managed object. It takes precedence over the parameter `cascade`.</param>
 		/// <param name="withDeviceUser">When set to `true` and the managed object is a device, it deletes the associated device user (credentials).</param>
-		Task<System.IO.Stream> DeleteManagedObject(string id, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null);
+		Task<System.IO.Stream> DeleteManagedObject(string id, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null) ;
 		
 		/// <summary>
 		/// Retrieve the latest availability date of a specific managed object<br/>
@@ -211,7 +211,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<System.DateTime> GetLatestAvailability(string id);
+		Task<System.DateTime> GetLatestAvailability(string id) ;
 		
 		/// <summary>
 		/// Retrieve all supported measurement fragments of a specific managed object<br/>
@@ -234,7 +234,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<SupportedMeasurements?> GetSupportedMeasurements(string id);
+		Task<SupportedMeasurements?> GetSupportedMeasurements(string id) ;
 		
 		/// <summary>
 		/// Retrieve all supported measurement fragments and series of a specific managed object<br/>
@@ -257,7 +257,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<SupportedSeries?> GetSupportedSeries(string id);
+		Task<SupportedSeries?> GetSupportedSeries(string id) ;
 		
 		/// <summary>
 		/// Retrieve the username and state of a specific managed object<br/>
@@ -280,7 +280,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<ManagedObjectUser?> GetManagedObjectUser(string id);
+		Task<ManagedObjectUser?> GetManagedObjectUser(string id) ;
 		
 		/// <summary>
 		/// Update the user's details of a specific managed object<br/>
@@ -304,7 +304,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id);
+		Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id) ;
 	}
 	#nullable disable
 }

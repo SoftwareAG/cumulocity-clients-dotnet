@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null)
+		public async Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/loginOptions";
@@ -48,7 +48,7 @@ namespace Com.Cumulocity.Client.Api
 				{"tenantId", tenantId}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body)
+		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body) 
 		{
 			var jsonNode = ToJsonNode<AuthConfig>(body);
 			jsonNode?.RemoveFromNode("self");

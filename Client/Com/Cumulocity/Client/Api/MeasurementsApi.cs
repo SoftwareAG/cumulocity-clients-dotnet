@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<MeasurementCollection?> GetMeasurements(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, string? valueFragmentSeries = null, string? valueFragmentType = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<MeasurementCollection<TMeasurement>?> GetMeasurements<TMeasurement>(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, string? valueFragmentSeries = null, string? valueFragmentType = null, bool? withTotalElements = null, bool? withTotalPages = null) where TMeasurement : Measurement
 		{
 			var client = HttpClient;
 			var resourcePath = $"/measurement/measurements";
@@ -56,7 +56,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalPages", withTotalPages}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -67,13 +67,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<MeasurementCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<MeasurementCollection<TMeasurement>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Measurement?> CreateMeasurement(Measurement body)
+		public async Task<TMeasurement?> CreateMeasurement<TMeasurement>(TMeasurement body) where TMeasurement : Measurement
 		{
-			var jsonNode = ToJsonNode<Measurement>(body);
+			var jsonNode = ToJsonNode<TMeasurement>(body);
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("source", "self");
@@ -91,13 +91,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Measurement?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TMeasurement?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<MeasurementCollection?> CreateMeasurement(MeasurementCollection body)
+		public async Task<MeasurementCollection<TMeasurement>?> CreateMeasurement<TMeasurement>(MeasurementCollection<TMeasurement> body) where TMeasurement : Measurement
 		{
-			var jsonNode = ToJsonNode<MeasurementCollection>(body);
+			var jsonNode = ToJsonNode<MeasurementCollection<TMeasurement>>(body);
 			jsonNode?.RemoveFromNode("next");
 			jsonNode?.RemoveFromNode("prev");
 			jsonNode?.RemoveFromNode("self");
@@ -116,11 +116,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<MeasurementCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<MeasurementCollection<TMeasurement>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteMeasurements(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null)
+		public async Task<System.IO.Stream> DeleteMeasurements(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/measurement/measurements";
@@ -136,7 +136,7 @@ namespace Com.Cumulocity.Client.Api
 				{"type", type}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -151,7 +151,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Measurement?> GetMeasurement(string id)
+		public async Task<TMeasurement?> GetMeasurement<TMeasurement>(string id) where TMeasurement : Measurement
 		{
 			var client = HttpClient;
 			var resourcePath = $"/measurement/measurements/{id}";
@@ -165,11 +165,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Measurement?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TMeasurement?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteMeasurement(string id)
+		public async Task<System.IO.Stream> DeleteMeasurement(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/measurement/measurements/{id}";
@@ -187,7 +187,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<MeasurementSeries?> GetMeasurementSeries(string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null)
+		public async Task<MeasurementSeries?> GetMeasurementSeries(string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/measurement/measurements/series";
@@ -204,7 +204,7 @@ namespace Com.Cumulocity.Client.Api
 				{"source", source}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

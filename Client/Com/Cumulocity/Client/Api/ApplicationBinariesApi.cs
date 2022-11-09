@@ -31,7 +31,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<ApplicationBinaries?> GetApplicationAttachments(string id)
+		public async Task<ApplicationBinaries?> GetApplicationAttachments(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/binaries";
@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> UploadApplicationAttachment(byte[] file, string id)
+		public async Task<Application?> UploadApplicationAttachment(byte[] file, string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/binaries";
@@ -73,7 +73,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> GetApplicationAttachment(string id, string binaryId)
+		public async Task<System.IO.Stream> GetApplicationAttachment(string id, string binaryId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/binaries/{binaryId}";
@@ -91,7 +91,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId)
+		public async Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/binaries/{binaryId}";

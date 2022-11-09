@@ -25,7 +25,7 @@ namespace Com.Cumulocity.Client.Api
 	
 		/// <summary>
 		/// Retrieve all alarms<br/>
-		/// Retrieve all alarms on your tenant, or a specific subset based on queries.  #### Query parameters  The query parameter `withTotalPages` only works when the user has the ROLE_ALARM_READ role, otherwise it is ignored.  <section><h5>Required roles</h5> The role ROLE_ALARM_READ is not required, but if a user has this role, all the alarms on the tenant are returned. If a user has access to alarms through inventory roles, only those alarms are returned. </section> 
+		/// Retrieve all alarms on your tenant, or a specific subset based on queries. The results are sorted by the newest alarms first.  #### Query parameters  The query parameter `withTotalPages` only works when the user has the ROLE_ALARM_READ role, otherwise it is ignored.  <section><h5>Required roles</h5> The role ROLE_ALARM_READ is not required, but if a user has this role, all the alarms on the tenant are returned. If a user has access to alarms through inventory roles, only those alarms are returned. </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
@@ -56,7 +56,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<AlarmCollection?> GetAlarms(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Update alarm collections<br/>
@@ -96,7 +96,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="status">The status of the alarm to search for.</param>
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
-		Task<System.IO.Stream> UpdateAlarms(Alarm body, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null);
+		Task<System.IO.Stream> UpdateAlarms<TAlarm>(TAlarm body, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Create an alarm<br/>
@@ -123,7 +123,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<Alarm?> CreateAlarm(Alarm body);
+		Task<TAlarm?> CreateAlarm<TAlarm>(TAlarm body) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Remove alarm collections<br/>
@@ -155,7 +155,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="type">The types of alarm to search for (comma separated).</param>
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
-		Task<System.IO.Stream> DeleteAlarms(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null);
+		Task<System.IO.Stream> DeleteAlarms(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific alarm<br/>
@@ -182,7 +182,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the alarm.</param>
 		/// <returns></returns>
-		Task<Alarm?> GetAlarm(string id);
+		Task<TAlarm?> GetAlarm<TAlarm>(string id) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Update a specific alarm<br/>
@@ -214,7 +214,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the alarm.</param>
 		/// <returns></returns>
-		Task<Alarm?> UpdateAlarm(Alarm body, string id);
+		Task<TAlarm?> UpdateAlarm<TAlarm>(TAlarm body, string id) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Retrieve the total number of alarms<br/>
@@ -241,7 +241,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <returns></returns>
-		Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null);
+		Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
 	}
 	#nullable disable
 }

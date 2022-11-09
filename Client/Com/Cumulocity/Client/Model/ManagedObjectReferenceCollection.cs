@@ -7,16 +7,13 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class ManagedObjectReferenceCollection 
+	public class ManagedObjectReferenceCollection<TManagedObject> where TManagedObject : ManagedObject
 	{
 	
 		/// <summary>
@@ -41,7 +38,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An array containing the details of all children (if any).
 		/// </summary>
 		[JsonPropertyName("references")]
-		public List<References>? PReferences { get; set; }
+		public List<References<TManagedObject>>? PReferences { get; set; }
 	
 		/// <summary>
 		/// Information about paging statistics.
@@ -49,21 +46,31 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("statistics")]
 		public PageStatistics? Statistics { get; set; }
 	
-		public class References 
+		public class References<TManagedObject> where TManagedObject : ManagedObject
 		{
 		
 			[JsonPropertyName("managedObject")]
-			public ManagedObject? PManagedObject { get; set; }
+			public TManagedObject? PManagedObject { get; set; }
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

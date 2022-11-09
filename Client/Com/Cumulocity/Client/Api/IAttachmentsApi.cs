@@ -40,7 +40,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the event.</param>
-		Task<System.IO.Stream> GetEventAttachment(string id);
+		Task<System.IO.Stream> GetEventAttachment(string id) ;
 		
 		/// <summary>
 		/// Replace the attached file of a specific event<br/>
@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <returns></returns>
-		Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id);
+		Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id) ;
 		
 		/// <summary>
 		/// Attach a file to a specific event<br/>
@@ -92,7 +92,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <returns></returns>
-		Task<EventBinary?> UploadEventAttachment(byte[] body, string id);
+		Task<EventBinary?> UploadEventAttachment(byte[] body, string id) ;
 		
 		/// <summary>
 		/// Attach a file to a specific event<br/>
@@ -121,7 +121,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="file">Path of the file to be uploaded.</param>
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <returns></returns>
-		Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id);
+		Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id) ;
 		
 		/// <summary>
 		/// Remove the attached file from a specific event<br/>
@@ -143,7 +143,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the event.</param>
-		Task<System.IO.Stream> DeleteEventAttachment(string id);
+		Task<System.IO.Stream> DeleteEventAttachment(string id) ;
 	}
 	#nullable disable
 }

@@ -33,7 +33,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<Application?> GetCurrentApplication()
+		public async Task<Application?> GetCurrentApplication() 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/currentApplication";
@@ -51,7 +51,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> UpdateCurrentApplication(Application body)
+		public async Task<Application?> UpdateCurrentApplication(Application body) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -77,7 +77,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<List<ApplicationSettings>?> GetCurrentApplicationSettings()
+		public async Task<List<ApplicationSettings>?> GetCurrentApplicationSettings() 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/currentApplication/settings";
@@ -95,7 +95,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ApplicationUserCollection?> GetSubscribedUsers()
+		public async Task<ApplicationUserCollection?> GetSubscribedUsers() 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/currentApplication/subscriptions";

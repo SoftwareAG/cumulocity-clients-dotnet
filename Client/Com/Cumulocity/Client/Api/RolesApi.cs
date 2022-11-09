@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<UserRoleCollection?> GetUserRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<UserRoleCollection?> GetUserRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/roles";
@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalPages", withTotalPages}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Role?> GetUserRole(string name)
+		public async Task<Role?> GetUserRole(string name) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/roles/{name}";
@@ -82,7 +82,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RoleReferenceCollection?> GetGroupRoles(string tenantId, int groupId, int? currentPage = null, int? pageSize = null)
+		public async Task<RoleReferenceCollection?> GetGroupRoles(string tenantId, int groupId, int? currentPage = null, int? pageSize = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/roles";
@@ -95,7 +95,7 @@ namespace Com.Cumulocity.Client.Api
 				{"pageSize", pageSize}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -110,7 +110,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId)
+		public async Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId) 
 		{
 			var jsonNode = ToJsonNode<SubscribedRole>(body);
 			var client = HttpClient;
@@ -131,7 +131,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId)
+		public async Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/roles/{roleId}";
@@ -149,7 +149,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId)
+		public async Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId) 
 		{
 			var jsonNode = ToJsonNode<SubscribedRole>(body);
 			var client = HttpClient;
@@ -170,7 +170,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId)
+		public async Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/{roleId}";

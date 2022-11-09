@@ -43,7 +43,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<NewDeviceRequestCollection?> GetNewDeviceRequests(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<NewDeviceRequestCollection?> GetNewDeviceRequests(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Create a new device request<br/>
@@ -58,11 +58,15 @@ namespace Com.Cumulocity.Client.Api
 		/// <term>HTTP 401</term>
 		/// <description>Authentication information is missing or invalid.</description>
 		/// </item>
+		/// <item>
+		/// <term>HTTP 422</term>
+		/// <description>Unprocessable Entity – invalid payload.</description>
+		/// </item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body);
+		Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body) ;
 		
 		/// <summary>
 		/// Retrieve a specific new device request<br/>
@@ -85,7 +89,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="requestId">Unique identifier of the new device request.</param>
 		/// <returns></returns>
-		Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId);
+		Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId) ;
 		
 		/// <summary>
 		/// Update a specific new device request status<br/>
@@ -109,7 +113,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="requestId">Unique identifier of the new device request.</param>
 		/// <returns></returns>
-		Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId);
+		Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId) ;
 		
 		/// <summary>
 		/// Delete a specific new device request<br/>
@@ -135,7 +139,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="requestId">Unique identifier of the new device request.</param>
-		Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId);
+		Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId) ;
 	}
 	#nullable disable
 }

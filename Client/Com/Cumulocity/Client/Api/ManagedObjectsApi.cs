@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<ManagedObjectCollection?> GetManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<ManagedObjectCollection<TManagedObject>?> GetManagedObjects<TManagedObject>(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null) where TManagedObject : ManagedObject
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects";
@@ -65,7 +65,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalPages", withTotalPages}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -76,13 +76,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObjectCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<ManagedObjectCollection<TManagedObject>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObject?> CreateManagedObject(ManagedObject body)
+		public async Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body) where TManagedObject : ManagedObject
 		{
-			var jsonNode = ToJsonNode<ManagedObject>(body);
+			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
 			jsonNode?.RemoveFromNode("additionParents");
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -108,11 +108,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObject?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TManagedObject?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<int> GetNumberOfManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, string? fragmentType = null, List<string>? ids = null, string? owner = null, string? text = null, string? type = null)
+		public async Task<int> GetNumberOfManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, string? fragmentType = null, List<string>? ids = null, string? owner = null, string? text = null, string? type = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/count";
@@ -131,7 +131,7 @@ namespace Com.Cumulocity.Client.Api
 				{"type", type}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -146,7 +146,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObject?> GetManagedObject(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null)
+		public async Task<TManagedObject?> GetManagedObject<TManagedObject>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null) where TManagedObject : ManagedObject
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}";
@@ -161,7 +161,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withParents", withParents}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -172,13 +172,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObject?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TManagedObject?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObject?> UpdateManagedObject(ManagedObject body, string id)
+		public async Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject
 		{
-			var jsonNode = ToJsonNode<ManagedObject>(body);
+			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
 			jsonNode?.RemoveFromNode("additionParents");
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -204,11 +204,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<ManagedObject?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TManagedObject?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteManagedObject(string id, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null)
+		public async Task<System.IO.Stream> DeleteManagedObject(string id, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}";
@@ -222,7 +222,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withDeviceUser", withDeviceUser}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -237,7 +237,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.DateTime> GetLatestAvailability(string id)
+		public async Task<System.DateTime> GetLatestAvailability(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/availability";
@@ -255,7 +255,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<SupportedMeasurements?> GetSupportedMeasurements(string id)
+		public async Task<SupportedMeasurements?> GetSupportedMeasurements(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/supportedMeasurements";
@@ -273,7 +273,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<SupportedSeries?> GetSupportedSeries(string id)
+		public async Task<SupportedSeries?> GetSupportedSeries(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/supportedSeries";
@@ -291,7 +291,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectUser?> GetManagedObjectUser(string id)
+		public async Task<ManagedObjectUser?> GetManagedObjectUser(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/user";
@@ -309,7 +309,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id)
+		public async Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id) 
 		{
 			var jsonNode = ToJsonNode<ManagedObjectUser>(body);
 			jsonNode?.RemoveFromNode("self");

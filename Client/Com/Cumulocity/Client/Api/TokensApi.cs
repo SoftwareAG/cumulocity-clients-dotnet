@@ -31,7 +31,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<NotificationToken?> CreateToken(NotificationTokenClaims body)
+		public async Task<NotificationToken?> CreateToken(NotificationTokenClaims body) 
 		{
 			var jsonNode = ToJsonNode<NotificationTokenClaims>(body);
 			var client = HttpClient;

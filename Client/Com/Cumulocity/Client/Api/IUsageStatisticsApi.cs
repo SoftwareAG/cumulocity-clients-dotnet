@@ -103,7 +103,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<TenantUsageStatisticsCollection?> GetTenantUsageStatisticsCollectionResource(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<TenantUsageStatisticsCollection?> GetTenantUsageStatisticsCollectionResource(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Retrieve a usage statistics summary<br/>
@@ -124,7 +124,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="dateTo">End date or date and time of the statistics.</param>
 		/// <param name="tenant">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<SummaryTenantUsageStatistics?> GetTenantUsageStatistics(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? tenant = null);
+		Task<SummaryTenantUsageStatistics?> GetTenantUsageStatistics(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? tenant = null) ;
 		
 		/// <summary>
 		/// Retrieve a summary of all usage statistics<br/>
@@ -144,7 +144,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="dateFrom">Start date or date and time of the statistics.</param>
 		/// <param name="dateTo">End date or date and time of the statistics.</param>
 		/// <returns></returns>
-		Task<List<SummaryAllTenantsUsageStatistics>?> GetTenantsUsageStatistics(System.DateTime? dateFrom = null, System.DateTime? dateTo = null);
+		Task<List<SummaryAllTenantsUsageStatistics<TCustomProperties>>?> GetTenantsUsageStatistics<TCustomProperties>(System.DateTime? dateFrom = null, System.DateTime? dateTo = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve usage statistics files metadata<br/>
@@ -167,7 +167,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<TenantUsageStatisticsFileCollection?> GetMetadata(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? withTotalPages = null);
+		Task<TenantUsageStatisticsFileCollection?> GetMetadata(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Generate a statistics file report<br/>
@@ -190,7 +190,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body);
+		Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body) ;
 		
 		/// <summary>
 		/// Retrieve a usage statistics file<br/>
@@ -212,7 +212,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the statistics file.</param>
-		Task<System.IO.Stream> GetStatisticsFile(string id);
+		Task<System.IO.Stream> GetStatisticsFile(string id) ;
 		
 		/// <summary>
 		/// Retrieve the latest usage statistics file<br/>
@@ -230,7 +230,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="month">Date (format YYYY-MM-dd) specifying the month for which the statistics file will be downloaded (the day value is ignored).</param>
-		Task<System.IO.Stream> GetLatestStatisticsFile(System.DateTime month);
+		Task<System.IO.Stream> GetLatestStatisticsFile(System.DateTime month) ;
 	}
 	#nullable disable
 }

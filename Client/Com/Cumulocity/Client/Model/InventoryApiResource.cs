@@ -7,16 +7,13 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class InventoryApiResource 
+	public class InventoryApiResource<TManagedObject> where TManagedObject : ManagedObject
 	{
 	
 		/// <summary>
@@ -41,7 +38,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Collection of all managed objects
 		/// </summary>
 		[JsonPropertyName("managedObjects")]
-		public ManagedObjects? PManagedObjects { get; set; }
+		public ManagedObjects<TManagedObject>? PManagedObjects { get; set; }
 	
 		/// <summary>
 		/// A URL linking to this resource.
@@ -52,14 +49,14 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// Collection of all managed objects
 		/// </summary>
-		public class ManagedObjects 
+		public class ManagedObjects<TManagedObject> where TManagedObject : ManagedObject
 		{
 		
 			/// <summary>
 			/// An array containing the referenced managed objects.
 			/// </summary>
 			[JsonPropertyName("references")]
-			public List<ManagedObject>? References { get; set; }
+			public List<TManagedObject>? References { get; set; }
 		
 			/// <summary>
 			/// A URL linking to this resource.
@@ -69,13 +66,23 @@ namespace Com.Cumulocity.Client.Model
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

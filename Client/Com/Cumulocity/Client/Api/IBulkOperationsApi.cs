@@ -55,7 +55,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<BulkOperationCollection?> GetBulkOperations(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null);
+		Task<BulkOperationCollection?> GetBulkOperations(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null) ;
 		
 		/// <summary>
 		/// Create a bulk operation<br/>
@@ -74,7 +74,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<BulkOperation?> CreateBulkOperation(BulkOperation body);
+		Task<BulkOperation?> CreateBulkOperation(BulkOperation body) ;
 		
 		/// <summary>
 		/// Retrieve a specific bulk operation<br/>
@@ -97,7 +97,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the bulk operation.</param>
 		/// <returns></returns>
-		Task<BulkOperation?> GetBulkOperation(string id);
+		Task<BulkOperation?> GetBulkOperation(string id) ;
 		
 		/// <summary>
 		/// Update a specific bulk operation<br/>
@@ -121,7 +121,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the bulk operation.</param>
 		/// <returns></returns>
-		Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id);
+		Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id) ;
 		
 		/// <summary>
 		/// Delete a specific bulk operation<br/>
@@ -147,7 +147,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the bulk operation.</param>
-		Task<System.IO.Stream> DeleteBulkOperation(string id);
+		Task<System.IO.Stream> DeleteBulkOperation(string id) ;
 	}
 	#nullable disable
 }

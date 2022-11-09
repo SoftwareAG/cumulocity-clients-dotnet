@@ -6,18 +6,14 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
-using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class User 
+	public class User<TCustomProperties> where TCustomProperties : CustomProperties
 	{
 	
 		/// <summary>
@@ -30,7 +26,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An object with a list of custom properties.
 		/// </summary>
 		[JsonPropertyName("customProperties")]
-		public CustomProperties? PCustomProperties { get; set; }
+		public TCustomProperties? PCustomProperties { get; set; }
 	
 		/// <summary>
 		/// The user's display name in Cumulocity IoT.
@@ -60,7 +56,7 @@ namespace Com.Cumulocity.Client.Model
 		/// An object with a list of user groups.
 		/// </summary>
 		[JsonPropertyName("groups")]
-		public Groups? PGroups { get; set; }
+		public Groups<TCustomProperties>? PGroups { get; set; }
 	
 		/// <summary>
 		/// A unique identifier for this user.
@@ -135,6 +131,12 @@ namespace Com.Cumulocity.Client.Model
 		public bool? ShouldResetPassword { get; set; }
 	
 		/// <summary>
+		/// Indicates if the user has to use two-factor authentication to log in.
+		/// </summary>
+		[JsonPropertyName("twoFactorAuthenticationEnabled")]
+		public bool? TwoFactorAuthenticationEnabled { get; set; }
+	
+		/// <summary>
 		/// The user's username. It can have a maximum of 1000 characters.
 		/// </summary>
 		[JsonPropertyName("userName")]
@@ -143,7 +145,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// An object with a list of the user's device permissions.
 		/// </summary>
-		[ObsoleteAttribute("This property might be removed in future releases.", false)]
+		[System.ObsoleteAttribute("This property might be removed in future releases.", false)]
 		[JsonPropertyName("devicePermissions")]
 		public DevicePermissions? PDevicePermissions { get; set; }
 	
@@ -165,7 +167,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// An object with a list of user groups.
 		/// </summary>
-		public class Groups 
+		public class Groups<TCustomProperties> where TCustomProperties : CustomProperties
 		{
 		
 			/// <summary>
@@ -178,7 +180,7 @@ namespace Com.Cumulocity.Client.Model
 			/// A list of user group references.
 			/// </summary>
 			[JsonPropertyName("references")]
-			public List<GroupReference>? References { get; set; }
+			public List<GroupReference<TCustomProperties>>? References { get; set; }
 		
 			/// <summary>
 			/// Information about paging statistics.
@@ -188,7 +190,12 @@ namespace Com.Cumulocity.Client.Model
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
@@ -219,13 +226,23 @@ namespace Com.Cumulocity.Client.Model
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

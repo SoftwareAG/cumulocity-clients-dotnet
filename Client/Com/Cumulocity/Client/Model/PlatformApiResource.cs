@@ -6,14 +6,13 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class PlatformApiResource 
+	public class PlatformApiResource<TCustomProperties, TAlarm, TAuditRecord, TManagedObject, TEvent, TMeasurement> where TCustomProperties : CustomProperties where TAlarm : Alarm where TManagedObject : ManagedObject where TAuditRecord : AuditRecord where TEvent : Event where TMeasurement : Measurement
 	{
 	
 		/// <summary>
@@ -23,35 +22,40 @@ namespace Com.Cumulocity.Client.Model
 		public string? Self { get; set; }
 	
 		[JsonPropertyName("alarm")]
-		public AlarmsApiResource? Alarm { get; set; }
+		public AlarmsApiResource<TAlarm>? Alarm { get; set; }
 	
 		[JsonPropertyName("audit")]
-		public AuditApiResource? Audit { get; set; }
+		public AuditApiResource<TAuditRecord>? Audit { get; set; }
 	
 		[JsonPropertyName("deviceControl")]
 		public DeviceControlApiResource? DeviceControl { get; set; }
 	
 		[JsonPropertyName("event")]
-		public EventsApiResource? Event { get; set; }
+		public EventsApiResource<TEvent>? Event { get; set; }
 	
 		[JsonPropertyName("identity")]
 		public IdentityApiResource? Identity { get; set; }
 	
 		[JsonPropertyName("inventory")]
-		public InventoryApiResource? Inventory { get; set; }
+		public InventoryApiResource<TManagedObject>? Inventory { get; set; }
 	
 		[JsonPropertyName("measurement")]
-		public MeasurementApiResource? Measurement { get; set; }
+		public MeasurementApiResource<TMeasurement>? Measurement { get; set; }
 	
 		[JsonPropertyName("tenant")]
-		public TenantApiResource? Tenant { get; set; }
+		public TenantApiResource<TCustomProperties>? Tenant { get; set; }
 	
 		[JsonPropertyName("user")]
 		public UserApiResource? User { get; set; }
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

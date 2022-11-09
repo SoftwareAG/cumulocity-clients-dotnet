@@ -8,12 +8,11 @@
 
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Net;
 using System.Net.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Com.Cumulocity.Client.Supplementary;
+using Com.Cumulocity.Client.Model;
 
 namespace Com.Cumulocity.Client.Api 
 {
@@ -60,7 +59,7 @@ namespace Com.Cumulocity.Client.Api
 		public void TestGetTenantsUsageStatistics()
 		{
 			var api = new UsageStatisticsApi(HttpClient!);
-			var response = api.GetTenantsUsageStatistics();
+			var response = api.GetTenantsUsageStatistics<CustomProperties>();
 			Debug.Assert(response != null);
 		}
 		

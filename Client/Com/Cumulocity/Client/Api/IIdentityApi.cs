@@ -40,7 +40,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <returns></returns>
-		Task<IdentityApiResource?> GetIdentityApiResource();
+		Task<IdentityApiResource?> GetIdentityApiResource() ;
 	}
 	#nullable disable
 }

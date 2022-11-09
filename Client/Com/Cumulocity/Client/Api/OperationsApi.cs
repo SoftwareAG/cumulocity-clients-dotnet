@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<OperationCollection?> GetOperations(string? agentId = null, string? bulkOperationId = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? fragmentType = null, int? pageSize = null, bool? revert = null, string? status = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<OperationCollection<TOperation>?> GetOperations<TOperation>(string? agentId = null, string? bulkOperationId = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? fragmentType = null, int? pageSize = null, bool? revert = null, string? status = null, bool? withTotalElements = null, bool? withTotalPages = null) where TOperation : Operation
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/operations";
@@ -57,7 +57,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalPages", withTotalPages}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -68,19 +68,20 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<OperationCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<OperationCollection<TOperation>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Operation?> CreateOperation(Operation body)
+		public async Task<TOperation?> CreateOperation<TOperation>(TOperation body) where TOperation : Operation
 		{
-			var jsonNode = ToJsonNode<Operation>(body);
+			var jsonNode = ToJsonNode<TOperation>(body);
 			jsonNode?.RemoveFromNode("creationTime");
 			jsonNode?.RemoveFromNode("deviceExternalIDs", "self");
 			jsonNode?.RemoveFromNode("bulkOperationId");
 			jsonNode?.RemoveFromNode("failureReason");
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("id");
+			jsonNode?.RemoveFromNode("status");
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/operations";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -95,11 +96,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Operation?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TOperation?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteOperations(string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null)
+		public async Task<System.IO.Stream> DeleteOperations(string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/operations";
@@ -115,7 +116,7 @@ namespace Com.Cumulocity.Client.Api
 				{"status", status}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -130,7 +131,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Operation?> GetOperation(string id)
+		public async Task<TOperation?> GetOperation<TOperation>(string id) where TOperation : Operation
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/operations/{id}";
@@ -144,16 +145,15 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Operation?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TOperation?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Operation?> UpdateOperation(Operation body, string id)
+		public async Task<TOperation?> UpdateOperation<TOperation>(TOperation body, string id) where TOperation : Operation
 		{
-			var jsonNode = ToJsonNode<Operation>(body);
+			var jsonNode = ToJsonNode<TOperation>(body);
 			jsonNode?.RemoveFromNode("creationTime");
 			jsonNode?.RemoveFromNode("deviceExternalIDs", "self");
-			jsonNode?.RemoveFromNode("com_cumulocity_model_WebCamDevice");
 			jsonNode?.RemoveFromNode("bulkOperationId");
 			jsonNode?.RemoveFromNode("failureReason");
 			jsonNode?.RemoveFromNode("self");
@@ -173,7 +173,7 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Operation?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TOperation?>(responseStream);
 		}
 	}
 	#nullable disable

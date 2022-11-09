@@ -42,7 +42,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null);
+		Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Create an option<br/>
@@ -65,7 +65,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<Option?> CreateOption(Option body);
+		Task<Option?> CreateOption(Option body) ;
 		
 		/// <summary>
 		/// Retrieve all options by category<br/>
@@ -84,7 +84,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="category">The category of the options.</param>
 		/// <returns></returns>
-		Task<CategoryOptions?> GetOptionsByCategory(string category);
+		Task<TCategoryOptions?> GetOptionsByCategory<TCategoryOptions>(string category) where TCategoryOptions : CategoryOptions;
 		
 		/// <summary>
 		/// Update options by category<br/>
@@ -108,7 +108,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="category">The category of the options.</param>
 		/// <returns></returns>
-		Task<CategoryOptions?> UpdateOptionsByCategory(CategoryOptions body, string category);
+		Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category) where TCategoryOptions : CategoryOptions;
 		
 		/// <summary>
 		/// Retrieve a specific option<br/>
@@ -132,7 +132,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="category">The category of the options.</param>
 		/// <param name="key">The key of an option.</param>
 		/// <returns></returns>
-		Task<Option?> GetOption(string category, string key);
+		Task<Option?> GetOption(string category, string key) ;
 		
 		/// <summary>
 		/// Update a specific option<br/>
@@ -161,7 +161,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="category">The category of the options.</param>
 		/// <param name="key">The key of an option.</param>
 		/// <returns></returns>
-		Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key);
+		Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key) ;
 		
 		/// <summary>
 		/// Remove a specific option<br/>
@@ -184,7 +184,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="category">The category of the options.</param>
 		/// <param name="key">The key of an option.</param>
-		Task<System.IO.Stream> DeleteOption(string category, string key);
+		Task<System.IO.Stream> DeleteOption(string category, string key) ;
 	}
 	#nullable disable
 }

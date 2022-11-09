@@ -7,23 +7,20 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class EventCollection 
+	public class EventCollection<TEvent> where TEvent : Event
 	{
 	
 		/// <summary>
 		/// An array containing the results (events) of the request.
 		/// </summary>
 		[JsonPropertyName("events")]
-		public List<Event>? Events { get; set; }
+		public List<TEvent>? Events { get; set; }
 	
 		/// <summary>
 		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.
@@ -51,7 +48,12 @@ namespace Com.Cumulocity.Client.Model
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

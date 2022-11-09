@@ -7,23 +7,20 @@
 ///
 
 using System.Collections.Generic;
-using System.Reflection;
-using System.Collections;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class AuditApiResource 
+	public class AuditApiResource<TAuditRecord> where TAuditRecord : AuditRecord
 	{
 	
 		/// <summary>
 		/// Collection of audit records
 		/// </summary>
 		[JsonPropertyName("auditRecords")]
-		public AuditRecords? PAuditRecords { get; set; }
+		public AuditRecords<TAuditRecord>? PAuditRecords { get; set; }
 	
 		/// <summary>
 		/// Read-only collection of audit records for a specific application. The placeholder {application} must be the name of a registered application.
@@ -76,7 +73,7 @@ namespace Com.Cumulocity.Client.Model
 		/// <summary>
 		/// Collection of audit records
 		/// </summary>
-		public class AuditRecords 
+		public class AuditRecords<TAuditRecord> where TAuditRecord : AuditRecord
 		{
 		
 			/// <summary>
@@ -86,17 +83,27 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("auditRecords")]
-			public List<AuditRecord>? PAuditRecords { get; set; }
+			public List<TAuditRecord>? PAuditRecords { get; set; }
 		
 			public override string ToString()
 			{
-				return JsonSerializer.Serialize(this);
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			return JsonSerializer.Serialize(this);
+			var jsonOptions = new JsonSerializerOptions() 
+			{ 
+				WriteIndented = true,
+				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+			};
+			return JsonSerializer.Serialize(this, jsonOptions);
 		}
 	}
 }

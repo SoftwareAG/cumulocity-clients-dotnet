@@ -34,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<UserCollection?> GetUsers(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null)
+		public async Task<UserCollection<TCustomProperties>?> GetUsers<TCustomProperties>(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users";
@@ -54,7 +54,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalPages", withTotalPages}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -65,13 +65,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<UserCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<UserCollection<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<User?> CreateUser(User body, string tenantId)
+		public async Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties
 		{
-			var jsonNode = ToJsonNode<User>(body);
+			var jsonNode = ToJsonNode<User<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("passwordStrength");
 			jsonNode?.RemoveFromNode("roles");
 			jsonNode?.RemoveFromNode("groups");
@@ -79,6 +79,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("shouldResetPassword");
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("lastPasswordChange");
+			jsonNode?.RemoveFromNode("twoFactorAuthenticationEnabled");
 			jsonNode?.RemoveFromNode("devicePermissions");
 			jsonNode?.RemoveFromNode("applications");
 			var client = HttpClient;
@@ -95,11 +96,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<User?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<User<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<User?> GetUser(string tenantId, string userId)
+		public async Task<User<TCustomProperties>?> GetUser<TCustomProperties>(string tenantId, string userId) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}";
@@ -113,13 +114,13 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<User?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<User<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<User?> UpdateUser(User body, string tenantId, string userId)
+		public async Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId) where TCustomProperties : CustomProperties
 		{
-			var jsonNode = ToJsonNode<User>(body);
+			var jsonNode = ToJsonNode<User<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("passwordStrength");
 			jsonNode?.RemoveFromNode("roles");
 			jsonNode?.RemoveFromNode("groups");
@@ -128,6 +129,7 @@ namespace Com.Cumulocity.Client.Api
 			jsonNode?.RemoveFromNode("id");
 			jsonNode?.RemoveFromNode("lastPasswordChange");
 			jsonNode?.RemoveFromNode("userName");
+			jsonNode?.RemoveFromNode("twoFactorAuthenticationEnabled");
 			jsonNode?.RemoveFromNode("devicePermissions");
 			jsonNode?.RemoveFromNode("applications");
 			var client = HttpClient;
@@ -144,11 +146,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<User?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<User<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteUser(string tenantId, string userId)
+		public async Task<System.IO.Stream> DeleteUser(string tenantId, string userId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}";
@@ -166,7 +168,46 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<User?> GetUserByUsername(string tenantId, string username)
+		public async Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId) 
+		{
+			var jsonNode = ToJsonNode<PasswordChange>(body);
+			var client = HttpClient;
+			var resourcePath = $"/user/{tenantId}/users/{userId}/password";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
+				Method = HttpMethod.Put,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+			request.Headers.TryAddWithoutValidation("Accept", "application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return responseStream;
+		}
+		
+		/// <inheritdoc />
+		public async Task<UserTfaData?> GetUserTfaSettings(string tenantId, string userId) 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/user/{tenantId}/users/{userId}/tfa";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Get,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<UserTfaData?>(responseStream);
+		}
+		
+		/// <inheritdoc />
+		public async Task<User<TCustomProperties>?> GetUserByUsername<TCustomProperties>(string tenantId, string username) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/userByName/{username}";
@@ -180,11 +221,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<User?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<User<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<UserReferenceCollection?> GetUsersFromUserGroup(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null)
+		public async Task<UserReferenceCollection<TCustomProperties>?> GetUsersFromUserGroup<TCustomProperties>(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/users";
@@ -198,7 +239,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalElements", withTotalElements}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -209,11 +250,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<UserReferenceCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<UserReferenceCollection<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<UserReference?> AssignUserToUserGroup(SubscribedUser body, string tenantId, int groupId)
+		public async Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<SubscribedUser>(body);
 			var client = HttpClient;
@@ -230,11 +271,11 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<UserReference?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<UserReference<TCustomProperties>?>(responseStream);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId)
+		public async Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/users/{userId}";
@@ -252,7 +293,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> Logout(string cookie, string xXSRFTOKEN)
+		public async Task<System.IO.Stream> Logout(string cookie, string xXSRFTOKEN) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/logout";

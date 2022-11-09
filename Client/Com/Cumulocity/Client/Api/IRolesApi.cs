@@ -43,7 +43,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<UserRoleCollection?> GetUserRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<UserRoleCollection?> GetUserRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Retrieve a user role by name<br/>
@@ -66,7 +66,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="name">The name of the user role.</param>
 		/// <returns></returns>
-		Task<Role?> GetUserRole(string name);
+		Task<Role?> GetUserRole(string name) ;
 		
 		/// <summary>
 		/// Retrieve all roles assigned to a specific user group in a specific tenant<br/>
@@ -96,7 +96,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="currentPage">The current page of the paginated results.</param>
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
 		/// <returns></returns>
-		Task<RoleReferenceCollection?> GetGroupRoles(string tenantId, int groupId, int? currentPage = null, int? pageSize = null);
+		Task<RoleReferenceCollection?> GetGroupRoles(string tenantId, int groupId, int? currentPage = null, int? pageSize = null) ;
 		
 		/// <summary>
 		/// Assign a role to a specific user group in a specific tenant<br/>
@@ -133,7 +133,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <returns></returns>
-		Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId);
+		Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId) ;
 		
 		/// <summary>
 		/// Unassign a specific role for a specific user group in a specific tenant<br/>
@@ -161,7 +161,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <param name="roleId">Unique identifier of the user role.</param>
-		Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId);
+		Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId) ;
 		
 		/// <summary>
 		/// Assign a role to specific user in a specific tenant<br/>
@@ -194,7 +194,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <returns></returns>
-		Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId);
+		Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId) ;
 		
 		/// <summary>
 		/// Unassign a specific role from a specific user in a specific tenant<br/>
@@ -222,7 +222,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="roleId">Unique identifier of the user role.</param>
-		Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId);
+		Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId) ;
 	}
 	#nullable disable
 }

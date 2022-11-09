@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="type">The type of managed object to search for.</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null);
+		Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Upload a file<br/>
@@ -77,7 +77,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pObject"></param>
 		/// <param name="file">Path of the file to be uploaded.</param>
 		/// <returns></returns>
-		Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file);
+		Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file) ;
 		
 		/// <summary>
 		/// Retrieve a stored file<br/>
@@ -95,7 +95,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> GetBinary(string id);
+		Task<System.IO.Stream> GetBinary(string id) ;
 		
 		/// <summary>
 		/// Replace a file<br/>
@@ -115,7 +115,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <returns></returns>
-		Task<Binary?> ReplaceBinary(byte[] body, string id);
+		Task<Binary?> ReplaceBinary(byte[] body, string id) ;
 		
 		/// <summary>
 		/// Remove a stored file<br/>
@@ -133,7 +133,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> RemoveBinary(string id);
+		Task<System.IO.Stream> RemoveBinary(string id) ;
 	}
 	#nullable disable
 }

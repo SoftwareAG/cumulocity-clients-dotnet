@@ -31,7 +31,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<NotificationSubscriptionCollection?> GetSubscriptions(string? context = null, int? currentPage = null, int? pageSize = null, string? source = null, bool? withTotalPages = null)
+		public async Task<NotificationSubscriptionCollection?> GetSubscriptions(string? context = null, int? currentPage = null, int? pageSize = null, string? source = null, bool? withTotalPages = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/subscriptions";
@@ -47,7 +47,7 @@ namespace Com.Cumulocity.Client.Api
 				{"withTotalPages", withTotalPages}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -62,7 +62,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body)
+		public async Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body) 
 		{
 			var jsonNode = ToJsonNode<NotificationSubscription>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -86,7 +86,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteSubscriptions(string? context = null, string? source = null)
+		public async Task<System.IO.Stream> DeleteSubscriptions(string? context = null, string? source = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/subscriptions";
@@ -99,7 +99,7 @@ namespace Com.Cumulocity.Client.Api
 				{"source", source}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
-			allQueryParameter.Where(p => p.Value != null).AsParallel().ForAll(e => queryString.Add(e.Key, $"{e.Value}"));
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -114,7 +114,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NotificationSubscription?> GetSubscription(string id)
+		public async Task<NotificationSubscription?> GetSubscription(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/subscriptions/{id}";
@@ -132,7 +132,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteSubscription(string id)
+		public async Task<System.IO.Stream> DeleteSubscription(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/subscriptions/{id}";

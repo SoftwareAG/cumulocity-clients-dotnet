@@ -57,7 +57,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Create an application<br/>
@@ -84,7 +84,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <returns></returns>
-		Task<Application?> CreateApplication(Application body);
+		Task<Application?> CreateApplication(Application body) ;
 		
 		/// <summary>
 		/// Retrieve a specific application<br/>
@@ -107,7 +107,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <returns></returns>
-		Task<Application?> GetApplication(string id);
+		Task<Application?> GetApplication(string id) ;
 		
 		/// <summary>
 		/// Update a specific application<br/>
@@ -131,7 +131,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <returns></returns>
-		Task<Application?> UpdateApplication(Application body, string id);
+		Task<Application?> UpdateApplication(Application body, string id) ;
 		
 		/// <summary>
 		/// Delete an application<br/>
@@ -158,7 +158,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <param name="force">Force deletion by unsubscribing all tenants from the application first and then deleting the application itself.</param>
-		Task<System.IO.Stream> DeleteApplication(string id, bool? force = null);
+		Task<System.IO.Stream> DeleteApplication(string id, bool? force = null) ;
 		
 		/// <summary>
 		/// Copy an application<br/>
@@ -181,7 +181,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <returns></returns>
-		Task<Application?> CopyApplication(string id);
+		Task<Application?> CopyApplication(string id) ;
 		
 		/// <summary>
 		/// Retrieve applications by name<br/>
@@ -200,7 +200,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="name">The name of the application.</param>
 		/// <returns></returns>
-		Task<ApplicationCollection?> GetApplicationsByName(string name);
+		Task<ApplicationCollection?> GetApplicationsByName(string name) ;
 		
 		/// <summary>
 		/// Retrieve applications by tenant<br/>
@@ -219,7 +219,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <returns></returns>
-		Task<ApplicationCollection?> GetApplicationsByTenant(string tenantId);
+		Task<ApplicationCollection?> GetApplicationsByTenant(string tenantId) ;
 		
 		/// <summary>
 		/// Retrieve applications by owner<br/>
@@ -242,7 +242,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<ApplicationCollection?> GetApplicationsByOwner(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<ApplicationCollection?> GetApplicationsByOwner(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 		
 		/// <summary>
 		/// Retrieve applications by user<br/>
@@ -265,7 +265,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<ApplicationCollection?> GetApplicationsByUser(string username, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null);
+		Task<ApplicationCollection?> GetApplicationsByUser(string username, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 	}
 	#nullable disable
 }

@@ -182,6 +182,10 @@ namespace Com.Cumulocity.Client.Api
 		/// <term>HTTP 404</term>
 		/// <description>Managed object not found.</description>
 		/// </item>
+		/// <item>
+		/// <term>HTTP 409</term>
+		/// <description>Conflict – The managed object is associated to other objects, for example child devices.</description>
+		/// </item>
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>

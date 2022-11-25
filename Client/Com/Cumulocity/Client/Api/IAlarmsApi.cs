@@ -86,6 +86,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <param name="createdFrom">Start date or date and time of the alarm creation.</param>
 		/// <param name="createdTo">End date or date and time of the alarm creation.</param>
 		/// <param name="dateFrom">Start date or date and time of the alarm occurrence.</param>
@@ -96,7 +97,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="status">The status of the alarm to search for.</param>
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
-		Task<System.IO.Stream> UpdateAlarms<TAlarm>(TAlarm body, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null) where TAlarm : Alarm;
+		Task<System.IO.Stream> UpdateAlarms<TAlarm>(TAlarm body, string xCumulocityProcessingMode, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Create an alarm<br/>
@@ -122,8 +123,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TAlarm?> CreateAlarm<TAlarm>(TAlarm body) where TAlarm : Alarm;
+		Task<TAlarm?> CreateAlarm<TAlarm>(TAlarm body, string xCumulocityProcessingMode) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Remove alarm collections<br/>
@@ -144,6 +146,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </item>
 		/// </list>
 		/// </summary>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <param name="createdFrom">Start date or date and time of the alarm creation.</param>
 		/// <param name="createdTo">End date or date and time of the alarm creation.</param>
 		/// <param name="dateFrom">Start date or date and time of the alarm occurrence.</param>
@@ -155,7 +158,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="type">The types of alarm to search for (comma separated).</param>
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
-		Task<System.IO.Stream> DeleteAlarms(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
+		Task<System.IO.Stream> DeleteAlarms(string xCumulocityProcessingMode, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific alarm<br/>
@@ -213,8 +216,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the alarm.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TAlarm?> UpdateAlarm<TAlarm>(TAlarm body, string id) where TAlarm : Alarm;
+		Task<TAlarm?> UpdateAlarm<TAlarm>(TAlarm body, string id, string xCumulocityProcessingMode) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Retrieve the total number of alarms<br/>

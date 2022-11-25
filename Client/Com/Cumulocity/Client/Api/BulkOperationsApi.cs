@@ -76,7 +76,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<BulkOperation?> CreateBulkOperation(BulkOperation body) 
+		public async Task<BulkOperation?> CreateBulkOperation(BulkOperation body, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
 			jsonNode?.RemoveFromNode("generalStatus");
@@ -94,6 +94,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.bulkoperation+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json");
 			var response = await client.SendAsync(request);
@@ -121,7 +122,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id) 
+		public async Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
 			jsonNode?.RemoveFromNode("generalStatus");
@@ -139,6 +140,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.bulkoperation+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json");
 			var response = await client.SendAsync(request);
@@ -148,7 +150,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteBulkOperation(string id) 
+		public async Task<System.IO.Stream> DeleteBulkOperation(string id, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/bulkoperations/{id}";
@@ -158,6 +160,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

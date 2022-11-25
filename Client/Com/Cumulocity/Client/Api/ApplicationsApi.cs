@@ -78,7 +78,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> CreateApplication(Application body) 
+		public async Task<Application?> CreateApplication(Application body, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -95,6 +95,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.application+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json");
 			var response = await client.SendAsync(request);
@@ -122,7 +123,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> UpdateApplication(Application body, string id) 
+		public async Task<Application?> UpdateApplication(Application body, string id, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -140,6 +141,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.application+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json");
 			var response = await client.SendAsync(request);
@@ -149,7 +151,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteApplication(string id, bool? force = null) 
+		public async Task<System.IO.Stream> DeleteApplication(string id, bool? force = null, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}";
@@ -168,6 +170,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
@@ -176,7 +179,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> CopyApplication(string id) 
+		public async Task<Application?> CopyApplication(string id, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/clone";
@@ -186,6 +189,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

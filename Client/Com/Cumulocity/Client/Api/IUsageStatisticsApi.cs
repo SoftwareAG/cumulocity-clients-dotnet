@@ -189,8 +189,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body) ;
+		Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve a usage statistics file<br/>

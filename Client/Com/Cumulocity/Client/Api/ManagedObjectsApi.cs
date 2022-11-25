@@ -80,7 +80,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body) where TManagedObject : ManagedObject
+		public async Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body, string xCumulocityProcessingMode) where TManagedObject : ManagedObject
 		{
 			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -103,6 +103,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.managedobject+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json");
 			var response = await client.SendAsync(request);
@@ -176,7 +177,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject
+		public async Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject
 		{
 			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -199,6 +200,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.managedobject+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json");
 			var response = await client.SendAsync(request);
@@ -208,7 +210,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteManagedObject(string id, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null) 
+		public async Task<System.IO.Stream> DeleteManagedObject(string id, string xCumulocityProcessingMode, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}";
@@ -229,6 +231,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
@@ -309,7 +312,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id) 
+		public async Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<ManagedObjectUser>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -323,6 +326,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.managedobjectuser+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.managedobjectuser+json, application/vnd.com.nsn.cumulocity.error+json");
 			var response = await client.SendAsync(request);

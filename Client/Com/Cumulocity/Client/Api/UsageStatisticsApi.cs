@@ -212,7 +212,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body) 
+		public async Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<RangeStatisticsFile>(body);
 			var client = HttpClient;
@@ -224,6 +224,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.tenantstatisticsdate+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantstatisticsfile+json");
 			var response = await client.SendAsync(request);

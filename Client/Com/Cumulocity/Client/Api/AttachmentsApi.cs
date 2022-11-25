@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id) 
+		public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -60,6 +60,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
 			var response = await client.SendAsync(request);
@@ -69,7 +70,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id) 
+		public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -80,6 +81,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
 			var response = await client.SendAsync(request);
@@ -89,7 +91,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id) 
+		public async Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -107,6 +109,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
 			var response = await client.SendAsync(request);
@@ -116,7 +119,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteEventAttachment(string id) 
+		public async Task<System.IO.Stream> DeleteEventAttachment(string id, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -126,6 +129,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

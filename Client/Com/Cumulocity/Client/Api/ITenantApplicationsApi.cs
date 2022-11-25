@@ -78,8 +78,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId) ;
+		Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Unsubscribe from an application<br/>
@@ -102,7 +103,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="applicationId">Unique identifier of the application.</param>
-		Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId, string xCumulocityProcessingMode) ;
 	}
 	#nullable disable
 }

@@ -64,8 +64,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<InventoryRole?> CreateInventoryRole(InventoryRole body) ;
+		Task<InventoryRole?> CreateInventoryRole(InventoryRole body, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve a specific inventory role<br/>
@@ -115,8 +116,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the inventory role.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id) ;
+		Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Remove a specific inventory role<br/>
@@ -142,7 +144,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the inventory role.</param>
-		Task<System.IO.Stream> DeleteInventoryRole(int id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> DeleteInventoryRole(int id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve all inventory roles assigned to a user<br/>
@@ -202,8 +205,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId) ;
+		Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve a specific inventory role assigned to a user<br/>
@@ -265,8 +269,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="id">Unique identifier of the inventory assignment.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id) ;
+		Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Remove a specific inventory role assigned to a user<br/>
@@ -294,7 +299,8 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="id">Unique identifier of the inventory assignment.</param>
-		Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id, string xCumulocityProcessingMode) ;
 	}
 	#nullable disable
 }

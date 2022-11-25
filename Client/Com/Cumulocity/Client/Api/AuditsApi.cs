@@ -77,7 +77,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body) where TAuditRecord : AuditRecord
+		public async Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body, string xCumulocityProcessingMode) where TAuditRecord : AuditRecord
 		{
 			var jsonNode = ToJsonNode<TAuditRecord>(body);
 			jsonNode?.RemoveFromNode("severity");
@@ -97,6 +97,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.auditrecord+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.auditrecord+json");
 			var response = await client.SendAsync(request);

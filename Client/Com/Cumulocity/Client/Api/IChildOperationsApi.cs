@@ -78,7 +78,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddOne body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddOne body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Assign a managed object as child addition<br/>
@@ -101,7 +102,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddMultiple body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Assign a managed object as child addition<br/>
@@ -124,7 +126,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAddition<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildAddition<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove specific child additions from its parent<br/>
@@ -151,7 +154,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> UnassignChildAdditions(ChildOperationsAddMultiple body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UnassignChildAdditions(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve a specific child addition of a specific managed object<br/>
@@ -206,7 +210,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
-		Task<System.IO.Stream> UnassignChildAddition(string id, string childId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UnassignChildAddition(string id, string childId, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve all child assets of a specific managed object<br/>
@@ -263,7 +268,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddOne body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddOne body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Assign a managed object as child asset<br/>
@@ -286,7 +292,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddMultiple body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Assign a managed object as child asset<br/>
@@ -309,7 +316,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildAsset<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildAsset<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove specific child assets from its parent<br/>
@@ -336,7 +344,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> UnassignChildAssets(ChildOperationsAddMultiple body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UnassignChildAssets(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve a specific child asset of a specific managed object<br/>
@@ -391,7 +400,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
-		Task<System.IO.Stream> UnassignChildAsset(string id, string childId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UnassignChildAsset(string id, string childId, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve all child devices of a specific managed object<br/>
@@ -448,7 +458,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddOne body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddOne body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Assign a managed object as child device<br/>
@@ -471,7 +482,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddMultiple body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Assign a managed object as child device<br/>
@@ -494,7 +506,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> AssignAsChildDevice<TManagedObject>(TManagedObject body, string id) where TManagedObject : ManagedObject;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> AssignAsChildDevice<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove specific child devices from its parent<br/>
@@ -521,7 +534,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object.</param>
-		Task<System.IO.Stream> UnassignChildDevices(ChildOperationsAddMultiple body, string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UnassignChildDevices(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve a specific child device of a specific managed object<br/>
@@ -576,7 +590,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="childId">Unique identifier of the child object.</param>
-		Task<System.IO.Stream> UnassignChildDevice(string id, string childId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UnassignChildDevice(string id, string childId, string xCumulocityProcessingMode) ;
 	}
 	#nullable disable
 }

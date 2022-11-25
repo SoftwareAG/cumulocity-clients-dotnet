@@ -51,7 +51,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> UpdateCurrentApplication(Application body) 
+		public async Task<Application?> UpdateCurrentApplication(Application body, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -68,6 +68,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.application+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json");
 			var response = await client.SendAsync(request);

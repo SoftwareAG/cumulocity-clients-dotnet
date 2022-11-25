@@ -81,8 +81,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Group<TCustomProperties>?> CreateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties;
+		Task<Group<TCustomProperties>?> CreateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve a specific user group for a specific tenant<br/>
@@ -142,8 +143,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Group<TCustomProperties>?> UpdateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, int groupId) where TCustomProperties : CustomProperties;
+		Task<Group<TCustomProperties>?> UpdateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, int groupId, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Delete a specific user group for a specific tenant<br/>
@@ -170,7 +172,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
-		Task<System.IO.Stream> DeleteUserGroup(string tenantId, int groupId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> DeleteUserGroup(string tenantId, int groupId, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve a user group by group name for a specific tenant<br/>

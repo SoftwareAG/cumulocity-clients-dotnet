@@ -65,8 +65,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body) ;
+		Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve a specific new device request<br/>
@@ -112,8 +113,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="requestId">Unique identifier of the new device request.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId) ;
+		Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Delete a specific new device request<br/>
@@ -139,7 +141,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="requestId">Unique identifier of the new device request.</param>
-		Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId, string xCumulocityProcessingMode) ;
 	}
 	#nullable disable
 }

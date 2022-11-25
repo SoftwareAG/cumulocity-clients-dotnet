@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body) 
+		public async Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<NewDeviceRequest>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -78,6 +78,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.newdevicerequest+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json");
 			var response = await client.SendAsync(request);
@@ -105,7 +106,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId) 
+		public async Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<NewDeviceRequest>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -119,6 +120,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.newdevicerequest+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.newdevicerequest+json, application/vnd.com.nsn.cumulocity.error+json");
 			var response = await client.SendAsync(request);
@@ -128,7 +130,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId) 
+		public async Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/newDeviceRequests/{requestId}";
@@ -138,6 +140,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

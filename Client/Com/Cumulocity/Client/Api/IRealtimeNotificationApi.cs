@@ -242,8 +242,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body) ;
+		Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body, string xCumulocityProcessingMode) ;
 	}
 	#nullable disable
 }

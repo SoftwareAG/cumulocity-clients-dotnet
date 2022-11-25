@@ -62,7 +62,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body) 
+		public async Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body, string xCumulocityProcessingMode) 
 		{
 			var jsonNode = ToJsonNode<NotificationSubscription>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -77,6 +77,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.subscription+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.subscription+json");
 			var response = await client.SendAsync(request);
@@ -86,7 +87,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteSubscriptions(string? context = null, string? source = null) 
+		public async Task<System.IO.Stream> DeleteSubscriptions(string xCumulocityProcessingMode, string? context = null, string? source = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/subscriptions";
@@ -106,6 +107,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
@@ -132,7 +134,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteSubscription(string id) 
+		public async Task<System.IO.Stream> DeleteSubscription(string id, string xCumulocityProcessingMode) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/subscriptions/{id}";
@@ -142,6 +144,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

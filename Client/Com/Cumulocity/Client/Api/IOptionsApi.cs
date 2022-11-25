@@ -64,8 +64,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Option?> CreateOption(Option body) ;
+		Task<Option?> CreateOption(Option body, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Retrieve all options by category<br/>
@@ -107,8 +108,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="category">The category of the options.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category) where TCategoryOptions : CategoryOptions;
+		Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category, string xCumulocityProcessingMode) where TCategoryOptions : CategoryOptions;
 		
 		/// <summary>
 		/// Retrieve a specific option<br/>
@@ -160,8 +162,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="category">The category of the options.</param>
 		/// <param name="key">The key of an option.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key) ;
+		Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key, string xCumulocityProcessingMode) ;
 		
 		/// <summary>
 		/// Remove a specific option<br/>
@@ -184,7 +187,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="category">The category of the options.</param>
 		/// <param name="key">The key of an option.</param>
-		Task<System.IO.Stream> DeleteOption(string category, string key) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> DeleteOption(string category, string key, string xCumulocityProcessingMode) ;
 	}
 	#nullable disable
 }

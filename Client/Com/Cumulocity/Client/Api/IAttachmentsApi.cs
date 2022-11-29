@@ -65,7 +65,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id, string xCumulocityProcessingMode) ;
+		Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Attach a file to a specific event<br/>
@@ -94,7 +94,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<EventBinary?> UploadEventAttachment(byte[] body, string id, string xCumulocityProcessingMode) ;
+		Task<EventBinary?> UploadEventAttachment(byte[] body, string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Attach a file to a specific event<br/>
@@ -124,7 +124,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id, string xCumulocityProcessingMode) ;
+		Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Remove the attached file from a specific event<br/>
@@ -147,7 +147,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> DeleteEventAttachment(string id, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> DeleteEventAttachment(string id, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

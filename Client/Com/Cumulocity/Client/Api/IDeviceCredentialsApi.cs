@@ -46,7 +46,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<DeviceCredentials?> CreateDeviceCredentials(DeviceCredentials body, string xCumulocityProcessingMode) ;
+		Task<DeviceCredentials?> CreateDeviceCredentials(DeviceCredentials body, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Create a bulk device credentials request<br/>
@@ -66,7 +66,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="file">The CSV file to be uploaded.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file, string xCumulocityProcessingMode) ;
+		Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

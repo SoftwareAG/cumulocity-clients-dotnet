@@ -62,7 +62,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Application?> UploadApplicationAttachment(byte[] file, string id, string xCumulocityProcessingMode) ;
+		Task<Application?> UploadApplicationAttachment(byte[] file, string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific application attachment<br/>
@@ -105,7 +105,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <param name="binaryId">Unique identifier of the binary.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

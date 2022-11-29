@@ -85,7 +85,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Application?> CreateApplication(Application body, string xCumulocityProcessingMode) ;
+		Task<Application?> CreateApplication(Application body, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific application<br/>
@@ -133,7 +133,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Application?> UpdateApplication(Application body, string id, string xCumulocityProcessingMode) ;
+		Task<Application?> UpdateApplication(Application body, string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Delete an application<br/>
@@ -161,7 +161,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <param name="force">Force deletion by unsubscribing all tenants from the application first and then deleting the application itself.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> DeleteApplication(string id, bool? force = null, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> DeleteApplication(string id, bool? force = null, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Copy an application<br/>
@@ -185,7 +185,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the application.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Application?> CopyApplication(string id, string xCumulocityProcessingMode) ;
+		Task<Application?> CopyApplication(string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Retrieve applications by name<br/>

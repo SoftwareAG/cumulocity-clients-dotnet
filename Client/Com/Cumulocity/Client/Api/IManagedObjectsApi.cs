@@ -87,7 +87,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body, string xCumulocityProcessingMode) where TManagedObject : ManagedObject;
+		Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body, string? xCumulocityProcessingMode = null) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Retrieve the total number of managed objects<br/>
@@ -165,7 +165,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject;
+		Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null) where TManagedObject : ManagedObject;
 		
 		/// <summary>
 		/// Remove a specific managed object<br/>
@@ -195,7 +195,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="cascade">When set to `true` and the managed object is a device or group, all the hierarchy will be deleted.</param>
 		/// <param name="forceCascade">When set to `true` all the hierarchy will be deleted without checking the type of managed object. It takes precedence over the parameter `cascade`.</param>
 		/// <param name="withDeviceUser">When set to `true` and the managed object is a device, it deletes the associated device user (credentials).</param>
-		Task<System.IO.Stream> DeleteManagedObject(string id, string xCumulocityProcessingMode, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null) ;
+		Task<System.IO.Stream> DeleteManagedObject(string id, string? xCumulocityProcessingMode = null, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null) ;
 		
 		/// <summary>
 		/// Retrieve the latest availability date of a specific managed object<br/>
@@ -312,7 +312,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id, string xCumulocityProcessingMode) ;
+		Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

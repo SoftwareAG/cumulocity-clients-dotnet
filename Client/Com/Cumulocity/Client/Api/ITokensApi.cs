@@ -45,7 +45,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<NotificationToken?> CreateToken(NotificationTokenClaims body, string xCumulocityProcessingMode) ;
+		Task<NotificationToken?> CreateToken(NotificationTokenClaims body, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

@@ -110,7 +110,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId, string xCumulocityProcessingMode) 
+		public async Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<SubscribedRole>(body);
 			var client = HttpClient;
@@ -132,7 +132,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/roles/{roleId}";
@@ -151,7 +151,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId, string xCumulocityProcessingMode) 
+		public async Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<SubscribedRole>(body);
 			var client = HttpClient;
@@ -173,7 +173,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/{roleId}";

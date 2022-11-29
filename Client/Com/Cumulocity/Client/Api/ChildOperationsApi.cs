@@ -67,7 +67,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddOne body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddOne body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddOne>(body);
 			var client = HttpClient;
@@ -89,7 +89,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> AssignAsChildAddition(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -111,7 +111,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAddition<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject
+		public async Task<System.IO.Stream> AssignAsChildAddition<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null) where TManagedObject : ManagedObject
 		{
 			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -144,7 +144,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildAdditions(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignChildAdditions(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -184,7 +184,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildAddition(string id, string childId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignChildAddition(string id, string childId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childAdditions/{childId}";
@@ -236,7 +236,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddOne body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddOne body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddOne>(body);
 			var client = HttpClient;
@@ -258,7 +258,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> AssignAsChildAsset(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -280,7 +280,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildAsset<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject
+		public async Task<System.IO.Stream> AssignAsChildAsset<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null) where TManagedObject : ManagedObject
 		{
 			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -313,7 +313,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildAssets(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignChildAssets(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -353,7 +353,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildAsset(string id, string childId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignChildAsset(string id, string childId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childAssets/{childId}";
@@ -405,7 +405,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddOne body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddOne body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddOne>(body);
 			var client = HttpClient;
@@ -427,7 +427,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> AssignAsChildDevice(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -449,7 +449,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> AssignAsChildDevice<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject
+		public async Task<System.IO.Stream> AssignAsChildDevice<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null) where TManagedObject : ManagedObject
 		{
 			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -482,7 +482,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildDevices(ChildOperationsAddMultiple body, string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignChildDevices(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ChildOperationsAddMultiple>(body);
 			var client = HttpClient;
@@ -522,7 +522,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignChildDevice(string id, string childId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignChildDevice(string id, string childId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}/childDevices/{childId}";

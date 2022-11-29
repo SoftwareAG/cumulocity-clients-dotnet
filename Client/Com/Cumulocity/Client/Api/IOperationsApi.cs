@@ -75,7 +75,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TOperation?> CreateOperation<TOperation>(TOperation body, string xCumulocityProcessingMode) where TOperation : Operation;
+		Task<TOperation?> CreateOperation<TOperation>(TOperation body, string? xCumulocityProcessingMode = null) where TOperation : Operation;
 		
 		/// <summary>
 		/// Delete a list of operations<br/>
@@ -102,7 +102,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="dateTo">End date or date and time of the operation.</param>
 		/// <param name="deviceId">The ID of the device the operation is performed for.</param>
 		/// <param name="status">Status of the operation.</param>
-		Task<System.IO.Stream> DeleteOperations(string xCumulocityProcessingMode, string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null) ;
+		Task<System.IO.Stream> DeleteOperations(string? xCumulocityProcessingMode = null, string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific operation<br/>
@@ -154,7 +154,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the operation.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TOperation?> UpdateOperation<TOperation>(TOperation body, string id, string xCumulocityProcessingMode) where TOperation : Operation;
+		Task<TOperation?> UpdateOperation<TOperation>(TOperation body, string id, string? xCumulocityProcessingMode = null) where TOperation : Operation;
 	}
 	#nullable disable
 }

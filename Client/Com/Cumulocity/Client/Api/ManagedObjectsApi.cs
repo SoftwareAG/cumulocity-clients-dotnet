@@ -80,7 +80,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body, string xCumulocityProcessingMode) where TManagedObject : ManagedObject
+		public async Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body, string? xCumulocityProcessingMode = null) where TManagedObject : ManagedObject
 		{
 			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -177,7 +177,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id, string xCumulocityProcessingMode) where TManagedObject : ManagedObject
+		public async Task<TManagedObject?> UpdateManagedObject<TManagedObject>(TManagedObject body, string id, string? xCumulocityProcessingMode = null) where TManagedObject : ManagedObject
 		{
 			var jsonNode = ToJsonNode<TManagedObject>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -210,7 +210,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteManagedObject(string id, string xCumulocityProcessingMode, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null) 
+		public async Task<System.IO.Stream> DeleteManagedObject(string id, string? xCumulocityProcessingMode = null, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/managedObjects/{id}";
@@ -312,7 +312,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id, string xCumulocityProcessingMode) 
+		public async Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<ManagedObjectUser>(body);
 			jsonNode?.RemoveFromNode("self");

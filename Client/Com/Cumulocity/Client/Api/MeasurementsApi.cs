@@ -71,7 +71,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TMeasurement?> CreateMeasurement<TMeasurement>(TMeasurement body, string xCumulocityProcessingMode) where TMeasurement : Measurement
+		public async Task<TMeasurement?> CreateMeasurement<TMeasurement>(TMeasurement body, string? xCumulocityProcessingMode = null) where TMeasurement : Measurement
 		{
 			var jsonNode = ToJsonNode<TMeasurement>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -96,7 +96,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<MeasurementCollection<TMeasurement>?> CreateMeasurement<TMeasurement>(MeasurementCollection<TMeasurement> body, string xCumulocityProcessingMode) where TMeasurement : Measurement
+		public async Task<MeasurementCollection<TMeasurement>?> CreateMeasurement<TMeasurement>(MeasurementCollection<TMeasurement> body, string? xCumulocityProcessingMode = null) where TMeasurement : Measurement
 		{
 			var jsonNode = ToJsonNode<MeasurementCollection<TMeasurement>>(body);
 			jsonNode?.RemoveFromNode("next");
@@ -122,7 +122,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteMeasurements(string xCumulocityProcessingMode, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) 
+		public async Task<System.IO.Stream> DeleteMeasurements(string? xCumulocityProcessingMode = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/measurement/measurements";
@@ -172,7 +172,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteMeasurement(string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteMeasurement(string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/measurement/measurements/{id}";

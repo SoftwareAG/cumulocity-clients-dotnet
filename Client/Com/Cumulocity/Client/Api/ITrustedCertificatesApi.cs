@@ -87,7 +87,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId, string xCumulocityProcessingMode) ;
+		Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Add multiple certificates<br/>
@@ -120,7 +120,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId, string xCumulocityProcessingMode) ;
+		Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Retrieve a stored certificate<br/>
@@ -170,7 +170,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint, string xCumulocityProcessingMode) ;
+		Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Remove a stored certificate<br/>
@@ -194,7 +194,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Provide the proof of possession for an already uploaded certificate<br/>
@@ -228,7 +228,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint, string xCumulocityProcessingMode) ;
+		Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Confirm an already uploaded certificate<br/>
@@ -257,7 +257,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint, string xCumulocityProcessingMode) ;
+		Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Generate a verification code for the proof of possession operation for the given certificate<br/>
@@ -282,7 +282,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="fingerprint">Unique identifier of a trusted certificate.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint, string xCumulocityProcessingMode) ;
+		Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

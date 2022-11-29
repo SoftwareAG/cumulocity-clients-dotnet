@@ -62,7 +62,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body, string xCumulocityProcessingMode) 
+		public async Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<NotificationSubscription>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -87,7 +87,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteSubscriptions(string xCumulocityProcessingMode, string? context = null, string? source = null) 
+		public async Task<System.IO.Stream> DeleteSubscriptions(string? xCumulocityProcessingMode = null, string? context = null, string? source = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/subscriptions";
@@ -134,7 +134,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteSubscription(string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteSubscription(string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/subscriptions/{id}";

@@ -70,7 +70,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file, string xCumulocityProcessingMode) 
+		public async Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/binaries";
@@ -116,7 +116,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Binary?> ReplaceBinary(byte[] body, string id, string xCumulocityProcessingMode) 
+		public async Task<Binary?> ReplaceBinary(byte[] body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/binaries/{id}";
@@ -137,7 +137,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> RemoveBinary(string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> RemoveBinary(string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/binaries/{id}";

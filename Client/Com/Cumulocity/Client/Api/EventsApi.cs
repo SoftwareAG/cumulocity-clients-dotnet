@@ -77,7 +77,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TEvent?> CreateEvent<TEvent>(TEvent body, string xCumulocityProcessingMode) where TEvent : Event
+		public async Task<TEvent?> CreateEvent<TEvent>(TEvent body, string? xCumulocityProcessingMode = null) where TEvent : Event
 		{
 			var jsonNode = ToJsonNode<TEvent>(body);
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -104,7 +104,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteEvents(string xCumulocityProcessingMode, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) 
+		public async Task<System.IO.Stream> DeleteEvents(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events";
@@ -156,7 +156,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TEvent?> UpdateEvent<TEvent>(TEvent body, string id, string xCumulocityProcessingMode) where TEvent : Event
+		public async Task<TEvent?> UpdateEvent<TEvent>(TEvent body, string id, string? xCumulocityProcessingMode = null) where TEvent : Event
 		{
 			var jsonNode = ToJsonNode<TEvent>(body);
 			jsonNode?.RemoveFromNode("lastUpdated");
@@ -185,7 +185,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteEvent(string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteEvent(string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}";

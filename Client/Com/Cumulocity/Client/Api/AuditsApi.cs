@@ -77,7 +77,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body, string xCumulocityProcessingMode) where TAuditRecord : AuditRecord
+		public async Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body, string? xCumulocityProcessingMode = null) where TAuditRecord : AuditRecord
 		{
 			var jsonNode = ToJsonNode<TAuditRecord>(body);
 			jsonNode?.RemoveFromNode("severity");

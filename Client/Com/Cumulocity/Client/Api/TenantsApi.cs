@@ -89,7 +89,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Tenant<TCustomProperties>?> CreateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties
+		public async Task<Tenant<TCustomProperties>?> CreateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<Tenant<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("allowCreateTenants");
@@ -155,7 +155,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties
+		public async Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<Tenant<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("adminName");
@@ -186,7 +186,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteTenant(string tenantId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteTenant(string tenantId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}";

@@ -78,7 +78,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="file">Path of the file to be uploaded.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file, string xCumulocityProcessingMode) ;
+		Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Retrieve a stored file<br/>
@@ -117,7 +117,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Binary?> ReplaceBinary(byte[] body, string id, string xCumulocityProcessingMode) ;
+		Task<Binary?> ReplaceBinary(byte[] body, string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Remove a stored file<br/>
@@ -136,7 +136,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> RemoveBinary(string id, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> RemoveBinary(string id, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

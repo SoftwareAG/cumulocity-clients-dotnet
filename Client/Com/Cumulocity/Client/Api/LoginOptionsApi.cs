@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body, string xCumulocityProcessingMode) 
+		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<AuthConfig>(body);
 			jsonNode?.RemoveFromNode("self");

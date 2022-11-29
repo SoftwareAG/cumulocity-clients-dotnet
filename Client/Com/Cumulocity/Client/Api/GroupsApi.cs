@@ -66,7 +66,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Group<TCustomProperties>?> CreateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties
+		public async Task<Group<TCustomProperties>?> CreateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<Group<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("roles");
@@ -112,7 +112,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Group<TCustomProperties>?> UpdateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, int groupId, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties
+		public async Task<Group<TCustomProperties>?> UpdateUserGroup<TCustomProperties>(Group<TCustomProperties> body, string tenantId, int groupId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<Group<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("roles");
@@ -140,7 +140,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteUserGroup(string tenantId, int groupId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteUserGroup(string tenantId, int groupId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}";

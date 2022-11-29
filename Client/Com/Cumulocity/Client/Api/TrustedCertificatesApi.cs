@@ -66,7 +66,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId, string xCumulocityProcessingMode) 
+		public async Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<TrustedCertificate>(body);
 			jsonNode?.RemoveFromNode("notAfter");
@@ -97,7 +97,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId, string xCumulocityProcessingMode) 
+		public async Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<TrustedCertificateCollection>(body);
 			jsonNode?.RemoveFromNode("next");
@@ -141,7 +141,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint, string xCumulocityProcessingMode) 
+		public async Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<TrustedCertificate>(body);
 			jsonNode?.RemoveFromNode("notAfter");
@@ -173,7 +173,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates/{fingerprint}";
@@ -192,7 +192,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint, string xCumulocityProcessingMode) 
+		public async Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<UploadedTrustedCertSignedVerificationCode>(body);
 			var client = HttpClient;
@@ -214,7 +214,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint, string xCumulocityProcessingMode) 
+		public async Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates-pop/{fingerprint}/confirmed";
@@ -233,7 +233,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint, string xCumulocityProcessingMode) 
+		public async Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/trusted-certificates-pop/{fingerprint}/verification-code";

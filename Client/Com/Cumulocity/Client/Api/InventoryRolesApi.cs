@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<InventoryRole?> CreateInventoryRole(InventoryRole body, string xCumulocityProcessingMode) 
+		public async Task<InventoryRole?> CreateInventoryRole(InventoryRole body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<InventoryRole>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -105,7 +105,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id, string xCumulocityProcessingMode) 
+		public async Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<InventoryRole>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -129,7 +129,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteInventoryRole(int id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteInventoryRole(int id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/inventoryroles/{id}";
@@ -166,7 +166,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId, string xCumulocityProcessingMode) 
+		public async Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<InventoryAssignment>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -208,7 +208,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id, string xCumulocityProcessingMode) 
+		public async Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<InventoryAssignmentReference>(body);
 			var client = HttpClient;
@@ -230,7 +230,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/inventory/{id}";

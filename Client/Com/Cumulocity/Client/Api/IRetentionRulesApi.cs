@@ -75,7 +75,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<RetentionRule?> CreateRetentionRule(RetentionRule body, string xCumulocityProcessingMode) ;
+		Task<RetentionRule?> CreateRetentionRule(RetentionRule body, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Retrieve a retention rule<br/>
@@ -135,7 +135,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the retention rule.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id, string xCumulocityProcessingMode) ;
+		Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Remove a retention rule<br/>
@@ -162,7 +162,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the retention rule.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> DeleteRetentionRule(string id, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> DeleteRetentionRule(string id, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

@@ -234,7 +234,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body, string xCumulocityProcessingMode) 
+		public async Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<RealtimeNotification>(body);
 			jsonNode?.RemoveFromNode("clientId");

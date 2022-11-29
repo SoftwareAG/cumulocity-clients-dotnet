@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId, string xCumulocityProcessingMode) 
+		public async Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<SubscribedApplicationReference>(body);
 			var client = HttpClient;
@@ -85,7 +85,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/applications/{applicationId}";

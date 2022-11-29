@@ -78,7 +78,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> CreateApplication(Application body, string xCumulocityProcessingMode) 
+		public async Task<Application?> CreateApplication(Application body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -123,7 +123,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> UpdateApplication(Application body, string id, string xCumulocityProcessingMode) 
+		public async Task<Application?> UpdateApplication(Application body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");
@@ -151,7 +151,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteApplication(string id, bool? force = null, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteApplication(string id, bool? force = null, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}";
@@ -179,7 +179,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> CopyApplication(string id, string xCumulocityProcessingMode) 
+		public async Task<Application?> CopyApplication(string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/clone";

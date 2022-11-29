@@ -134,7 +134,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId, string xCumulocityProcessingMode) ;
+		Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Unassign a specific role for a specific user group in a specific tenant<br/>
@@ -163,7 +163,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <param name="roleId">Unique identifier of the user role.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Assign a role to specific user in a specific tenant<br/>
@@ -197,7 +197,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId, string xCumulocityProcessingMode) ;
+		Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Unassign a specific role from a specific user in a specific tenant<br/>
@@ -226,7 +226,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="roleId">Unique identifier of the user role.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

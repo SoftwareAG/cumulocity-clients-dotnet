@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Option?> CreateOption(Option body, string xCumulocityProcessingMode) 
+		public async Task<Option?> CreateOption(Option body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<Option>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -104,7 +104,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category, string xCumulocityProcessingMode) where TCategoryOptions : CategoryOptions
+		public async Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category, string? xCumulocityProcessingMode = null) where TCategoryOptions : CategoryOptions
 		{
 			var jsonNode = ToJsonNode<TCategoryOptions>(body);
 			var client = HttpClient;
@@ -144,7 +144,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key, string xCumulocityProcessingMode) 
+		public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<CategoryKeyOption>(body);
 			var client = HttpClient;
@@ -166,7 +166,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteOption(string category, string key, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteOption(string category, string key, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/options/{category}/{key}";

@@ -76,7 +76,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<BulkOperation?> CreateBulkOperation(BulkOperation body, string xCumulocityProcessingMode) 
+		public async Task<BulkOperation?> CreateBulkOperation(BulkOperation body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
 			jsonNode?.RemoveFromNode("generalStatus");
@@ -122,7 +122,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id, string xCumulocityProcessingMode) 
+		public async Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
 			jsonNode?.RemoveFromNode("generalStatus");
@@ -150,7 +150,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteBulkOperation(string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteBulkOperation(string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/bulkoperations/{id}";

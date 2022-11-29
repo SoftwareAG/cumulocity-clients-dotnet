@@ -84,7 +84,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TEvent?> CreateEvent<TEvent>(TEvent body, string xCumulocityProcessingMode) where TEvent : Event;
+		Task<TEvent?> CreateEvent<TEvent>(TEvent body, string? xCumulocityProcessingMode = null) where TEvent : Event;
 		
 		/// <summary>
 		/// Remove event collections<br/>
@@ -113,7 +113,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="fragmentType">A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.</param>
 		/// <param name="source">The managed object ID to which the event is associated.</param>
 		/// <param name="type">The type of event to search for.</param>
-		Task<System.IO.Stream> DeleteEvents(string xCumulocityProcessingMode, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) ;
+		Task<System.IO.Stream> DeleteEvents(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific event<br/>
@@ -165,7 +165,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TEvent?> UpdateEvent<TEvent>(TEvent body, string id, string xCumulocityProcessingMode) where TEvent : Event;
+		Task<TEvent?> UpdateEvent<TEvent>(TEvent body, string id, string? xCumulocityProcessingMode = null) where TEvent : Event;
 		
 		/// <summary>
 		/// Remove a specific event<br/>
@@ -192,7 +192,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the event.</param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> DeleteEvent(string id, string xCumulocityProcessingMode) ;
+		Task<System.IO.Stream> DeleteEvent(string id, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

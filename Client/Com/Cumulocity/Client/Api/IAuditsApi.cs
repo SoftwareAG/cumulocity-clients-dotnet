@@ -75,7 +75,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body, string xCumulocityProcessingMode) where TAuditRecord : AuditRecord;
+		Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body, string? xCumulocityProcessingMode = null) where TAuditRecord : AuditRecord;
 		
 		/// <summary>
 		/// Retrieve a specific audit record<br/>

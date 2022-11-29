@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RetentionRule?> CreateRetentionRule(RetentionRule body, string xCumulocityProcessingMode) 
+		public async Task<RetentionRule?> CreateRetentionRule(RetentionRule body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<RetentionRule>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -106,7 +106,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id, string xCumulocityProcessingMode) 
+		public async Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<RetentionRule>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -130,7 +130,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteRetentionRule(string id, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteRetentionRule(string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/retention/retentions/{id}";

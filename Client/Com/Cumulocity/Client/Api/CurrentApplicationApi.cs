@@ -51,7 +51,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> UpdateCurrentApplication(Application body, string xCumulocityProcessingMode) 
+		public async Task<Application?> UpdateCurrentApplication(Application body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<Application>(body);
 			jsonNode?.RemoveFromNode("owner");

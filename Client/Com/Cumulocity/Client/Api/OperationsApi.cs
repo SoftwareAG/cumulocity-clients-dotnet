@@ -72,7 +72,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TOperation?> CreateOperation<TOperation>(TOperation body, string xCumulocityProcessingMode) where TOperation : Operation
+		public async Task<TOperation?> CreateOperation<TOperation>(TOperation body, string? xCumulocityProcessingMode = null) where TOperation : Operation
 		{
 			var jsonNode = ToJsonNode<TOperation>(body);
 			jsonNode?.RemoveFromNode("creationTime");
@@ -101,7 +101,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteOperations(string xCumulocityProcessingMode, string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null) 
+		public async Task<System.IO.Stream> DeleteOperations(string? xCumulocityProcessingMode = null, string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/devicecontrol/operations";
@@ -151,7 +151,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TOperation?> UpdateOperation<TOperation>(TOperation body, string id, string xCumulocityProcessingMode) where TOperation : Operation
+		public async Task<TOperation?> UpdateOperation<TOperation>(TOperation body, string id, string? xCumulocityProcessingMode = null) where TOperation : Operation
 		{
 			var jsonNode = ToJsonNode<TOperation>(body);
 			jsonNode?.RemoveFromNode("creationTime");

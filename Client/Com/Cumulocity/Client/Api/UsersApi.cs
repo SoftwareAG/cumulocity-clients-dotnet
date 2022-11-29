@@ -69,7 +69,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties
+		public async Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<User<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("passwordStrength");
@@ -119,7 +119,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties
+		public async Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<User<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("passwordStrength");
@@ -152,7 +152,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteUser(string tenantId, string userId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> DeleteUser(string tenantId, string userId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}";
@@ -171,7 +171,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<PasswordChange>(body);
 			var client = HttpClient;
@@ -258,7 +258,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId, string xCumulocityProcessingMode) where TCustomProperties : CustomProperties
+		public async Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<SubscribedUser>(body);
 			var client = HttpClient;
@@ -280,7 +280,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId, string xCumulocityProcessingMode) 
+		public async Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/users/{userId}";
@@ -299,7 +299,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> Logout(string cookie, string xXSRFTOKEN) 
+		public async Task<System.IO.Stream> Logout(string? cookie = null, string? xXSRFTOKEN = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/logout";

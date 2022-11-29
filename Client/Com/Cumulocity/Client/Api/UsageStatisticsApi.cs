@@ -212,7 +212,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body, string xCumulocityProcessingMode) 
+		public async Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<RangeStatisticsFile>(body);
 			var client = HttpClient;

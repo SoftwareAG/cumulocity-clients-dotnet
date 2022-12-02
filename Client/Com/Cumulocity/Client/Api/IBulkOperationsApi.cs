@@ -73,8 +73,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<BulkOperation?> CreateBulkOperation(BulkOperation body) ;
+		Task<BulkOperation?> CreateBulkOperation(BulkOperation body, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific bulk operation<br/>
@@ -120,8 +121,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the bulk operation.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id) ;
+		Task<BulkOperation?> UpdateBulkOperation(BulkOperation body, string id, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Delete a specific bulk operation<br/>
@@ -147,7 +149,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the bulk operation.</param>
-		Task<System.IO.Stream> DeleteBulkOperation(string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> DeleteBulkOperation(string id, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

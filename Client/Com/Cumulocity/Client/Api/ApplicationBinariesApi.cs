@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Application?> UploadApplicationAttachment(byte[] file, string id) 
+		public async Task<Application?> UploadApplicationAttachment(byte[] file, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/binaries";
@@ -64,6 +64,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.application+json");
 			var response = await client.SendAsync(request);
@@ -91,7 +92,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId) 
+		public async Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications/{id}/binaries/{binaryId}";
@@ -101,6 +102,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

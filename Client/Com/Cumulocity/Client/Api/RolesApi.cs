@@ -110,7 +110,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId) 
+		public async Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<SubscribedRole>(body);
 			var client = HttpClient;
@@ -122,6 +122,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.rolereference+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereference+json");
 			var response = await client.SendAsync(request);
@@ -131,7 +132,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId) 
+		public async Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/roles/{roleId}";
@@ -141,6 +142,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
@@ -149,7 +151,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId) 
+		public async Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<SubscribedRole>(body);
 			var client = HttpClient;
@@ -161,6 +163,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.rolereference+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.rolereference+json");
 			var response = await client.SendAsync(request);
@@ -170,7 +173,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId) 
+		public async Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/{tenantId}/users/{userId}/roles/{roleId}";
@@ -180,6 +183,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

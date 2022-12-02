@@ -52,7 +52,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<CurrentUser?> UpdateCurrentUser(CurrentUser body) 
+		public async Task<CurrentUser?> UpdateCurrentUser(CurrentUser body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<CurrentUser>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -71,6 +71,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.currentuser+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json");
 			var response = await client.SendAsync(request);
@@ -80,7 +81,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body) 
+		public async Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<PasswordChange>(body);
 			var client = HttpClient;
@@ -92,6 +93,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
@@ -101,7 +103,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<CurrentUserTotpSecret?> GenerateTfaSecret() 
+		public async Task<CurrentUserTotpSecret?> GenerateTfaSecret(string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/user/currentUser/totpSecret";
@@ -111,6 +113,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
@@ -137,7 +140,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body) 
+		public async Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<CurrentUserTotpSecretActivity>(body);
 			var client = HttpClient;
@@ -149,6 +152,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
@@ -158,7 +162,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body) 
+		public async Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<CurrentUserTotpCode>(body);
 			var client = HttpClient;
@@ -170,6 +174,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);

@@ -84,8 +84,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties;
+		Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve a specific user for a specific tenant<br/>
@@ -145,8 +146,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId) where TCustomProperties : CustomProperties;
+		Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Delete a specific user for a specific tenant<br/>
@@ -173,7 +175,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
-		Task<System.IO.Stream> DeleteUser(string tenantId, string userId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> DeleteUser(string tenantId, string userId, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Update a specific user's password of a specific tenant<br/>
@@ -201,7 +204,8 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
-		Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Retrieve the TFA settings of a specific user<br/>
@@ -320,8 +324,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId) where TCustomProperties : CustomProperties;
+		Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Remove a specific user from a specific user group of a specific tenant<br/>
@@ -349,7 +354,8 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
-		Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Terminate a user's session<br/>
@@ -368,7 +374,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="cookie">The authorization cookie storing the access token of the user. This parameter is specific to OAI-Secure authentication.</param>
 		/// <param name="xXSRFTOKEN">Prevents XRSF attack of the authenticated user. This parameter is specific to OAI-Secure authentication.</param>
-		Task<System.IO.Stream> Logout(string cookie, string xXSRFTOKEN) ;
+		Task<System.IO.Stream> Logout(string? cookie = null, string? xXSRFTOKEN = null) ;
 	}
 	#nullable disable
 }

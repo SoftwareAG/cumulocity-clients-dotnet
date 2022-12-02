@@ -64,7 +64,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RetentionRule?> CreateRetentionRule(RetentionRule body) 
+		public async Task<RetentionRule?> CreateRetentionRule(RetentionRule body, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<RetentionRule>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -78,6 +78,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json");
 			var response = await client.SendAsync(request);
@@ -105,7 +106,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id) 
+		public async Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id, string? xCumulocityProcessingMode = null) 
 		{
 			var jsonNode = ToJsonNode<RetentionRule>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -119,6 +120,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json");
 			var response = await client.SendAsync(request);
@@ -128,7 +130,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteRetentionRule(string id) 
+		public async Task<System.IO.Stream> DeleteRetentionRule(string id, string? xCumulocityProcessingMode = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/retention/retentions/{id}";
@@ -138,6 +140,7 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

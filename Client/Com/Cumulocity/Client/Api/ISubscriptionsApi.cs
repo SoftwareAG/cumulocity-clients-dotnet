@@ -79,8 +79,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body) ;
+		Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body, string? xCumulocityProcessingMode = null) ;
 		
 		/// <summary>
 		/// Remove subscriptions by source<br/>
@@ -105,9 +106,10 @@ namespace Com.Cumulocity.Client.Api
 		/// </item>
 		/// </list>
 		/// </summary>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <param name="context">The context to which the subscription is associated. > **&#9432; Info:** If the value is `mo`, then `source` must also be provided in the query. </param>
 		/// <param name="source">The managed object ID to which the subscription is associated.</param>
-		Task<System.IO.Stream> DeleteSubscriptions(string? context = null, string? source = null) ;
+		Task<System.IO.Stream> DeleteSubscriptions(string? xCumulocityProcessingMode = null, string? context = null, string? source = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific subscription<br/>
@@ -160,7 +162,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the notification subscription.</param>
-		Task<System.IO.Stream> DeleteSubscription(string id) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		Task<System.IO.Stream> DeleteSubscription(string id, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable
 }

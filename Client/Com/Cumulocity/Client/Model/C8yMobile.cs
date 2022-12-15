@@ -44,6 +44,7 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("customFragments")]
 		public Dictionary<string, string> CustomFragments { get; set; } = new Dictionary<string, string>();
 		
+		[JsonIgnore]
 		public string this[string key]
 		{
 			get => CustomFragments[key];

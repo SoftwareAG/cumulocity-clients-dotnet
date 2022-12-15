@@ -34,6 +34,7 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("customProperties")]
 		public Dictionary<string, object> PCustomProperties { get; set; } = new Dictionary<string, object>();
 		
+		[JsonIgnore]
 		public object this[string key]
 		{
 			get => PCustomProperties[key];

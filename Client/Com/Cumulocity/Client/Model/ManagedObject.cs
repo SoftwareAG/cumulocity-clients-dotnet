@@ -123,6 +123,7 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("customFragments")]
 		public Dictionary<string, object> CustomFragments { get; set; } = new Dictionary<string, object>();
 		
+		[JsonIgnore]
 		public object this[string key]
 		{
 			get => CustomFragments[key];

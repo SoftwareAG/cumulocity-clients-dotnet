@@ -64,7 +64,8 @@ namespace Com.Cumulocity.Client.Converter
 	
 			foreach (PropertyInfo property in type.GetProperties())
 			{
-				if (property.CanRead)
+				var isIgnoredProperty = Attribute.IsDefined(property, typeof(JsonIgnoreAttribute));
+				if (property.CanRead && isIgnoredProperty == false)
 				{
 					var propertyValue = property.GetValue(value, null);
 					if (propertyValue != null)

@@ -92,6 +92,7 @@ namespace Com.Cumulocity.Client.Model
 			[JsonPropertyName("requestHeaders")]
 			public Dictionary<string, string> RequestHeaders { get; set; } = new Dictionary<string, string>();
 			
+			[JsonIgnore]
 			public string this[string key]
 			{
 				get => RequestHeaders[key];
@@ -124,6 +125,7 @@ namespace Com.Cumulocity.Client.Model
 			[JsonPropertyName("requestParameters")]
 			public Dictionary<string, string> RequestParameters { get; set; } = new Dictionary<string, string>();
 			
+			[JsonIgnore]
 			public string this[string key]
 			{
 				get => RequestParameters[key];

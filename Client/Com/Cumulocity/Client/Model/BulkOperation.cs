@@ -6,6 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -79,7 +80,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The status of this bulk operation, in context of the execution of all its single operations.
 		/// [ACTIVE, IN_PROGRESS, COMPLETED, DELETED]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Status 
 		{
 			[EnumMember(Value = "ACTIVE")]
@@ -96,7 +97,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The general status of this bulk operation. The general status is visible for end users and they can filter and evaluate bulk operations by this status.
 		/// [SCHEDULED, EXECUTING, EXECUTING_WITH_ERRORS, SUCCESSFUL, FAILED, CANCELED]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum GeneralStatus 
 		{
 			[EnumMember(Value = "SCHEDULED")]

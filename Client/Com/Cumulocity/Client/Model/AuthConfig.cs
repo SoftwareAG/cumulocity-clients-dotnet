@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -159,7 +160,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The authentication configuration grant type identifier.
 		/// [AUTHORIZATION_CODE, PASSWORD]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum GrantType 
 		{
 			[EnumMember(Value = "AUTHORIZATION_CODE")]
@@ -172,7 +173,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The authentication configuration type. Note that the value is case insensitive.
 		/// [BASIC, OAUTH2, OAUTH2_INTERNAL]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Type 
 		{
 			[EnumMember(Value = "BASIC")]
@@ -187,7 +188,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Indicates whether user data are managed internally by the Cumulocity IoT platform or by an external server. Note that the value is case insensitive.
 		/// [INTERNAL, REMOTE]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum UserManagementSource 
 		{
 			[EnumMember(Value = "INTERNAL")]
@@ -505,7 +506,7 @@ namespace Com.Cumulocity.Client.Model
 					/// The signing algorithm of the JWT access token.
 					/// [RSA, PCKS]
 					/// </summary>
-					[JsonConverter(typeof(JsonStringEnumConverter))]
+					[JsonConverter(typeof(EnumConverterFactory))]
 					public enum Alg 
 					{
 						[EnumMember(Value = "RSA")]

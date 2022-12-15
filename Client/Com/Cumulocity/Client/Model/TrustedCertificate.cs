@@ -6,6 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -97,7 +98,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform.
 		/// [ENABLED, DISABLED]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Status 
 		{
 			[EnumMember(Value = "ENABLED")]

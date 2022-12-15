@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -153,7 +154,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Indicates the password strength. The value can be GREEN, YELLOW or RED for decreasing password strengths.
 		/// [GREEN, YELLOW, RED]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum PasswordStrength 
 		{
 			[EnumMember(Value = "GREEN")]

@@ -8,6 +8,7 @@
 
 using System.Runtime.Serialization;
 using System.Text.Json.Serialization;
+using Com.Cumulocity.Client.Converter;
 
 namespace Com.Cumulocity.Client.Model 
 {
@@ -15,7 +16,7 @@ namespace Com.Cumulocity.Client.Model
 	/// The current status, one of `AVAILABLE`, `CONNECTED`, `MAINTENANCE`, `DISCONNECTED`.
 	/// [AVAILABLE, CONNECTED, MAINTENANCE, DISCONNECTED]
 	/// </summary>
-	[JsonConverter(typeof(JsonStringEnumConverter))]
+	[JsonConverter(typeof(EnumConverterFactory))]
 	public enum C8yAvailabilityStatus 
 	{
 		[EnumMember(Value = "AVAILABLE")]

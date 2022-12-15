@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -47,7 +48,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Operator executed on the parameter from the JWT access token claim pointed by `parameterPath` and the provided parameter `value`.
 		/// [EQ, NEQ, GT, LT, GTE, LTE, IN, AND, OR]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Operator 
 		{
 			[EnumMember(Value = "EQ")]

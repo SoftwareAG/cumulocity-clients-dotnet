@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -158,7 +159,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Application access level for other tenants.
 		/// [MARKET, PRIVATE]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Availability 
 		{
 			[EnumMember(Value = "MARKET")]
@@ -171,7 +172,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The type of the application.
 		/// [EXTERNAL, HOSTED, MICROSERVICE]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Type 
 		{
 			[EnumMember(Value = "EXTERNAL")]

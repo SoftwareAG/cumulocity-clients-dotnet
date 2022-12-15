@@ -6,6 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -49,7 +50,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Dependent on the authentication type. PASSWORD is used for OAI-Secure.
 		/// [PASSWORD, AUTHORIZATION_CODE, REFRESH_TOKEN]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum GrantType 
 		{
 			[EnumMember(Value = "PASSWORD")]

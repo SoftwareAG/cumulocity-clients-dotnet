@@ -82,7 +82,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The status of the operation.
 		/// [SUCCESSFUL, FAILED, EXECUTING, PENDING]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Status 
 		{
 			[EnumMember(Value = "SUCCESSFUL")]

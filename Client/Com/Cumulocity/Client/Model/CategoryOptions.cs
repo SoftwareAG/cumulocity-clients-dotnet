@@ -24,6 +24,7 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("keyValuePairs")]
 		public Dictionary<string, object> KeyValuePairs { get; set; } = new Dictionary<string, object>();
 		
+		[JsonIgnore]
 		public object this[string key]
 		{
 			get => KeyValuePairs[key];

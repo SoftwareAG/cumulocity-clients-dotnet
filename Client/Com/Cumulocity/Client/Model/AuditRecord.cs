@@ -103,6 +103,7 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("customProperties")]
 		public Dictionary<string, object> CustomProperties { get; set; } = new Dictionary<string, object>();
 		
+		[JsonIgnore]
 		public object this[string key]
 		{
 			get => CustomProperties[key];

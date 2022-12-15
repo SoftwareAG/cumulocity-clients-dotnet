@@ -130,7 +130,7 @@ namespace Com.Cumulocity.Client.Api
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var request = new HttpRequestMessage 
 			{
-				Content = new StringContent(jsonNode?.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.managedobject+json"),
+				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.managedobject+json"),
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};

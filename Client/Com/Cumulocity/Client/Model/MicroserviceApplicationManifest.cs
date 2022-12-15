@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -135,7 +136,7 @@ namespace Com.Cumulocity.Client.Model
 		/// 
 		/// [RESOURCES, SUBSCRIPTION]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum BillingMode 
 		{
 			[EnumMember(Value = "RESOURCES")]
@@ -152,7 +153,7 @@ namespace Com.Cumulocity.Client.Model
 		/// 
 		/// [MULTI_TENANT, PER_TENANT]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Isolation 
 		{
 			[EnumMember(Value = "MULTI_TENANT")]
@@ -168,7 +169,7 @@ namespace Com.Cumulocity.Client.Model
 		/// 
 		/// [NONE, AUTO]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Scale 
 		{
 			[EnumMember(Value = "NONE")]

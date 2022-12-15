@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -71,7 +72,7 @@ namespace Com.Cumulocity.Client.Model
 			/// The device credentials creation status.
 			/// [CREATED, FAILED, CREDENTIAL_UPDATED]
 			/// </summary>
-			[JsonConverter(typeof(JsonStringEnumConverter))]
+			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum NewDeviceStatus 
 			{
 				[EnumMember(Value = "CREATED")]
@@ -125,7 +126,7 @@ namespace Com.Cumulocity.Client.Model
 			/// The device credentials creation status.
 			/// [CREATED, FAILED, CREDENTIAL_UPDATED]
 			/// </summary>
-			[JsonConverter(typeof(JsonStringEnumConverter))]
+			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum NewDeviceStatus 
 			{
 				[EnumMember(Value = "CREATED")]

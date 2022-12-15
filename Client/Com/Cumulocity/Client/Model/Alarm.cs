@@ -109,7 +109,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The severity of the alarm.
 		/// [CRITICAL, MAJOR, MINOR, WARNING]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Severity 
 		{
 			[EnumMember(Value = "CRITICAL")]
@@ -126,7 +126,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The status of the alarm. If not specified, a new alarm will be created as ACTIVE.
 		/// [ACTIVE, ACKNOWLEDGED, CLEARED]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Status 
 		{
 			[EnumMember(Value = "ACTIVE")]

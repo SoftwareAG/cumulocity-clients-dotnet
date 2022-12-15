@@ -6,6 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -46,7 +47,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The permission level.
 		/// [ADMIN, READ, *]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Permission 
 		{
 			[EnumMember(Value = "ADMIN")]
@@ -61,7 +62,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The scope of this permission.
 		/// [ALARM, AUDIT, EVENT, MANAGED_OBJECT, MEASUREMENT, OPERATION, *]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Scope 
 		{
 			[EnumMember(Value = "ALARM")]

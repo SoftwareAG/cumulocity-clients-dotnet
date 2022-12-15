@@ -6,6 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -55,7 +56,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Two-factor authentication strategy.
 		/// [SMS, TOTP]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Strategy 
 		{
 			[EnumMember(Value = "SMS")]

@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -108,7 +109,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The channel name as a URI.
 		/// [/meta/handshake, /meta/subscribe, /meta/unsubscribe, /meta/connect, /meta/disconnect]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Channel 
 		{
 			[EnumMember(Value = "/meta/handshake")]
@@ -189,7 +190,7 @@ namespace Com.Cumulocity.Client.Model
 			/// The system of units to use.
 			/// [imperial, metric]
 			/// </summary>
-			[JsonConverter(typeof(JsonStringEnumConverter))]
+			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum SystemOfUnits 
 			{
 				[EnumMember(Value = "imperial")]

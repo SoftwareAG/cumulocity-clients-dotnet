@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -56,7 +57,7 @@ namespace Com.Cumulocity.Client.Model
 		/// HTTP request method.
 		/// [GET, POST]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Method 
 		{
 			[EnumMember(Value = "GET")]
@@ -69,7 +70,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Requested operation.
 		/// [EXECUTE, REDIRECT]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Operation 
 		{
 			[EnumMember(Value = "EXECUTE")]

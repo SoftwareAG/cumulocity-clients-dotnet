@@ -126,7 +126,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The severity of the audit action.
 		/// [CRITICAL, MAJOR, MINOR, WARNING, INFORMATION]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Severity 
 		{
 			[EnumMember(Value = "CRITICAL")]
@@ -145,7 +145,7 @@ namespace Com.Cumulocity.Client.Model
 		/// Identifies the platform component of the audit.
 		/// [Alarm, Application, BulkOperation, CepModule, Connector, Event, Group, Inventory, InventoryRole, Operation, Option, Report, SingleSignOn, SmartRule, SYSTEM, Tenant, TenantAuthConfig, TrustedCertificates, User, UserAuthentication]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Type 
 		{
 			[EnumMember(Value = "Alarm")]
@@ -206,7 +206,7 @@ namespace Com.Cumulocity.Client.Model
 			/// The action that was carried out.
 			/// [SUBSCRIBE, DEPLOY, SCALE, DELETE]
 			/// </summary>
-			[JsonConverter(typeof(JsonStringEnumConverter))]
+			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum Action 
 			{
 				[EnumMember(Value = "SUBSCRIBE")]
@@ -268,7 +268,7 @@ namespace Com.Cumulocity.Client.Model
 			/// The type of change that was carried out.
 			/// [ADDED, REPLACED]
 			/// </summary>
-			[JsonConverter(typeof(JsonStringEnumConverter))]
+			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum ChangeType 
 			{
 				[EnumMember(Value = "ADDED")]

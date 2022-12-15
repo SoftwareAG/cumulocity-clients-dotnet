@@ -6,6 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -67,7 +68,7 @@ namespace Com.Cumulocity.Client.Model
 		/// The data type(s) to which the rule is applied.
 		/// [ALARM, AUDIT, BULK_OPERATION, EVENT, MEASUREMENT, OPERATION, *]
 		/// </summary>
-		[JsonConverter(typeof(JsonStringEnumConverter))]
+		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum DataType 
 		{
 			[EnumMember(Value = "ALARM")]

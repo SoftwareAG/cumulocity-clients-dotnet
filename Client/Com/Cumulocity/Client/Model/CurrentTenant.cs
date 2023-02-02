@@ -47,6 +47,12 @@ namespace Com.Cumulocity.Client.Model
 		public string? Name { get; set; }
 	
 		/// <summary>
+		/// ID of the parent tenant.
+		/// </summary>
+		[JsonPropertyName("parent")]
+		public string? Parent { get; set; }
+	
+		/// <summary>
 		/// A URL linking to this resource.
 		/// </summary>
 		[JsonPropertyName("self")]

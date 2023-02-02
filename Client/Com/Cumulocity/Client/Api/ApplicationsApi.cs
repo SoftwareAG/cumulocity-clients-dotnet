@@ -41,7 +41,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null) 
+		public async Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null, bool? hasVersions = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/application/applications";
@@ -60,7 +60,8 @@ namespace Com.Cumulocity.Client.Api
 				{"type", type},
 				{"user", user},
 				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
+				{"withTotalPages", withTotalPages},
+				{"hasVersions", hasVersions}
 				#pragma warning restore CS8604 // Possible null reference argument.
 			};
 			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));

@@ -47,7 +47,7 @@ namespace Com.Cumulocity.Client.Api
 		
 		/// <summary>
 		/// Retrieve a user role by name<br/>
-		/// Retrieve a user role by name.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> current user has acces to the role with this name </section> 
+		/// Retrieve a user role by name.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> current user has access to the role with this name </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
@@ -104,7 +104,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
-		/// <term>HTTP 200</term>
+		/// <term>HTTP 201</term>
 		/// <description>A user role was assigned to a user group.</description>
 		/// </item>
 		/// <item>
@@ -132,9 +132,8 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId, string? xCumulocityProcessingMode = null) ;
+		Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId) ;
 		
 		/// <summary>
 		/// Unassign a specific role for a specific user group in a specific tenant<br/>
@@ -162,16 +161,15 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="groupId">Unique identifier of the user group.</param>
 		/// <param name="roleId">Unique identifier of the user role.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId) ;
 		
 		/// <summary>
 		/// Assign a role to specific user in a specific tenant<br/>
-		/// Assign a role to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  When a role is assigned to a user, a corresponding audit record is created with type "User" and activity "User updated".  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user </section> 
+		/// Assign a role to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  When a role is assigned to a user, a corresponding audit record is created with type "User" and activity "User updated".  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN to assign any role to root users in a user hierarchy <b>OR</b> users that are not in any hierarchy<br/> ROLE_USER_MANAGEMENT_ADMIN to assign roles accessible by the parent of assigned user to non-root users in a user hierarchy<br/> ROLE_USER_MANAGEMENT_CREATE to assign roles accessible by the current user <b>AND</b> accessible by the parent of the assigned user to the descendants of the current user in a user hierarchy </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
-		/// <term>HTTP 200</term>
+		/// <term>HTTP 201</term>
 		/// <description>A user role was assigned to a user.</description>
 		/// </item>
 		/// <item>
@@ -195,9 +193,8 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId, string? xCumulocityProcessingMode = null) ;
+		Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId) ;
 		
 		/// <summary>
 		/// Unassign a specific role from a specific user in a specific tenant<br/>
@@ -225,8 +222,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="roleId">Unique identifier of the user role.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId) ;
 	}
 	#nullable disable
 }

@@ -80,7 +80,7 @@ namespace Com.Cumulocity.Client.Model
 		public TCustomProperties? PCustomProperties { get; set; }
 	
 		/// <summary>
-		/// URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots `.`, hyphens `-` and underscores `_`.
+		/// URL of the tenant's domain. The domain name permits only the use of alphanumeric characters separated by dots `.` and hyphens `-`.
 		/// </summary>
 		[JsonPropertyName("domain")]
 		public string? Domain { get; set; }

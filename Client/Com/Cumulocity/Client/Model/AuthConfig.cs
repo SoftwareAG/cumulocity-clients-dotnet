@@ -75,6 +75,12 @@ namespace Com.Cumulocity.Client.Model
 		public RequestRepresentation? LogoutRequest { get; set; }
 	
 		/// <summary>
+		/// Indicates whether the configuration is only accessible to the management tenant.
+		/// </summary>
+		[JsonPropertyName("onlyManagementTenantAccess")]
+		public bool? OnlyManagementTenantAccess { get; set; }
+	
+		/// <summary>
 		/// SSO specific. Describes the process of internal user creation during login with the external authorization server.
 		/// </summary>
 		[JsonPropertyName("onNewUser")]

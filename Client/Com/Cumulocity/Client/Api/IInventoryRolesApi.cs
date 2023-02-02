@@ -50,12 +50,16 @@ namespace Com.Cumulocity.Client.Api
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
-		/// <term>HTTP 200</term>
+		/// <term>HTTP 201</term>
 		/// <description>An inventory role was created.</description>
 		/// </item>
 		/// <item>
 		/// <term>HTTP 401</term>
 		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 409</term>
+		/// <description>Duplicate – The inventory role already exists.</description>
 		/// </item>
 		/// <item>
 		/// <term>HTTP 422</term>
@@ -64,9 +68,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<InventoryRole?> CreateInventoryRole(InventoryRole body, string? xCumulocityProcessingMode = null) ;
+		Task<InventoryRole?> CreateInventoryRole(InventoryRole body) ;
 		
 		/// <summary>
 		/// Retrieve a specific inventory role<br/>
@@ -116,9 +119,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the inventory role.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id, string? xCumulocityProcessingMode = null) ;
+		Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id) ;
 		
 		/// <summary>
 		/// Remove a specific inventory role<br/>
@@ -144,8 +146,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the inventory role.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> DeleteInventoryRole(int id, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> DeleteInventoryRole(int id) ;
 		
 		/// <summary>
 		/// Retrieve all inventory roles assigned to a user<br/>
@@ -177,11 +178,11 @@ namespace Com.Cumulocity.Client.Api
 		
 		/// <summary>
 		/// Assign an inventory role to a user<br/>
-		/// Assign an existing inventory role to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN <b>AND</b> (is not in user hierarchy <b>OR</b> is root in the user hierarchy) <b>OR</b> ROLE_USER_MANAGEMENT_ADMIN <b>AND</b> is in user hiararchy <b>AND</b> has parent access to inventory assignments <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user <b>AND</b> is not the current user <b>AND</b> has current user access to inventory assignments <b>AND</b> has parent access to inventory assignments </section> 
+		/// Assign an existing inventory role to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN to assign any inventory role to root users in a user hierarchy <b>OR</b> users that are not in any hierarchy<br/> ROLE_USER_MANAGEMENT_ADMIN to assign inventory roles accessible by the parent of the assigned user to non-root users in a user hierarchy<br/> ROLE_USER_MANAGEMENT_CREATE to assign inventory roles accessible by the current user <b>AND</b> accessible by the parent of the assigned user to the descendants of the current user in a user hierarchy </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
-		/// <term>HTTP 201</term>
+		/// <term>HTTP 200</term>
 		/// <description>An inventory role was assigned to a user.</description>
 		/// </item>
 		/// <item>
@@ -205,9 +206,8 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId, string? xCumulocityProcessingMode = null) ;
+		Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId) ;
 		
 		/// <summary>
 		/// Retrieve a specific inventory role assigned to a user<br/>
@@ -240,7 +240,7 @@ namespace Com.Cumulocity.Client.Api
 		
 		/// <summary>
 		/// Update a specific inventory role assigned to a user<br/>
-		/// Update a specific inventory role (by a given ID) assigned to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
+		/// Update a specific inventory role (by a given ID) assigned to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN to update the assignment of any inventory roles to root users in a user hierarchy <b>OR</b> users that are not in any hierarchy<br/> ROLE_USER_MANAGEMENT_ADMIN to update the assignment of inventory roles accessible by the assigned user parent, to non-root users in a user hierarchy<br/> ROLE_USER_MANAGEMENT_CREATE to update the assignment of inventory roles accessible by the current user <b>AND</b> the parent of the assigned user to the descendants of the current user in the user hierarchy </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
@@ -269,9 +269,8 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="id">Unique identifier of the inventory assignment.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id, string? xCumulocityProcessingMode = null) ;
+		Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id) ;
 		
 		/// <summary>
 		/// Remove a specific inventory role assigned to a user<br/>
@@ -299,8 +298,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="userId">Unique identifier of the a user.</param>
 		/// <param name="id">Unique identifier of the inventory assignment.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id) ;
 	}
 	#nullable disable
 }

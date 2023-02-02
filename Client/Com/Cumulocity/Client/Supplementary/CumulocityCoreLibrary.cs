@@ -45,6 +45,7 @@ namespace Com.Cumulocity.Client.Supplementary
 		public class ApplicationsFactory
 		{
 			public IApplicationsApi ApplicationsApi => new ApplicationsApi(Instance.HttpClient);
+			public IApplicationVersionsApi ApplicationVersionsApi => new ApplicationVersionsApi(Instance.HttpClient);
 			public IApplicationBinariesApi ApplicationBinariesApi => new ApplicationBinariesApi(Instance.HttpClient);
 			public IBootstrapUserApi BootstrapUserApi => new BootstrapUserApi(Instance.HttpClient);
 			public ICurrentApplicationApi CurrentApplicationApi => new CurrentApplicationApi(Instance.HttpClient);

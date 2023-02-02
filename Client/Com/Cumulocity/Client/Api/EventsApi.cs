@@ -21,7 +21,7 @@ using Com.Cumulocity.Client.Supplementary;
 namespace Com.Cumulocity.Client.Api 
 {
 	/// <summary>
-	/// Events are used to pass real-time information through Cumulocity IoT and they come in three types: base events  when something in the sensor network happens, alarms requiring manual actions, and audit logs to store events that are security-relevant.
+	/// Events are used to pass real-time information through Cumulocity IoT.
 	/// 
 	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
 	/// 

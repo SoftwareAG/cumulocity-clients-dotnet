@@ -17,7 +17,7 @@ namespace Com.Cumulocity.Client.Model
 	{
 	
 		/// <summary>
-		/// Each property contained here is a date taken from the measurement and it contains an array of objects specifying `min` and `max` pair of values. Each pair corresponds to a single series object in the `series` array. If there is no aggregation used, `min` is equals to `max` in every pair.
+		/// Each property contained here is a date taken from the measurement and it contains an array of objects specifying `min` and `max` pair of values. Each pair corresponds to a single series object in the `series` array. If there is no aggregation used, `min` is equal to `max` in every pair.
 		/// </summary>
 		[JsonPropertyName("values")]
 		public Values? PValues { get; set; }
@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Model
 		public bool? Truncated { get; set; }
 	
 		/// <summary>
-		/// Each property contained here is a date taken from the measurement and it contains an array of objects specifying `min` and `max` pair of values. Each pair corresponds to a single series object in the `series` array. If there is no aggregation used, `min` is equals to `max` in every pair.
+		/// Each property contained here is a date taken from the measurement and it contains an array of objects specifying `min` and `max` pair of values. Each pair corresponds to a single series object in the `series` array. If there is no aggregation used, `min` is equal to `max` in every pair.
 		/// </summary>
 		public class Values 
 		{

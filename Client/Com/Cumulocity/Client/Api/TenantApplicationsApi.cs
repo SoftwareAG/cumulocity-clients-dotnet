@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId, string? xCumulocityProcessingMode = null) 
+		public async Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId) 
 		{
 			var jsonNode = ToJsonNode<SubscribedApplicationReference>(body);
 			var client = HttpClient;
@@ -75,7 +75,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.applicationreference+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.applicationreference+json");
 			var response = await client.SendAsync(request);
@@ -85,7 +84,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId, string? xCumulocityProcessingMode = null) 
+		public async Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/applications/{applicationId}";
@@ -95,7 +94,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

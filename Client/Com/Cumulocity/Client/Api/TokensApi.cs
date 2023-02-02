@@ -51,6 +51,34 @@ namespace Com.Cumulocity.Client.Api
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return await JsonSerializer.DeserializeAsync<NotificationToken?>(responseStream);
 		}
+		
+		/// <inheritdoc />
+		public async Task<Response1?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null) 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/notification2/unsubscribe";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
+			var allQueryParameter = new Dictionary<string, object>()
+			{
+				#pragma warning disable CS8604 // Possible null reference argument.
+				{"token", token}
+				#pragma warning restore CS8604 // Possible null reference argument.
+			};
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			uriBuilder.Query = queryString.ToString();
+			var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Post,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<Response1?>(responseStream);
+		}
 	}
 	#nullable disable
 }

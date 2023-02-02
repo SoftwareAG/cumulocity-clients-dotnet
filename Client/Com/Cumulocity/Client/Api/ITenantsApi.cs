@@ -98,9 +98,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Tenant<TCustomProperties>?> CreateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties;
+		Task<Tenant<TCustomProperties>?> CreateTenant<TCustomProperties>(Tenant<TCustomProperties> body) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve the current tenant<br/>
@@ -117,8 +116,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </item>
 		/// </list>
 		/// </summary>
+		/// <param name="withParent">When set to `true`, the returned result will contain the parent of the current tenant.</param>
 		/// <returns></returns>
-		Task<CurrentTenant<TCustomProperties>?> GetCurrentTenant<TCustomProperties>() where TCustomProperties : CustomProperties;
+		Task<CurrentTenant<TCustomProperties>?> GetCurrentTenant<TCustomProperties>(bool? withParent = null) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Retrieve a specific tenant<br/>
@@ -153,7 +153,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
-		/// <term>HTTP 201</term>
+		/// <term>HTTP 200</term>
 		/// <description>A tenant was updated.</description>
 		/// </item>
 		/// <item>
@@ -176,9 +176,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId, string? xCumulocityProcessingMode = null) where TCustomProperties : CustomProperties;
+		Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties;
 		
 		/// <summary>
 		/// Remove a specific tenant<br/>
@@ -204,8 +203,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> DeleteTenant(string tenantId, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> DeleteTenant(string tenantId) ;
 		
 		/// <summary>
 		/// Retrieve TFA settings of a specific tenant<br/>

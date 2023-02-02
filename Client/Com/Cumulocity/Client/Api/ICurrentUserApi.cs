@@ -43,7 +43,7 @@ namespace Com.Cumulocity.Client.Api
 		
 		/// <summary>
 		/// Update the current user<br/>
-		/// Update the current user.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
+		/// Update the current user.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_OWN_ADMIN </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
@@ -61,9 +61,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<CurrentUser?> UpdateCurrentUser(CurrentUser body, string? xCumulocityProcessingMode = null) ;
+		Task<CurrentUser?> UpdateCurrentUser(CurrentUser body) ;
 		
 		/// <summary>
 		/// Update the current user's password<br/>
@@ -85,8 +84,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body) ;
 		
 		/// <summary>
 		/// Generate secret to set up TFA<br/>
@@ -103,9 +101,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </item>
 		/// </list>
 		/// </summary>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<CurrentUserTotpSecret?> GenerateTfaSecret(string? xCumulocityProcessingMode = null) ;
+		Task<CurrentUserTotpSecret?> GenerateTfaSecret() ;
 		
 		/// <summary>
 		/// Returns the activation state of the two-factor authentication feature.<br/>
@@ -153,8 +150,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body) ;
 		
 		/// <summary>
 		/// Verify TFA code<br/>
@@ -184,8 +180,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body) ;
 	}
 	#nullable disable
 }

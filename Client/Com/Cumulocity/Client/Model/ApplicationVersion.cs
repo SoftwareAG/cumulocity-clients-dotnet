@@ -1,5 +1,5 @@
 ///
-/// InventoryAssignmentCollection.cs
+/// ApplicationVersion.cs
 /// CumulocityCoreLibrary
 ///
 /// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -13,20 +13,26 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class InventoryAssignmentCollection 
+	public class ApplicationVersion 
 	{
 	
 		/// <summary>
-		/// A URL linking to this resource.
+		/// Unique identifier of the version.
 		/// </summary>
-		[JsonPropertyName("self")]
-		public string? Self { get; set; }
+		[JsonPropertyName("version")]
+		public string? Version { get; set; }
 	
 		/// <summary>
-		/// An array of inventory assignments.
+		/// Unique identifier of the binary file assigned to the version.
 		/// </summary>
-		[JsonPropertyName("inventoryAssignments")]
-		public List<InventoryAssignment>? InventoryAssignments { get; set; }
+		[JsonPropertyName("binaryId")]
+		public string? BinaryId { get; set; }
+	
+		/// <summary>
+		/// Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
+		/// </summary>
+		[JsonPropertyName("tag")]
+		public List<string>? Tag { get; set; }
 	
 		public override string ToString()
 		{

@@ -26,7 +26,7 @@ namespace Com.Cumulocity.Client.Model
 		public string? RadioType { get; set; }
 	
 		/// <summary>
-		/// Detailed information about the neighbouring cell towers.
+		/// Detailed information about the neighboring cell towers.
 		/// </summary>
 		[JsonPropertyName("cellTowers")]
 		public List<C8yCellTower>? CellTowers { get; set; }

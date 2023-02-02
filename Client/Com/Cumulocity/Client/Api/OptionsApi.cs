@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Option?> CreateOption(Option body, string? xCumulocityProcessingMode = null) 
+		public async Task<Option?> CreateOption(Option body) 
 		{
 			var jsonNode = ToJsonNode<Option>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -76,7 +76,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.option+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json");
 			var response = await client.SendAsync(request);
@@ -104,7 +103,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category, string? xCumulocityProcessingMode = null) where TCategoryOptions : CategoryOptions
+		public async Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category) where TCategoryOptions : CategoryOptions
 		{
 			var jsonNode = ToJsonNode<TCategoryOptions>(body);
 			var client = HttpClient;
@@ -116,7 +115,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json");
 			var response = await client.SendAsync(request);
@@ -144,7 +142,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key, string? xCumulocityProcessingMode = null) 
+		public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key) 
 		{
 			var jsonNode = ToJsonNode<CategoryKeyOption>(body);
 			var client = HttpClient;
@@ -156,7 +154,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.option+json");
 			var response = await client.SendAsync(request);
@@ -166,7 +163,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteOption(string category, string key, string? xCumulocityProcessingMode = null) 
+		public async Task<System.IO.Stream> DeleteOption(string category, string key) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/options/{category}/{key}";
@@ -176,7 +173,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

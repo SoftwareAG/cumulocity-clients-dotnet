@@ -80,7 +80,6 @@ namespace Com.Cumulocity.Client.Api
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
 			jsonNode?.RemoveFromNode("generalStatus");
-			jsonNode?.RemoveFromNode("failedParentId");
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("progress");
 			jsonNode?.RemoveFromNode("id");
@@ -126,7 +125,6 @@ namespace Com.Cumulocity.Client.Api
 		{
 			var jsonNode = ToJsonNode<BulkOperation>(body);
 			jsonNode?.RemoveFromNode("generalStatus");
-			jsonNode?.RemoveFromNode("failedParentId");
 			jsonNode?.RemoveFromNode("self");
 			jsonNode?.RemoveFromNode("progress");
 			jsonNode?.RemoveFromNode("id");

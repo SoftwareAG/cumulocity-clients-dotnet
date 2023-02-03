@@ -1,5 +1,5 @@
 ///
-/// InventoryAssignmentCollection.cs
+/// ApplicationVersionCollection.cs
 /// CumulocityCoreLibrary
 ///
 /// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -13,20 +13,14 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class InventoryAssignmentCollection 
+	public class ApplicationVersionCollection 
 	{
 	
 		/// <summary>
-		/// A URL linking to this resource.
+		/// An array of application versions.
 		/// </summary>
-		[JsonPropertyName("self")]
-		public string? Self { get; set; }
-	
-		/// <summary>
-		/// An array of inventory assignments.
-		/// </summary>
-		[JsonPropertyName("inventoryAssignments")]
-		public List<InventoryAssignment>? InventoryAssignments { get; set; }
+		[JsonPropertyName("versions")]
+		public List<ApplicationVersion>? Versions { get; set; }
 	
 		public override string ToString()
 		{

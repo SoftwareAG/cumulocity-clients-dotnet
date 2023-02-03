@@ -55,7 +55,7 @@ namespace Com.Cumulocity.Client.Api
 		
 		/// <summary>
 		/// Subscribe to an application<br/>
-		/// Subscribe a tenant (by a given ID) to an application.  <section><h5>Required roles</h5> (ROLE_APPLICATION_MANAGEMENT_ADMIN <b>AND</b> is the application owner <b>AND</b> is the current tenant) <b>OR</b> ((ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant)) </section> 
+		/// Subscribe a tenant (by a given ID) to an application.  <section><h5>Required roles</h5> 1. the current tenant is application owner and has the role ROLE_APPLICATION_MANAGEMENT_ADMIN <b>OR</b><br> 2. for applications that are not microservices, the current tenant is the management tenant or the parent of the application owner tenant, and the user has one of the follwoing roles: ROLE_TENANT_MANAGEMENT_ADMIN, ROLE_TENANT_MANAGEMENT_UPDATE <b>OR</b><br> 3. for microservices, the current tenant is the management tenant or the parent of the application owner tenant, and the user has the role ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_MANAGEMENT_UPDATE and one of following conditions is met:<br> * the microservice has no manifest<br> * the microservice version is supported<br> * the current tenant is subscribed to 'feature-privileged-microservice-hosting' </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
@@ -74,17 +74,20 @@ namespace Com.Cumulocity.Client.Api
 		/// <term>HTTP 409</term>
 		/// <description>The application is already assigned to the tenant.</description>
 		/// </item>
+		/// <item>
+		/// <term>HTTP 422</term>
+		/// <description>Unprocessable Entity – invalid payload.</description>
+		/// </item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId, string? xCumulocityProcessingMode = null) ;
+		Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId) ;
 		
 		/// <summary>
 		/// Unsubscribe from an application<br/>
-		/// Unsubscribe a tenant (by a given tenant ID) from an application (by a given application ID).  <section><h5>Required roles</h5> (ROLE_APPLICATION_MANAGEMENT_ADMIN <b>AND</b> is the application owner <b>AND</b> is the current tenant) <b>OR</b> ((ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant)) </section> 
+		/// Unsubscribe a tenant (by a given tenant ID) from an application (by a given application ID).  <section><h5>Required roles</h5> (ROLE_APPLICATION_MANAGEMENT_ADMIN <b>AND</b> is the application owner <b>AND</b> is the current tenant) <b>OR</b><br> ((ROLE_TENANT_MANAGEMENT_ADMIN <b>OR</b> ROLE_TENANT_MANAGEMENT_UPDATE) <b>AND</b> (the current tenant is its parent <b>OR</b> is the management tenant)) </section> 
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
@@ -103,8 +106,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="applicationId">Unique identifier of the application.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> UnsubscribeApplication(string tenantId, string applicationId) ;
 	}
 	#nullable disable
 }

@@ -67,9 +67,33 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<AuthConfig?> CreateLoginOption(AuthConfig body, string? xCumulocityProcessingMode = null) ;
+		Task<AuthConfig?> CreateLoginOption(AuthConfig body) ;
+		
+		/// <summary>
+		/// Update a tenant's access to the login option<br/>
+		/// Update the tenant's access to the authentication configuration.  <section><h5>Required roles</h5> ROLE_TENANT_MANAGEMENT_ADMIN <b>AND</b> is the management tenant </section> 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>The login option was updated.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 403</term>
+		/// <description>Not authorized to perform this operation.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 404</term>
+		/// <description>Tenant not found.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="body"></param>
+		/// <param name="typeOrId">The type or ID of the login option. The type's value is case insensitive and can be `OAUTH2`, `OAUTH2_INTERNAL` or `BASIC`.</param>
+		/// <param name="targetTenant">Unique identifier of a Cumulocity IoT tenant.</param>
+		/// <returns></returns>
+		Task<AuthConfig?> UpdateLoginOption(AuthConfigAccess body, string typeOrId, string? targetTenant = null) ;
 	}
 	#nullable disable
 }

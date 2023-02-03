@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
-		/// <term>HTTP 200</term>
+		/// <term>HTTP 201</term>
 		/// <description>A bulk operation was created.</description>
 		/// </item>
 		/// <item>

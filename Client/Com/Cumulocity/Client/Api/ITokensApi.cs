@@ -46,6 +46,26 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
 		Task<NotificationToken?> CreateToken(NotificationTokenClaims body, string? xCumulocityProcessingMode = null) ;
+		
+		/// <summary>
+		/// Unsubscribe a subscriber<br/>
+		/// Unsubscribe a notification subscriber using the notification token.  Once a subscription is made, notifications will be kept until they are consumed by all subscribers who have previously connected to the subscription. For non-volatile subscriptions, this can result in notifications remaining in storage if never consumed by the application. They will be deleted if a tenant is deleted. It can take up considerable space in permanent storage for high-frequency notification sources. Therefore, we recommend you to unsubscribe a subscriber that will never run again. 
+		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <list type="bullet">
+		/// <item>
+		/// <term>HTTP 200</term>
+		/// <description>The notification subscription was deleted or is scheduled for deletion.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 401</term>
+		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// </list>
+		/// </summary>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		/// <param name="token">Subscriptions associated with this token will be removed.</param>
+		/// <returns></returns>
+		Task<Response1?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null) ;
 	}
 	#nullable disable
 }

@@ -52,12 +52,13 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="providedFor">The ID of a tenant that is subscribed to the applications but doesn't own them.</param>
 		/// <param name="subscriber">The ID of a tenant that is subscribed to the applications.</param>
 		/// <param name="tenant">The ID of a tenant that either owns the application or is subscribed to the applications.</param>
-		/// <param name="type">The type of the application.</param>
+		/// <param name="type">The type of the application. It is possible to use multiple values separated by a comma. For example, `EXTERNAL,HOSTED` will return only applications with type `EXTERNAL` or `HOSTED`.</param>
 		/// <param name="user">The ID of a user that has access to the applications.</param>
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
+		/// <param name="hasVersions">When set to `true`, the returned result contains applications with an `applicationVersions` field that is not empty. When set to `false`, the result will contain applications with an empty `applicationVersions` field.</param>
 		/// <returns></returns>
-		Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
+		Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null, bool? hasVersions = null) ;
 		
 		/// <summary>
 		/// Create an application<br/>

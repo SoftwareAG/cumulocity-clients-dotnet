@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body, string? xCumulocityProcessingMode = null) 
+		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body) 
 		{
 			var jsonNode = ToJsonNode<AuthConfig>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -76,8 +76,37 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.authconfig+json");
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json");
+			var response = await client.SendAsync(request);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<AuthConfig?>(responseStream);
+		}
+		
+		/// <inheritdoc />
+		public async Task<AuthConfig?> UpdateLoginOption(AuthConfigAccess body, string typeOrId, string? targetTenant = null) 
+		{
+			var jsonNode = ToJsonNode<AuthConfigAccess>(body);
+			var client = HttpClient;
+			var resourcePath = $"/tenant/loginOptions/{typeOrId}/restrict";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
+			var allQueryParameter = new Dictionary<string, object>()
+			{
+				#pragma warning disable CS8604 // Possible null reference argument.
+				{"targetTenant", targetTenant}
+				#pragma warning restore CS8604 // Possible null reference argument.
+			};
+			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			uriBuilder.Query = queryString.ToString();
+			var request = new HttpRequestMessage 
+			{
+				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
+				Method = HttpMethod.Put,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

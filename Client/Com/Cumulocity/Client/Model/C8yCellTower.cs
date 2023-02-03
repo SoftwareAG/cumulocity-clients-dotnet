@@ -31,7 +31,7 @@ namespace Com.Cumulocity.Client.Model
 		public decimal? MobileCountryCode { get; set; }
 	
 		/// <summary>
-		/// The Mobile Noetwork Code (MNC) for GSM, WCDMA and LTE. The SystemID (sid) for CDMA.
+		/// The Mobile Network Code (MNC) for GSM, WCDMA and LTE. The SystemID (sid) for CDMA.
 		/// </summary>
 		[JsonPropertyName("mobileNetworkCode")]
 		public decimal? MobileNetworkCode { get; set; }
@@ -43,7 +43,7 @@ namespace Com.Cumulocity.Client.Model
 		public decimal? LocationAreaCode { get; set; }
 	
 		/// <summary>
-		/// The Cell ID (CID) for GSM, WCDMA and LTE. The Basestation ID for CDMA.
+		/// The Cell ID (CID) for GSM, WCDMA and LTE. The base station ID for CDMA.
 		/// </summary>
 		[JsonPropertyName("cellId")]
 		public decimal? CellId { get; set; }

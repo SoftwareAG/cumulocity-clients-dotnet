@@ -51,7 +51,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
-		/// <term>HTTP 200</term>
+		/// <term>HTTP 201</term>
 		/// <description>A new device request was created.</description>
 		/// </item>
 		/// <item>
@@ -113,9 +113,8 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="requestId">Unique identifier of the new device request.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <returns></returns>
-		Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId, string? xCumulocityProcessingMode = null) ;
+		Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId) ;
 		
 		/// <summary>
 		/// Delete a specific new device request<br/>
@@ -141,8 +140,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="requestId">Unique identifier of the new device request.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId) ;
 	}
 	#nullable disable
 }

@@ -70,7 +70,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file, string? xCumulocityProcessingMode = null) 
+		public async Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/binaries";
@@ -88,7 +88,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json");
 			var response = await client.SendAsync(request);
@@ -116,7 +115,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Binary?> ReplaceBinary(byte[] body, string id, string? xCumulocityProcessingMode = null) 
+		public async Task<Binary?> ReplaceBinary(byte[] body, string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/binaries/{id}";
@@ -127,7 +126,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.managedobject+json");
 			var response = await client.SendAsync(request);
@@ -137,7 +135,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> RemoveBinary(string id, string? xCumulocityProcessingMode = null) 
+		public async Task<System.IO.Stream> RemoveBinary(string id) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/inventory/binaries/{id}";
@@ -147,7 +145,6 @@ namespace Com.Cumulocity.Client.Api
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
-			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();

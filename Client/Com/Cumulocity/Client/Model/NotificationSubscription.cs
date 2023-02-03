@@ -129,13 +129,13 @@ namespace Com.Cumulocity.Client.Model
 		{
 		
 			/// <summary>
-			/// The Notifications are available for Alarms, Device control, Events, Inventory and Measurements for the `mo` context and for Alarms and Inventory for the `tenant` context. Alternatively, the wildcard `*` can be used to match all the permissible APIs within the bound context.
+			/// The Notifications are available for Alarms, Alarms with children, Device control, Events, Events with children, Inventory and Measurements for the `mo` context and for Alarms and Inventory for the `tenant` context. Alternatively, the wildcard `*` can be used to match all the permissible APIs within the bound context.
 			/// 
 			/// > **&#9432; Info:** the wildcard `*` cannot be used in conjunction with other values.
 			/// 
 			/// </summary>
-			[JsonPropertyName("api")]
-			public List<string>? Api { get; set; }
+			[JsonPropertyName("apis")]
+			public List<string>? Apis { get; set; }
 		
 			/// <summary>
 			/// The data needs to have the specified value in its `type` property to meet the filter criteria.

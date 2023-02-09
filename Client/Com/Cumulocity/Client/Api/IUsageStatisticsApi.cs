@@ -107,7 +107,7 @@ namespace Com.Cumulocity.Client.Api
 		
 		/// <summary>
 		/// Retrieve a usage statistics summary<br/>
-		/// Retrieve a usage statistics summary of a tenant.
+		/// Retrieve a usage statistics summary of a tenant. <section><h5>Required roles</h5> ROLE_TENANT_STATISTICS_READ <b>OR</b> ROLE_INVENTORY_READ <br/> If the `tenant` request parameter is specified, then the current tenant must be the management tenant <b>OR</b> the parent of the requested `tenant`. </section>
 		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
 		/// <list type="bullet">
 		/// <item>
@@ -117,6 +117,14 @@ namespace Com.Cumulocity.Client.Api
 		/// <item>
 		/// <term>HTTP 401</term>
 		/// <description>Authentication information is missing or invalid.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 403</term>
+		/// <description>Not authorized to perform this operation.</description>
+		/// </item>
+		/// <item>
+		/// <term>HTTP 404</term>
+		/// <description>Tenant not found.</description>
 		/// </item>
 		/// </list>
 		/// </summary>

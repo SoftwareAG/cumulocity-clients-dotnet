@@ -47,16 +47,16 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="lastUpdatedTo">End date or date and time of the last update made.</param>
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
 		/// <param name="resolved">When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.</param>
-		/// <param name="severity">The severity of the alarm to search for.</param>
+		/// <param name="severity">The severity of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm severities at once, comma-separate the values. </param>
 		/// <param name="source">The managed object ID to which the alarm is associated.</param>
-		/// <param name="status">The status of the alarm to search for.</param>
-		/// <param name="type">The types of alarm to search for (comma separated).</param>
+		/// <param name="status">The status of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm statuses at once, comma-separate the values. </param>
+		/// <param name="type">The types of alarm to search for. >**&#9432; Info:** If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. </param>
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
 		/// <returns></returns>
-		Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null) where TAlarm : Alarm;
+		Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Update alarm collections<br/>
@@ -92,12 +92,12 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="dateFrom">Start date or date and time of the alarm occurrence.</param>
 		/// <param name="dateTo">End date or date and time of the alarm occurrence.</param>
 		/// <param name="resolved">When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.</param>
-		/// <param name="severity">The severity of the alarm to search for.</param>
+		/// <param name="severity">The severity of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm severities at once, comma-separate the values. </param>
 		/// <param name="source">The managed object ID to which the alarm is associated.</param>
-		/// <param name="status">The status of the alarm to search for.</param>
+		/// <param name="status">The status of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm statuses at once, comma-separate the values. </param>
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
-		Task<System.IO.Stream> UpdateAlarms<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null) where TAlarm : Alarm;
+		Task<System.IO.Stream> UpdateAlarms<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null) where TAlarm : Alarm;
 		
 		/// <summary>
 		/// Create an alarm<br/>
@@ -152,13 +152,13 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="dateFrom">Start date or date and time of the alarm occurrence.</param>
 		/// <param name="dateTo">End date or date and time of the alarm occurrence.</param>
 		/// <param name="resolved">When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.</param>
-		/// <param name="severity">The severity of the alarm to search for.</param>
+		/// <param name="severity">The severity of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm severities at once, comma-separate the values. </param>
 		/// <param name="source">The managed object ID to which the alarm is associated.</param>
-		/// <param name="status">The status of the alarm to search for.</param>
-		/// <param name="type">The types of alarm to search for (comma separated).</param>
+		/// <param name="status">The status of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm statuses at once, comma-separate the values. </param>
+		/// <param name="type">The types of alarm to search for. >**&#9432; Info:** If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. </param>
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
-		Task<System.IO.Stream> DeleteAlarms(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
+		Task<System.IO.Stream> DeleteAlarms(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
 		
 		/// <summary>
 		/// Retrieve a specific alarm<br/>
@@ -238,14 +238,14 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="dateFrom">Start date or date and time of the alarm occurrence.</param>
 		/// <param name="dateTo">End date or date and time of the alarm occurrence.</param>
 		/// <param name="resolved">When set to `true` only alarms with status CLEARED will be fetched, whereas `false` will fetch all alarms with status ACTIVE or ACKNOWLEDGED.</param>
-		/// <param name="severity">The severity of the alarm to search for.</param>
+		/// <param name="severity">The severity of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm severities at once, comma-separate the values. </param>
 		/// <param name="source">The managed object ID to which the alarm is associated.</param>
-		/// <param name="status">The status of the alarm to search for.</param>
-		/// <param name="type">The types of alarm to search for (comma separated).</param>
+		/// <param name="status">The status of the alarm to search for. >**&#9432; Info:** If you query for multiple alarm statuses at once, comma-separate the values. </param>
+		/// <param name="type">The types of alarm to search for. >**&#9432; Info:** If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. </param>
 		/// <param name="withSourceAssets">When set to `true` also alarms for related source assets will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <param name="withSourceDevices">When set to `true` also alarms for related source devices will be included in the request. When this parameter is provided a `source` must be specified.</param>
 		/// <returns></returns>
-		Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, string? severity = null, string? source = null, string? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
+		Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
 	}
 	#nullable disable
 }

@@ -6,7 +6,10 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Net.Http;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 
@@ -48,6 +51,40 @@ namespace Com.Cumulocity.Client.Supplementary
 					var objectNode = (JsonObject) currentNode;
 					objectNode.Remove(nodeName);
 				}
+			}
+		}
+	}
+	
+	public static class NameValueCollectionExtensions
+	{
+		public static void AddIfRequired(this NameValueCollection collection, string key, object? value)
+		{
+			if (value != null)
+			{
+				collection.Add(key, value.ToString());
+			}
+		}
+	
+		public static void AddIfRequired<T>(this NameValueCollection collection, string key, List<T> value, bool explode = true)
+		{
+			if (value != null)
+			{
+				if (explode)
+				{
+					value.ToList().ForEach(e => collection.Add(key, e.ToString()));
+				}
+				else
+				{
+					collection.Add(key, string.Join(',', value.Where(e => e != null)));
+				}
+			}
+		}
+	
+		public static void AddIfRequired(this NameValueCollection collection, string key, object[]? value, bool explode = true)
+		{
+			if (value != null)
+			{
+				collection.AddIfRequired<object>(key, value.ToList(), explode);
 			}
 		}
 	}

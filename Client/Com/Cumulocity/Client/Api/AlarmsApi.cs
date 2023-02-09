@@ -40,29 +40,23 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/alarm/alarms";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"createdFrom", createdFrom},
-				{"createdTo", createdTo},
-				{"currentPage", currentPage},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"lastUpdatedFrom", lastUpdatedFrom},
-				{"lastUpdatedTo", lastUpdatedTo},
-				{"pageSize", pageSize},
-				{"resolved", resolved},
-				{"severity", severity},
-				{"source", source},
-				{"status", status},
-				{"type", type},
-				{"withSourceAssets", withSourceAssets},
-				{"withSourceDevices", withSourceDevices},
-				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("createdFrom", createdFrom);
+			queryString.AddIfRequired("createdTo", createdTo);
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("lastUpdatedFrom", lastUpdatedFrom);
+			queryString.AddIfRequired("lastUpdatedTo", lastUpdatedTo);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("resolved", resolved);
+			queryString.AddIfRequired("severity", severity, false);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("status", status, false);
+			queryString.AddIfRequired("type", type, false);
+			queryString.AddIfRequired("withSourceAssets", withSourceAssets);
+			queryString.AddIfRequired("withSourceDevices", withSourceDevices);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -95,22 +89,16 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/alarm/alarms";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"createdFrom", createdFrom},
-				{"createdTo", createdTo},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"resolved", resolved},
-				{"severity", severity},
-				{"source", source},
-				{"status", status},
-				{"withSourceAssets", withSourceAssets},
-				{"withSourceDevices", withSourceDevices}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("createdFrom", createdFrom);
+			queryString.AddIfRequired("createdTo", createdTo);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("resolved", resolved);
+			queryString.AddIfRequired("severity", severity, false);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("status", status, false);
+			queryString.AddIfRequired("withSourceAssets", withSourceAssets);
+			queryString.AddIfRequired("withSourceDevices", withSourceDevices);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -163,23 +151,17 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/alarm/alarms";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"createdFrom", createdFrom},
-				{"createdTo", createdTo},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"resolved", resolved},
-				{"severity", severity},
-				{"source", source},
-				{"status", status},
-				{"type", type},
-				{"withSourceAssets", withSourceAssets},
-				{"withSourceDevices", withSourceDevices}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("createdFrom", createdFrom);
+			queryString.AddIfRequired("createdTo", createdTo);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("resolved", resolved);
+			queryString.AddIfRequired("severity", severity, false);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("status", status, false);
+			queryString.AddIfRequired("type", type, false);
+			queryString.AddIfRequired("withSourceAssets", withSourceAssets);
+			queryString.AddIfRequired("withSourceDevices", withSourceDevices);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -250,21 +232,15 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/alarm/alarms/count";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"resolved", resolved},
-				{"severity", severity},
-				{"source", source},
-				{"status", status},
-				{"type", type},
-				{"withSourceAssets", withSourceAssets},
-				{"withSourceDevices", withSourceDevices}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("resolved", resolved);
+			queryString.AddIfRequired("severity", severity, false);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("status", status, false);
+			queryString.AddIfRequired("type", type, false);
+			queryString.AddIfRequired("withSourceAssets", withSourceAssets);
+			queryString.AddIfRequired("withSourceDevices", withSourceDevices);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

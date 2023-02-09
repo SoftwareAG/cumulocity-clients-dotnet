@@ -40,32 +40,26 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/inventory/managedObjects";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"childAdditionId", childAdditionId},
-				{"childAssetId", childAssetId},
-				{"childDeviceId", childDeviceId},
-				{"currentPage", currentPage},
-				{"fragmentType", fragmentType},
-				{"ids", ids},
-				{"onlyRoots", onlyRoots},
-				{"owner", owner},
-				{"pageSize", pageSize},
-				{"q", q},
-				{"query", query},
-				{"skipChildrenNames", skipChildrenNames},
-				{"text", text},
-				{"type", type},
-				{"withChildren", withChildren},
-				{"withChildrenCount", withChildrenCount},
-				{"withGroups", withGroups},
-				{"withParents", withParents},
-				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("childAdditionId", childAdditionId);
+			queryString.AddIfRequired("childAssetId", childAssetId);
+			queryString.AddIfRequired("childDeviceId", childDeviceId);
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("fragmentType", fragmentType);
+			queryString.AddIfRequired("ids", ids, false);
+			queryString.AddIfRequired("onlyRoots", onlyRoots);
+			queryString.AddIfRequired("owner", owner);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("q", q);
+			queryString.AddIfRequired("query", query);
+			queryString.AddIfRequired("skipChildrenNames", skipChildrenNames);
+			queryString.AddIfRequired("text", text);
+			queryString.AddIfRequired("type", type);
+			queryString.AddIfRequired("withChildren", withChildren);
+			queryString.AddIfRequired("withChildrenCount", withChildrenCount);
+			queryString.AddIfRequired("withGroups", withGroups);
+			queryString.AddIfRequired("withParents", withParents);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -119,20 +113,14 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/inventory/managedObjects/count";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"childAdditionId", childAdditionId},
-				{"childAssetId", childAssetId},
-				{"childDeviceId", childDeviceId},
-				{"fragmentType", fragmentType},
-				{"ids", ids},
-				{"owner", owner},
-				{"text", text},
-				{"type", type}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("childAdditionId", childAdditionId);
+			queryString.AddIfRequired("childAssetId", childAssetId);
+			queryString.AddIfRequired("childDeviceId", childDeviceId);
+			queryString.AddIfRequired("fragmentType", fragmentType);
+			queryString.AddIfRequired("ids", ids, false);
+			queryString.AddIfRequired("owner", owner);
+			queryString.AddIfRequired("text", text);
+			queryString.AddIfRequired("type", type);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -153,16 +141,10 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/inventory/managedObjects/{id}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"skipChildrenNames", skipChildrenNames},
-				{"withChildren", withChildren},
-				{"withChildrenCount", withChildrenCount},
-				{"withParents", withParents}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("skipChildrenNames", skipChildrenNames);
+			queryString.AddIfRequired("withChildren", withChildren);
+			queryString.AddIfRequired("withChildrenCount", withChildrenCount);
+			queryString.AddIfRequired("withParents", withParents);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -216,15 +198,9 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/inventory/managedObjects/{id}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"cascade", cascade},
-				{"forceCascade", forceCascade},
-				{"withDeviceUser", withDeviceUser}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("cascade", cascade);
+			queryString.AddIfRequired("forceCascade", forceCascade);
+			queryString.AddIfRequired("withDeviceUser", withDeviceUser);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

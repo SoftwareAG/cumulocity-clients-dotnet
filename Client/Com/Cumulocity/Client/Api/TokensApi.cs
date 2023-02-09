@@ -59,13 +59,7 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/notification2/unsubscribe";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"token", token}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("token", token);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

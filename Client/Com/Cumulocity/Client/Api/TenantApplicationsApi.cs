@@ -39,16 +39,10 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/tenant/tenants/{tenantId}/applications";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"currentPage", currentPage},
-				{"pageSize", pageSize},
-				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

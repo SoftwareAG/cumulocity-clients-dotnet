@@ -71,16 +71,10 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/tenant/statistics/device/{tenantId}/monthly/{date}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"currentPage", currentPage},
-				{"deviceId", deviceId},
-				{"pageSize", pageSize},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("deviceId", deviceId);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -101,16 +95,10 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/tenant/statistics/device/{tenantId}/daily/{date}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"currentPage", currentPage},
-				{"deviceId", deviceId},
-				{"pageSize", pageSize},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("deviceId", deviceId);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

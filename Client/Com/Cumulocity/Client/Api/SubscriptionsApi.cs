@@ -37,17 +37,11 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/notification2/subscriptions";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"context", context},
-				{"currentPage", currentPage},
-				{"pageSize", pageSize},
-				{"source", source},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("context", context);
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -93,14 +87,8 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/notification2/subscriptions";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"context", context},
-				{"source", source}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("context", context);
+			queryString.AddIfRequired("source", source);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

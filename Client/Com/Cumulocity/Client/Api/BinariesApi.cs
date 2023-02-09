@@ -40,22 +40,16 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/inventory/binaries";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"childAdditionId", childAdditionId},
-				{"childAssetId", childAssetId},
-				{"childDeviceId", childDeviceId},
-				{"currentPage", currentPage},
-				{"ids", ids},
-				{"owner", owner},
-				{"pageSize", pageSize},
-				{"text", text},
-				{"type", type},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("childAdditionId", childAdditionId);
+			queryString.AddIfRequired("childAssetId", childAssetId);
+			queryString.AddIfRequired("childDeviceId", childDeviceId);
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("ids", ids, false);
+			queryString.AddIfRequired("owner", owner);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("text", text);
+			queryString.AddIfRequired("type", type);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

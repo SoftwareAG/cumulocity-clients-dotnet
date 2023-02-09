@@ -47,22 +47,16 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/audit/auditRecords";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"application", application},
-				{"currentPage", currentPage},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"pageSize", pageSize},
-				{"source", source},
-				{"type", type},
-				{"user", user},
-				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("application", application);
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("type", type);
+			queryString.AddIfRequired("user", user);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

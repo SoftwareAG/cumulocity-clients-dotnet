@@ -41,14 +41,8 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/tenant/loginOptions";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"management", management},
-				{"tenantId", tenantId}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("management", management);
+			queryString.AddIfRequired("tenantId", tenantId);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -92,13 +86,7 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/tenant/loginOptions/{typeOrId}/restrict";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"targetTenant", targetTenant}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("targetTenant", targetTenant);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

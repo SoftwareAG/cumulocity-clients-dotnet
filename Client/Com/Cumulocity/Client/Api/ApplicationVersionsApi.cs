@@ -37,14 +37,8 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/application/applications/{id}/versions?version=1.0";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"version", version},
-				{"tag", tag}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("version", version);
+			queryString.AddIfRequired("tag", tag);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -110,14 +104,8 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/application/applications/{id}/versions";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"version", version},
-				{"tag", tag}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("version", version);
+			queryString.AddIfRequired("tag", tag);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

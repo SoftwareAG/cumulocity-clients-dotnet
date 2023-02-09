@@ -40,21 +40,15 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/user/{tenantId}/users";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"currentPage", currentPage},
-				{"groups", groups},
-				{"onlyDevices", onlyDevices},
-				{"owner", owner},
-				{"pageSize", pageSize},
-				{"username", username},
-				{"withSubusersCount", withSubusersCount},
-				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("groups", groups, false);
+			queryString.AddIfRequired("onlyDevices", onlyDevices);
+			queryString.AddIfRequired("owner", owner);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("username", username);
+			queryString.AddIfRequired("withSubusersCount", withSubusersCount);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -233,15 +227,9 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/user/{tenantId}/groups/{groupId}/users";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"currentPage", currentPage},
-				{"pageSize", pageSize},
-				{"withTotalElements", withTotalElements}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

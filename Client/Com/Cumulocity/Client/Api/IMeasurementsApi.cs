@@ -204,7 +204,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="dateFrom">Start date or date and time of the measurement.</param>
 		/// <param name="dateTo">End date or date and time of the measurement.</param>
 		/// <param name="revert">If you are using a range query (that is, at least one of the `dateFrom` or `dateTo` parameters is included in the request), then setting `revert=true` will sort the results by the newest measurements first. By default, the results are sorted by the oldest measurements first. </param>
-		/// <param name="series">The specific series to search for.</param>
+		/// <param name="series">The specific series to search for. >**&#9432; Info:** If you query for multiple series at once, comma-separate the values. </param>
 		/// <param name="source">The managed object ID to which the measurement is associated.</param>
 		/// <returns></returns>
 		Task<MeasurementSeries?> GetMeasurementSeries(string? aggregationType = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? revert = null, List<string>? series = null, string? source = null) ;

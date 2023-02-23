@@ -53,7 +53,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 		
 		/// <inheritdoc />
-		public async Task<Response1?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null) 
+		public async Task<NotificationSubscriptionResult?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/notification2/unsubscribe";
@@ -71,7 +71,7 @@ namespace Com.Cumulocity.Client.Api
 			var response = await client.SendAsync(request);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Response1?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<NotificationSubscriptionResult?>(responseStream);
 		}
 	}
 	#nullable disable

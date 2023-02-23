@@ -47,7 +47,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="childDeviceId">Search for a specific child device and list all the groups to which it belongs.</param>
 		/// <param name="currentPage">The current page of the paginated results.</param>
 		/// <param name="fragmentType">A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.</param>
-		/// <param name="ids">The managed object IDs to search for (comma separated).</param>
+		/// <param name="ids">The managed object IDs to search for. >**&#9432; Info:** If you query for multiple IDs at once, comma-separate the values. </param>
 		/// <param name="onlyRoots">When set to `true` it returns managed objects which don't have any parent. If the current user doesn't have access to the parent, this is also root for the user.</param>
 		/// <param name="owner">Username of the owner of the managed objects.</param>
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
@@ -108,7 +108,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="childAssetId">Search for a specific child asset and list all the groups to which it belongs.</param>
 		/// <param name="childDeviceId">Search for a specific child device and list all the groups to which it belongs.</param>
 		/// <param name="fragmentType">A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state.</param>
-		/// <param name="ids">The managed object IDs to search for (comma separated).</param>
+		/// <param name="ids">The managed object IDs to search for. >**&#9432; Info:** If you query for multiple IDs at once, comma-separate the values. </param>
 		/// <param name="owner">Username of the owner of the managed objects.</param>
 		/// <param name="text">Search for managed objects where any property value is equal to the given one. Only string values are supported.</param>
 		/// <param name="type">The type of managed object to search for.</param>

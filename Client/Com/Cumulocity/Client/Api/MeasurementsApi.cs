@@ -189,7 +189,7 @@ namespace Com.Cumulocity.Client.Api
 			queryString.AddIfRequired("dateFrom", dateFrom);
 			queryString.AddIfRequired("dateTo", dateTo);
 			queryString.AddIfRequired("revert", revert);
-			queryString.AddIfRequired("series", series, true);
+			queryString.AddIfRequired("series", series, false);
 			queryString.AddIfRequired("source", source);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 

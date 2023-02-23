@@ -44,7 +44,7 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
 		/// <param name="currentPage">The current page of the paginated results.</param>
-		/// <param name="groups">Numeric group identifiers separated by commas. The response will contain only users which belong to at least one of the specified groups.</param>
+		/// <param name="groups">Numeric group identifiers. The response will contain only users which belong to at least one of the specified groups. >**&#9432; Info:** If you query for multiple user groups at once, comma-separate the values. </param>
 		/// <param name="onlyDevices">If set to `true`, the response will only contain users created during bootstrap process (starting with “device_”). If the flag is absent or `false` the result will not contain “device_” users. </param>
 		/// <param name="owner">Exact username of the owner of the user</param>
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>

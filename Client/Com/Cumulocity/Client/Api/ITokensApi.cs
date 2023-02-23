@@ -65,7 +65,7 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
 		/// <param name="token">Subscriptions associated with this token will be removed.</param>
 		/// <returns></returns>
-		Task<Response1?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null) ;
+		Task<NotificationSubscriptionResult?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null) ;
 	}
 	#nullable disable
 }

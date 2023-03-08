@@ -18,48 +18,53 @@ namespace Com.Cumulocity.Client.Model
 	public class Measurement 
 	{
 	
-		/// <summary>
-		/// Unique identifier of the measurement.
+		/// <summary> 
+		/// Unique identifier of the measurement. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("id")]
 		public string? Id { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// The managed object to which the measurement is associated.
+		/// <summary> 
+		/// The managed object to which the measurement is associated. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("source")]
 		public Source? PSource { get; set; }
 	
-		/// <summary>
-		/// The date and time when the measurement is created.
+		/// <summary> 
+		/// The date and time when the measurement is created. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("time")]
 		public System.DateTime? Time { get; set; }
 	
-		/// <summary>
-		/// Identifies the type of this measurement.
+		/// <summary> 
+		/// Identifies the type of this measurement. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("type")]
 		public string? Type { get; set; }
 	
-		/// <summary>
-		/// A type of measurement fragment.
+		/// <summary> 
+		/// A type of measurement fragment. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_Steam")]
 		public C8ySteam? PC8ySteam { get; set; }
 	
-		/// <summary>
-		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.
-		/// 
-		/// Review the [Naming conventions of fragments](https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments) as there are characters that can not be used when naming custom fragments.
-		/// 
+		/// <summary> 
+		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <c>"property1": {}</c>, <c>"property2": "value"</c>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name. <br />
+		/// Review the <see href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments" langword="Naming conventions of fragments" /> as there are characters that can not be used when naming custom fragments. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("customFragments")]
 		public Dictionary<string, object> CustomFragments { get; set; } = new Dictionary<string, object>();
 		
@@ -81,21 +86,24 @@ namespace Com.Cumulocity.Client.Model
 			this.Type = type;
 		}
 	
-		/// <summary>
-		/// The managed object to which the measurement is associated.
+		/// <summary> 
+		/// The managed object to which the measurement is associated. <br />
 		/// </summary>
+		///
 		public class Source 
 		{
 		
-			/// <summary>
-			/// Unique identifier of the object.
+			/// <summary> 
+			/// Unique identifier of the object. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("id")]
 			public string? Id { get; set; }
 		
-			/// <summary>
-			/// A URL linking to this resource.
+			/// <summary> 
+			/// A URL linking to this resource. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("self")]
 			public string? Self { get; set; }
 		

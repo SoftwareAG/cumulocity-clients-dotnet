@@ -20,9 +20,10 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods to retrieve, create, update and delete application versions.
+	/// <summary> 
+	/// API methods to retrieve, create, update and delete application versions. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class ApplicationVersionsApi : AdaptableApi, IApplicationVersionsApi
 	{

@@ -14,40 +14,45 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications.
+	/// <summary> 
+	/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications. <br />
 	/// </summary>
+	///
 	public class JSONPredicateRepresentation 
 	{
 	
-		/// <summary>
-		/// Nested predicates.
+		/// <summary> 
+		/// Nested predicates. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("childPredicates")]
 		public List<JSONPredicateRepresentation>? ChildPredicates { get; set; }
 	
-		/// <summary>
-		/// Operator executed on the parameter from the JWT access token claim pointed by `parameterPath` and the provided parameter `value`.
+		/// <summary> 
+		/// Operator executed on the parameter from the JWT access token claim pointed by <c>parameterPath</c> and the provided parameter <c>value</c>. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("operator")]
 		public Operator? POperator { get; set; }
 	
-		/// <summary>
-		/// Path to the claim from the JWT access token from the external authorization server.
+		/// <summary> 
+		/// Path to the claim from the JWT access token from the external authorization server. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("parameterPath")]
 		public string? ParameterPath { get; set; }
 	
-		/// <summary>
-		/// Given value used for parameter verification.
+		/// <summary> 
+		/// Given value used for parameter verification. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("value")]
 		public string? Value { get; set; }
 	
-		/// <summary>
-		/// Operator executed on the parameter from the JWT access token claim pointed by `parameterPath` and the provided parameter `value`.
-		/// [EQ, NEQ, GT, LT, GTE, LTE, IN, AND, OR]
+		/// <summary> 
+		/// Operator executed on the parameter from the JWT access token claim pointed by <c>parameterPath</c> and the provided parameter <c>value</c>. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Operator 
 		{

@@ -16,16 +16,17 @@ namespace Com.Cumulocity.Client.Model
 	public class NotificationSubscriptionResult 
 	{
 	
-		/// <summary>
-		/// The status of the notification subscription deletion.
+		/// <summary> 
+		/// The status of the notification subscription deletion. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("result")]
 		public Result? PResult { get; set; }
 	
-		/// <summary>
-		/// The status of the notification subscription deletion.
-		/// [DONE, SCHEDULED]
+		/// <summary> 
+		/// The status of the notification subscription deletion. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Result 
 		{

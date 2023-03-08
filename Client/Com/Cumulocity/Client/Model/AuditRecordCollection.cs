@@ -16,33 +16,38 @@ namespace Com.Cumulocity.Client.Model
 	public class AuditRecordCollection<TAuditRecord> where TAuditRecord : AuditRecord
 	{
 	
-		/// <summary>
-		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.
+		/// <summary> 
+		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential previous page of managed objects. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("prev")]
 		public string? Prev { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.
+		/// <summary> 
+		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential next page of managed objects. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("next")]
 		public string? Next { get; set; }
 	
-		/// <summary>
-		/// Information about paging statistics.
+		/// <summary> 
+		/// Information about paging statistics. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("statistics")]
 		public PageStatistics? Statistics { get; set; }
 	
-		/// <summary>
-		/// An array containing the results of the request.
+		/// <summary> 
+		/// An array containing the results of the request. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("auditRecords")]
 		public List<TAuditRecord>? AuditRecords { get; set; }
 	

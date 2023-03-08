@@ -15,9 +15,10 @@ namespace Com.Cumulocity.Client.Model
 	public class NotificationToken 
 	{
 	
-		/// <summary>
-		/// JWT (JSON Web Token) access token.
+		/// <summary> 
+		/// JWT (JSON Web Token) access token. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("token")]
 		public string? Token { get; set; }
 	

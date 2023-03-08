@@ -16,21 +16,24 @@ namespace Com.Cumulocity.Client.Model
 	public class ApplicationVersion 
 	{
 	
-		/// <summary>
-		/// Unique identifier of the version.
+		/// <summary> 
+		/// Unique identifier of the version. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("version")]
 		public string? Version { get; set; }
 	
-		/// <summary>
-		/// Unique identifier of the binary file assigned to the version.
+		/// <summary> 
+		/// Unique identifier of the binary file assigned to the version. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("binaryId")]
 		public string? BinaryId { get; set; }
 	
-		/// <summary>
-		/// Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
+		/// <summary> 
+		/// Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("tag")]
 		public List<string>? Tag { get; set; }
 	

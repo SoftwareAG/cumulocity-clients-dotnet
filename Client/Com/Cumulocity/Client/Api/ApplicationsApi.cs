@@ -20,19 +20,14 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods to retrieve, create, update and delete applications.
-	/// 
-	/// ### Application names
-	/// 
-	/// For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.
-	/// In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name).
-	/// 
-	/// Refer to the tables in [Administration > Managing applications](https://cumulocity.com/guides/10.7.0/users-guide/administration#managing-applications) in the User guide for the respective application name to be used.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// API methods to retrieve, create, update and delete applications. <br />
+	/// ### Application names <br />
+	/// For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name). <br />
+	/// Refer to the tables in <see href="https://cumulocity.com/guides/10.7.0/users-guide/administration#managing-applications" langword="Administration > Managing applications" /> in the User guide for the respective application name to be used. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class ApplicationsApi : AdaptableApi, IApplicationsApi
 	{

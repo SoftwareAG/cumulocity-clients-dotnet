@@ -15,15 +15,17 @@ namespace Com.Cumulocity.Client.Model
 	public class RangeStatisticsFile 
 	{
 	
-		/// <summary>
-		/// Statistics generation start date.
+		/// <summary> 
+		/// Statistics generation start date. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("dateFrom")]
 		public System.DateTime? DateFrom { get; set; }
 	
-		/// <summary>
-		/// Statistics generation end date.
+		/// <summary> 
+		/// Statistics generation end date. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("dateTo")]
 		public System.DateTime? DateTo { get; set; }
 	

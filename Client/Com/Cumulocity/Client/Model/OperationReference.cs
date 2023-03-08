@@ -15,33 +15,38 @@ namespace Com.Cumulocity.Client.Model
 	public class OperationReference 
 	{
 	
-		/// <summary>
-		/// The referenced operation.
+		/// <summary> 
+		/// The referenced operation. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("operation")]
 		public Operation? POperation { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// The referenced operation.
+		/// <summary> 
+		/// The referenced operation. <br />
 		/// </summary>
+		///
 		public class Operation 
 		{
 		
-			/// <summary>
-			/// Unique identifier of this operation.
+			/// <summary> 
+			/// Unique identifier of this operation. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("id")]
 			public string? Id { get; set; }
 		
-			/// <summary>
-			/// A URL linking to this resource.
+			/// <summary> 
+			/// A URL linking to this resource. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("self")]
 			public string? Self { get; set; }
 		

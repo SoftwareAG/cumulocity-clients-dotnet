@@ -12,10 +12,10 @@ using Com.Cumulocity.Client.Converter;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// The current status, one of `AVAILABLE`, `CONNECTED`, `MAINTENANCE`, `DISCONNECTED`.
-	/// [AVAILABLE, CONNECTED, MAINTENANCE, DISCONNECTED]
+	/// <summary> 
+	/// The current status, one of <c>AVAILABLE</c>, <c>CONNECTED</c>, <c>MAINTENANCE</c>, <c>DISCONNECTED</c>. <br />
 	/// </summary>
+	///
 	[JsonConverter(typeof(EnumConverterFactory))]
 	public enum C8yAvailabilityStatus 
 	{

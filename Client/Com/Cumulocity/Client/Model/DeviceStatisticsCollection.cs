@@ -13,33 +13,38 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Statistics of the tenant devices.
+	/// <summary> 
+	/// Statistics of the tenant devices. <br />
 	/// </summary>
+	///
 	public class DeviceStatisticsCollection 
 	{
 	
-		/// <summary>
-		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential next page of managed objects.
+		/// <summary> 
+		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential next page of managed objects. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("next")]
 		public string? Next { get; set; }
 	
-		/// <summary>
-		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] to a potential previous page of managed objects.
+		/// <summary> 
+		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential previous page of managed objects. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("prev")]
 		public string? Prev { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// An array containing the tenant device statistics.
+		/// <summary> 
+		/// An array containing the tenant device statistics. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("statistics")]
 		public List<DeviceStatistics>? Statistics { get; set; }
 	

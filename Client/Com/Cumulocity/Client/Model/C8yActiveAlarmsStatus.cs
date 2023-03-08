@@ -12,9 +12,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// The number of currently active and acknowledged alarms is stored in this fragment.
+	/// <summary> 
+	/// The number of currently active and acknowledged alarms is stored in this fragment. <br />
 	/// </summary>
+	///
 	public class C8yActiveAlarmsStatus 
 	{
 	

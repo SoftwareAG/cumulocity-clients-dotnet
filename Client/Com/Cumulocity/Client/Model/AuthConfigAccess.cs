@@ -15,9 +15,10 @@ namespace Com.Cumulocity.Client.Model
 	public class AuthConfigAccess 
 	{
 	
-		/// <summary>
-		/// Indicates whether the configuration is only accessible to the management tenant.
+		/// <summary> 
+		/// Indicates whether the configuration is only accessible to the management tenant. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("onlyManagementTenantAccess")]
 		public bool? OnlyManagementTenantAccess { get; set; }
 	

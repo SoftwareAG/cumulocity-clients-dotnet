@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// It is possible to define rules that make the platform remove certain data. A retention rule shows which data will be deleted. For example, a retention rule with `dataType=EVENT` and `maximumAge=30` removes from the system all events older than 30 days.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// It is possible to define rules that make the platform remove certain data. A retention rule shows which data will be deleted. For example, a retention rule with <c>dataType=EVENT</c> and <c>maximumAge=30</c> removes from the system all events older than 30 days. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class RetentionRulesApi : AdaptableApi, IRetentionRulesApi
 	{

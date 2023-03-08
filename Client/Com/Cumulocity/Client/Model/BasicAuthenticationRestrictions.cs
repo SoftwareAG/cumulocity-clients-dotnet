@@ -13,27 +13,31 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// For basic authentication case only.
+	/// <summary> 
+	/// For basic authentication case only. <br />
 	/// </summary>
+	///
 	public class BasicAuthenticationRestrictions 
 	{
 	
-		/// <summary>
-		/// List of types of clients which are not allowed to use basic authentication. Currently the only supported option is WEB_BROWSERS.
+		/// <summary> 
+		/// List of types of clients which are not allowed to use basic authentication. Currently the only supported option is WEB_BROWSERS. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("forbiddenClients")]
 		public List<string>? ForbiddenClients { get; set; }
 	
-		/// <summary>
-		/// List of user agents, passed in `User-Agent` HTTP header, which are blocked if basic authentication is used.
+		/// <summary> 
+		/// List of user agents, passed in <c>User-Agent</c> HTTP header, which are blocked if basic authentication is used. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("forbiddenUserAgents")]
 		public List<string>? ForbiddenUserAgents { get; set; }
 	
-		/// <summary>
-		/// List of user agents, passed in `User-Agent` HTTP header, which are allowed to use basic authentication.
+		/// <summary> 
+		/// List of user agents, passed in <c>User-Agent</c> HTTP header, which are allowed to use basic authentication. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("trustedUserAgents")]
 		public List<string>? TrustedUserAgents { get; set; }
 	

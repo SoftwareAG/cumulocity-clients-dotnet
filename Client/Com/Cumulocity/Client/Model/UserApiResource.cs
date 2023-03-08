@@ -15,45 +15,52 @@ namespace Com.Cumulocity.Client.Model
 	public class UserApiResource 
 	{
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// Collection of all users belonging to a given tenant.
+		/// <summary> 
+		/// Collection of all users belonging to a given tenant. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("users")]
 		public string? Users { get; set; }
 	
-		/// <summary>
-		/// Reference to a resource of type user.
+		/// <summary> 
+		/// Reference to a resource of type user. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("userByName")]
 		public string? UserByName { get; set; }
 	
-		/// <summary>
-		/// Reference to the resource of the logged in user.
+		/// <summary> 
+		/// Reference to the resource of the logged in user. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("currentUser")]
 		public string? CurrentUser { get; set; }
 	
-		/// <summary>
-		/// Collection of all users belonging to a given tenant.
+		/// <summary> 
+		/// Collection of all users belonging to a given tenant. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("groups")]
 		public string? Groups { get; set; }
 	
-		/// <summary>
-		/// Reference to a resource of type group.
+		/// <summary> 
+		/// Reference to a resource of type group. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("groupByName")]
 		public string? GroupByName { get; set; }
 	
-		/// <summary>
-		/// Collection of all roles.
+		/// <summary> 
+		/// Collection of all roles. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("roles")]
 		public string? Roles { get; set; }
 	

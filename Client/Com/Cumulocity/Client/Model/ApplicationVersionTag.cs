@@ -16,9 +16,10 @@ namespace Com.Cumulocity.Client.Model
 	public class ApplicationVersionTag 
 	{
 	
-		/// <summary>
-		/// Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions.
+		/// <summary> 
+		/// Tag assigned to the version. Version tags must be unique across all versions and version fields of application versions. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("tag")]
 		public List<string>? Tag { get; set; }
 	

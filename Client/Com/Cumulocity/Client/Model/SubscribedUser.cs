@@ -15,21 +15,24 @@ namespace Com.Cumulocity.Client.Model
 	public class SubscribedUser 
 	{
 	
-		/// <summary>
-		/// An object with a user reference URL.
+		/// <summary> 
+		/// An object with a user reference URL. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("user")]
 		public User? PUser { get; set; }
 	
-		/// <summary>
-		/// An object with a user reference URL.
+		/// <summary> 
+		/// An object with a user reference URL. <br />
 		/// </summary>
+		///
 		public class User 
 		{
 		
-			/// <summary>
-			/// A URL linking to this resource.
+			/// <summary> 
+			/// A URL linking to this resource. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("self")]
 			public string? Self { get; set; }
 		

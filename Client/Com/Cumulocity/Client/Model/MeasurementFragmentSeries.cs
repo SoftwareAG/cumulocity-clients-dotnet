@@ -15,21 +15,24 @@ namespace Com.Cumulocity.Client.Model
 	public class MeasurementFragmentSeries 
 	{
 	
-		/// <summary>
-		/// The unit of the measurement.
+		/// <summary> 
+		/// The unit of the measurement. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("unit")]
 		public string? Unit { get; set; }
 	
-		/// <summary>
-		/// The name of the measurement.
+		/// <summary> 
+		/// The name of the measurement. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("name")]
 		public string? Name { get; set; }
 	
-		/// <summary>
-		/// The type of measurement.
+		/// <summary> 
+		/// The type of measurement. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("type")]
 		public string? Type { get; set; }
 	

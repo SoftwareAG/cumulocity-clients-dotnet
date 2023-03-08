@@ -15,9 +15,10 @@ namespace Com.Cumulocity.Client.Model
 	public class CurrentUserTotpSecretActivity 
 	{
 	
-		/// <summary>
-		/// Indicates whether the two-factor authentication secret is active.
+		/// <summary> 
+		/// Indicates whether the two-factor authentication secret is active. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("isActive")]
 		public bool? IsActive { get; set; }
 	

@@ -16,46 +16,52 @@ namespace Com.Cumulocity.Client.Model
 	public class TenantTfaData 
 	{
 	
-		/// <summary>
-		/// Indicates whether two-factor authentication is enabled on system level or not.
+		/// <summary> 
+		/// Indicates whether two-factor authentication is enabled on system level or not. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("enabledOnSystemLevel")]
 		public bool? EnabledOnSystemLevel { get; set; }
 	
-		/// <summary>
-		/// Indicates whether two-factor authentication is enabled on tenant level or not.
+		/// <summary> 
+		/// Indicates whether two-factor authentication is enabled on tenant level or not. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("enabledOnTenantLevel")]
 		public bool? EnabledOnTenantLevel { get; set; }
 	
-		/// <summary>
-		/// Indicates whether two-factor authentication is enforced on system level or not.
+		/// <summary> 
+		/// Indicates whether two-factor authentication is enforced on system level or not. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("enforcedOnSystemLevel")]
 		public bool? EnforcedOnSystemLevel { get; set; }
 	
-		/// <summary>
-		/// Two-factor authentication is enforced for the specified group.
+		/// <summary> 
+		/// Two-factor authentication is enforced for the specified group. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("enforcedUsersGroup")]
 		public string? EnforcedUsersGroup { get; set; }
 	
-		/// <summary>
-		/// Two-factor authentication strategy.
+		/// <summary> 
+		/// Two-factor authentication strategy. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("strategy")]
 		public Strategy? PStrategy { get; set; }
 	
-		/// <summary>
-		/// Indicates whether two-factor authentication is enforced on tenant level or not.
+		/// <summary> 
+		/// Indicates whether two-factor authentication is enforced on tenant level or not. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("totpEnforcedOnTenantLevel")]
 		public bool? TotpEnforcedOnTenantLevel { get; set; }
 	
-		/// <summary>
-		/// Two-factor authentication strategy.
-		/// [SMS, TOTP]
+		/// <summary> 
+		/// Two-factor authentication strategy. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Strategy 
 		{

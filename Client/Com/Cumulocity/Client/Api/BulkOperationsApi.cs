@@ -20,25 +20,24 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// The bulk operations API allows to schedule an operation on a group of devices to be executed at a specified time.
-	/// It is required to specify the delay between the creation of subsequent operations.
-	/// When the bulk operation is created, it has the status ACTIVE.
-	/// When all operations are created, the bulk operation has the status COMPLETED.
-	/// It is also possible to cancel an already created bulk operation by deleting it.
-	/// 
-	/// When you create a bulk operation, you can run it in two modes:
-	/// 
-	/// * If `groupId` is passed, it works the standard way, that means, it takes devices from a group and schedules operations on them.
-	/// * If `failedParentId` is passed, it takes the already processed bulk operation by that ID, and schedules operations on devices for which the previous operations failed.
-	/// 
-	/// Note that passing both `groupId` and `failedParentId` will not work, and a bulk operation works with groups of type `static` and `dynamic`.
-	/// 
-	/// > **&#9432; Info:** The bulk operations API requires different roles than the rest of the device control API: `BULK_OPERATION_READ` and `BULK_OPERATION_ADMIN`.
-	/// >
-	/// > The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// The bulk operations API allows to schedule an operation on a group of devices to be executed at a specified time.It is required to specify the delay between the creation of subsequent operations.When the bulk operation is created, it has the status ACTIVE.When all operations are created, the bulk operation has the status COMPLETED.It is also possible to cancel an already created bulk operation by deleting it. <br />
+	/// When you create a bulk operation, you can run it in two modes: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>If <c>groupId</c> is passed, it works the standard way, that means, it takes devices from a group and schedules operations on them. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>If <c>failedParentId</c> is passed, it takes the already processed bulk operation by that ID, and schedules operations on devices for which the previous operations failed. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// Note that passing both <c>groupId</c> and <c>failedParentId</c> will not work, and a bulk operation works with groups of type <c>static</c> and <c>dynamic</c>. <br />
+	/// ⓘ Info: The bulk operations API requires different roles than the rest of the device control API: <c>BULK_OPERATION_READ</c> and <c>BULK_OPERATION_ADMIN</c>. <br />
+	/// The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class BulkOperationsApi : AdaptableApi, IBulkOperationsApi
 	{

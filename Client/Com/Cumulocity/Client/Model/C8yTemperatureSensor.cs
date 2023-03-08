@@ -12,9 +12,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A temperature sensor reports the temperature in degrees Celsius (C). In a managed object, a temperature sensor is modeled as a simple empty fragment.
+	/// <summary> 
+	/// A temperature sensor reports the temperature in degrees Celsius (C). In a managed object, a temperature sensor is modeled as a simple empty fragment. <br />
 	/// </summary>
+	///
 	public class C8yTemperatureSensor 
 	{
 	

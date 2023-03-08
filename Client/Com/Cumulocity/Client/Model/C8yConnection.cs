@@ -12,15 +12,17 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// The availability information computed by Cumulocity IoT is stored in fragments `c8y_Availability` and `c8y_Connection` of the device.
+	/// <summary> 
+	/// The availability information computed by Cumulocity IoT is stored in fragments <c>c8y_Availability</c> and <c>c8y_Connection</c> of the device. <br />
 	/// </summary>
+	///
 	public class C8yConnection 
 	{
 	
-		/// <summary>
-		/// The current status, one of `AVAILABLE`, `CONNECTED`, `MAINTENANCE`, `DISCONNECTED`.
+		/// <summary> 
+		/// The current status, one of <c>AVAILABLE</c>, <c>CONNECTED</c>, <c>MAINTENANCE</c>, <c>DISCONNECTED</c>. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("status")]
 		public C8yAvailabilityStatus? Status { get; set; }
 	

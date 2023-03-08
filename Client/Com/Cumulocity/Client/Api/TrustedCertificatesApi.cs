@@ -20,14 +20,12 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods for managing trusted certificates used to establish device connections via MQTT.
-	/// 
-	/// More detailed information about trusted certificates and their role can be found in [Device management > Managing device data](https://cumulocity.com/guides/users-guide/device-management/#managing-device-data) in the *User guide*.
-	/// 
-	/// > **&#9432; Info:** The Accept header must be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// API methods for managing trusted certificates used to establish device connections via MQTT. <br />
+	/// More detailed information about trusted certificates and their role can be found in <see href="https://cumulocity.com/guides/users-guide/device-management/#managing-device-data" langword="Device management > Managing device data" /> in the User guide. <br />
+	/// ⓘ Info: The Accept header must be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class TrustedCertificatesApi : AdaptableApi, ITrustedCertificatesApi
 	{

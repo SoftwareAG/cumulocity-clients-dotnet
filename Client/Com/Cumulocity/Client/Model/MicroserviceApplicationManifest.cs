@@ -14,128 +14,123 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// The manifest of the microservice application.
+	/// <summary> 
+	/// The manifest of the microservice application. <br />
 	/// </summary>
+	///
 	public class MicroserviceApplicationManifest 
 	{
 	
-		/// <summary>
-		/// Document type format discriminator, for future changes in format.
+		/// <summary> 
+		/// Document type format discriminator, for future changes in format. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("apiVersion")]
 		public string? ApiVersion { get; set; }
 	
-		/// <summary>
-		/// The billing mode of the application.
-		/// 
-		/// In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.
-		/// In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription.
-		/// 
+		/// <summary> 
+		/// The billing mode of the application. <br />
+		/// In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("billingMode")]
 		public BillingMode? PBillingMode { get; set; }
 	
-		/// <summary>
-		/// The context path in the URL makes the application accessible.
+		/// <summary> 
+		/// The context path in the URL makes the application accessible. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("contextPath")]
 		public string? ContextPath { get; set; }
 	
-		/// <summary>
-		/// A list of URL extensions for this microservice application.
+		/// <summary> 
+		/// A list of URL extensions for this microservice application. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("extensions")]
 		public List<Extensions>? PExtensions { get; set; }
 	
-		/// <summary>
-		/// Deployment isolation.
-		/// In case of PER_TENANT, there is a separate instance for each tenant.
-		/// Otherwise, there is one single instance for all subscribed tenants.
-		/// This will affect billing.
-		/// 
+		/// <summary> 
+		/// Deployment isolation.In case of PER_TENANT, there is a separate instance for each tenant.Otherwise, there is one single instance for all subscribed tenants.This will affect billing. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("isolation")]
 		public Isolation? PIsolation { get; set; }
 	
 		[JsonPropertyName("livenessProbe")]
 		public ApplicationManifestProbe? LivenessProbe { get; set; }
 	
-		/// <summary>
-		/// Application provider information.
-		/// Simple name allowed for predefined providers, for example, c8y.
-		/// Detailed object for external provider.
-		/// 
+		/// <summary> 
+		/// Application provider information.Simple name allowed for predefined providers, for example, c8y.Detailed object for external provider. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("provider")]
 		public Provider? PProvider { get; set; }
 	
 		[JsonPropertyName("readinessProbe")]
 		public ApplicationManifestProbe? ReadinessProbe { get; set; }
 	
-		/// <summary>
-		/// The minimum required resources for the microservice application.
+		/// <summary> 
+		/// The minimum required resources for the microservice application. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("requestResources")]
 		public RequestResources? PRequestResources { get; set; }
 	
-		/// <summary>
-		/// The recommended resources for this microservice application.
+		/// <summary> 
+		/// The recommended resources for this microservice application. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("resources")]
 		public Resources? PResources { get; set; }
 	
-		/// <summary>
-		/// Roles provided by the microservice.
+		/// <summary> 
+		/// Roles provided by the microservice. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("roles")]
 		public List<string>? Roles { get; set; }
 	
-		/// <summary>
-		/// List of permissions required by a microservice to work.
+		/// <summary> 
+		/// List of permissions required by a microservice to work. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("requiredRoles")]
 		public List<string>? RequiredRoles { get; set; }
 	
-		/// <summary>
-		/// Allows to configure a microservice auto scaling policy.
-		/// If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to `AUTO`.
-		/// The default is `NONE`, meaning auto scaling will not happen.
-		/// 
+		/// <summary> 
+		/// Allows to configure a microservice auto scaling policy.If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to <c>AUTO</c>.The default is <c>NONE</c>, meaning auto scaling will not happen. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("scale")]
 		public Scale? PScale { get; set; }
 	
-		/// <summary>
-		/// A list of settings objects for this microservice application.
+		/// <summary> 
+		/// A list of settings objects for this microservice application. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("settings")]
 		public List<ApplicationSettings>? Settings { get; set; }
 	
-		/// <summary>
-		/// Allows to specify a custom category for microservice settings.
-		/// By default, `contextPath` is used.
-		/// 
+		/// <summary> 
+		/// Allows to specify a custom category for microservice settings.By default, <c>contextPath</c> is used. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("settingsCategory")]
 		public string? SettingsCategory { get; set; }
 	
-		/// <summary>
-		/// Application version.
-		/// Must be a correct [SemVer](https://semver.org/) value but the "+" sign is disallowed.
-		/// 
+		/// <summary> 
+		/// Application version.Must be a correct <see href="https://semver.org/" langword="SemVer" /> value but the "+" sign is disallowed. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("version")]
 		public string? Version { get; set; }
 	
-		/// <summary>
-		/// The billing mode of the application.
-		/// 
-		/// In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.
-		/// In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription.
-		/// 
-		/// [RESOURCES, SUBSCRIPTION]
+		/// <summary> 
+		/// The billing mode of the application. <br />
+		/// In case of RESOURCES, the number of resources used is exposed for billing calculation per usage.In case of SUBSCRIPTION, all resources usage is counted for the microservice owner and the subtenant is charged for subscription. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum BillingMode 
 		{
@@ -145,14 +140,10 @@ namespace Com.Cumulocity.Client.Model
 			SUBSCRIPTION
 		}
 	
-		/// <summary>
-		/// Deployment isolation.
-		/// In case of PER_TENANT, there is a separate instance for each tenant.
-		/// Otherwise, there is one single instance for all subscribed tenants.
-		/// This will affect billing.
-		/// 
-		/// [MULTI_TENANT, PER_TENANT]
+		/// <summary> 
+		/// Deployment isolation.In case of PER_TENANT, there is a separate instance for each tenant.Otherwise, there is one single instance for all subscribed tenants.This will affect billing. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Isolation 
 		{
@@ -162,13 +153,10 @@ namespace Com.Cumulocity.Client.Model
 			PERTENANT
 		}
 	
-		/// <summary>
-		/// Allows to configure a microservice auto scaling policy.
-		/// If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to `AUTO`.
-		/// The default is `NONE`, meaning auto scaling will not happen.
-		/// 
-		/// [NONE, AUTO]
+		/// <summary> 
+		/// Allows to configure a microservice auto scaling policy.If the microservice uses a lot of CPU resources, a second instance will be created automatically when this is set to <c>AUTO</c>.The default is <c>NONE</c>, meaning auto scaling will not happen. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Scale 
 		{
@@ -182,15 +170,17 @@ namespace Com.Cumulocity.Client.Model
 		public class Extensions 
 		{
 		
-			/// <summary>
-			/// The relative path in Cumulocity IoT for this microservice application.
+			/// <summary> 
+			/// The relative path in Cumulocity IoT for this microservice application. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("path")]
 			public string? Path { get; set; }
 		
-			/// <summary>
-			/// The type of this extension.
+			/// <summary> 
+			/// The type of this extension. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("type")]
 			public string? Type { get; set; }
 		
@@ -206,18 +196,17 @@ namespace Com.Cumulocity.Client.Model
 		}
 	
 	
-		/// <summary>
-		/// Application provider information.
-		/// Simple name allowed for predefined providers, for example, c8y.
-		/// Detailed object for external provider.
-		/// 
+		/// <summary> 
+		/// Application provider information.Simple name allowed for predefined providers, for example, c8y.Detailed object for external provider. <br />
 		/// </summary>
+		///
 		public class Provider 
 		{
 		
-			/// <summary>
-			/// The name of the application provider.
+			/// <summary> 
+			/// The name of the application provider. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("name")]
 			public string? Name { get; set; }
 		
@@ -232,21 +221,24 @@ namespace Com.Cumulocity.Client.Model
 			}
 		}
 	
-		/// <summary>
-		/// The minimum required resources for the microservice application.
+		/// <summary> 
+		/// The minimum required resources for the microservice application. <br />
 		/// </summary>
+		///
 		public class RequestResources 
 		{
 		
-			/// <summary>
-			/// The required CPU resource for this microservice application.
+			/// <summary> 
+			/// The required CPU resource for this microservice application. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("cpu")]
 			public string? Cpu { get; set; }
 		
-			/// <summary>
-			/// The required memory resource for this microservice application.
+			/// <summary> 
+			/// The required memory resource for this microservice application. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("memory")]
 			public string? Memory { get; set; }
 		
@@ -261,21 +253,24 @@ namespace Com.Cumulocity.Client.Model
 			}
 		}
 	
-		/// <summary>
-		/// The recommended resources for this microservice application.
+		/// <summary> 
+		/// The recommended resources for this microservice application. <br />
 		/// </summary>
+		///
 		public class Resources 
 		{
 		
-			/// <summary>
-			/// The required CPU resource for this microservice application.
+			/// <summary> 
+			/// The required CPU resource for this microservice application. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("cpu")]
 			public string? Cpu { get; set; }
 		
-			/// <summary>
-			/// The required memory resource for this microservice application.
+			/// <summary> 
+			/// The required memory resource for this microservice application. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("memory")]
 			public string? Memory { get; set; }
 		

@@ -12,15 +12,17 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Measurement of the temperature.
+	/// <summary> 
+	/// Measurement of the temperature. <br />
 	/// </summary>
+	///
 	public class C8yTemperatureMeasurement 
 	{
 	
-		/// <summary>
-		/// A measurement is a value with a unit.
+		/// <summary> 
+		/// A measurement is a value with a unit. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("T")]
 		public C8yMeasurementValue? T { get; set; }
 	

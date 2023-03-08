@@ -13,15 +13,17 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// All available system options of the tenant.
+	/// <summary> 
+	/// All available system options of the tenant. <br />
 	/// </summary>
+	///
 	public class SystemOptionCollection 
 	{
 	
-		/// <summary>
-		/// An array containing the predefined system options.
+		/// <summary> 
+		/// An array containing the predefined system options. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("options")]
 		public List<SystemOption>? Options { get; set; }
 	

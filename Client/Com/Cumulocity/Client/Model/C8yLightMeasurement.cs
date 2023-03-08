@@ -12,18 +12,18 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Light is measured with two main alternative sets of units.
-	/// 
-	/// Radiometry consists of measurements of light power at all wavelengths, while photometry measures light with wavelength weighted with respect to a standardized model of human brightness perception. Photometry is useful, for example, to quantify illumination (lighting) intended for human use.
-	/// 
+	/// <summary> 
+	/// Light is measured with two main alternative sets of units. <br />
+	/// Radiometry consists of measurements of light power at all wavelengths, while photometry measures light with wavelength weighted with respect to a standardized model of human brightness perception. Photometry is useful, for example, to quantify illumination (lighting) intended for human use. <br />
 	/// </summary>
+	///
 	public class C8yLightMeasurement 
 	{
 	
-		/// <summary>
-		/// A measurement is a value with a unit.
+		/// <summary> 
+		/// A measurement is a value with a unit. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("e")]
 		public C8yMeasurementValue? E { get; set; }
 	

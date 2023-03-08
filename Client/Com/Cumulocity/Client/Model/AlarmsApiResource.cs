@@ -16,69 +16,80 @@ namespace Com.Cumulocity.Client.Model
 	public class AlarmsApiResource<TAlarm> where TAlarm : Alarm
 	{
 	
-		/// <summary>
-		/// Collection of all alarms
+		/// <summary> 
+		/// Collection of all alarms <br />
 		/// </summary>
+		///
 		[JsonPropertyName("alarms")]
 		public Alarms<TAlarm>? PAlarms { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all alarms for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory.
+		/// <summary> 
+		/// Read-only collection of all alarms for a specific source object. The placeholder {source} must be a unique ID of an object in the inventory. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("alarmsForSource")]
 		public string? AlarmsForSource { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all alarms in a particular status. The placeholder {status} can be one of the following values: ACTIVE, ACKNOWLEDGED or CLEARED
+		/// <summary> 
+		/// Read-only collection of all alarms in a particular status. The placeholder {status} can be one of the following values: ACTIVE, ACKNOWLEDGED or CLEARED <br />
 		/// </summary>
+		///
 		[JsonPropertyName("alarmsForStatus")]
 		public string? AlarmsForStatus { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all alarms for a specific source, status and time range.
+		/// <summary> 
+		/// Read-only collection of all alarms for a specific source, status and time range. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("alarmsForSourceAndStatusAndTime")]
 		public string? AlarmsForSourceAndStatusAndTime { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all alarms for a particular status and time range.
+		/// <summary> 
+		/// Read-only collection of all alarms for a particular status and time range. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("alarmsForStatusAndTime")]
 		public string? AlarmsForStatusAndTime { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all alarms for a specific source and time range.
+		/// <summary> 
+		/// Read-only collection of all alarms for a specific source and time range. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("alarmsForSourceAndTime")]
 		public string? AlarmsForSourceAndTime { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all alarms for a particular time range.
+		/// <summary> 
+		/// Read-only collection of all alarms for a particular time range. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("alarmsForTime")]
 		public string? AlarmsForTime { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all alarms for a specific source object in a particular status.
+		/// <summary> 
+		/// Read-only collection of all alarms for a specific source object in a particular status. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("alarmsForSourceAndStatus")]
 		public string? AlarmsForSourceAndStatus { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// Collection of all alarms
+		/// <summary> 
+		/// Collection of all alarms <br />
 		/// </summary>
+		///
 		public class Alarms<TAlarm> where TAlarm : Alarm
 		{
 		
-			/// <summary>
-			/// A URL linking to this resource.
+			/// <summary> 
+			/// A URL linking to this resource. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("self")]
 			public string? Self { get; set; }
 		

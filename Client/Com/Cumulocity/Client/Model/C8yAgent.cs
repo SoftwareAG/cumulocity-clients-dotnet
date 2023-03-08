@@ -12,27 +12,31 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// The term "agent" refers to the piece of software that connects a device with Cumulocity IoT.
+	/// <summary> 
+	/// The term "agent" refers to the piece of software that connects a device with Cumulocity IoT. <br />
 	/// </summary>
+	///
 	public class C8yAgent 
 	{
 	
-		/// <summary>
-		/// The name of the agent.
+		/// <summary> 
+		/// The name of the agent. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("name")]
 		public string? Name { get; set; }
 	
-		/// <summary>
-		/// The version of the agent.
+		/// <summary> 
+		/// The version of the agent. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("version")]
 		public string? Version { get; set; }
 	
-		/// <summary>
-		/// The URL of the agent, for example, its code repository.
+		/// <summary> 
+		/// The URL of the agent, for example, its code repository. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("url")]
 		public string? Url { get; set; }
 	

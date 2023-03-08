@@ -12,9 +12,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A measurement is a value with a unit.
+	/// <summary> 
+	/// A measurement is a value with a unit. <br />
 	/// </summary>
+	///
 	public class C8yMeasurementValue 
 	{
 	

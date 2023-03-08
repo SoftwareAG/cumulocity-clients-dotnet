@@ -13,33 +13,38 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Statistics of a specific device (identified by an ID).
+	/// <summary> 
+	/// Statistics of a specific device (identified by an ID). <br />
 	/// </summary>
+	///
 	public class DeviceStatistics 
 	{
 	
-		/// <summary>
-		/// Sum of measurements, events and alarms created and updated for the specified device.
+		/// <summary> 
+		/// Sum of measurements, events and alarms created and updated for the specified device. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("count")]
 		public int? Count { get; set; }
 	
-		/// <summary>
-		/// Unique identifier of the device.
+		/// <summary> 
+		/// Unique identifier of the device. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("deviceId")]
 		public string? DeviceId { get; set; }
 	
-		/// <summary>
-		/// List of unique identifiers of parents for the corresponding device. Available only with monthly data.
+		/// <summary> 
+		/// List of unique identifiers of parents for the corresponding device. Available only with monthly data. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("deviceParents")]
 		public List<string>? DeviceParents { get; set; }
 	
-		/// <summary>
-		/// Value of the `type` field from the corresponding device. Available only with monthly data.
+		/// <summary> 
+		/// Value of the <c>type</c> field from the corresponding device. Available only with monthly data. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("deviceType")]
 		public string? DeviceType { get; set; }
 	

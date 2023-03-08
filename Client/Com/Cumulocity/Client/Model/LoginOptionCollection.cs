@@ -13,21 +13,24 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// All available login options of the tenant.
+	/// <summary> 
+	/// All available login options of the tenant. <br />
 	/// </summary>
+	///
 	public class LoginOptionCollection 
 	{
 	
-		/// <summary>
-		/// An array containing the available login options.
+		/// <summary> 
+		/// An array containing the available login options. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("loginOptions")]
 		public List<LoginOption>? LoginOptions { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	

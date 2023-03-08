@@ -12,9 +12,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A light sensor measures the intensity of light. In a managed object, a light sensor is modeled as a simple empty fragment.
+	/// <summary> 
+	/// A light sensor measures the intensity of light. In a managed object, a light sensor is modeled as a simple empty fragment. <br />
 	/// </summary>
+	///
 	public class C8yLightSensor 
 	{
 	

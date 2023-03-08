@@ -13,34 +13,38 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Holds basic connectivity-related information, such as the equipment identifier of the modem (IMEI) in the device. This identifier is globally unique and often used to identify a mobile device.
+	/// <summary> 
+	/// Holds basic connectivity-related information, such as the equipment identifier of the modem (IMEI) in the device. This identifier is globally unique and often used to identify a mobile device. <br />
 	/// </summary>
+	///
 	public class C8yMobile 
 	{
 	
-		/// <summary>
-		/// The equipment identifier (IMEI) of the modem in the device.
+		/// <summary> 
+		/// The equipment identifier (IMEI) of the modem in the device. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("imei")]
 		public string? Imei { get; set; }
 	
-		/// <summary>
-		/// The identifier of the cell in the mobile network that the device is currently connected with.
+		/// <summary> 
+		/// The identifier of the cell in the mobile network that the device is currently connected with. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("cellId")]
 		public string? CellId { get; set; }
 	
-		/// <summary>
-		/// The identifier of the SIM card that is currently in the device (often printed on the card).
+		/// <summary> 
+		/// The identifier of the SIM card that is currently in the device (often printed on the card). <br />
 		/// </summary>
+		///
 		[JsonPropertyName("iccid")]
 		public string? Iccid { get; set; }
 	
-		/// <summary>
-		/// Other possible values are: `c8y_Mobile.imsi`, `c8y_Mobile.currentOperator`, `c8y_Mobile.currentBand`, `c8y_Mobile.connType`, `c8y_Mobile.rssi`, `c8y_Mobile.ecn0`, `c8y_Mobile.rcsp`, `c8y_Mobile.mnc`, `c8y_Mobile.lac` and `c8y_Mobile.msisdn`.
-		/// 
+		/// <summary> 
+		/// Other possible values are: <c>c8y_Mobile.imsi</c>, <c>c8y_Mobile.currentOperator</c>, <c>c8y_Mobile.currentBand</c>, <c>c8y_Mobile.connType</c>, <c>c8y_Mobile.rssi</c>, <c>c8y_Mobile.ecn0</c>, <c>c8y_Mobile.rcsp</c>, <c>c8y_Mobile.mnc</c>, <c>c8y_Mobile.lac</c> and <c>c8y_Mobile.msisdn</c>. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("customFragments")]
 		public Dictionary<string, string> CustomFragments { get; set; } = new Dictionary<string, string>();
 		

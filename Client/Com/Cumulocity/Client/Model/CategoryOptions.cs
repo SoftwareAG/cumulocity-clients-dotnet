@@ -18,9 +18,10 @@ namespace Com.Cumulocity.Client.Model
 	public class CategoryOptions 
 	{
 	
-		/// <summary>
-		/// It is possible to specify an arbitrary number of existing options as a list of key-value pairs, for example, `"key1": "value1"`, `"key2": "value2"`.
+		/// <summary> 
+		/// It is possible to specify an arbitrary number of existing options as a list of key-value pairs, for example, <c>"key1": "value1"</c>, <c>"key2": "value2"</c>. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("keyValuePairs")]
 		public Dictionary<string, object> KeyValuePairs { get; set; } = new Dictionary<string, object>();
 		

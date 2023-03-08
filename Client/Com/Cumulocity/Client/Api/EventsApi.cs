@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// Events are used to pass real-time information through Cumulocity IoT.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// Events are used to pass real-time information through Cumulocity IoT. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class EventsApi : AdaptableApi, IEventsApi
 	{

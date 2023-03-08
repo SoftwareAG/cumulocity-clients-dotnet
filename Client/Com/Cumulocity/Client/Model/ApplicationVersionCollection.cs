@@ -16,9 +16,10 @@ namespace Com.Cumulocity.Client.Model
 	public class ApplicationVersionCollection 
 	{
 	
-		/// <summary>
-		/// An array of application versions.
+		/// <summary> 
+		/// An array of application versions. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("versions")]
 		public List<ApplicationVersion>? Versions { get; set; }
 	

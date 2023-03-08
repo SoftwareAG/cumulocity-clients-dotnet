@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods to create, retrieve, update and delete inventory roles.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// API methods to create, retrieve, update and delete inventory roles. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class InventoryRolesApi : AdaptableApi, IInventoryRolesApi
 	{

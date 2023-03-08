@@ -20,19 +20,30 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// An audit log stores events that are security-relevant and should be stored for auditing. For example, an audit log should be generated when a user logs into a gateway.
-	/// 
-	/// An audit log extends an event through:
-	/// 
-	/// * A username of the user that carried out the activity.
-	/// * An application that was used to carry out the activity.
-	/// * The actual activity.
-	/// * A severity.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// An audit log stores events that are security-relevant and should be stored for auditing. For example, an audit log should be generated when a user logs into a gateway. <br />
+	/// An audit log extends an event through: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>A username of the user that carried out the activity. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>An application that was used to carry out the activity. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>The actual activity. <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>A severity. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class AuditsApi : AdaptableApi, IAuditsApi
 	{

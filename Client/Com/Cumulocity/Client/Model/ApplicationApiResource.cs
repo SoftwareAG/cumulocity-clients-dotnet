@@ -15,45 +15,52 @@ namespace Com.Cumulocity.Client.Model
 	public class ApplicationApiResource 
 	{
 	
-		/// <summary>
-		/// Collection of all applications..
+		/// <summary> 
+		/// Collection of all applications.. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("applications")]
 		public string? Applications { get; set; }
 	
-		/// <summary>
-		/// A reference to a resource of type Application.
+		/// <summary> 
+		/// A reference to a resource of type Application. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("applicationById")]
 		public string? ApplicationById { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all applications with a particular name.
+		/// <summary> 
+		/// Read-only collection of all applications with a particular name. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("applicationsByName")]
 		public string? ApplicationsByName { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all applications subscribed by a particular tenant.
+		/// <summary> 
+		/// Read-only collection of all applications subscribed by a particular tenant. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("applicationsByTenant")]
 		public string? ApplicationsByTenant { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all applications owned by a particular tenant.
+		/// <summary> 
+		/// Read-only collection of all applications owned by a particular tenant. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("applicationsByOwner")]
 		public string? ApplicationsByOwner { get; set; }
 	
-		/// <summary>
-		/// Read-only collection of all applications owned by a particular user.
+		/// <summary> 
+		/// Read-only collection of all applications owned by a particular user. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("applicationsByUser")]
 		public string? ApplicationsByUser { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	

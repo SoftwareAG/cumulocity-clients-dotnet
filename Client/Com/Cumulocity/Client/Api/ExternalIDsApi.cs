@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// The external ID resource represents an individual external ID that can be queried and deleted.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// The external ID resource represents an individual external ID that can be queried and deleted. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class ExternalIDsApi : AdaptableApi, IExternalIDsApi
 	{

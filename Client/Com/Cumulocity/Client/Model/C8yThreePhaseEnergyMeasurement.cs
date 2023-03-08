@@ -13,9 +13,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Measurement of the three phase energy meter.
+	/// <summary> 
+	/// Measurement of the three phase energy meter. <br />
 	/// </summary>
+	///
 	public class C8yThreePhaseEnergyMeasurement 
 	{
 	

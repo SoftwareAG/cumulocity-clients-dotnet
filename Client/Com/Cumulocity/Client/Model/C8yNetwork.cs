@@ -12,63 +12,73 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Device capability to either display or display and manage the WAN, LAN, and DHCP settings.
+	/// <summary> 
+	/// Device capability to either display or display and manage the WAN, LAN, and DHCP settings. <br />
 	/// </summary>
+	///
 	public class C8yNetwork 
 	{
 	
-		/// <summary>
-		/// Local network information.
+		/// <summary> 
+		/// Local network information. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_LAN")]
 		public C8yLAN? PC8yLAN { get; set; }
 	
-		/// <summary>
-		/// Mobile internet connectivity interface status.
+		/// <summary> 
+		/// Mobile internet connectivity interface status. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_WAN")]
 		public C8yWAN? PC8yWAN { get; set; }
 	
-		/// <summary>
-		/// Information for DHCP server status.
+		/// <summary> 
+		/// Information for DHCP server status. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_DHCP")]
 		public C8yDHCP? PC8yDHCP { get; set; }
 	
-		/// <summary>
-		/// Local network information.
+		/// <summary> 
+		/// Local network information. <br />
 		/// </summary>
+		///
 		public class C8yLAN 
 		{
 		
-			/// <summary>
-			/// Subnet mask configured for the network interface.
+			/// <summary> 
+			/// Subnet mask configured for the network interface. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("netmask")]
 			public string? Netmask { get; set; }
 		
-			/// <summary>
-			/// IP address configured for the network interface.
+			/// <summary> 
+			/// IP address configured for the network interface. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("ip")]
 			public string? Ip { get; set; }
 		
-			/// <summary>
-			/// Identifier for the network interface.
+			/// <summary> 
+			/// Identifier for the network interface. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("name")]
 			public string? Name { get; set; }
 		
-			/// <summary>
-			/// Indicator showing if the interface is enabled.
+			/// <summary> 
+			/// Indicator showing if the interface is enabled. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("enabled")]
 			public int? Enabled { get; set; }
 		
-			/// <summary>
-			/// MAC address of the network interface.
+			/// <summary> 
+			/// MAC address of the network interface. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("mac")]
 			public string? Mac { get; set; }
 		
@@ -83,39 +93,45 @@ namespace Com.Cumulocity.Client.Model
 			}
 		}
 	
-		/// <summary>
-		/// Mobile internet connectivity interface status.
+		/// <summary> 
+		/// Mobile internet connectivity interface status. <br />
 		/// </summary>
+		///
 		public class C8yWAN 
 		{
 		
-			/// <summary>
-			/// SIM connectivity password.
+			/// <summary> 
+			/// SIM connectivity password. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("password")]
 			public string? Password { get; set; }
 		
-			/// <summary>
-			/// SIM connection status.
+			/// <summary> 
+			/// SIM connection status. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("simStatus")]
 			public string? SimStatus { get; set; }
 		
-			/// <summary>
-			/// Authentication type used by the SIM connectivity.
+			/// <summary> 
+			/// Authentication type used by the SIM connectivity. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("authType")]
 			public string? AuthType { get; set; }
 		
-			/// <summary>
-			/// APN used for internet access.
+			/// <summary> 
+			/// APN used for internet access. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("apn")]
 			public string? Apn { get; set; }
 		
-			/// <summary>
-			/// SIM connectivity username.
+			/// <summary> 
+			/// SIM connectivity username. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("username")]
 			public string? Username { get; set; }
 		
@@ -130,57 +146,66 @@ namespace Com.Cumulocity.Client.Model
 			}
 		}
 	
-		/// <summary>
-		/// Information for DHCP server status.
+		/// <summary> 
+		/// Information for DHCP server status. <br />
 		/// </summary>
+		///
 		public class C8yDHCP 
 		{
 		
-			/// <summary>
-			/// First configured DNS server.
+			/// <summary> 
+			/// First configured DNS server. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("dns1")]
 			public string? Dns1 { get; set; }
 		
-			/// <summary>
-			/// Second configured DNS server.
+			/// <summary> 
+			/// Second configured DNS server. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("dns2")]
 			public string? Dns2 { get; set; }
 		
-			/// <summary>
-			/// Domain name configured for the device.
+			/// <summary> 
+			/// Domain name configured for the device. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("domainName")]
 			public string? DomainName { get; set; }
 		
-			/// <summary>
-			/// IP address range.
+			/// <summary> 
+			/// IP address range. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("addressRange")]
 			public AddressRange? PAddressRange { get; set; }
 		
-			/// <summary>
-			/// Indicator showing if the DHCP server is enabled.
+			/// <summary> 
+			/// Indicator showing if the DHCP server is enabled. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("enabled")]
 			public int? Enabled { get; set; }
 		
-			/// <summary>
-			/// IP address range.
+			/// <summary> 
+			/// IP address range. <br />
 			/// </summary>
+			///
 			public class AddressRange 
 			{
 			
-				/// <summary>
-				/// Start of address range assigned to DHCP clients.
+				/// <summary> 
+				/// Start of address range assigned to DHCP clients. <br />
 				/// </summary>
+				///
 				[JsonPropertyName("start")]
 				public string? Start { get; set; }
 			
-				/// <summary>
-				/// End of address range assigned to DHCP clients.
+				/// <summary> 
+				/// End of address range assigned to DHCP clients. <br />
 				/// </summary>
+				///
 				[JsonPropertyName("end")]
 				public string? End { get; set; }
 			

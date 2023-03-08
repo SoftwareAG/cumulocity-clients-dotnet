@@ -12,27 +12,31 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Device capability to manage device profiles. Device profiles represent a combination of a firmware version, one or multiple software packages and one or multiple configuration files which can be deployed on a device.
+	/// <summary> 
+	/// Device capability to manage device profiles. Device profiles represent a combination of a firmware version, one or multiple software packages and one or multiple configuration files which can be deployed on a device. <br />
 	/// </summary>
+	///
 	public class C8yProfile 
 	{
 	
-		/// <summary>
-		/// The name of the profile.
+		/// <summary> 
+		/// The name of the profile. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("profileName")]
 		public string? ProfileName { get; set; }
 	
-		/// <summary>
-		/// The ID of the profile.
+		/// <summary> 
+		/// The ID of the profile. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("profileId")]
 		public string? ProfileId { get; set; }
 	
-		/// <summary>
-		/// Indicates whether the profile has been executed.
+		/// <summary> 
+		/// Indicates whether the profile has been executed. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("profileExecuted")]
 		public bool? ProfileExecuted { get; set; }
 	

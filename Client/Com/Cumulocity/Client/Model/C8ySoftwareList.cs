@@ -12,27 +12,31 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Details of the installed software.
+	/// <summary> 
+	/// Details of the installed software. <br />
 	/// </summary>
+	///
 	public class C8ySoftwareList 
 	{
 	
-		/// <summary>
-		/// The name of the software.
+		/// <summary> 
+		/// The name of the software. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("name")]
 		public string? Name { get; set; }
 	
-		/// <summary>
-		/// The version of the software.
+		/// <summary> 
+		/// The version of the software. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("version")]
 		public string? Version { get; set; }
 	
-		/// <summary>
-		/// The URL of the software, for example, its code repository.
+		/// <summary> 
+		/// The URL of the software, for example, its code repository. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("url")]
 		public string? Url { get; set; }
 	

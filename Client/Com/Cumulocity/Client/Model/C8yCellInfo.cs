@@ -13,21 +13,24 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Provides detailed information about the closest mobile cell towers. When the functionality is activated, the location of the device is determined based on this fragment, in order to track the device whereabouts when GPS tracking is not available.
+	/// <summary> 
+	/// Provides detailed information about the closest mobile cell towers. When the functionality is activated, the location of the device is determined based on this fragment, in order to track the device whereabouts when GPS tracking is not available. <br />
 	/// </summary>
+	///
 	public class C8yCellInfo 
 	{
 	
-		/// <summary>
-		/// The radio type of this cell tower.
+		/// <summary> 
+		/// The radio type of this cell tower. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("radioType")]
 		public string? RadioType { get; set; }
 	
-		/// <summary>
-		/// Detailed information about the neighboring cell towers.
+		/// <summary> 
+		/// Detailed information about the neighboring cell towers. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("cellTowers")]
 		public List<C8yCellTower>? CellTowers { get; set; }
 	

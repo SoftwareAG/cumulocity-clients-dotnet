@@ -16,9 +16,10 @@ namespace Com.Cumulocity.Client.Model
 	public class SupportedSeries 
 	{
 	
-		/// <summary>
-		/// An array containing all supported measurement series of the specified device.
+		/// <summary> 
+		/// An array containing all supported measurement series of the specified device. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_SupportedSeries")]
 		public List<string>? C8ySupportedSeries { get; set; }
 	

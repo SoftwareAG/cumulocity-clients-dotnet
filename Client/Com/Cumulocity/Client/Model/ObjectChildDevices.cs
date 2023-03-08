@@ -13,27 +13,31 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A collection of references to child devices.
+	/// <summary> 
+	/// A collection of references to child devices. <br />
 	/// </summary>
+	///
 	public class ObjectChildDevices 
 	{
 	
-		/// <summary>
-		/// The total number of child devices. Only present if the value is greater than 0.
+		/// <summary> 
+		/// The total number of child devices. Only present if the value is greater than 0. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("count")]
 		public int? Count { get; set; }
 	
-		/// <summary>
-		/// An array with the references to child devices.
+		/// <summary> 
+		/// An array with the references to child devices. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("references")]
 		public List<ManagedObjectReferenceTuple>? References { get; set; }
 	
-		/// <summary>
-		/// Link to this resource's child devices.
+		/// <summary> 
+		/// Link to this resource's child devices. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	

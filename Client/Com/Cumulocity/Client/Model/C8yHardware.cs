@@ -12,27 +12,31 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Contains basic hardware information for a device, such as make and serial number. Often, the hardware serial number is printed on the board of the device or on an asset tag on the device to uniquely identify the device within all devices of the same make.
+	/// <summary> 
+	/// Contains basic hardware information for a device, such as make and serial number. Often, the hardware serial number is printed on the board of the device or on an asset tag on the device to uniquely identify the device within all devices of the same make. <br />
 	/// </summary>
+	///
 	public class C8yHardware 
 	{
 	
-		/// <summary>
-		/// A text identifier of the device's hardware model.
+		/// <summary> 
+		/// A text identifier of the device's hardware model. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("model")]
 		public string? Model { get; set; }
 	
-		/// <summary>
-		/// A text identifier of the hardware revision.
+		/// <summary> 
+		/// A text identifier of the hardware revision. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("revision")]
 		public string? Revision { get; set; }
 	
-		/// <summary>
-		/// The hardware serial number of the device.
+		/// <summary> 
+		/// The hardware serial number of the device. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("serialNumber")]
 		public string? SerialNumber { get; set; }
 	

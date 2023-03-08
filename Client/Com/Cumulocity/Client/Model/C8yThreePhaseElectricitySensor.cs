@@ -12,9 +12,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// In a managed object, a three phase electricity meter is modeled as a simple empty fragment.
+	/// <summary> 
+	/// In a managed object, a three phase electricity meter is modeled as a simple empty fragment. <br />
 	/// </summary>
+	///
 	public class C8yThreePhaseElectricitySensor 
 	{
 	

@@ -15,15 +15,17 @@ namespace Com.Cumulocity.Client.Model
 	public class PasswordChange 
 	{
 	
-		/// <summary>
-		/// The current password of the user performing the request.
+		/// <summary> 
+		/// The current password of the user performing the request. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("currentUserPassword")]
 		public string? CurrentUserPassword { get; set; }
 	
-		/// <summary>
-		/// The new password to be set for the user performing the request.
+		/// <summary> 
+		/// The new password to be set for the user performing the request. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("newPassword")]
 		public string? NewPassword { get; set; }
 	

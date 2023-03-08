@@ -20,13 +20,12 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods to retrieve the login options configured in the tenant.
-	/// 
-	/// More detailed information about the parameters and their meaning can be found in [Administration > Changing settings](https://cumulocity.com/guides/users-guide/administration/#changing-settings) in the *Users guide*.
-	/// > **&#9432; Info:** If OAuth external is the only login option shown in the response, the user will be automatically redirected to the SSO login screen.
-	/// 
+	/// <summary> 
+	/// API methods to retrieve the login options configured in the tenant. <br />
+	/// More detailed information about the parameters and their meaning can be found in <see href="https://cumulocity.com/guides/users-guide/administration/#changing-settings" langword="Administration > Changing settings" /> in the Users guide. <br />
+	/// ⓘ Info: If OAuth external is the only login option shown in the response, the user will be automatically redirected to the SSO login screen. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class LoginOptionsApi : AdaptableApi, ILoginOptionsApi
 	{

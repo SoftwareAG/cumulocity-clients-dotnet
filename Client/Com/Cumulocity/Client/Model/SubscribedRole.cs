@@ -15,21 +15,24 @@ namespace Com.Cumulocity.Client.Model
 	public class SubscribedRole 
 	{
 	
-		/// <summary>
-		/// An object with a role reference URL.
+		/// <summary> 
+		/// An object with a role reference URL. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("role")]
 		public Role? PRole { get; set; }
 	
-		/// <summary>
-		/// An object with a role reference URL.
+		/// <summary> 
+		/// An object with a role reference URL. <br />
 		/// </summary>
+		///
 		public class Role 
 		{
 		
-			/// <summary>
-			/// A URL linking to this resource.
+			/// <summary> 
+			/// A URL linking to this resource. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("self")]
 			public string? Self { get; set; }
 		

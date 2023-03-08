@@ -18,9 +18,10 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("group")]
 		public Group<TCustomProperties>? PGroup { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	

@@ -16,15 +16,17 @@ namespace Com.Cumulocity.Client.Model
 	public class ExternalIds 
 	{
 	
-		/// <summary>
-		/// An array containing the details of all external IDs (if any).
+		/// <summary> 
+		/// An array containing the details of all external IDs (if any). <br />
 		/// </summary>
+		///
 		[JsonPropertyName("externalIds")]
 		public List<ExternalId>? PExternalIds { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	

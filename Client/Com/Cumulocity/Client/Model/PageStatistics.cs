@@ -12,36 +12,39 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Information about paging statistics.
+	/// <summary> 
+	/// Information about paging statistics. <br />
 	/// </summary>
+	///
 	public class PageStatistics 
 	{
 	
-		/// <summary>
-		/// The current page of the paginated results.
+		/// <summary> 
+		/// The current page of the paginated results. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("currentPage")]
 		public int? CurrentPage { get; set; }
 	
-		/// <summary>
-		/// Indicates the number of objects that the collection may contain per page. The upper limit for one page is 2,000 objects.
+		/// <summary> 
+		/// Indicates the number of objects that the collection may contain per page. The upper limit for one page is 2,000 objects. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("pageSize")]
 		public int? PageSize { get; set; }
 	
-		/// <summary>
-		/// The total number of results (elements).
+		/// <summary> 
+		/// The total number of results (elements). <br />
 		/// </summary>
+		///
 		[JsonPropertyName("totalElements")]
 		public int? TotalElements { get; set; }
 	
-		/// <summary>
-		/// The total number of paginated results (pages).
-		/// 
-		/// > **&#9432; Info:** This property is returned by default except when an operation retrieves all records where values are between an upper and lower boundary, for example, querying ranges using `dateFrom`–`dateTo`. In such cases, the query parameter `withTotalPages=true` should be used to include the total number of pages (at the expense of slightly slower performance).
-		/// 
+		/// <summary> 
+		/// The total number of paginated results (pages). <br />
+		/// ⓘ Info: This property is returned by default except when an operation retrieves all records where values are between an upper and lower boundary, for example, querying ranges using <c>dateFrom</c>–<c>dateTo</c>. In such cases, the query parameter <c>withTotalPages=true</c> should be used to include the total number of pages (at the expense of slightly slower performance). <br />
 		/// </summary>
+		///
 		[JsonPropertyName("totalPages")]
 		public int? TotalPages { get; set; }
 	

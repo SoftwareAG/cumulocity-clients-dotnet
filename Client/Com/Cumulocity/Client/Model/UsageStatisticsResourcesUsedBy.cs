@@ -15,27 +15,31 @@ namespace Com.Cumulocity.Client.Model
 	public class UsageStatisticsResourcesUsedBy 
 	{
 	
-		/// <summary>
-		/// Reason for calculating statistics of the specified microservice.
+		/// <summary> 
+		/// Reason for calculating statistics of the specified microservice. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("cause")]
 		public string? Cause { get; set; }
 	
-		/// <summary>
-		/// Number of CPU usage for a single microservice.
+		/// <summary> 
+		/// Number of CPU usage for a single microservice. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("cpu")]
 		public int? Cpu { get; set; }
 	
-		/// <summary>
-		/// Number of memory usage for a single microservice.
+		/// <summary> 
+		/// Number of memory usage for a single microservice. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("memory")]
 		public int? Memory { get; set; }
 	
-		/// <summary>
-		/// Name of the microservice.
+		/// <summary> 
+		/// Name of the microservice. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("name")]
 		public string? Name { get; set; }
 	

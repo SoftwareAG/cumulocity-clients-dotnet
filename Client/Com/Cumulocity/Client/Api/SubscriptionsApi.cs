@@ -20,9 +20,10 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// Methods to create, retrieve and delete notification subscriptions.
+	/// <summary> 
+	/// Methods to create, retrieve and delete notification subscriptions. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class SubscriptionsApi : AdaptableApi, ISubscriptionsApi
 	{

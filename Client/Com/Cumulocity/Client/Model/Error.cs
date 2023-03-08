@@ -15,21 +15,24 @@ namespace Com.Cumulocity.Client.Model
 	public class Error 
 	{
 	
-		/// <summary>
-		/// The type of error returned.
+		/// <summary> 
+		/// The type of error returned. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("error")]
 		public string? PError { get; set; }
 	
-		/// <summary>
-		/// A human-readable message providing more details about the error.
+		/// <summary> 
+		/// A human-readable message providing more details about the error. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("message")]
 		public string? Message { get; set; }
 	
-		/// <summary>
-		/// A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)] that identifies the error code reported.
+		/// <summary> 
+		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] that identifies the error code reported. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("info")]
 		public string? Info { get; set; }
 	

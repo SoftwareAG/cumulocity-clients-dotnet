@@ -15,21 +15,24 @@ namespace Com.Cumulocity.Client.Model
 	public class IdentityApiResource 
 	{
 	
-		/// <summary>
-		/// Single external ID, represented by the type and the value of the external ID.
+		/// <summary> 
+		/// Single external ID, represented by the type and the value of the external ID. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("externalId")]
 		public string? ExternalId { get; set; }
 	
-		/// <summary>
-		/// Represents a collection of external IDs for a specified global ID.
+		/// <summary> 
+		/// Represents a collection of external IDs for a specified global ID. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("externalIdsOfGlobalId")]
 		public string? ExternalIdsOfGlobalId { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	

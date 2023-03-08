@@ -12,21 +12,24 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Contains information about the file.
+	/// <summary> 
+	/// Contains information about the file. <br />
 	/// </summary>
+	///
 	public class BinaryInfo 
 	{
 	
-		/// <summary>
-		/// Name of the binary object.
+		/// <summary> 
+		/// Name of the binary object. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("name")]
 		public string? Name { get; set; }
 	
-		/// <summary>
-		/// Media type of the file.
+		/// <summary> 
+		/// Media type of the file. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("type")]
 		public string? Type { get; set; }
 	

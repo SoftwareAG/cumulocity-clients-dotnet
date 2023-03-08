@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// An alarm represents an event that requires manual action, for example, when the temperature of a fridge increases above a particular threshold.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// An alarm represents an event that requires manual action, for example, when the temperature of a fridge increases above a particular threshold. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class AlarmsApi : AdaptableApi, IAlarmsApi
 	{

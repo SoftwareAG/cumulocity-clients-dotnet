@@ -18,108 +18,123 @@ namespace Com.Cumulocity.Client.Model
 	public class ManagedObject 
 	{
 	
-		/// <summary>
-		/// The date and time when the object was created.
+		/// <summary> 
+		/// The date and time when the object was created. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("creationTime")]
 		public System.DateTime? CreationTime { get; set; }
 	
-		/// <summary>
-		/// Unique identifier of the object.
+		/// <summary> 
+		/// Unique identifier of the object. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("id")]
 		public string? Id { get; set; }
 	
-		/// <summary>
-		/// The date and time when the object was updated for the last time.
+		/// <summary> 
+		/// The date and time when the object was updated for the last time. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("lastUpdated")]
 		public System.DateTime? LastUpdated { get; set; }
 	
-		/// <summary>
-		/// Human-readable name that is used for representing the object in user interfaces.
+		/// <summary> 
+		/// Human-readable name that is used for representing the object in user interfaces. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("name")]
 		public string? Name { get; set; }
 	
-		/// <summary>
-		/// Username of the device's owner.
+		/// <summary> 
+		/// Username of the device's owner. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("owner")]
 		public string? Owner { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// The fragment type can be interpreted as _device class_, this means, devices with the same type can receive the same types of configuration, software, firmware and operations. The type value is indexed and is therefore used for queries.
+		/// <summary> 
+		/// The fragment type can be interpreted as device class, this means, devices with the same type can receive the same types of configuration, software, firmware and operations. The type value is indexed and is therefore used for queries. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("type")]
 		public string? Type { get; set; }
 	
-		/// <summary>
-		/// A collection of references to child additions.
+		/// <summary> 
+		/// A collection of references to child additions. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("childAdditions")]
 		public ObjectChildAdditions? ChildAdditions { get; set; }
 	
-		/// <summary>
-		/// A collection of references to child assets.
+		/// <summary> 
+		/// A collection of references to child assets. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("childAssets")]
 		public ObjectChildAssets? ChildAssets { get; set; }
 	
-		/// <summary>
-		/// A collection of references to child devices.
+		/// <summary> 
+		/// A collection of references to child devices. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("childDevices")]
 		public ObjectChildDevices? ChildDevices { get; set; }
 	
-		/// <summary>
-		/// A collection of references to addition parent objects.
+		/// <summary> 
+		/// A collection of references to addition parent objects. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("additionParents")]
 		public ObjectAdditionParents? AdditionParents { get; set; }
 	
-		/// <summary>
-		/// A collection of references to asset parent objects.
+		/// <summary> 
+		/// A collection of references to asset parent objects. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("assetParents")]
 		public ObjectAssetParents? AssetParents { get; set; }
 	
-		/// <summary>
-		/// A collection of references to device parent objects.
+		/// <summary> 
+		/// A collection of references to device parent objects. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("deviceParents")]
 		public ObjectDeviceParents? DeviceParents { get; set; }
 	
-		/// <summary>
-		/// A fragment which identifies this managed object as a device.
+		/// <summary> 
+		/// A fragment which identifies this managed object as a device. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_IsDevice")]
 		public C8yIsDevice? PC8yIsDevice { get; set; }
 	
-		/// <summary>
-		/// This fragment must be added in order to publish sample commands for a subset of devices sharing the same device type. If the fragment is present, the list of sample commands for a device type will be extended with the sample commands for the `c8y_DeviceTypes`. New sample commands created from the user interface will be created in the context of the `c8y_DeviceTypes`.
+		/// <summary> 
+		/// This fragment must be added in order to publish sample commands for a subset of devices sharing the same device type. If the fragment is present, the list of sample commands for a device type will be extended with the sample commands for the <c>c8y_DeviceTypes</c>. New sample commands created from the user interface will be created in the context of the <c>c8y_DeviceTypes</c>. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_DeviceTypes")]
 		public List<string>? C8yDeviceTypes { get; set; }
 	
-		/// <summary>
-		/// Lists the operations that are available for a particular device, so that applications can trigger the operations.
+		/// <summary> 
+		/// Lists the operations that are available for a particular device, so that applications can trigger the operations. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_SupportedOperations")]
 		public List<string>? C8ySupportedOperations { get; set; }
 	
-		/// <summary>
-		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.
-		/// 
-		/// Review the [Naming conventions of fragments](https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments) as there are characters that can not be used when naming custom fragments.
-		/// 
+		/// <summary> 
+		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <c>"property1": {}</c>, <c>"property2": "value"</c>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name. <br />
+		/// Review the <see href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments" langword="Naming conventions of fragments" /> as there are characters that can not be used when naming custom fragments. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("customFragments")]
 		public Dictionary<string, object> CustomFragments { get; set; } = new Dictionary<string, object>();
 		
@@ -130,9 +145,10 @@ namespace Com.Cumulocity.Client.Model
 			set => CustomFragments[key] = value;
 		}
 	
-		/// <summary>
-		/// A fragment which identifies this managed object as a device.
+		/// <summary> 
+		/// A fragment which identifies this managed object as a device. <br />
 		/// </summary>
+		///
 		public class C8yIsDevice 
 		{
 		

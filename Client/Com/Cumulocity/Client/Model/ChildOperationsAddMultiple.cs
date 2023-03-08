@@ -16,9 +16,10 @@ namespace Com.Cumulocity.Client.Model
 	public class ChildOperationsAddMultiple 
 	{
 	
-		/// <summary>
-		/// An array containing the IDs of the managed objects (children).
+		/// <summary> 
+		/// An array containing the IDs of the managed objects (children). <br />
 		/// </summary>
+		///
 		[JsonPropertyName("references")]
 		public List<References>? PReferences { get; set; }
 	
@@ -40,9 +41,10 @@ namespace Com.Cumulocity.Client.Model
 			public class ManagedObject 
 			{
 			
-				/// <summary>
-				/// Unique identifier of the object.
+				/// <summary> 
+				/// Unique identifier of the object. <br />
 				/// </summary>
+				///
 				[JsonPropertyName("id")]
 				public string? Id { get; set; }
 			

@@ -12,9 +12,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A moisture sensor measures the water content of a substance. In a managed object, a moisture sensor is modeled as a simple empty fragment.
+	/// <summary> 
+	/// A moisture sensor measures the water content of a substance. In a managed object, a moisture sensor is modeled as a simple empty fragment. <br />
 	/// </summary>
+	///
 	public class C8yMoistureSensor 
 	{
 	

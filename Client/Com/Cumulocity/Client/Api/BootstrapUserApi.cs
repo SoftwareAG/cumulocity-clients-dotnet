@@ -20,9 +20,10 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods to retrieve the bootstrap user of an application.
+	/// <summary> 
+	/// API methods to retrieve the bootstrap user of an application. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class BootstrapUserApi : AdaptableApi, IBootstrapUserApi
 	{

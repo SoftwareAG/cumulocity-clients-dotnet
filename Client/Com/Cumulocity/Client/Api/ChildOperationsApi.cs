@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// Managed objects can contain collections of references to child devices, additions and assets.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// Managed objects can contain collections of references to child devices, additions and assets. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class ChildOperationsApi : AdaptableApi, IChildOperationsApi
 	{

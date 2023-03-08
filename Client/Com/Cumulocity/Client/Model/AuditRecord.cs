@@ -18,88 +18,101 @@ namespace Com.Cumulocity.Client.Model
 	public class AuditRecord 
 	{
 	
-		/// <summary>
-		/// Summary of the action that was carried out.
+		/// <summary> 
+		/// Summary of the action that was carried out. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("activity")]
 		public string? Activity { get; set; }
 	
-		/// <summary>
-		/// Name of the application that performed the action.
+		/// <summary> 
+		/// Name of the application that performed the action. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("application")]
 		public string? Application { get; set; }
 	
-		/// <summary>
-		/// Metadata of the audit record.
+		/// <summary> 
+		/// Metadata of the audit record. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("c8y_Metadata")]
 		public C8yMetadata? PC8yMetadata { get; set; }
 	
-		/// <summary>
-		/// Collection of objects describing the changes that were carried out.
+		/// <summary> 
+		/// Collection of objects describing the changes that were carried out. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("changes")]
 		public List<Changes>? PChanges { get; set; }
 	
-		/// <summary>
-		/// The date and time when the audit record was created.
+		/// <summary> 
+		/// The date and time when the audit record was created. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("creationTime")]
 		public System.DateTime? CreationTime { get; set; }
 	
-		/// <summary>
-		/// Unique identifier of the audit record.
+		/// <summary> 
+		/// Unique identifier of the audit record. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("id")]
 		public string? Id { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// The severity of the audit action.
+		/// <summary> 
+		/// The severity of the audit action. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("severity")]
 		public Severity? PSeverity { get; set; }
 	
-		/// <summary>
-		/// The managed object to which the audit is associated.
+		/// <summary> 
+		/// The managed object to which the audit is associated. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("source")]
 		public Source? PSource { get; set; }
 	
-		/// <summary>
-		/// Details of the action that was carried out.
+		/// <summary> 
+		/// Details of the action that was carried out. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("text")]
 		public string? Text { get; set; }
 	
-		/// <summary>
-		/// The date and time when the audit is updated.
+		/// <summary> 
+		/// The date and time when the audit is updated. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("time")]
 		public System.DateTime? Time { get; set; }
 	
-		/// <summary>
-		/// Identifies the platform component of the audit.
+		/// <summary> 
+		/// Identifies the platform component of the audit. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("type")]
 		public Type? PType { get; set; }
 	
-		/// <summary>
-		/// The user who carried out the activity.
+		/// <summary> 
+		/// The user who carried out the activity. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("user")]
 		public string? User { get; set; }
 	
-		/// <summary>
-		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties can be of any type, for example, object or string.
-		/// 
+		/// <summary> 
+		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <c>"property1": {}</c>, <c>"property2": "value"</c>. These properties can be of any type, for example, object or string. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("customProperties")]
 		public Dictionary<string, object> CustomProperties { get; set; } = new Dictionary<string, object>();
 		
@@ -123,10 +136,10 @@ namespace Com.Cumulocity.Client.Model
 			this.PType = type;
 		}
 	
-		/// <summary>
-		/// The severity of the audit action.
-		/// [CRITICAL, MAJOR, MINOR, WARNING, INFORMATION]
+		/// <summary> 
+		/// The severity of the audit action. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Severity 
 		{
@@ -142,10 +155,10 @@ namespace Com.Cumulocity.Client.Model
 			INFORMATION
 		}
 	
-		/// <summary>
-		/// Identifies the platform component of the audit.
-		/// [Alarm, Application, BulkOperation, CepModule, Connector, Event, Group, Inventory, InventoryRole, Operation, Option, Report, SingleSignOn, SmartRule, SYSTEM, Tenant, TenantAuthConfig, TrustedCertificates, User, UserAuthentication]
+		/// <summary> 
+		/// Identifies the platform component of the audit. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Type 
 		{
@@ -191,22 +204,24 @@ namespace Com.Cumulocity.Client.Model
 			USERAUTHENTICATION
 		}
 	
-		/// <summary>
-		/// Metadata of the audit record.
+		/// <summary> 
+		/// Metadata of the audit record. <br />
 		/// </summary>
+		///
 		public class C8yMetadata 
 		{
 		
-			/// <summary>
-			/// The action that was carried out.
+			/// <summary> 
+			/// The action that was carried out. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("action")]
 			public Action? PAction { get; set; }
 		
-			/// <summary>
-			/// The action that was carried out.
-			/// [SUBSCRIBE, DEPLOY, SCALE, DELETE]
+			/// <summary> 
+			/// The action that was carried out. <br />
 			/// </summary>
+			///
 			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum Action 
 			{
@@ -235,40 +250,45 @@ namespace Com.Cumulocity.Client.Model
 		public class Changes 
 		{
 		
-			/// <summary>
-			/// The attribute that was changed.
+			/// <summary> 
+			/// The attribute that was changed. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("attribute")]
 			public string? Attribute { get; set; }
 		
-			/// <summary>
-			/// The type of change that was carried out.
+			/// <summary> 
+			/// The type of change that was carried out. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("changeType")]
 			public ChangeType? PChangeType { get; set; }
 		
-			/// <summary>
-			/// The new value of the object.
+			/// <summary> 
+			/// The new value of the object. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("newValue")]
 			public object? NewValue { get; set; }
 		
-			/// <summary>
-			/// The previous value of the object.
+			/// <summary> 
+			/// The previous value of the object. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("previousValue")]
 			public object? PreviousValue { get; set; }
 		
-			/// <summary>
-			/// The type of the object.
+			/// <summary> 
+			/// The type of the object. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("type")]
 			public string? Type { get; set; }
 		
-			/// <summary>
-			/// The type of change that was carried out.
-			/// [ADDED, REPLACED]
+			/// <summary> 
+			/// The type of change that was carried out. <br />
 			/// </summary>
+			///
 			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum ChangeType 
 			{
@@ -291,21 +311,24 @@ namespace Com.Cumulocity.Client.Model
 		}
 	
 	
-		/// <summary>
-		/// The managed object to which the audit is associated.
+		/// <summary> 
+		/// The managed object to which the audit is associated. <br />
 		/// </summary>
+		///
 		public class Source 
 		{
 		
-			/// <summary>
-			/// Unique identifier of the object.
+			/// <summary> 
+			/// Unique identifier of the object. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("id")]
 			public string? Id { get; set; }
 		
-			/// <summary>
-			/// A URL linking to this resource.
+			/// <summary> 
+			/// A URL linking to this resource. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("self")]
 			public string? Self { get; set; }
 		

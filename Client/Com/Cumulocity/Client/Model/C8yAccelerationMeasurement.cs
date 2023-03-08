@@ -12,15 +12,17 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Measurement of the acceleration sensor.
+	/// <summary> 
+	/// Measurement of the acceleration sensor. <br />
 	/// </summary>
+	///
 	public class C8yAccelerationMeasurement 
 	{
 	
-		/// <summary>
-		/// A measurement is a value with a unit.
+		/// <summary> 
+		/// A measurement is a value with a unit. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("acceleration")]
 		public C8yMeasurementValue? Acceleration { get; set; }
 	

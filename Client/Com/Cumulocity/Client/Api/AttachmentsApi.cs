@@ -20,9 +20,10 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// It is possible to store, retrieve and delete binaries for events. Each event can have one binary attached.
+	/// <summary> 
+	/// It is possible to store, retrieve and delete binaries for events. Each event can have one binary attached. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class AttachmentsApi : AdaptableApi, IAttachmentsApi
 	{

@@ -18,60 +18,67 @@ namespace Com.Cumulocity.Client.Model
 	public class Event 
 	{
 	
-		/// <summary>
-		/// The date and time when the event was created.
+		/// <summary> 
+		/// The date and time when the event was created. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("creationTime")]
 		public System.DateTime? CreationTime { get; set; }
 	
-		/// <summary>
-		/// The date and time when the event was last updated.
+		/// <summary> 
+		/// The date and time when the event was last updated. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("lastUpdated")]
 		public System.DateTime? LastUpdated { get; set; }
 	
-		/// <summary>
-		/// Unique identifier of the event.
+		/// <summary> 
+		/// Unique identifier of the event. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("id")]
 		public string? Id { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// The managed object to which the event is associated.
+		/// <summary> 
+		/// The managed object to which the event is associated. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("source")]
 		public Source? PSource { get; set; }
 	
-		/// <summary>
-		/// Description of the event.
+		/// <summary> 
+		/// Description of the event. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("text")]
 		public string? Text { get; set; }
 	
-		/// <summary>
-		/// The date and time when the event is updated.
+		/// <summary> 
+		/// The date and time when the event is updated. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("time")]
 		public System.DateTime? Time { get; set; }
 	
-		/// <summary>
-		/// Identifies the type of this event.
+		/// <summary> 
+		/// Identifies the type of this event. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("type")]
 		public string? Type { get; set; }
 	
-		/// <summary>
-		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, `"property1": {}`, `"property2": "value"`. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name.
-		/// 
-		/// Review the [Naming conventions of fragments](https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments) as there are characters that can not be used when naming custom fragments.
-		/// 
+		/// <summary> 
+		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <c>"property1": {}</c>, <c>"property2": "value"</c>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name. <br />
+		/// Review the <see href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments" langword="Naming conventions of fragments" /> as there are characters that can not be used when naming custom fragments. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("customFragments")]
 		public Dictionary<string, object> CustomFragments { get; set; } = new Dictionary<string, object>();
 		
@@ -82,21 +89,24 @@ namespace Com.Cumulocity.Client.Model
 			set => CustomFragments[key] = value;
 		}
 	
-		/// <summary>
-		/// The managed object to which the event is associated.
+		/// <summary> 
+		/// The managed object to which the event is associated. <br />
 		/// </summary>
+		///
 		public class Source 
 		{
 		
-			/// <summary>
-			/// Unique identifier of the object.
+			/// <summary> 
+			/// Unique identifier of the object. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("id")]
 			public string? Id { get; set; }
 		
-			/// <summary>
-			/// A URL linking to this resource.
+			/// <summary> 
+			/// A URL linking to this resource. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("self")]
 			public string? Self { get; set; }
 		

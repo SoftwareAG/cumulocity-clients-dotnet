@@ -16,15 +16,17 @@ namespace Com.Cumulocity.Client.Model
 	public class InventoryAssignmentCollection 
 	{
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// An array of inventory assignments.
+		/// <summary> 
+		/// An array of inventory assignments. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("inventoryAssignments")]
 		public List<InventoryAssignment>? InventoryAssignments { get; set; }
 	

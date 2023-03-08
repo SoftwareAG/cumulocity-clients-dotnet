@@ -30,9 +30,10 @@ namespace Com.Cumulocity.Client.Model
 		public class ManagedObject 
 		{
 		
-			/// <summary>
-			/// Unique identifier of the object.
+			/// <summary> 
+			/// Unique identifier of the object. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("id")]
 			public string? Id { get; set; }
 		

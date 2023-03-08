@@ -13,104 +13,124 @@ using Com.Cumulocity.Client.Model;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// The external ID resource represents an individual external ID that can be queried and deleted.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// The external ID resource represents an individual external ID that can be queried and deleted. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public interface IExternalIDsApi
 	{
 	
-		/// <summary>
-		/// Retrieve all external IDs of a specific managed object<br/>
-		/// Retrieve all external IDs of a existing managed object (identified by ID).  <section><h5>Required roles</h5> ROLE_IDENTITY_READ <b>OR</b> owner of the resource <b>OR</b> MANAGED_OBJECT_READ permission on the resource </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Retrieve all external IDs of a specific managed object <br />
+		/// Retrieve all external IDs of a existing managed object (identified by ID). <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_IDENTITY_READ OR owner of the resource OR MANAGED_OBJECT_READ permission on the resource 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and all the external IDs are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and all the external IDs are sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="id">Unique identifier of the managed object.</param>
-		/// <returns></returns>
+		/// <param name="id">Unique identifier of the managed object. <br /></param>
+		///
 		Task<ExternalIds?> GetExternalIds(string id) ;
 		
-		/// <summary>
-		/// Create an external ID<br/>
-		/// Create an external ID for an existing managed object (identified by ID).  <section><h5>Required roles</h5> ROLE_IDENTITY_ADMIN <b>OR</b> owner of the resource <b>OR</b> MANAGED_OBJECT_ADMIN permission on the resource </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Create an external ID <br />
+		/// Create an external ID for an existing managed object (identified by ID). <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_IDENTITY_ADMIN OR owner of the resource OR MANAGED_OBJECT_ADMIN permission on the resource 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 201</term>
-		/// <description>An external ID was created.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 409</term>
-		/// <description>Duplicate – Identity already bound to a different Global ID.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 201 An external ID was created. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 409 Duplicate – Identity already bound to a different Global ID. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="id">Unique identifier of the managed object.</param>
-		/// <returns></returns>
+		/// <param name="id">Unique identifier of the managed object. <br /></param>
+		///
 		Task<ExternalId?> CreateExternalId(ExternalId body, string id) ;
 		
-		/// <summary>
-		/// Retrieve a specific external ID<br/>
-		/// Retrieve a specific external ID of a particular type.  <section><h5>Required roles</h5> ROLE_IDENTITY_READ <b>OR</b> owner of the resource <b>OR</b> MANAGED_OBJECT_READ permission on the resource </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Retrieve a specific external ID <br />
+		/// Retrieve a specific external ID of a particular type. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_IDENTITY_READ OR owner of the resource OR MANAGED_OBJECT_READ permission on the resource 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the external ID is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>External ID not found.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and the external ID is sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 External ID not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with.</param>
-		/// <param name="externalId">The type of the external identifier.</param>
-		/// <returns></returns>
+		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with. <br /></param>
+		/// <param name="externalId">The type of the external identifier. <br /></param>
+		///
 		Task<ExternalId?> GetExternalId(string type, string externalId) ;
 		
-		/// <summary>
-		/// Remove a specific external ID<br/>
-		/// Remove a specific external ID of a particular type.  <section><h5>Required roles</h5> ROLE_IDENTITY_ADMIN <b>OR</b> owner of the resource <b>OR</b> MANAGED_OBJECT_ADMIN permission on the resource </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Remove a specific external ID <br />
+		/// Remove a specific external ID of a particular type. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_IDENTITY_ADMIN OR owner of the resource OR MANAGED_OBJECT_ADMIN permission on the resource 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>An external ID was deleted.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>External ID not found.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 204 An external ID was deleted. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 External ID not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with.</param>
-		/// <param name="externalId">The type of the external identifier.</param>
+		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with. <br /></param>
+		/// <param name="externalId">The type of the external identifier. <br /></param>
+		///
 		Task<System.IO.Stream> DeleteExternalId(string type, string externalId) ;
 	}
 	#nullable disable

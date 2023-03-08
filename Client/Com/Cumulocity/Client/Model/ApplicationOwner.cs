@@ -12,15 +12,17 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Reference to the tenant owning this application. The default value is a reference to the current tenant.
+	/// <summary> 
+	/// Reference to the tenant owning this application. The default value is a reference to the current tenant. <br />
 	/// </summary>
+	///
 	public class ApplicationOwner 
 	{
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
@@ -30,9 +32,10 @@ namespace Com.Cumulocity.Client.Model
 		public class Tenant 
 		{
 		
-			/// <summary>
-			/// The tenant ID.
+			/// <summary> 
+			/// The tenant ID. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("id")]
 			public string? Id { get; set; }
 		

@@ -13,24 +13,27 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// An inventory role reference.
+	/// <summary> 
+	/// An inventory role reference. <br />
 	/// </summary>
+	///
 	public class InventoryAssignmentReference 
 	{
 	
-		/// <summary>
-		/// An array of roles that are assigned to the managed object for the user.
+		/// <summary> 
+		/// An array of roles that are assigned to the managed object for the user. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("roles")]
 		public List<Roles>? PRoles { get; set; }
 	
 		public class Roles 
 		{
 		
-			/// <summary>
-			/// A unique identifier for this inventory role.
+			/// <summary> 
+			/// A unique identifier for this inventory role. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("id")]
 			public int? Id { get; set; }
 		

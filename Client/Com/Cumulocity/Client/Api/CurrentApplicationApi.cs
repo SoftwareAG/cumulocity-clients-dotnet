@@ -20,11 +20,10 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods to retrieve and update the current application and to retrieve its subscribers.
-	/// It is the authenticated microservice user's application.
-	/// 
+	/// <summary> 
+	/// API methods to retrieve and update the current application and to retrieve its subscribers.It is the authenticated microservice user's application. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class CurrentApplicationApi : AdaptableApi, ICurrentApplicationApi
 	{

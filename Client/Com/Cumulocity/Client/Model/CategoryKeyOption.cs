@@ -15,9 +15,10 @@ namespace Com.Cumulocity.Client.Model
 	public class CategoryKeyOption 
 	{
 	
-		/// <summary>
-		/// The value of this option.
+		/// <summary> 
+		/// The value of this option. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("value")]
 		public string? Value { get; set; }
 	

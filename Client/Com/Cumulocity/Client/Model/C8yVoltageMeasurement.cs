@@ -12,15 +12,17 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A voltage sensor measures the voltage difference between two points in an electric circuit.
+	/// <summary> 
+	/// A voltage sensor measures the voltage difference between two points in an electric circuit. <br />
 	/// </summary>
+	///
 	public class C8yVoltageMeasurement 
 	{
 	
-		/// <summary>
-		/// A measurement is a value with a unit.
+		/// <summary> 
+		/// A measurement is a value with a unit. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("voltage")]
 		public C8yMeasurementValue? Voltage { get; set; }
 	

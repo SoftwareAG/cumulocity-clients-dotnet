@@ -13,156 +13,208 @@ using Com.Cumulocity.Client.Model;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// Methods to create, retrieve and delete notification subscriptions.
+	/// <summary> 
+	/// Methods to create, retrieve and delete notification subscriptions. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public interface ISubscriptionsApi
 	{
 	
-		/// <summary>
-		/// Retrieve all subscriptions<br/>
-		/// Retrieve all subscriptions on your tenant, or a specific subset based on queries.  <section><h5>Required roles</h5> ROLE_NOTIFICATION_2_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Retrieve all subscriptions <br />
+		/// Retrieve all subscriptions on your tenant, or a specific subset based on queries. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_NOTIFICATION_2_ADMIN 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and all subscriptions are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and all subscriptions are sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="context">The context to which the subscription is associated.</param>
-		/// <param name="currentPage">The current page of the paginated results.</param>
-		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
-		/// <param name="source">The managed object ID to which the subscription is associated.</param>
-		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
-		/// <returns></returns>
+		/// <param name="context">The context to which the subscription is associated. <br /></param>
+		/// <param name="currentPage">The current page of the paginated results. <br /></param>
+		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
+		/// <param name="source">The managed object ID to which the subscription is associated. <br /></param>
+		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		///
 		Task<NotificationSubscriptionCollection?> GetSubscriptions(string? context = null, int? currentPage = null, int? pageSize = null, string? source = null, bool? withTotalPages = null) ;
 		
-		/// <summary>
-		/// Create a subscription<br/>
-		/// Create a new subscription, for example, a subscription that forwards measurements and events of a specific type for a given device.  In general, each subscription may consist of:  *  The managed object to which the subscription is associated. *  The context under which the subscription is to be processed. *  The name of the subscription. *  The applicable filter criteria. *  The option to only include specific custom fragments in the forwarded data.  <section><h5>Required roles</h5> ROLE_NOTIFICATION_2_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Create a subscription <br />
+		/// Create a new subscription, for example, a subscription that forwards measurements and events of a specific type for a given device. <br />
+		/// In general, each subscription may consist of: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 201</term>
-		/// <description>A notification subscription was created.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Managed object not found.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 409</term>
-		/// <description>Duplicated subscription.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 422</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>The managed object to which the subscription is associated. <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>The context under which the subscription is to be processed. <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>The name of the subscription. <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>The applicable filter criteria. <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>The option to only include specific custom fragments in the forwarded data. <br />
+		/// 		</description>
+		/// 	</item>
+		/// </list>
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_NOTIFICATION_2_ADMIN 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
+		/// <list type="bullet">
+		/// 	<item>
+		/// 		<description>HTTP 201 A notification subscription was created. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 Managed object not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 409 Duplicated subscription. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		/// <returns></returns>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		///
 		Task<NotificationSubscription?> CreateSubscription(NotificationSubscription body, string? xCumulocityProcessingMode = null) ;
 		
-		/// <summary>
-		/// Remove subscriptions by source<br/>
-		/// Remove subscriptions by source and context.  >**&#9432; Info:** The request will result in an error if there are no query parameters. The `source` parameter is optional only if the `context` parameter equals `tenant`.  <section><h5>Required roles</h5> ROLE_NOTIFICATION_2_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Remove subscriptions by source <br />
+		/// Remove subscriptions by source and context. <br />
+		/// ⓘ Info: The request will result in an error if there are no query parameters. The <c>source</c> parameter is optional only if the <c>context</c> parameter equals <c>tenant</c>. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_NOTIFICATION_2_ADMIN 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>A collection of subscriptions was removed.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 422</term>
-		/// <description>Unprocessable Entity – error in query parameters</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 204 A collection of subscriptions was removed. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 422 Unprocessable Entity – error in query parameters <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		/// <param name="context">The context to which the subscription is associated. > **&#9432; Info:** If the value is `mo`, then `source` must also be provided in the query. </param>
-		/// <param name="source">The managed object ID to which the subscription is associated.</param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="context">The context to which the subscription is associated. <br />ⓘ Info: If the value is <c>mo</c>, then <c>source</c> must also be provided in the query. <br /></param>
+		/// <param name="source">The managed object ID to which the subscription is associated. <br /></param>
+		///
 		Task<System.IO.Stream> DeleteSubscriptions(string? xCumulocityProcessingMode = null, string? context = null, string? source = null) ;
 		
-		/// <summary>
-		/// Retrieve a specific subscription<br/>
-		/// Retrieve a specific subscription by a given ID.  <section><h5>Required roles</h5> ROLE_NOTIFICATION_2_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Retrieve a specific subscription <br />
+		/// Retrieve a specific subscription by a given ID. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_NOTIFICATION_2_ADMIN 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the subscription is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Subscription not found.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and the subscription is sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 Subscription not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="id">Unique identifier of the notification subscription.</param>
-		/// <returns></returns>
+		/// <param name="id">Unique identifier of the notification subscription. <br /></param>
+		///
 		Task<NotificationSubscription?> GetSubscription(string id) ;
 		
-		/// <summary>
-		/// Remove a specific subscription<br/>
-		/// Remove a specific subscription by a given ID.  <section><h5>Required roles</h5> ROLE_NOTIFICATION_2_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Remove a specific subscription <br />
+		/// Remove a specific subscription by a given ID. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_NOTIFICATION_2_ADMIN 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>A subscription was removed.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Subscription not found.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 204 A subscription was removed. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 Subscription not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="id">Unique identifier of the notification subscription.</param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
+		/// <param name="id">Unique identifier of the notification subscription. <br /></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		///
 		Task<System.IO.Stream> DeleteSubscription(string id, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable

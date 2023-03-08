@@ -12,27 +12,17 @@ using Com.Cumulocity.Client.Model;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// # Real-time operations
-	/// 
-	/// Real-time notification services of Cumulocity IoT have their own subscription channel name format and URL. The real-time notifications are available for [Alarms](#tag/Alarm-notification-API), [Device control](#tag/Device-control-notification-API), [Events](#tag/Event-notification-API), [Inventory](#tag/Inventory-notification-API) and [Measurements](#tag/Measurement-notification-API).
-	/// 
-	/// Note that when using long-polling, all POST requests must contain the Accept header, otherwise an empty response body will be returned.
-	/// All requests are sent to the <kbd>/notification/realtime</kbd> endpoint.
-	/// 
-	/// > **&#9432; Info:** The long-polling interface is designed as a mechanism for custom applications to poll infrequent events from Cumulocity IoT. The long-polling interface is not designed as a mechanism to stream large data volumes (>100kB/sec) or frequent data (>50 events/sec) out of Cumulocity IoT. The usage of long-polling is not supported for such use cases.
-	/// 
-	/// ## Handshake
-	/// 
-	/// A real-time notifications client initiates the connection negotiation by sending a message to the `/meta/handshake` channel. In response, the client receives a `clientId` which identifies a conversation and must be passed in every non-handshake request.
-	/// 
-	/// > **&#9432; Info:** The number of parallel connections that can be opened at the same time by a single user is limited. After exceeding this limit when a new connection is created, the oldest one will be closed and the newly created one will be added in its place. This limit is configurable and managed per installation. Its default value is 10 connections per user, subscription channel and server node.
-	/// 
-	/// When using WebSockets, a property `ext` containing an authentication object must be sent. In case of basic authentication, the token is used with Base64 encoded credentials. In case of OAuth authentication, the request must have the cookie with the authorization name, holding the access token. Moreover, the XSRF token must be forwarded as part of the handshake message.
-	/// 
-	/// ### Request example
-	/// 
-	/// ```http
+	/// <summary> 
+	/// <br /> Real-time operations <br />
+	/// Real-time notification services of Cumulocity IoT have their own subscription channel name format and URL. The real-time notifications are available for <see href="#tag/Alarm-notification-API" langword="Alarms" />, <see href="#tag/Device-control-notification-API" langword="Device control" />, <see href="#tag/Event-notification-API" langword="Events" />, <see href="#tag/Inventory-notification-API" langword="Inventory" /> and <see href="#tag/Measurement-notification-API" langword="Measurements" />. <br />
+	/// Note that when using long-polling, all POST requests must contain the Accept header, otherwise an empty response body will be returned.All requests are sent to the <kbd>/notification/realtime</kbd> endpoint. <br />
+	/// ⓘ Info: The long-polling interface is designed as a mechanism for custom applications to poll infrequent events from Cumulocity IoT. The long-polling interface is not designed as a mechanism to stream large data volumes (>100kB/sec) or frequent data (>50 events/sec) out of Cumulocity IoT. The usage of long-polling is not supported for such use cases. <br />
+	/// <br /> Handshake <br />
+	/// A real-time notifications client initiates the connection negotiation by sending a message to the <c>/meta/handshake</c> channel. In response, the client receives a <c>clientId</c> which identifies a conversation and must be passed in every non-handshake request. <br />
+	/// ⓘ Info: The number of parallel connections that can be opened at the same time by a single user is limited. After exceeding this limit when a new connection is created, the oldest one will be closed and the newly created one will be added in its place. This limit is configurable and managed per installation. Its default value is 10 connections per user, subscription channel and server node. <br />
+	/// When using WebSockets, a property <c>ext</c> containing an authentication object must be sent. In case of basic authentication, the token is used with Base64 encoded credentials. In case of OAuth authentication, the request must have the cookie with the authorization name, holding the access token. Moreover, the XSRF token must be forwarded as part of the handshake message. <br />
+	/// <br /> Request example <br />
+	/// <![CDATA[
 	/// POST /notification/realtime
 	/// Authorization: <AUTHORIZATION>
 	/// Content-Type: application/json
@@ -43,13 +33,10 @@ namespace Com.Cumulocity.Client.Api
 	///     "version": "1.0"
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ### Response example
-	/// 
-	/// A successful response looks like:
-	/// 
-	/// ```json
+	/// ]]>
+	/// <br /> Response example <br />
+	/// A successful response looks like: <br />
+	/// <![CDATA[
 	/// [
 	///   {
 	///     "channel": "/meta/handshake",
@@ -64,11 +51,9 @@ namespace Com.Cumulocity.Client.Api
 	///     "version": "1.0"
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// When an error occurs, the response looks like:
-	/// 
-	/// ```json
+	/// ]]>
+	/// When an error occurs, the response looks like: <br />
+	/// <![CDATA[
 	/// [
 	///   {
 	///     "channel": "/meta/handshake",
@@ -76,17 +61,12 @@ namespace Com.Cumulocity.Client.Api
 	///     "successful": false
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ## Subscribe
-	/// 
-	/// A notification client can send subscribe messages and specify the desired channel to receive output messages from the Cumulocity IoT server. The client will receive the messages in succeeding connect requests.
-	/// 
-	/// Each REST API that uses the real-time notification service has its own format for channel names. See [Device control](#tag/Device-control-notification-API) for more details.
-	/// 
-	/// ### Request example
-	/// 
-	/// ```http
+	/// ]]>
+	/// <br /> Subscribe <br />
+	/// A notification client can send subscribe messages and specify the desired channel to receive output messages from the Cumulocity IoT server. The client will receive the messages in succeeding connect requests. <br />
+	/// Each REST API that uses the real-time notification service has its own format for channel names. See <see href="#tag/Device-control-notification-API" langword="Device control" /> for more details. <br />
+	/// <br /> Request example <br />
+	/// <![CDATA[
 	/// POST /notification/realtime
 	/// Authorization: <AUTHORIZATION>
 	/// Content-Type: application/json
@@ -98,11 +78,9 @@ namespace Com.Cumulocity.Client.Api
 	///     "subscription": "/alarms/<DEVICE_ID>"
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ### Response example
-	/// 
-	/// ```json
+	/// ]]>
+	/// <br /> Response example <br />
+	/// <![CDATA[
 	/// [
 	///   {
 	///     "channel": "/meta/subscribe",
@@ -111,17 +89,12 @@ namespace Com.Cumulocity.Client.Api
 	///     "successful": true
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ## Unsubscribe
-	/// 
-	/// To stop receiving notifications from a channel, send a message to the channel `/meta/unsubscribe` in the same format as used during subscription.
-	/// 
-	/// ### Request example
-	/// 
-	/// Example Request:
-	/// 
-	/// ```http
+	/// ]]>
+	/// <br /> Unsubscribe <br />
+	/// To stop receiving notifications from a channel, send a message to the channel <c>/meta/unsubscribe</c> in the same format as used during subscription. <br />
+	/// <br /> Request example <br />
+	/// Example Request: <br />
+	/// <![CDATA[
 	/// POST /notification/realtime
 	/// Authorization: <AUTHORIZATION>
 	/// Content-Type: application/json
@@ -133,11 +106,9 @@ namespace Com.Cumulocity.Client.Api
 	///     "subscription": "/alarms/<DEVICE_ID>"
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ### Response example
-	/// 
-	/// ```json
+	/// ]]>
+	/// <br /> Response example <br />
+	/// <![CDATA[
 	/// [
 	///   {
 	///     "channel": "/meta/unsubscribe",
@@ -145,15 +116,11 @@ namespace Com.Cumulocity.Client.Api
 	///     "successful": true
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ## Connect
-	/// 
-	/// After a Bayeux client has discovered the server's capabilities with a handshake exchange and subscribed to the desired channels, a connection is established by sending a message to the `/meta/connect` channel. This message may be transported over any of the transports returned by the server in the handshake response. Requests to the connect channel must be immediately repeated after every response to receive the next batch of notifications.
-	/// 
-	/// ### Request example
-	/// 
-	/// ```http
+	/// ]]>
+	/// <br /> Connect <br />
+	/// After a Bayeux client has discovered the server's capabilities with a handshake exchange and subscribed to the desired channels, a connection is established by sending a message to the <c>/meta/connect</c> channel. This message may be transported over any of the transports returned by the server in the handshake response. Requests to the connect channel must be immediately repeated after every response to receive the next batch of notifications. <br />
+	/// <br /> Request example <br />
+	/// <![CDATA[
 	/// POST /notification/realtime
 	/// Authorization: <AUTHORIZATION>
 	/// Content-Type: application/json
@@ -169,11 +136,9 @@ namespace Com.Cumulocity.Client.Api
 	///     }
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ### Response example
-	/// 
-	/// ```json
+	/// ]]>
+	/// <br /> Response example <br />
+	/// <![CDATA[
 	/// [
 	///   {
 	///     "channel": "/meta/connect",
@@ -185,15 +150,11 @@ namespace Com.Cumulocity.Client.Api
 	///     "successful": true
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ## Disconnect
-	/// 
-	/// To stop receiving notifications from all channels and close the conversation, send a message to the `/meta/disconnect` channel.
-	/// 
-	/// ### Request example
-	/// 
-	/// ```http
+	/// ]]>
+	/// <br /> Disconnect <br />
+	/// To stop receiving notifications from all channels and close the conversation, send a message to the <c>/meta/disconnect</c> channel. <br />
+	/// <br /> Request example <br />
+	/// <![CDATA[
 	/// POST /notification/realtime
 	/// Authorization: <AUTHORIZATION>
 	/// Content-Type: application/json
@@ -204,46 +165,45 @@ namespace Com.Cumulocity.Client.Api
 	///     "clientId": "69wzith4teyensmz6zyk516um4yum0mvp"
 	///   }
 	/// ]
-	/// ```
-	/// 
-	/// ### Response example
-	/// 
-	/// ```json
+	/// ]]>
+	/// <br /> Response example <br />
+	/// <![CDATA[
 	/// [
 	///   {
 	///     "channel": "/meta/disconnect",
 	///     "successful": true
 	///   }
 	/// ]
-	/// ```
-	/// 
+	/// ]]>
 	/// </summary>
+	///
 	#nullable enable
 	public interface IRealtimeNotificationApi
 	{
 	
-		/// <summary>
-		/// Responsive communication<br/>
-		/// The Real-time notification API enables responsive communication from Cumulocity IoT over restricted networks towards clients such as web browser and mobile devices. All clients subscribe to so-called channels to receive messages. These channels are filled by Cumulocity IoT with the output of [Operations](#tag/Operations). In addition, particular system channels are used for the initial handshake with clients, subscription to channels, removal from channels and connection. The [Bayeux protocol](https://docs.cometd.org/current/reference/#_concepts_bayeux_protocol) over HTTPS or WSS is used as communication mechanism.
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Responsive communication <br />
+		/// The Real-time notification API enables responsive communication from Cumulocity IoT over restricted networks towards clients such as web browser and mobile devices. All clients subscribe to so-called channels to receive messages. These channels are filled by Cumulocity IoT with the output of <see href="#tag/Operations" langword="Operations" />. In addition, particular system channels are used for the initial handshake with clients, subscription to channels, removal from channels and connection. The <see href="https://docs.cometd.org/current/reference/#_concepts_bayeux_protocol" langword="Bayeux protocol" /> over HTTPS or WSS is used as communication mechanism. <br />
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The operation was completed and the result is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 400</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The operation was completed and the result is sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 400 Unprocessable Entity – invalid payload. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		/// <returns></returns>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		///
 		Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body, string? xCumulocityProcessingMode = null) ;
 	}
 	#nullable disable

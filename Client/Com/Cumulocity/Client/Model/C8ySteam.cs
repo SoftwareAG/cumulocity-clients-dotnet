@@ -12,9 +12,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A type of measurement fragment.
+	/// <summary> 
+	/// A type of measurement fragment. <br />
 	/// </summary>
+	///
 	public class C8ySteam 
 	{
 	
@@ -24,15 +25,17 @@ namespace Com.Cumulocity.Client.Model
 		public class Temperature 
 		{
 		
-			/// <summary>
-			/// The unit of the measurement.
+			/// <summary> 
+			/// The unit of the measurement. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("unit")]
 			public string? Unit { get; set; }
 		
-			/// <summary>
-			/// The value of the individual measurement.
+			/// <summary> 
+			/// The value of the individual measurement. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("value")]
 			public decimal? Value { get; set; }
 		

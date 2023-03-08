@@ -12,15 +12,17 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// The signed verification code to prove the user's possession of the certificate.
+	/// <summary> 
+	/// The signed verification code to prove the user's possession of the certificate. <br />
 	/// </summary>
+	///
 	public class UploadedTrustedCertSignedVerificationCode 
 	{
 	
-		/// <summary>
-		/// A signed verification code that proves the right to use the certificate.
+		/// <summary> 
+		/// A signed verification code that proves the right to use the certificate. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("proofOfPossessionSignedVerificationCode")]
 		public string? ProofOfPossessionSignedVerificationCode { get; set; }
 	

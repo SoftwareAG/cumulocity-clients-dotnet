@@ -15,21 +15,24 @@ namespace Com.Cumulocity.Client.Model
 	public class NotificationTokenClaims 
 	{
 	
-		/// <summary>
-		/// The token expiration duration.
+		/// <summary> 
+		/// The token expiration duration. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("expiresInMinutes")]
 		public int? ExpiresInMinutes { get; set; }
 	
-		/// <summary>
-		/// The subscriber name which the client wishes to be identified with.
+		/// <summary> 
+		/// The subscriber name which the client wishes to be identified with. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("subscriber")]
 		public string? Subscriber { get; set; }
 	
-		/// <summary>
-		/// The subscription name. This value must match the same that was used when the subscription was created.
+		/// <summary> 
+		/// The subscription name. This value must match the same that was used when the subscription was created. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("subscription")]
 		public string? Subscription { get; set; }
 	

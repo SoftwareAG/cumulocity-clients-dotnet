@@ -15,9 +15,10 @@ namespace Com.Cumulocity.Client.Model
 	public class SubscribedApplicationReference 
 	{
 	
-		/// <summary>
-		/// The application to be subscribed to.
+		/// <summary> 
+		/// The application to be subscribed to. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("application")]
 		public Application? PApplication { get; set; }
 	
@@ -30,15 +31,17 @@ namespace Com.Cumulocity.Client.Model
 			this.PApplication = application;
 		}
 	
-		/// <summary>
-		/// The application to be subscribed to.
+		/// <summary> 
+		/// The application to be subscribed to. <br />
 		/// </summary>
+		///
 		public class Application 
 		{
 		
-			/// <summary>
-			/// A URL linking to this resource.
+			/// <summary> 
+			/// A URL linking to this resource. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("self")]
 			public string? Self { get; set; }
 		

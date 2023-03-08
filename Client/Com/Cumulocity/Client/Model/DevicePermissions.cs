@@ -12,9 +12,10 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// An object with a list of the user's device permissions.
+	/// <summary> 
+	/// An object with a list of the user's device permissions. <br />
 	/// </summary>
+	///
 	public class DevicePermissions 
 	{
 	

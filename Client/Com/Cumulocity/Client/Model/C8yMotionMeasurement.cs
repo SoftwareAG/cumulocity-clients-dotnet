@@ -12,27 +12,31 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// Measurement of the motion sensor.
+	/// <summary> 
+	/// Measurement of the motion sensor. <br />
 	/// </summary>
+	///
 	public class C8yMotionMeasurement 
 	{
 	
-		/// <summary>
-		/// Boolean value indicating if motion has been detected (non-zero value) or not (zero value).
+		/// <summary> 
+		/// Boolean value indicating if motion has been detected (non-zero value) or not (zero value). <br />
 		/// </summary>
+		///
 		[JsonPropertyName("motionDetected")]
 		public MotionDetected? PMotionDetected { get; set; }
 	
-		/// <summary>
-		/// A measurement is a value with a unit.
+		/// <summary> 
+		/// A measurement is a value with a unit. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("speed")]
 		public C8yMeasurementValue? Speed { get; set; }
 	
-		/// <summary>
-		/// Boolean value indicating if motion has been detected (non-zero value) or not (zero value).
+		/// <summary> 
+		/// Boolean value indicating if motion has been detected (non-zero value) or not (zero value). <br />
 		/// </summary>
+		///
 		public class MotionDetected 
 		{
 		

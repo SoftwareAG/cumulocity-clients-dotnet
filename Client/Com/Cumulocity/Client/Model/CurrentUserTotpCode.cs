@@ -15,9 +15,10 @@ namespace Com.Cumulocity.Client.Model
 	public class CurrentUserTotpCode 
 	{
 	
-		/// <summary>
-		/// Two-factor authentication code entered by the user to log in to the platform.
+		/// <summary> 
+		/// Two-factor authentication code entered by the user to log in to the platform. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("code")]
 		public string? Code { get; set; }
 	

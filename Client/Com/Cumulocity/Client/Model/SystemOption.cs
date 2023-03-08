@@ -12,27 +12,31 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A tuple storing tenant configuration.
+	/// <summary> 
+	/// A tuple storing tenant configuration. <br />
 	/// </summary>
+	///
 	public class SystemOption 
 	{
 	
-		/// <summary>
-		/// Name of the system option category.
+		/// <summary> 
+		/// Name of the system option category. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("category")]
 		public string? Category { get; set; }
 	
-		/// <summary>
-		/// A unique identifier for this system option.
+		/// <summary> 
+		/// A unique identifier for this system option. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("key")]
 		public string? Key { get; set; }
 	
-		/// <summary>
-		/// Value of this system option.
+		/// <summary> 
+		/// Value of this system option. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("value")]
 		public string? Value { get; set; }
 	

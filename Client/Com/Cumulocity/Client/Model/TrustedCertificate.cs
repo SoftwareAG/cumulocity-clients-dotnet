@@ -16,88 +16,101 @@ namespace Com.Cumulocity.Client.Model
 	public class TrustedCertificate 
 	{
 	
-		/// <summary>
-		/// Algorithm used to decode/encode the certificate.
+		/// <summary> 
+		/// Algorithm used to decode/encode the certificate. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("algorithmName")]
 		public string? AlgorithmName { get; set; }
 	
-		/// <summary>
-		/// Indicates whether the automatic device registration is enabled or not.
+		/// <summary> 
+		/// Indicates whether the automatic device registration is enabled or not. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("autoRegistrationEnabled")]
 		public bool? AutoRegistrationEnabled { get; set; }
 	
-		/// <summary>
-		/// Trusted certificate in PEM format.
+		/// <summary> 
+		/// Trusted certificate in PEM format. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("certInPemFormat")]
 		public string? CertInPemFormat { get; set; }
 	
-		/// <summary>
-		/// Unique identifier of the trusted certificate.
+		/// <summary> 
+		/// Unique identifier of the trusted certificate. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("fingerprint")]
 		public string? Fingerprint { get; set; }
 	
-		/// <summary>
-		/// The name of the organization which signed the certificate.
+		/// <summary> 
+		/// The name of the organization which signed the certificate. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("issuer")]
 		public string? Issuer { get; set; }
 	
-		/// <summary>
-		/// Name of the certificate.
+		/// <summary> 
+		/// Name of the certificate. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("name")]
 		public string? Name { get; set; }
 	
-		/// <summary>
-		/// The end date and time of the certificate's validity.
+		/// <summary> 
+		/// The end date and time of the certificate's validity. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("notAfter")]
 		public System.DateTime? NotAfter { get; set; }
 	
-		/// <summary>
-		/// The start date and time of the certificate's validity.
+		/// <summary> 
+		/// The start date and time of the certificate's validity. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("notBefore")]
 		public System.DateTime? NotBefore { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	
-		/// <summary>
-		/// The certificate's serial number.
+		/// <summary> 
+		/// The certificate's serial number. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("serialNumber")]
 		public string? SerialNumber { get; set; }
 	
-		/// <summary>
-		/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform.
+		/// <summary> 
+		/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("status")]
 		public Status? PStatus { get; set; }
 	
-		/// <summary>
-		/// Name of the organization to which the certificate belongs.
+		/// <summary> 
+		/// Name of the organization to which the certificate belongs. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("subject")]
 		public string? Subject { get; set; }
 	
-		/// <summary>
-		/// Version of the X.509 certificate standard.
+		/// <summary> 
+		/// Version of the X.509 certificate standard. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("version")]
 		public int? Version { get; set; }
 	
-		/// <summary>
-		/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform.
-		/// [ENABLED, DISABLED]
+		/// <summary> 
+		/// Indicates if the certificate is active and can be used by the device to establish a connection to the Cumulocity IoT platform. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Status 
 		{

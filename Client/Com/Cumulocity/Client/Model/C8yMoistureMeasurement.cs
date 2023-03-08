@@ -12,18 +12,18 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// There are three main measurements of moisture; absolute, relative and specific.
-	/// 
-	/// Absolute moisture is the absolute water content of a substance. Relative moisture, expressed as a percentage, measures the current absolute moisture relative to the maximum for that temperature. Specific humidity is a ratio of the water vapour content of the mixture to the total substance content on a mass basis.
-	/// 
+	/// <summary> 
+	/// There are three main measurements of moisture; absolute, relative and specific. <br />
+	/// Absolute moisture is the absolute water content of a substance. Relative moisture, expressed as a percentage, measures the current absolute moisture relative to the maximum for that temperature. Specific humidity is a ratio of the water vapour content of the mixture to the total substance content on a mass basis. <br />
 	/// </summary>
+	///
 	public class C8yMoistureMeasurement 
 	{
 	
-		/// <summary>
-		/// A measurement is a value with a unit.
+		/// <summary> 
+		/// A measurement is a value with a unit. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("moisture")]
 		public C8yMeasurementValue? Moisture { get; set; }
 	

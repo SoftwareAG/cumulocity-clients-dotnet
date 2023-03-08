@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// The current user is the user that is currently authenticated with Cumulocity IoT for the API calls.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// The current user is the user that is currently authenticated with Cumulocity IoT for the API calls. <br />
+	/// ⓘ Info: The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class CurrentUserApi : AdaptableApi, ICurrentUserApi
 	{

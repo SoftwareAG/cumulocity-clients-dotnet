@@ -15,15 +15,17 @@ namespace Com.Cumulocity.Client.Model
 	public class CurrentUserTotpSecret 
 	{
 	
-		/// <summary>
-		/// Secret used by two-factor authentication applications to generate the TFA codes.
+		/// <summary> 
+		/// Secret used by two-factor authentication applications to generate the TFA codes. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("rawSecret")]
 		public string? RawSecret { get; set; }
 	
-		/// <summary>
-		/// URL used to set the two-factor authentication secret for the TFA application.
+		/// <summary> 
+		/// URL used to set the two-factor authentication secret for the TFA application. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("secretQrUrl")]
 		public string? SecretQrUrl { get; set; }
 	

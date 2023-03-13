@@ -2,7 +2,7 @@
 /// PlatformApiResource.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -15,9 +15,10 @@ namespace Com.Cumulocity.Client.Model
 	public class PlatformApiResource<TCustomProperties, TAlarm, TAuditRecord, TManagedObject, TEvent, TMeasurement> where TCustomProperties : CustomProperties where TAlarm : Alarm where TManagedObject : ManagedObject where TAuditRecord : AuditRecord where TEvent : Event where TMeasurement : Measurement
 	{
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	

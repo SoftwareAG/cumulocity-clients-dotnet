@@ -2,7 +2,7 @@
 /// InventoryRolePermission.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -13,40 +13,45 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A permission object of an inventory role.
+	/// <summary> 
+	/// A permission object of an inventory role. <br />
 	/// </summary>
+	///
 	public class InventoryRolePermission 
 	{
 	
-		/// <summary>
-		/// A unique identifier for this permission.
+		/// <summary> 
+		/// A unique identifier for this permission. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("id")]
 		public int? Id { get; set; }
 	
-		/// <summary>
-		/// The permission level.
+		/// <summary> 
+		/// The permission level. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("permission")]
 		public Permission? PPermission { get; set; }
 	
-		/// <summary>
-		/// The scope of this permission.
+		/// <summary> 
+		/// The scope of this permission. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("scope")]
 		public Scope? PScope { get; set; }
 	
-		/// <summary>
-		/// The type of this permission. It can be the name of a fragment, for example, `c8y_Restart`.
+		/// <summary> 
+		/// The type of this permission. It can be the name of a fragment, for example, <c>c8y_Restart</c>. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("type")]
 		public string? Type { get; set; }
 	
-		/// <summary>
-		/// The permission level.
-		/// [ADMIN, READ, *]
+		/// <summary> 
+		/// The permission level. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Permission 
 		{
@@ -58,10 +63,10 @@ namespace Com.Cumulocity.Client.Model
 			ALL
 		}
 	
-		/// <summary>
-		/// The scope of this permission.
-		/// [ALARM, AUDIT, EVENT, MANAGED_OBJECT, MEASUREMENT, OPERATION, *]
+		/// <summary> 
+		/// The scope of this permission. <br />
 		/// </summary>
+		///
 		[JsonConverter(typeof(EnumConverterFactory))]
 		public enum Scope 
 		{

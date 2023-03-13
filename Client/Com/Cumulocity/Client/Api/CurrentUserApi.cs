@@ -2,7 +2,7 @@
 /// CurrentUserApi.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// The current user is the user that is currently authenticated with Cumulocity IoT for the API calls.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// The current user is the user that is currently authenticated with Cumulocity IoT for the API calls. <br />
+	/// ⓘ Info: The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class CurrentUserApi : AdaptableApi, ICurrentUserApi
 	{

@@ -2,7 +2,7 @@
 /// OperationsApi.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods to create, retrieve, update and delete operations in Cumulocity IoT.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// API methods to create, retrieve, update and delete operations in Cumulocity IoT. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class OperationsApi : AdaptableApi, IOperationsApi
 	{
@@ -40,24 +39,18 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/devicecontrol/operations";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"agentId", agentId},
-				{"bulkOperationId", bulkOperationId},
-				{"currentPage", currentPage},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"deviceId", deviceId},
-				{"fragmentType", fragmentType},
-				{"pageSize", pageSize},
-				{"revert", revert},
-				{"status", status},
-				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("agentId", agentId);
+			queryString.AddIfRequired("bulkOperationId", bulkOperationId);
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("deviceId", deviceId);
+			queryString.AddIfRequired("fragmentType", fragmentType);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("revert", revert);
+			queryString.AddIfRequired("status", status);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -107,17 +100,11 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/devicecontrol/operations";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"agentId", agentId},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"deviceId", deviceId},
-				{"status", status}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("agentId", agentId);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("deviceId", deviceId);
+			queryString.AddIfRequired("status", status);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

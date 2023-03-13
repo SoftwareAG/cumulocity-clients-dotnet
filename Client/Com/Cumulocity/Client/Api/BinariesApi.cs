@@ -2,7 +2,7 @@
 /// BinariesApi.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// Managed objects can perform operations to store, retrieve and delete binaries. One binary can store only one file. Together with the binary, a managed object is created which acts as a metadata information for the binary.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// Managed objects can perform operations to store, retrieve and delete binaries. One binary can store only one file. Together with the binary, a managed object is created which acts as a metadata information for the binary. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class BinariesApi : AdaptableApi, IBinariesApi
 	{
@@ -40,22 +39,16 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/inventory/binaries";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"childAdditionId", childAdditionId},
-				{"childAssetId", childAssetId},
-				{"childDeviceId", childDeviceId},
-				{"currentPage", currentPage},
-				{"ids", ids},
-				{"owner", owner},
-				{"pageSize", pageSize},
-				{"text", text},
-				{"type", type},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("childAdditionId", childAdditionId);
+			queryString.AddIfRequired("childAssetId", childAssetId);
+			queryString.AddIfRequired("childDeviceId", childDeviceId);
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("ids", ids, false);
+			queryString.AddIfRequired("owner", owner);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("text", text);
+			queryString.AddIfRequired("type", type);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

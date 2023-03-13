@@ -2,7 +2,7 @@
 /// CustomProperties.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -14,23 +14,25 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// An object with a list of custom properties.
+	/// <summary> 
+	/// An object with a list of custom properties. <br />
 	/// </summary>
+	///
 	[JsonConverter(typeof(CustomPropertiesJsonConverter<CustomProperties>))]
 	public class CustomProperties 
 	{
 	
-		/// <summary>
-		/// The preferred language to be used in the platform.
+		/// <summary> 
+		/// The preferred language to be used in the platform. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("language")]
 		public string? Language { get; set; }
 	
-		/// <summary>
-		/// It is possible to add an arbitrary number of custom properties as a list of key-value pairs, for example, `"property": "value"`.
-		/// 
+		/// <summary> 
+		/// It is possible to add an arbitrary number of custom properties as a list of key-value pairs, for example, <c>"property": "value"</c>. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("customProperties")]
 		public Dictionary<string, object> PCustomProperties { get; set; } = new Dictionary<string, object>();
 		

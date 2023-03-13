@@ -2,7 +2,7 @@
 /// BulkNewDeviceRequest.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -17,61 +17,69 @@ namespace Com.Cumulocity.Client.Model
 	public class BulkNewDeviceRequest 
 	{
 	
-		/// <summary>
-		/// Number of lines processed from the CSV file, without the first line (column headers).
+		/// <summary> 
+		/// Number of lines processed from the CSV file, without the first line (column headers). <br />
 		/// </summary>
+		///
 		[JsonPropertyName("numberOfAll")]
 		public int? NumberOfAll { get; set; }
 	
-		/// <summary>
-		/// Number of created device credentials.
+		/// <summary> 
+		/// Number of created device credentials. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("numberOfCreated")]
 		public int? NumberOfCreated { get; set; }
 	
-		/// <summary>
-		/// Number of failed creations of device credentials.
+		/// <summary> 
+		/// Number of failed creations of device credentials. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("numberOfFailed")]
 		public int? NumberOfFailed { get; set; }
 	
-		/// <summary>
-		/// Number of successful creations of device credentials. This counts both create and update operations.
+		/// <summary> 
+		/// Number of successful creations of device credentials. This counts both create and update operations. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("numberOfSuccessful")]
 		public int? NumberOfSuccessful { get; set; }
 	
-		/// <summary>
-		/// An array with the updated device credentials.
+		/// <summary> 
+		/// An array with the updated device credentials. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("credentialUpdatedList")]
 		public List<CredentialUpdatedList>? PCredentialUpdatedList { get; set; }
 	
-		/// <summary>
-		/// An array with details of the failed device credentials.
+		/// <summary> 
+		/// An array with details of the failed device credentials. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("failedCreationList")]
 		public List<FailedCreationList>? PFailedCreationList { get; set; }
 	
 		public class CredentialUpdatedList 
 		{
 		
-			/// <summary>
-			/// The device credentials creation status.
+			/// <summary> 
+			/// The device credentials creation status. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("bulkNewDeviceStatus")]
 			public NewDeviceStatus? BulkNewDeviceStatus { get; set; }
 		
-			/// <summary>
-			/// Unique identifier of the device.
+			/// <summary> 
+			/// Unique identifier of the device. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("deviceId")]
 			public string? DeviceId { get; set; }
 		
-			/// <summary>
-			/// The device credentials creation status.
-			/// [CREATED, FAILED, CREDENTIAL_UPDATED]
+			/// <summary> 
+			/// The device credentials creation status. <br />
 			/// </summary>
+			///
 			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum NewDeviceStatus 
 			{
@@ -98,34 +106,38 @@ namespace Com.Cumulocity.Client.Model
 		public class FailedCreationList 
 		{
 		
-			/// <summary>
-			/// The device credentials creation status.
+			/// <summary> 
+			/// The device credentials creation status. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("bulkNewDeviceStatus")]
 			public NewDeviceStatus? BulkNewDeviceStatus { get; set; }
 		
-			/// <summary>
-			/// Unique identifier of the device.
+			/// <summary> 
+			/// Unique identifier of the device. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("deviceId")]
 			public string? DeviceId { get; set; }
 		
-			/// <summary>
-			/// Reason for the failure.
+			/// <summary> 
+			/// Reason for the failure. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("failureReason")]
 			public string? FailureReason { get; set; }
 		
-			/// <summary>
-			/// Line where the failure occurred.
+			/// <summary> 
+			/// Line where the failure occurred. <br />
 			/// </summary>
+			///
 			[JsonPropertyName("line")]
 			public string? Line { get; set; }
 		
-			/// <summary>
-			/// The device credentials creation status.
-			/// [CREATED, FAILED, CREDENTIAL_UPDATED]
+			/// <summary> 
+			/// The device credentials creation status. <br />
 			/// </summary>
+			///
 			[JsonConverter(typeof(EnumConverterFactory))]
 			public enum NewDeviceStatus 
 			{

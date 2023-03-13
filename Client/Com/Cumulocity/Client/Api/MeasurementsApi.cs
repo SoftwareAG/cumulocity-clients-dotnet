@@ -2,7 +2,7 @@
 /// MeasurementsApi.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// Measurements are produced by reading sensor values. In some cases, this data is read in static intervals and sent to the platform (for example, temperature sensors or electrical meters). In other cases, the data is read on demand or at irregular intervals (for example, health devices such as weight scales). Regardless what kind of protocol the device supports, the agent is responsible for converting it into a "push" protocol by uploading data to Cumulocity IoT.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// Measurements are produced by reading sensor values. In some cases, this data is read in static intervals and sent to the platform (for example, temperature sensors or electrical meters). In other cases, the data is read on demand or at irregular intervals (for example, health devices such as weight scales). Regardless what kind of protocol the device supports, the agent is responsible for converting it into a "push" protocol by uploading data to Cumulocity IoT. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class MeasurementsApi : AdaptableApi, IMeasurementsApi
 	{
@@ -40,23 +39,17 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/measurement/measurements";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"currentPage", currentPage},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"pageSize", pageSize},
-				{"revert", revert},
-				{"source", source},
-				{"type", type},
-				{"valueFragmentSeries", valueFragmentSeries},
-				{"valueFragmentType", valueFragmentType},
-				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("revert", revert);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("type", type);
+			queryString.AddIfRequired("valueFragmentSeries", valueFragmentSeries);
+			queryString.AddIfRequired("valueFragmentType", valueFragmentType);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -128,17 +121,11 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/measurement/measurements";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"fragmentType", fragmentType},
-				{"source", source},
-				{"type", type}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("fragmentType", fragmentType);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("type", type);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -197,18 +184,12 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/measurement/measurements/series";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"aggregationType", aggregationType},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"revert", revert},
-				{"series", series},
-				{"source", source}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("aggregationType", aggregationType);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("revert", revert);
+			queryString.AddIfRequired("series", series, false);
+			queryString.AddIfRequired("source", source);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

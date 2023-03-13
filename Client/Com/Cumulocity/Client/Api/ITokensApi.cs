@@ -2,7 +2,7 @@
 /// ITokensApi.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -12,60 +12,83 @@ using Com.Cumulocity.Client.Model;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// In order to receive subscribed notifications, a consumer application or microservice must obtain an authorization token that provides proof that the holder is allowed to receive subscribed notifications.
+	/// <summary> 
+	/// In order to receive subscribed notifications, a consumer application or microservice must obtain an authorization token that provides proof that the holder is allowed to receive subscribed notifications. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public interface ITokensApi
 	{
 	
-		/// <summary>
-		/// Create a notification token<br/>
-		/// Create a new JWT (JSON web token) access token which can be used to establish a successful WebSocket connection to read a sequence of notifications.  In general, each request to obtain an access token consists of:  *  The subscriber name which the client wishes to be identified with. *  The subscription name. This value must be associated with a subscription that's already been created and in essence, the obtained token will give the ability to read notifications for the subscription that is specified here. *  The token expiration duration.  <section><h5>Required roles</h5> ROLE_NOTIFICATION_2_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Create a notification token <br />
+		/// Create a new JWT (JSON web token) access token which can be used to establish a successful WebSocket connection to read a sequence of notifications. <br />
+		/// In general, each request to obtain an access token consists of: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>A notification token was created.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 422</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>The subscriber name which the client wishes to be identified with. <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>The subscription name. This value must be associated with a subscription that's already been created and in essence, the obtained token will give the ability to read notifications for the subscription that is specified here. <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>The token expiration duration. <br />
+		/// 		</description>
+		/// 	</item>
+		/// </list>
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_NOTIFICATION_2_ADMIN 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
+		/// <list type="bullet">
+		/// 	<item>
+		/// 		<description>HTTP 200 A notification token was created. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		/// <returns></returns>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		///
 		Task<NotificationToken?> CreateToken(NotificationTokenClaims body, string? xCumulocityProcessingMode = null) ;
 		
-		/// <summary>
-		/// Unsubscribe a subscriber<br/>
-		/// Unsubscribe a notification subscriber using the notification token.  Once a subscription is made, notifications will be kept until they are consumed by all subscribers who have previously connected to the subscription. For non-volatile subscriptions, this can result in notifications remaining in storage if never consumed by the application. They will be deleted if a tenant is deleted. It can take up considerable space in permanent storage for high-frequency notification sources. Therefore, we recommend you to unsubscribe a subscriber that will never run again. 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Unsubscribe a subscriber <br />
+		/// Unsubscribe a notification subscriber using the notification token. <br />
+		/// Once a subscription is made, notifications will be kept until they are consumed by all subscribers who have previously connected to the subscription. For non-volatile subscriptions, this can result in notifications remaining in storage if never consumed by the application.They will be deleted if a tenant is deleted. It can take up considerable space in permanent storage for high-frequency notification sources. Therefore, we recommend you to unsubscribe a subscriber that will never run again. <br />
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The notification subscription was deleted or is scheduled for deletion.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The notification subscription was deleted or is scheduled for deletion. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See [Processing mode](#processing-mode) for more details.</param>
-		/// <param name="token">Subscriptions associated with this token will be removed.</param>
-		/// <returns></returns>
-		Task<Response1?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null) ;
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="token">Subscriptions associated with this token will be removed. <br /></param>
+		///
+		Task<NotificationSubscriptionResult?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null) ;
 	}
 	#nullable disable
 }

@@ -2,7 +2,7 @@
 /// IRolesApi.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -13,215 +13,254 @@ using Com.Cumulocity.Client.Model;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// API methods to create, retrieve, update and delete user roles.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// API methods to create, retrieve, update and delete user roles. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public interface IRolesApi
 	{
 	
-		/// <summary>
-		/// Retrieve all user roles<br/>
-		/// Retrieve all user roles.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> has access to the user role </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Retrieve all user roles <br />
+		/// Retrieve all user roles. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_USER_MANAGEMENT_READ OR ROLE_USER_MANAGEMENT_CREATE AND has access to the user role 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and all user roles are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and all user roles are sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="currentPage">The current page of the paginated results.</param>
-		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
-		/// <param name="withTotalElements">When set to `true`, the returned result will contain in the statistics object the total number of elements. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
-		/// <param name="withTotalPages">When set to `true`, the returned result will contain in the statistics object the total number of pages. Only applicable on [range queries](https://en.wikipedia.org/wiki/Range_query_(database)).</param>
-		/// <returns></returns>
+		/// <param name="currentPage">The current page of the paginated results. <br /></param>
+		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
+		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		///
 		Task<UserRoleCollection?> GetUserRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
 		
-		/// <summary>
-		/// Retrieve a user role by name<br/>
-		/// Retrieve a user role by name.  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> current user has access to the role with this name </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Retrieve a user role by name <br />
+		/// Retrieve a user role by name. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_USER_MANAGEMENT_READ OR ROLE_USER_MANAGEMENT_CREATE AND current user has access to the role with this name 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request has succeeded and the user role is sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Role not found.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and the user role is sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 Role not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="name">The name of the user role.</param>
-		/// <returns></returns>
+		/// <param name="name">The name of the user role. <br /></param>
+		///
 		Task<Role?> GetUserRole(string name) ;
 		
-		/// <summary>
-		/// Retrieve all roles assigned to a specific user group in a specific tenant<br/>
-		/// Retrieve all roles assigned to a specific user group (by a given user group ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Retrieve all roles assigned to a specific user group in a specific tenant <br />
+		/// Retrieve all roles assigned to a specific user group (by a given user group ID) in a specific tenant (by a given tenant ID). <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_USER_MANAGEMENT_READ 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 200</term>
-		/// <description>The request succeeded and the roles are sent in the response.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Group not found.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 200 The request succeeded and the roles are sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 Group not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="groupId">Unique identifier of the user group.</param>
-		/// <param name="currentPage">The current page of the paginated results.</param>
-		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects.</param>
-		/// <returns></returns>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="groupId">Unique identifier of the user group. <br /></param>
+		/// <param name="currentPage">The current page of the paginated results. <br /></param>
+		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
+		///
 		Task<RoleReferenceCollection?> GetGroupRoles(string tenantId, int groupId, int? currentPage = null, int? pageSize = null) ;
 		
-		/// <summary>
-		/// Assign a role to a specific user group in a specific tenant<br/>
-		/// Assign a role to a specific user group (by a given user group ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Assign a role to a specific user group in a specific tenant <br />
+		/// Assign a role to a specific user group (by a given user group ID) in a specific tenant (by a given tenant ID). <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_USER_MANAGEMENT_ADMIN 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 201</term>
-		/// <description>A user role was assigned to a user group.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Group not found.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 409</term>
-		/// <description>Conflict – Role already assigned to the user group.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 422</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 201 A user role was assigned to a user group. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 Group not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 409 Conflict – Role already assigned to the user group. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="groupId">Unique identifier of the user group.</param>
-		/// <returns></returns>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="groupId">Unique identifier of the user group. <br /></param>
+		///
 		Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId) ;
 		
-		/// <summary>
-		/// Unassign a specific role for a specific user group in a specific tenant<br/>
-		/// Unassign a specific role (given by a role ID) for a specific user group (by a given user group ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Unassign a specific role for a specific user group in a specific tenant <br />
+		/// Unassign a specific role (given by a role ID) for a specific user group (by a given user group ID) in a specific tenant (by a given tenant ID). <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_USER_MANAGEMENT_ADMIN 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>A role was unassigned from a user group.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>Role not found.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 204 A role was unassigned from a user group. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 Role not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="groupId">Unique identifier of the user group.</param>
-		/// <param name="roleId">Unique identifier of the user role.</param>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="groupId">Unique identifier of the user group. <br /></param>
+		/// <param name="roleId">Unique identifier of the user role. <br /></param>
+		///
 		Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId) ;
 		
-		/// <summary>
-		/// Assign a role to specific user in a specific tenant<br/>
-		/// Assign a role to a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  When a role is assigned to a user, a corresponding audit record is created with type "User" and activity "User updated".  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_ADMIN to assign any role to root users in a user hierarchy <b>OR</b> users that are not in any hierarchy<br/> ROLE_USER_MANAGEMENT_ADMIN to assign roles accessible by the parent of assigned user to non-root users in a user hierarchy<br/> ROLE_USER_MANAGEMENT_CREATE to assign roles accessible by the current user <b>AND</b> accessible by the parent of the assigned user to the descendants of the current user in a user hierarchy </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Assign a role to specific user in a specific tenant <br />
+		/// Assign a role to a specific user (by a given user ID) in a specific tenant (by a given tenant ID). <br />
+		/// When a role is assigned to a user, a corresponding audit record is created with type "User" and activity "User updated". <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_USER_MANAGEMENT_ADMIN to assign any role to root users in a user hierarchy OR users that are not in any hierarchy<br />
+		///  ROLE_USER_MANAGEMENT_ADMIN to assign roles accessible by the parent of assigned user to non-root users in a user hierarchy<br />
+		///  ROLE_USER_MANAGEMENT_CREATE to assign roles accessible by the current user AND accessible by the parent of the assigned user to the descendants of the current user in a user hierarchy 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 201</term>
-		/// <description>A user role was assigned to a user.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not enough permissions/roles to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>User not found.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 422</term>
-		/// <description>Unprocessable Entity – invalid payload.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 201 A user role was assigned to a user. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 User not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="userId">Unique identifier of the a user.</param>
-		/// <returns></returns>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		///
 		Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId) ;
 		
-		/// <summary>
-		/// Unassign a specific role from a specific user in a specific tenant<br/>
-		/// Unassign a specific role (by a given role ID) from a specific user (by a given user ID) in a specific tenant (by a given tenant ID).  <section><h5>Required roles</h5> ROLE_USER_MANAGEMENT_READ <b>OR</b> ROLE_USER_MANAGEMENT_CREATE <b>AND</b> is parent of the user <b>AND</b> has access to roles </section> 
-		/// <br>The following table gives an overview of the possible response codes and their meanings:</br>
+		/// <summary> 
+		/// Unassign a specific role from a specific user in a specific tenant <br />
+		/// Unassign a specific role (by a given role ID) from a specific user (by a given user ID) in a specific tenant (by a given tenant ID). <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_USER_MANAGEMENT_READ OR ROLE_USER_MANAGEMENT_CREATE AND is parent of the user AND has access to roles 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
-		/// <item>
-		/// <term>HTTP 204</term>
-		/// <description>A user role was unassigned from a user.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 401</term>
-		/// <description>Authentication information is missing or invalid.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 403</term>
-		/// <description>Not authorized to perform this operation.</description>
-		/// </item>
-		/// <item>
-		/// <term>HTTP 404</term>
-		/// <description>User not found.</description>
-		/// </item>
+		/// 	<item>
+		/// 		<description>HTTP 204 A user role was unassigned from a user. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not authorized to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 User not found. <br /> <br />
+		/// 		</description>
+		/// 	</item>
 		/// </list>
 		/// </summary>
-		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant.</param>
-		/// <param name="userId">Unique identifier of the a user.</param>
-		/// <param name="roleId">Unique identifier of the user role.</param>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="roleId">Unique identifier of the user role. <br /></param>
+		///
 		Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId) ;
 	}
 	#nullable disable

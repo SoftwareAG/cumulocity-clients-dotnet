@@ -2,7 +2,7 @@
 /// EventsApi.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -20,12 +20,11 @@ using Com.Cumulocity.Client.Supplementary;
 
 namespace Com.Cumulocity.Client.Api 
 {
-	/// <summary>
-	/// Events are used to pass real-time information through Cumulocity IoT.
-	/// 
-	/// > **&#9432; Info:** The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned.
-	/// 
+	/// <summary> 
+	/// Events are used to pass real-time information through Cumulocity IoT. <br />
+	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
+	///
 	#nullable enable
 	public class EventsApi : AdaptableApi, IEventsApi
 	{
@@ -40,29 +39,23 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/event/events";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"createdFrom", createdFrom},
-				{"createdTo", createdTo},
-				{"currentPage", currentPage},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"fragmentType", fragmentType},
-				{"fragmentValue", fragmentValue},
-				{"lastUpdatedFrom", lastUpdatedFrom},
-				{"lastUpdatedTo", lastUpdatedTo},
-				{"pageSize", pageSize},
-				{"revert", revert},
-				{"source", source},
-				{"type", type},
-				{"withSourceAssets", withSourceAssets},
-				{"withSourceDevices", withSourceDevices},
-				{"withTotalElements", withTotalElements},
-				{"withTotalPages", withTotalPages}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("createdFrom", createdFrom);
+			queryString.AddIfRequired("createdTo", createdTo);
+			queryString.AddIfRequired("currentPage", currentPage);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("fragmentType", fragmentType);
+			queryString.AddIfRequired("fragmentValue", fragmentValue);
+			queryString.AddIfRequired("lastUpdatedFrom", lastUpdatedFrom);
+			queryString.AddIfRequired("lastUpdatedTo", lastUpdatedTo);
+			queryString.AddIfRequired("pageSize", pageSize);
+			queryString.AddIfRequired("revert", revert);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("type", type);
+			queryString.AddIfRequired("withSourceAssets", withSourceAssets);
+			queryString.AddIfRequired("withSourceDevices", withSourceDevices);
+			queryString.AddIfRequired("withTotalElements", withTotalElements);
+			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{
@@ -110,19 +103,13 @@ namespace Com.Cumulocity.Client.Api
 			var resourcePath = $"/event/events";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-			var allQueryParameter = new Dictionary<string, object>()
-			{
-				#pragma warning disable CS8604 // Possible null reference argument.
-				{"createdFrom", createdFrom},
-				{"createdTo", createdTo},
-				{"dateFrom", dateFrom},
-				{"dateTo", dateTo},
-				{"fragmentType", fragmentType},
-				{"source", source},
-				{"type", type}
-				#pragma warning restore CS8604 // Possible null reference argument.
-			};
-			allQueryParameter.Where(p => p.Value != null).ToList().ForEach(e => queryString.Add(e.Key, $"{e.Value}"));
+			queryString.AddIfRequired("createdFrom", createdFrom);
+			queryString.AddIfRequired("createdTo", createdTo);
+			queryString.AddIfRequired("dateFrom", dateFrom);
+			queryString.AddIfRequired("dateTo", dateTo);
+			queryString.AddIfRequired("fragmentType", fragmentType);
+			queryString.AddIfRequired("source", source);
+			queryString.AddIfRequired("type", type);
 			uriBuilder.Query = queryString.ToString();
 			var request = new HttpRequestMessage 
 			{

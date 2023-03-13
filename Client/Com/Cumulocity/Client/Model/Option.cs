@@ -2,7 +2,7 @@
 /// Option.cs
 /// CumulocityCoreLibrary
 ///
-/// Copyright (c) 2014-2022 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
@@ -12,33 +12,38 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	/// <summary>
-	/// A tuple storing tenant configuration.
+	/// <summary> 
+	/// A tuple storing tenant configuration. <br />
 	/// </summary>
+	///
 	public class Option 
 	{
 	
-		/// <summary>
-		/// Name of the option category.
+		/// <summary> 
+		/// Name of the option category. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("category")]
 		public string? Category { get; set; }
 	
-		/// <summary>
-		/// A unique identifier for this option.
+		/// <summary> 
+		/// A unique identifier for this option. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("key")]
 		public string? Key { get; set; }
 	
-		/// <summary>
-		/// Value of this option.
+		/// <summary> 
+		/// Value of this option. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("value")]
 		public string? Value { get; set; }
 	
-		/// <summary>
-		/// A URL linking to this resource.
+		/// <summary> 
+		/// A URL linking to this resource. <br />
 		/// </summary>
+		///
 		[JsonPropertyName("self")]
 		public string? Self { get; set; }
 	

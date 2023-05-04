@@ -136,8 +136,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantusagestatisticscollection+json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<TenantUsageStatisticsCollection?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<TenantUsageStatisticsCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -159,8 +159,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantusagestatisticssummary+json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<SummaryTenantUsageStatistics?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<SummaryTenantUsageStatistics?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -181,8 +181,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<List<SummaryAllTenantsUsageStatistics<TCustomProperties>>?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<List<SummaryAllTenantsUsageStatistics<TCustomProperties>>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -206,8 +206,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantStatisticsfilecollection+json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<TenantUsageStatisticsFileCollection?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<TenantUsageStatisticsFileCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -227,8 +227,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantstatisticsfile+json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<StatisticsFile?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<StatisticsFile?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -245,7 +245,7 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
 			return responseStream;
 		}
 		
@@ -263,7 +263,7 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
 			return responseStream;
 		}
 	}

@@ -47,8 +47,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<CurrentUser?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<CurrentUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -75,8 +75,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<CurrentUser?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<CurrentUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -96,7 +96,7 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
 			return responseStream;
 		}
 		
@@ -114,8 +114,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<CurrentUserTotpSecret?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<CurrentUserTotpSecret?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -132,8 +132,8 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<CurrentUserTotpSecretActivity?>(responseStream, cancellationToken: cToken);
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
+			return await JsonSerializer.DeserializeAsync<CurrentUserTotpSecretActivity?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 		}
 		
 		/// <inheritdoc />
@@ -153,7 +153,7 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
 			return responseStream;
 		}
 		
@@ -174,7 +174,7 @@ namespace Com.Cumulocity.Client.Api
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
 			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
-			using var responseStream = await response.Content.ReadAsStreamAsync();
+			using var responseStream = await response.Content.ReadAsStreamAsync(cancellationToken: cToken).ConfigureAwait(false);
 			return responseStream;
 		}
 	}

@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("events")]
-		public List<TEvent>? Events { get; set; }
+		public List<TEvent> Events { get; set; } = new List<TEvent>();
 	
 		/// <summary> 
 		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential next page of managed objects. <br />

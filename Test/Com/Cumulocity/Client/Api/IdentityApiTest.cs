@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetIdentityApiResource()
+		public async void TestGetIdentityApiResource()
 		{
 			var api = new IdentityApi(HttpClient!);
-			var response = api.GetIdentityApiResource();
+			var response = await api.GetIdentityApiResource();
 			Debug.Assert(response != null);
 		}
 	}

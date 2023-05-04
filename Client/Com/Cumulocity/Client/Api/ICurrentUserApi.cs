@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -42,8 +43,9 @@ namespace Com.Cumulocity.Client.Api
 		/// 	</item>
 		/// </list>
 		/// </summary>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<CurrentUser?> GetCurrentUser() ;
+		Task<CurrentUser?> GetCurrentUser(CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update the current user <br />
@@ -70,8 +72,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<CurrentUser?> UpdateCurrentUser(CurrentUser body) ;
+		Task<CurrentUser?> UpdateCurrentUser(CurrentUser body, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update the current user's password <br />
@@ -99,8 +102,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body) ;
+		Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Generate secret to set up TFA <br />
@@ -123,8 +127,9 @@ namespace Com.Cumulocity.Client.Api
 		/// 	</item>
 		/// </list>
 		/// </summary>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<CurrentUserTotpSecret?> GenerateTfaSecret() ;
+		Task<CurrentUserTotpSecret?> GenerateTfaSecret(CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Returns the activation state of the two-factor authentication feature. <br />
@@ -150,8 +155,9 @@ namespace Com.Cumulocity.Client.Api
 		/// 	</item>
 		/// </list>
 		/// </summary>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<CurrentUserTotpSecretActivity?> GetTfaState() ;
+		Task<CurrentUserTotpSecretActivity?> GetTfaState(CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Activates or deactivates the two-factor authentication feature <br />
@@ -183,8 +189,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body) ;
+		Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Verify TFA code <br />
@@ -219,8 +226,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body) ;
+		Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

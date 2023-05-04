@@ -40,26 +40,26 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetCurrentApplication()
+		public async void TestGetCurrentApplication()
 		{
 			var api = new CurrentApplicationApi(HttpClient!);
-			var response = api.GetCurrentApplication();
+			var response = await api.GetCurrentApplication();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetCurrentApplicationSettings()
+		public async void TestGetCurrentApplicationSettings()
 		{
 			var api = new CurrentApplicationApi(HttpClient!);
-			var response = api.GetCurrentApplicationSettings();
+			var response = await api.GetCurrentApplicationSettings();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetSubscribedUsers()
+		public async void TestGetSubscribedUsers()
 		{
 			var api = new CurrentApplicationApi(HttpClient!);
-			var response = api.GetSubscribedUsers();
+			var response = await api.GetSubscribedUsers();
 			Debug.Assert(response != null);
 		}
 	}

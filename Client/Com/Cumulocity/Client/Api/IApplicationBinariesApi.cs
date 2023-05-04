@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -46,8 +47,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the application. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationBinaries?> GetApplicationAttachments(string id) ;
+		Task<ApplicationBinaries?> GetApplicationAttachments(string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Upload an application attachment <br />
@@ -84,8 +86,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="file">The ZIP file to be uploaded. <br /></param>
 		/// <param name="id">Unique identifier of the application. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Application?> UploadApplicationAttachment(byte[] file, string id) ;
+		Task<Application?> UploadApplicationAttachment(byte[] file, string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a specific application attachment <br />
@@ -109,8 +112,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application. <br /></param>
 		/// <param name="binaryId">Unique identifier of the binary. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> GetApplicationAttachment(string id, string binaryId) ;
+		Task<System.IO.Stream> GetApplicationAttachment(string id, string binaryId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Delete a specific application attachment <br />
@@ -138,8 +142,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="id">Unique identifier of the application. <br /></param>
 		/// <param name="binaryId">Unique identifier of the binary. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId) ;
+		Task<System.IO.Stream> DeleteApplicationAttachment(string id, string binaryId, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

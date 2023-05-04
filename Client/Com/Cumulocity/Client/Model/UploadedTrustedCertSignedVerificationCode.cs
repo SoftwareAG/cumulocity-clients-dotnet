@@ -26,6 +26,15 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("proofOfPossessionSignedVerificationCode")]
 		public string? ProofOfPossessionSignedVerificationCode { get; set; }
 	
+		public UploadedTrustedCertSignedVerificationCode() 
+		{
+		}
+	
+		public UploadedTrustedCertSignedVerificationCode(string proofOfPossessionSignedVerificationCode)
+		{
+			this.ProofOfPossessionSignedVerificationCode = proofOfPossessionSignedVerificationCode;
+		}
+	
 		public override string ToString()
 		{
 			var jsonOptions = new JsonSerializerOptions() 

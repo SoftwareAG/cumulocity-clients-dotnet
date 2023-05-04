@@ -194,7 +194,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("subscribedApplications")]
-		public List<string>? SubscribedApplications { get; set; }
+		public List<string> SubscribedApplications { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// The tenant's company name. <br />

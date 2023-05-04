@@ -40,18 +40,18 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetManagedObjects()
+		public async void TestGetManagedObjects()
 		{
 			var api = new ManagedObjectsApi(HttpClient!);
-			var response = api.GetManagedObjects<ManagedObject>();
+			var response = await api.GetManagedObjects<ManagedObject>();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetNumberOfManagedObjects()
+		public async void TestGetNumberOfManagedObjects()
 		{
 			var api = new ManagedObjectsApi(HttpClient!);
-			var response = api.GetNumberOfManagedObjects();
+			var response = await api.GetNumberOfManagedObjects();
 			Debug.Assert(response != null);
 		}
 	}

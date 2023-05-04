@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -52,8 +53,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the application. <br /></param>
 		/// <param name="version">The version field of the application version. <br /></param>
 		/// <param name="tag">The tag of the application version. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationVersion?> GetApplicationVersion(string id, string? version = null, string? tag = null) ;
+		Task<ApplicationVersion?> GetApplicationVersion(string id, string? version = null, string? tag = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve all versions of an application <br />
@@ -84,8 +86,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the application. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationVersionCollection?> GetApplicationVersions(string id) ;
+		Task<ApplicationVersionCollection?> GetApplicationVersions(string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Create an application version <br />
@@ -123,8 +126,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="applicationBinary">The ZIP file to be uploaded. <br /></param>
 		/// <param name="applicationVersion">The JSON file with version information. <br /></param>
 		/// <param name="id">Unique identifier of the application. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationVersion?> CreateApplicationVersion(byte[] applicationBinary, string applicationVersion, string id) ;
+		Task<ApplicationVersion?> CreateApplicationVersion(byte[] applicationBinary, string applicationVersion, string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Delete a specific version of an application <br />
@@ -161,8 +165,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the application. <br /></param>
 		/// <param name="version">The version field of the application version. <br /></param>
 		/// <param name="tag">The tag of the application version. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteApplicationVersion(string id, string? version = null, string? tag = null) ;
+		Task<System.IO.Stream> DeleteApplicationVersion(string id, string? version = null, string? tag = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Replace an application version's tags <br />
@@ -199,8 +204,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the application. <br /></param>
 		/// <param name="version">Version of the application. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationVersion?> UpdateApplicationVersion(ApplicationVersionTag body, string id, string version) ;
+		Task<ApplicationVersion?> UpdateApplicationVersion(ApplicationVersionTag body, string id, string version, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

@@ -81,6 +81,7 @@ namespace Com.Cumulocity.Client.Supplementary
 			public IGroupsApi GroupsApi => new GroupsApi(Instance.HttpClient);
 			public IRolesApi RolesApi => new RolesApi(Instance.HttpClient);
 			public IInventoryRolesApi InventoryRolesApi => new InventoryRolesApi(Instance.HttpClient);
+			public IDevicePermissionsApi DevicePermissionsApi => new DevicePermissionsApi(Instance.HttpClient);
 		}
 	
 		public class AuditsFactory

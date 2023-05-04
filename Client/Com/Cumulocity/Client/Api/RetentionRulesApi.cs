@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Com.Cumulocity.Client.Model;
@@ -33,7 +34,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<RetentionRuleCollection?> GetRetentionRules(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) 
+		public async Task<RetentionRuleCollection?> GetRetentionRules(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/retention/retentions";
@@ -44,20 +45,20 @@ namespace Com.Cumulocity.Client.Api
 			queryString.AddIfRequired("withTotalElements", withTotalElements);
 			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrulecollection+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<RetentionRuleCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<RetentionRuleCollection?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<RetentionRule?> CreateRetentionRule(RetentionRule body) 
+		public async Task<RetentionRule?> CreateRetentionRule(RetentionRule body, CancellationToken cToken = default) 
 		{
 			var jsonNode = ToJsonNode<RetentionRule>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -65,40 +66,40 @@ namespace Com.Cumulocity.Client.Api
 			var client = HttpClient;
 			var resourcePath = $"/retention/retentions";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
-				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.retentionrule+json"),
+				Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.retentionrule+json"),
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<RetentionRule?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<RetentionRule?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<RetentionRule?> GetRetentionRule(string id) 
+		public async Task<RetentionRule?> GetRetentionRule(string id, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/retention/retentions/{id}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<RetentionRule?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<RetentionRule?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id) 
+		public async Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id, CancellationToken cToken = default) 
 		{
 			var jsonNode = ToJsonNode<RetentionRule>(body);
 			jsonNode?.RemoveFromNode("self");
@@ -106,33 +107,33 @@ namespace Com.Cumulocity.Client.Api
 			var client = HttpClient;
 			var resourcePath = $"/retention/retentions/{id}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
-				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.retentionrule+json"),
+				Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.retentionrule+json"),
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.retentionrule+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.retentionrule+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<RetentionRule?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<RetentionRule?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteRetentionRule(string id) 
+		public async Task<System.IO.Stream> DeleteRetentionRule(string id, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/retention/retentions/{id}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;

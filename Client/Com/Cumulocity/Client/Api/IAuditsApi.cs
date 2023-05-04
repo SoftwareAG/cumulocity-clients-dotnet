@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -66,8 +67,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="user">The username to search for. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<AuditRecordCollection<TAuditRecord>?> GetAuditRecords<TAuditRecord>(string? application = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, string? source = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null) where TAuditRecord : AuditRecord;
+		Task<AuditRecordCollection<TAuditRecord>?> GetAuditRecords<TAuditRecord>(string? application = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, string? source = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAuditRecord : AuditRecord;
 		
 		/// <summary> 
 		/// Create an audit record <br />
@@ -90,8 +92,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body) where TAuditRecord : AuditRecord;
+		Task<TAuditRecord?> CreateAuditRecord<TAuditRecord>(TAuditRecord body, CancellationToken cToken = default) where TAuditRecord : AuditRecord;
 		
 		/// <summary> 
 		/// Retrieve a specific audit record <br />
@@ -114,8 +117,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the audit record. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TAuditRecord?> GetAuditRecord<TAuditRecord>(string id) where TAuditRecord : AuditRecord;
+		Task<TAuditRecord?> GetAuditRecord<TAuditRecord>(string id, CancellationToken cToken = default) where TAuditRecord : AuditRecord;
 	}
 	#nullable disable
 }

@@ -50,14 +50,14 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("credentialUpdatedList")]
-		public List<CredentialUpdatedList>? PCredentialUpdatedList { get; set; }
+		public List<CredentialUpdatedList> PCredentialUpdatedList { get; set; } = new List<CredentialUpdatedList>();
 	
 		/// <summary> 
 		/// An array with details of the failed device credentials. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("failedCreationList")]
-		public List<FailedCreationList>? PFailedCreationList { get; set; }
+		public List<FailedCreationList> PFailedCreationList { get; set; } = new List<FailedCreationList>();
 	
 		public class CredentialUpdatedList 
 		{

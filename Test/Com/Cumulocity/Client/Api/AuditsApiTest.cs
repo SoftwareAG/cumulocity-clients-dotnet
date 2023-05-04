@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetAuditRecords()
+		public async void TestGetAuditRecords()
 		{
 			var api = new AuditsApi(HttpClient!);
-			var response = api.GetAuditRecords<AuditRecord>();
+			var response = await api.GetAuditRecords<AuditRecord>();
 			Debug.Assert(response != null);
 		}
 	}

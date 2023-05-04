@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Com.Cumulocity.Client.Model;
@@ -114,7 +115,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<TenantUsageStatisticsCollection?> GetTenantUsageStatisticsCollectionResource(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) 
+		public async Task<TenantUsageStatisticsCollection?> GetTenantUsageStatisticsCollectionResource(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/statistics";
@@ -127,20 +128,20 @@ namespace Com.Cumulocity.Client.Api
 			queryString.AddIfRequired("withTotalElements", withTotalElements);
 			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantusagestatisticscollection+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<TenantUsageStatisticsCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TenantUsageStatisticsCollection?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<SummaryTenantUsageStatistics?> GetTenantUsageStatistics(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? tenant = null) 
+		public async Task<SummaryTenantUsageStatistics?> GetTenantUsageStatistics(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? tenant = null, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/statistics/summary";
@@ -150,20 +151,20 @@ namespace Com.Cumulocity.Client.Api
 			queryString.AddIfRequired("dateTo", dateTo);
 			queryString.AddIfRequired("tenant", tenant);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantusagestatisticssummary+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<SummaryTenantUsageStatistics?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<SummaryTenantUsageStatistics?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<List<SummaryAllTenantsUsageStatistics<TCustomProperties>>?> GetTenantsUsageStatistics<TCustomProperties>(System.DateTime? dateFrom = null, System.DateTime? dateTo = null) where TCustomProperties : CustomProperties
+		public async Task<List<SummaryAllTenantsUsageStatistics<TCustomProperties>>?> GetTenantsUsageStatistics<TCustomProperties>(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/statistics/allTenantsSummary";
@@ -172,20 +173,20 @@ namespace Com.Cumulocity.Client.Api
 			queryString.AddIfRequired("dateFrom", dateFrom);
 			queryString.AddIfRequired("dateTo", dateTo);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<List<SummaryAllTenantsUsageStatistics<TCustomProperties>>?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<List<SummaryAllTenantsUsageStatistics<TCustomProperties>>?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<TenantUsageStatisticsFileCollection?> GetMetadata(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? withTotalPages = null) 
+		public async Task<TenantUsageStatisticsFileCollection?> GetMetadata(int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/statistics/files";
@@ -197,70 +198,70 @@ namespace Com.Cumulocity.Client.Api
 			queryString.AddIfRequired("pageSize", pageSize);
 			queryString.AddIfRequired("withTotalPages", withTotalPages);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantStatisticsfilecollection+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<TenantUsageStatisticsFileCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TenantUsageStatisticsFileCollection?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body) 
+		public async Task<StatisticsFile?> GenerateStatisticsFile(RangeStatisticsFile body, CancellationToken cToken = default) 
 		{
 			var jsonNode = ToJsonNode<RangeStatisticsFile>(body);
 			var client = HttpClient;
 			var resourcePath = $"/tenant/statistics/files";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
-				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenantstatisticsdate+json"),
+				Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenantstatisticsdate+json"),
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.tenantstatisticsdate+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantstatisticsfile+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<StatisticsFile?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<StatisticsFile?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> GetStatisticsFile(string id) 
+		public async Task<System.IO.Stream> GetStatisticsFile(string id, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/statistics/files/{id}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> GetLatestStatisticsFile(System.DateTime month) 
+		public async Task<System.IO.Stream> GetLatestStatisticsFile(System.DateTime month, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/statistics/files/latest/{month}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;

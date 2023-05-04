@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -43,8 +44,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ExternalIds?> GetExternalIds(string id) ;
+		Task<ExternalIds?> GetExternalIds(string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Create an external ID <br />
@@ -72,8 +74,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ExternalId?> CreateExternalId(ExternalId body, string id) ;
+		Task<ExternalId?> CreateExternalId(ExternalId body, string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a specific external ID <br />
@@ -101,8 +104,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with. <br /></param>
 		/// <param name="externalId">The type of the external identifier. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ExternalId?> GetExternalId(string type, string externalId) ;
+		Task<ExternalId?> GetExternalId(string type, string externalId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Remove a specific external ID <br />
@@ -130,8 +134,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="type">The identifier used in the external system that Cumulocity IoT interfaces with. <br /></param>
 		/// <param name="externalId">The type of the external identifier. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteExternalId(string type, string externalId) ;
+		Task<System.IO.Stream> DeleteExternalId(string type, string externalId, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

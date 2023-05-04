@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -45,8 +46,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="currentPage">The current page of the paginated results. <br /></param>
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null) ;
+		Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Create an option <br />
@@ -90,8 +92,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Option?> CreateOption(Option body) ;
+		Task<Option?> CreateOption(Option body, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve all options by category <br />
@@ -114,8 +117,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="category">The category of the options. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TCategoryOptions?> GetOptionsByCategory<TCategoryOptions>(string category) where TCategoryOptions : CategoryOptions;
+		Task<TCategoryOptions?> GetOptionsByCategory<TCategoryOptions>(string category, CancellationToken cToken = default) where TCategoryOptions : CategoryOptions;
 		
 		/// <summary> 
 		/// Update options by category <br />
@@ -143,8 +147,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="category">The category of the options. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category) where TCategoryOptions : CategoryOptions;
+		Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category, CancellationToken cToken = default) where TCategoryOptions : CategoryOptions;
 		
 		/// <summary> 
 		/// Retrieve a specific option <br />
@@ -172,8 +177,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="category">The category of the options. <br /></param>
 		/// <param name="key">The key of an option. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Option?> GetOption(string category, string key) ;
+		Task<Option?> GetOption(string category, string key, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update a specific option <br />
@@ -206,8 +212,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="category">The category of the options. <br /></param>
 		/// <param name="key">The key of an option. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key) ;
+		Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Remove a specific option <br />
@@ -235,8 +242,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="category">The category of the options. <br /></param>
 		/// <param name="key">The key of an option. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteOption(string category, string key) ;
+		Task<System.IO.Stream> DeleteOption(string category, string key, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

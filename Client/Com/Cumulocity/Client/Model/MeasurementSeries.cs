@@ -28,7 +28,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("series")]
-		public List<MeasurementFragmentSeries>? Series { get; set; }
+		public List<MeasurementFragmentSeries> Series { get; set; } = new List<MeasurementFragmentSeries>();
 	
 		/// <summary> 
 		/// If there were more than 5000 values, the final result was truncated. <br />

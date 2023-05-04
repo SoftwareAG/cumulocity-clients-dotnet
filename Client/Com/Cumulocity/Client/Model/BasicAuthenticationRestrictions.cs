@@ -25,21 +25,21 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("forbiddenClients")]
-		public List<string>? ForbiddenClients { get; set; }
+		public List<string> ForbiddenClients { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// List of user agents, passed in <c>User-Agent</c> HTTP header, which are blocked if basic authentication is used. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("forbiddenUserAgents")]
-		public List<string>? ForbiddenUserAgents { get; set; }
+		public List<string> ForbiddenUserAgents { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// List of user agents, passed in <c>User-Agent</c> HTTP header, which are allowed to use basic authentication. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("trustedUserAgents")]
-		public List<string>? TrustedUserAgents { get; set; }
+		public List<string> TrustedUserAgents { get; set; } = new List<string>();
 	
 		public override string ToString()
 		{

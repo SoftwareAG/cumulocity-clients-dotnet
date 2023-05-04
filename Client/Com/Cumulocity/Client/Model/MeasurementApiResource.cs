@@ -94,7 +94,7 @@ namespace Com.Cumulocity.Client.Model
 		{
 		
 			[JsonPropertyName("measurements")]
-			public List<TMeasurement>? PMeasurements { get; set; }
+			public List<TMeasurement> PMeasurements { get; set; } = new List<TMeasurement>();
 		
 			/// <summary> 
 			/// A URL linking to this resource. <br />

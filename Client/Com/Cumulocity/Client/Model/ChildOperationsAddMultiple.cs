@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("references")]
-		public List<References>? PReferences { get; set; }
+		public List<References> PReferences { get; set; } = new List<References>();
 	
 		public ChildOperationsAddMultiple() 
 		{

@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetEvents()
+		public async void TestGetEvents()
 		{
 			var api = new EventsApi(HttpClient!);
-			var response = api.GetEvents<Event>();
+			var response = await api.GetEvents<Event>();
 			Debug.Assert(response != null);
 		}
 	}

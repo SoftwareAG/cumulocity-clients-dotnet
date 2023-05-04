@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -46,8 +47,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<NewDeviceRequestCollection?> GetNewDeviceRequests(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
+		Task<NewDeviceRequestCollection?> GetNewDeviceRequests(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Create a new device request <br />
@@ -75,8 +77,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body, string? xCumulocityProcessingMode = null) ;
+		Task<NewDeviceRequest?> CreateNewDeviceRequest(NewDeviceRequest body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a specific new device request <br />
@@ -103,8 +106,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="requestId">Unique identifier of the new device request. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId) ;
+		Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update a specific new device request status <br />
@@ -132,8 +136,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="requestId">Unique identifier of the new device request. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId) ;
+		Task<NewDeviceRequest?> UpdateNewDeviceRequest(NewDeviceRequest body, string requestId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Delete a specific new device request <br />
@@ -164,8 +169,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="requestId">Unique identifier of the new device request. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId) ;
+		Task<System.IO.Stream> DeleteNewDeviceRequest(string requestId, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

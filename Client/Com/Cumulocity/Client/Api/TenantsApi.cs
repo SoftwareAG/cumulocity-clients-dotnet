@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Com.Cumulocity.Client.Model;
@@ -45,7 +46,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<TenantCollection<TCustomProperties>?> GetTenants<TCustomProperties>(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties
+		public async Task<TenantCollection<TCustomProperties>?> GetTenants<TCustomProperties>(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, string? company = null, string? domain = null, string? parent = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants";
@@ -55,21 +56,24 @@ namespace Com.Cumulocity.Client.Api
 			queryString.AddIfRequired("pageSize", pageSize);
 			queryString.AddIfRequired("withTotalElements", withTotalElements);
 			queryString.AddIfRequired("withTotalPages", withTotalPages);
+			queryString.AddIfRequired("company", company);
+			queryString.AddIfRequired("domain", domain);
+			queryString.AddIfRequired("parent", parent);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenantcollection+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<TenantCollection<TCustomProperties>?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TenantCollection<TCustomProperties>?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Tenant<TCustomProperties>?> CreateTenant<TCustomProperties>(Tenant<TCustomProperties> body) where TCustomProperties : CustomProperties
+		public async Task<Tenant<TCustomProperties>?> CreateTenant<TCustomProperties>(Tenant<TCustomProperties> body, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<Tenant<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("allowCreateTenants");
@@ -83,22 +87,22 @@ namespace Com.Cumulocity.Client.Api
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
-				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenant+json"),
+				Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenant+json"),
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<CurrentTenant<TCustomProperties>?> GetCurrentTenant<TCustomProperties>(bool? withParent = null) where TCustomProperties : CustomProperties
+		public async Task<CurrentTenant<TCustomProperties>?> GetCurrentTenant<TCustomProperties>(bool? withParent = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/currentTenant";
@@ -106,38 +110,38 @@ namespace Com.Cumulocity.Client.Api
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			queryString.AddIfRequired("withParent", withParent);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currenttenant+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<CurrentTenant<TCustomProperties>?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<CurrentTenant<TCustomProperties>?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Tenant<TCustomProperties>?> GetTenant<TCustomProperties>(string tenantId) where TCustomProperties : CustomProperties
+		public async Task<Tenant<TCustomProperties>?> GetTenant<TCustomProperties>(string tenantId, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties
+		public async Task<Tenant<TCustomProperties>?> UpdateTenant<TCustomProperties>(Tenant<TCustomProperties> body, string tenantId, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 		{
 			var jsonNode = ToJsonNode<Tenant<TCustomProperties>>(body);
 			jsonNode?.RemoveFromNode("adminName");
@@ -152,54 +156,54 @@ namespace Com.Cumulocity.Client.Api
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
-				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenant+json"),
+				Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.tenant+json"),
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.tenant+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.tenant+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<Tenant<TCustomProperties>?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteTenant(string tenantId) 
+		public async Task<System.IO.Stream> DeleteTenant(string tenantId, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;
 		}
 		
 		/// <inheritdoc />
-		public async Task<TenantTfaData?> GetTenantTfaSettings(string tenantId) 
+		public async Task<TenantTfaData?> GetTenantTfaSettings(string tenantId, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/tenants/{tenantId}/tfa";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<TenantTfaData?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<TenantTfaData?>(responseStream, cancellationToken: cToken);
 		}
 	}
 	#nullable disable

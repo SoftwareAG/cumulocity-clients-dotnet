@@ -40,34 +40,34 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetTenantUsageStatisticsCollectionResource()
+		public async void TestGetTenantUsageStatisticsCollectionResource()
 		{
 			var api = new UsageStatisticsApi(HttpClient!);
-			var response = api.GetTenantUsageStatisticsCollectionResource();
+			var response = await api.GetTenantUsageStatisticsCollectionResource();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetTenantUsageStatistics()
+		public async void TestGetTenantUsageStatistics()
 		{
 			var api = new UsageStatisticsApi(HttpClient!);
-			var response = api.GetTenantUsageStatistics();
+			var response = await api.GetTenantUsageStatistics();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetTenantsUsageStatistics()
+		public async void TestGetTenantsUsageStatistics()
 		{
 			var api = new UsageStatisticsApi(HttpClient!);
-			var response = api.GetTenantsUsageStatistics<CustomProperties>();
+			var response = await api.GetTenantsUsageStatistics<CustomProperties>();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetMetadata()
+		public async void TestGetMetadata()
 		{
 			var api = new UsageStatisticsApi(HttpClient!);
-			var response = api.GetMetadata();
+			var response = await api.GetMetadata();
 			Debug.Assert(response != null);
 		}
 	}

@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -40,8 +41,9 @@ namespace Com.Cumulocity.Client.Api
 		/// 	</item>
 		/// </list>
 		/// </summary>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<SystemOptionCollection?> GetSystemOptions() ;
+		Task<SystemOptionCollection?> GetSystemOptions(CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a specific system option <br />
@@ -70,8 +72,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="category">The category of the system options. <br /></param>
 		/// <param name="key">The key of a system option. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<SystemOption?> GetSystemOption(string category, string key) ;
+		Task<SystemOption?> GetSystemOption(string category, string key, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

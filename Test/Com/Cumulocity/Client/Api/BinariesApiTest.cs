@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetBinaries()
+		public async void TestGetBinaries()
 		{
 			var api = new BinariesApi(HttpClient!);
-			var response = api.GetBinaries();
+			var response = await api.GetBinaries();
 			Debug.Assert(response != null);
 		}
 	}

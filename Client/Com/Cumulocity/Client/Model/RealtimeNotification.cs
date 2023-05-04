@@ -99,7 +99,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("supportedConnectionTypes")]
-		public List<string>? SupportedConnectionTypes { get; set; }
+		public List<string> SupportedConnectionTypes { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// <see href="https://docs.cometd.org/current/reference/#_concepts_bayeux_protocol" langword="Bayeux protocol" /> version used by the client (in a request) or server (in a response). <br />

@@ -46,7 +46,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("permissions")]
-		public List<InventoryRolePermission>? Permissions { get; set; }
+		public List<InventoryRolePermission> Permissions { get; set; } = new List<InventoryRolePermission>();
 	
 		/// <summary> 
 		/// A URL linking to this resource. <br />

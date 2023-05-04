@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -56,8 +57,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
+		Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Add a new certificate <br />
@@ -93,8 +95,11 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="addToTrustStore">If set to <c>true</c> the certificate is added to the truststore. <br />The truststore contains all trusted certificates. A connection to a device is only established if it connects to Cumulocity IoT with a certificate in the truststore. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TrustedCertificate?> AddTrustedCertificate(TrustedCertificate body, string tenantId) ;
+		Task<TrustedCertificate?> AddTrustedCertificate(UploadedTrustedCertificate body, string tenantId, string? xCumulocityProcessingMode = null, bool? addToTrustStore = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Add multiple certificates <br />
@@ -130,8 +135,10 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="addToTrustStore">If set to <c>true</c> the certificate is added to the truststore. <br />The truststore contains all trusted certificates. A connection to a device is only established if it connects to Cumulocity IoT with a certificate in the truststore. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TrustedCertificateCollection?> AddTrustedCertificates(TrustedCertificateCollection body, string tenantId) ;
+		Task<TrustedCertificateCollection?> AddTrustedCertificates(UploadedTrustedCertificateCollection body, string tenantId, bool? addToTrustStore = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a stored certificate <br />
@@ -155,8 +162,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TrustedCertificate?> GetTrustedCertificate(string tenantId, string fingerprint) ;
+		Task<TrustedCertificate?> GetTrustedCertificate(string tenantId, string fingerprint, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update a stored certificate <br />
@@ -189,8 +197,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint) ;
+		Task<TrustedCertificate?> UpdateTrustedCertificate(TrustedCertificate body, string tenantId, string fingerprint, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Remove a stored certificate <br />
@@ -218,8 +227,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint) ;
+		Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Provide the proof of possession for an already uploaded certificate <br />
@@ -256,8 +266,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint) ;
+		Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Confirm an already uploaded certificate <br />
@@ -289,8 +300,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint) ;
+		Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Generate a verification code for the proof of possession operation for the given certificate <br />
@@ -318,8 +330,77 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint) ;
+		Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint, CancellationToken cToken = default) ;
+		
+		/// <summary> 
+		/// Verify a certificate chain via file upload <br />
+		/// Verify a device certificate chain against a specific tenant. Max chain length support is <b>10</b>.The tenant ID is <c>optional</c> and this api will be further enhanced to resolve the tenant from the chain in future release. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  (ROLE_TENANT_MANAGEMENT_ADMIN) AND (is the current tenant OR is current management tenant) 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
+		/// <list type="bullet">
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and the validation result is sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 400 Unable to parse certificate chain. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 The tenant ID does not exist. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// </list>
+		/// </summary>
+		/// <param name="tenantId"></param>
+		/// <param name="file">File to be uploaded. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+		///
+		Task<VerifyCertificateChain?> ValidateChainByFileUpload(string tenantId, byte[] file, CancellationToken cToken = default) ;
+		
+		/// <summary> 
+		/// Verify a certificate chain via HTTP header <br />
+		/// Verify a device certificate chain against a specific tenant. Max chain length support is <b>6</b>.The tenant ID is <c>optional</c> and this api will be further enhanced to resolve the tenant from the chain in future release. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  (ROLE_TENANT_MANAGEMENT_ADMIN) AND (is the current tenant OR is current management tenant) 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
+		/// <list type="bullet">
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and the validation result is sent in the response. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 400 Unable to parse certificate chain. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 404 The tenant ID does not exist. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// </list>
+		/// </summary>
+		/// <param name="xCumulocityTenantId">Used to send a tenant ID. <br /></param>
+		/// <param name="xCumulocityClientCertChain">Used to send a certificate chain in the header. Separate the chain with <c>,</c> and also each 64 bit block with <c> </c> (a space character). <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+		///
+		Task<VerifyCertificateChain?> ValidateChainByHeader(string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

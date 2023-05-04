@@ -25,7 +25,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("effectiveRoles")]
-		public List<Role>? EffectiveRoles { get; set; }
+		public List<Role> EffectiveRoles { get; set; } = new List<Role>();
 	
 		/// <summary> 
 		/// The user's email address. <br />
@@ -110,7 +110,7 @@ namespace Com.Cumulocity.Client.Model
 		///
 		[System.ObsoleteAttribute("This property might be removed in future releases.", false)]
 		[JsonPropertyName("devicePermissions")]
-		public DevicePermissions? PDevicePermissions { get; set; }
+		public DeprecatedDevicePermissions? DevicePermissions { get; set; }
 	
 		public override string ToString()
 		{

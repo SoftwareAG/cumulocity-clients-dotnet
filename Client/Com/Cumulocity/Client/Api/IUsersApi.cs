@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -56,8 +57,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withSubusersCount">If set to <c>true</c>, then each of returned user will contain an additional field “subusersCount”.It is the number of direct subusers (users with corresponding “owner”). <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<UserCollection<TCustomProperties>?> GetUsers<TCustomProperties>(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null) where TCustomProperties : CustomProperties;
+		Task<UserCollection<TCustomProperties>?> GetUsers<TCustomProperties>(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 		
 		/// <summary> 
 		/// Create a user for a specific tenant <br />
@@ -93,8 +95,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId) where TCustomProperties : CustomProperties;
+		Task<User<TCustomProperties>?> CreateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 		
 		/// <summary> 
 		/// Retrieve a specific user for a specific tenant <br />
@@ -127,8 +130,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<User<TCustomProperties>?> GetUser<TCustomProperties>(string tenantId, string userId) where TCustomProperties : CustomProperties;
+		Task<User<TCustomProperties>?> GetUser<TCustomProperties>(string tenantId, string userId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 		
 		/// <summary> 
 		/// Update a specific user for a specific tenant <br />
@@ -169,8 +173,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId) where TCustomProperties : CustomProperties;
+		Task<User<TCustomProperties>?> UpdateUser<TCustomProperties>(User<TCustomProperties> body, string tenantId, string userId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 		
 		/// <summary> 
 		/// Delete a specific user for a specific tenant <br />
@@ -202,8 +207,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteUser(string tenantId, string userId) ;
+		Task<System.IO.Stream> DeleteUser(string tenantId, string userId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update a specific user's password of a specific tenant <br />
@@ -240,8 +246,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId) ;
+		Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve the TFA settings of a specific user <br />
@@ -273,8 +280,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<UserTfaData?> GetUserTfaSettings(string tenantId, string userId) ;
+		Task<UserTfaData?> GetUserTfaSettings(string tenantId, string userId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a user by username in a specific tenant <br />
@@ -306,8 +314,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="username">The username of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<User<TCustomProperties>?> GetUserByUsername<TCustomProperties>(string tenantId, string username) where TCustomProperties : CustomProperties;
+		Task<User<TCustomProperties>?> GetUserByUsername<TCustomProperties>(string tenantId, string username, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 		
 		/// <summary> 
 		/// Retrieve the users of a specific user group of a specific tenant <br />
@@ -342,8 +351,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="currentPage">The current page of the paginated results. <br /></param>
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<UserReferenceCollection<TCustomProperties>?> GetUsersFromUserGroup<TCustomProperties>(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null) where TCustomProperties : CustomProperties;
+		Task<UserReferenceCollection<TCustomProperties>?> GetUsersFromUserGroup<TCustomProperties>(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 		
 		/// <summary> 
 		/// Add a user to a specific user group of a specific tenant <br />
@@ -382,8 +392,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="groupId">Unique identifier of the user group. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId) where TCustomProperties : CustomProperties;
+		Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 		
 		/// <summary> 
 		/// Remove a specific user from a specific user group of a specific tenant <br />
@@ -416,8 +427,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="groupId">Unique identifier of the user group. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId) ;
+		Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Terminate a user's session <br />
@@ -438,8 +450,39 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="cookie">The authorization cookie storing the access token of the user. This parameter is specific to OAI-Secure authentication. <br /></param>
 		/// <param name="xXSRFTOKEN">Prevents XRSF attack of the authenticated user. This parameter is specific to OAI-Secure authentication. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> Logout(string? cookie = null, string? xXSRFTOKEN = null) ;
+		Task<System.IO.Stream> Logout(string? cookie = null, string? xXSRFTOKEN = null, CancellationToken cToken = default) ;
+		
+		/// <summary> 
+		/// Terminate all tenant users' sessions and invalidate tokens <br />
+		/// The user with the role ROLE_USER_MANAGEMENT_ADMIN is authorized to log out all tenant users with a toked based access. <br />
+		/// The request is responsible for terminating all tenant users' toked based sessions and invalidating internal platform access tokens. <br />
+		/// 
+		/// <br /> Required roles <br />
+		///  ROLE_USER_MANAGEMENT_ADMIN AND is the current tenant 
+		/// 
+		/// <br /> Response Codes <br />
+		/// The following table gives an overview of the possible response codes and their meanings: <br />
+		/// <list type="bullet">
+		/// 	<item>
+		/// 		<description>HTTP 200 The request has succeeded and the users (with a token based access) are logged out. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// 	<item>
+		/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+		/// 		</description>
+		/// 	</item>
+		/// </list>
+		/// </summary>
+		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+		///
+		Task<System.IO.Stream> LogoutAllUsers(string tenantId, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetApplications()
+		public async void TestGetApplications()
 		{
 			var api = new ApplicationsApi(HttpClient!);
-			var response = api.GetApplications();
+			var response = await api.GetApplications();
 			Debug.Assert(response != null);
 		}
 	}

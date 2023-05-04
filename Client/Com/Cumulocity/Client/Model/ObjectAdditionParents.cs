@@ -25,7 +25,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("references")]
-		public List<ManagedObjectReferenceTuple>? References { get; set; }
+		public List<ManagedObjectReferenceTuple> References { get; set; } = new List<ManagedObjectReferenceTuple>();
 	
 		/// <summary> 
 		/// Link to this resource's addition parent objects. <br />

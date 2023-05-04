@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -23,8 +24,8 @@ namespace Com.Cumulocity.Client.Api
 	{
 	
 		/// <summary> 
-		/// Retrieve the stored files <br />
-		/// Retrieve the stored files as a collections of managed objects. <br />
+		/// Search for stored files <br />
+		/// Retrieve metadata information about stored files. Search for files by query parameters. This will not download the files. <br />
 		/// <br /> Response Codes <br />
 		/// The following table gives an overview of the possible response codes and their meanings: <br />
 		/// <list type="bullet">
@@ -48,8 +49,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="text">Search for managed objects where any property value is equal to the given one. Only string values are supported. <br /></param>
 		/// <param name="type">The type of managed object to search for. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null) ;
+		Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Upload a file <br />
@@ -92,12 +94,13 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="pObject"></param>
 		/// <param name="file">Path of the file to be uploaded. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file) ;
+		Task<Binary?> UploadBinary(BinaryInfo pObject, byte[] file, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a stored file <br />
-		/// Retrieve a stored file (managed object) by a given ID. <br />
+		/// Retrieve a stored file (managed object) by a given ID.Supports chunk download and resuming an interrupted download using the <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range" langword="<c>Range</c> header" />. <br />
 		/// 
 		/// <br /> Required roles <br />
 		///  ROLE_INVENTORY_READ OR owner of the resource OR MANAGE_OBJECT_READ permission on the resource 
@@ -116,8 +119,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> GetBinary(string id) ;
+		Task<System.IO.Stream> GetBinary(string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Replace a file <br />
@@ -142,8 +146,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the managed object. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Binary?> ReplaceBinary(byte[] body, string id) ;
+		Task<Binary?> ReplaceBinary(byte[] body, string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Remove a stored file <br />
@@ -166,8 +171,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the managed object. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> RemoveBinary(string id) ;
+		Task<System.IO.Stream> RemoveBinary(string id, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

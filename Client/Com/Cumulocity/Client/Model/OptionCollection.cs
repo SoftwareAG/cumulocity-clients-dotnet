@@ -53,7 +53,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("options")]
-		public List<Option>? Options { get; set; }
+		public List<Option> Options { get; set; } = new List<Option>();
 	
 		public override string ToString()
 		{

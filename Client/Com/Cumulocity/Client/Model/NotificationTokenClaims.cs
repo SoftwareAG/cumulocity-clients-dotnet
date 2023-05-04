@@ -6,6 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using Com.Cumulocity.Client.Converter;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -36,6 +37,34 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("subscription")]
 		public string? Subscription { get; set; }
 	
+		/// <summary> 
+		/// The subscription type. Currently the only supported type is <c>notification</c> .Other types may be added in future. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("type")]
+		public Type? PType { get; set; }
+	
+		/// <summary> 
+		/// If <c>true</c>, the token will be securely signed by the Cumulocity IoT platform. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("signed")]
+		public bool? Signed { get; set; }
+	
+		/// <summary> 
+		/// If <c>true</c>, indicates that the token is used to create a shared consumer on the subscription. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("shared")]
+		public bool? Shared { get; set; }
+	
+		/// <summary> 
+		/// If <c>true</c>, indicates that the created token refers to the non-persistent variant of the named subscription. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("nonPersistent")]
+		public bool? NonPersistent { get; set; }
+	
 		public NotificationTokenClaims() 
 		{
 		}
@@ -45,6 +74,18 @@ namespace Com.Cumulocity.Client.Model
 			this.Subscriber = subscriber;
 			this.Subscription = subscription;
 		}
+	
+		/// <summary> 
+		/// The subscription type. Currently the only supported type is <c>notification</c> .Other types may be added in future. <br />
+		/// </summary>
+		///
+		[JsonConverter(typeof(EnumConverterFactory))]
+		public enum Type 
+		{
+			[EnumMember(Value = "notification")]
+			NOTIFICATION
+		}
+	
 	
 		public override string ToString()
 		{

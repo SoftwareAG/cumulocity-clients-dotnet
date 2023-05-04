@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("bulkOperations")]
-		public List<BulkOperation>? BulkOperations { get; set; }
+		public List<BulkOperation> BulkOperations { get; set; } = new List<BulkOperation>();
 	
 		/// <summary> 
 		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential next page of managed objects. <br />

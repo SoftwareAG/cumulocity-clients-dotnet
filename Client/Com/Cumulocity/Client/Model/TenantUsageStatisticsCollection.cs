@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("usageStatistics")]
-		public List<DailyUsageStatistics>? UsageStatistics { get; set; }
+		public List<DailyUsageStatistics> UsageStatistics { get; set; } = new List<DailyUsageStatistics>();
 	
 		public override string ToString()
 		{

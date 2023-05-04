@@ -77,7 +77,7 @@ namespace Com.Cumulocity.Client.Model
 			/// </summary>
 			///
 			[JsonPropertyName("references")]
-			public List<Application>? References { get; set; }
+			public List<Application> References { get; set; } = new List<Application>();
 		
 			public override string ToString()
 			{

@@ -87,7 +87,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("events")]
-			public List<TEvent>? PEvents { get; set; }
+			public List<TEvent> PEvents { get; set; } = new List<TEvent>();
 		
 			public override string ToString()
 			{

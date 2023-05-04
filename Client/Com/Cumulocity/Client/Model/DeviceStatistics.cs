@@ -39,7 +39,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("deviceParents")]
-		public List<string>? DeviceParents { get; set; }
+		public List<string> DeviceParents { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// Value of the <c>type</c> field from the corresponding device. Available only with monthly data. <br />

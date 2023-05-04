@@ -8,6 +8,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -45,8 +46,9 @@ namespace Com.Cumulocity.Client.Api
 		/// 	</item>
 		/// </list>
 		/// </summary>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Application?> GetCurrentApplication() ;
+		Task<Application?> GetCurrentApplication(CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update the current application <br />
@@ -73,9 +75,10 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
 		[Obsolete]
-		Task<Application?> UpdateCurrentApplication(Application body) ;
+		Task<Application?> UpdateCurrentApplication(Application body, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve the current application settings <br />
@@ -101,8 +104,9 @@ namespace Com.Cumulocity.Client.Api
 		/// 	</item>
 		/// </list>
 		/// </summary>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<List<ApplicationSettings>?> GetCurrentApplicationSettings() ;
+		Task<List<ApplicationSettings>?> GetCurrentApplicationSettings(CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve the subscribed users of the current application <br />
@@ -124,8 +128,9 @@ namespace Com.Cumulocity.Client.Api
 		/// 	</item>
 		/// </list>
 		/// </summary>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationUserCollection?> GetSubscribedUsers() ;
+		Task<ApplicationUserCollection?> GetSubscribedUsers(CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

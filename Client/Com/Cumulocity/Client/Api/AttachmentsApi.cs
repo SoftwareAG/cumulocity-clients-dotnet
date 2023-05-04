@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Com.Cumulocity.Client.Model;
@@ -32,30 +33,30 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> GetEventAttachment(string id) 
+		public async Task<System.IO.Stream> GetEventAttachment(string id, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id) 
+		public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Content = new ByteArrayContent(body),
 				Method = HttpMethod.Put,
@@ -63,19 +64,19 @@ namespace Com.Cumulocity.Client.Api
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id) 
+		public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Content = new ByteArrayContent(body),
 				Method = HttpMethod.Post,
@@ -83,14 +84,14 @@ namespace Com.Cumulocity.Client.Api
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id) 
+		public async Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
@@ -102,7 +103,7 @@ namespace Com.Cumulocity.Client.Api
 			var fileContentFile = new ByteArrayContent(file);
 			fileContentFile.Headers.ContentType = MediaTypeHeaderValue.Parse("text/plain");
 			requestContent.Add(fileContentFile, "file");
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Content = requestContent,
 				Method = HttpMethod.Post,
@@ -110,25 +111,25 @@ namespace Com.Cumulocity.Client.Api
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<System.IO.Stream> DeleteEventAttachment(string id) 
+		public async Task<System.IO.Stream> DeleteEventAttachment(string id, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/event/events/{id}/binaries";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Delete,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
 			return responseStream;

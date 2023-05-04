@@ -94,7 +94,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("alarms")]
-			public List<TAlarm>? PAlarms { get; set; }
+			public List<TAlarm> PAlarms { get; set; } = new List<TAlarm>();
 		
 			public override string ToString()
 			{

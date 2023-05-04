@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("alarms")]
-		public List<TAlarm>? Alarms { get; set; }
+		public List<TAlarm> Alarms { get; set; } = new List<TAlarm>();
 	
 		/// <summary> 
 		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential next page of managed objects. <br />

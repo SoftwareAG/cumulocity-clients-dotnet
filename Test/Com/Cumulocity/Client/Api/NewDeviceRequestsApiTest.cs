@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetNewDeviceRequests()
+		public async void TestGetNewDeviceRequests()
 		{
 			var api = new NewDeviceRequestsApi(HttpClient!);
-			var response = api.GetNewDeviceRequests();
+			var response = await api.GetNewDeviceRequests();
 			Debug.Assert(response != null);
 		}
 	}

@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("users")]
-		public List<Users>? PUsers { get; set; }
+		public List<Users> PUsers { get; set; } = new List<Users>();
 	
 		/// <summary> 
 		/// A user who is subscribed to the current application. <br />

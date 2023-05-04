@@ -40,18 +40,18 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetCurrentUser()
+		public async void TestGetCurrentUser()
 		{
 			var api = new CurrentUserApi(HttpClient!);
-			var response = api.GetCurrentUser();
+			var response = await api.GetCurrentUser();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetTfaState()
+		public async void TestGetTfaState()
 		{
 			var api = new CurrentUserApi(HttpClient!);
-			var response = api.GetTfaState();
+			var response = await api.GetTfaState();
 			Debug.Assert(response != null);
 		}
 	}

@@ -101,7 +101,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("options")]
-			public List<Option>? POptions { get; set; }
+			public List<Option> POptions { get; set; } = new List<Option>();
 		
 			public override string ToString()
 			{
@@ -129,7 +129,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("tenants")]
-			public List<Tenant<TCustomProperties>>? PTenants { get; set; }
+			public List<Tenant<TCustomProperties>> PTenants { get; set; } = new List<Tenant<TCustomProperties>>();
 		
 			public override string ToString()
 			{

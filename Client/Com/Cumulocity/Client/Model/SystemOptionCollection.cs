@@ -25,7 +25,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("options")]
-		public List<SystemOption>? Options { get; set; }
+		public List<SystemOption> Options { get; set; } = new List<SystemOption>();
 	
 		public override string ToString()
 		{

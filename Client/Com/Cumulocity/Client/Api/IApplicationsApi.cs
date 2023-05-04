@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -17,7 +18,7 @@ namespace Com.Cumulocity.Client.Api
 	/// API methods to retrieve, create, update and delete applications. <br />
 	/// ### Application names <br />
 	/// For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name). <br />
-	/// Refer to the tables in <see href="https://cumulocity.com/guides/10.7.0/users-guide/administration#managing-applications" langword="Administration > Managing applications" /> in the User guide for the respective application name to be used. <br />
+	/// Refer to the tables in <see href="https://cumulocity.com/guides/users-guide/administration#managing-applications" langword="Administration > Managing applications" /> in the User guide for the respective application name to be used. <br />
 	/// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 	/// </summary>
 	///
@@ -57,8 +58,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="hasVersions">When set to <c>true</c>, the returned result contains applications with an <c>applicationVersions</c> field that is not empty. When set to <c>false</c>, the result will contain applications with an empty <c>applicationVersions</c> field. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null, bool? hasVersions = null) ;
+		Task<ApplicationCollection?> GetApplications(int? currentPage = null, string? name = null, string? owner = null, int? pageSize = null, string? providedFor = null, string? subscriber = null, string? tenant = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null, bool? hasVersions = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Create an application <br />
@@ -90,8 +92,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Application?> CreateApplication(Application body, string? xCumulocityProcessingMode = null) ;
+		Task<Application?> CreateApplication(Application body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a specific application <br />
@@ -118,8 +121,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the application. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Application?> GetApplication(string id) ;
+		Task<Application?> GetApplication(string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update a specific application <br />
@@ -148,8 +152,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the application. <br /></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Application?> UpdateApplication(Application body, string id, string? xCumulocityProcessingMode = null) ;
+		Task<Application?> UpdateApplication(Application body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Delete an application <br />
@@ -183,8 +188,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="id">Unique identifier of the application. <br /></param>
 		/// <param name="force">Force deletion by unsubscribing all tenants from the application first and then deleting the application itself. <br /></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteApplication(string id, bool? force = null, string? xCumulocityProcessingMode = null) ;
+		Task<System.IO.Stream> DeleteApplication(string id, bool? force = null, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Copy an application <br />
@@ -193,6 +199,7 @@ namespace Com.Cumulocity.Client.Api
 		/// A request to the "clone" resource creates a new application based on an already existing one. <br />
 		/// The properties are copied to the newly created application and the prefix "clone" is added to the properties <c>name</c>, <c>key</c> and <c>contextPath</c> in order to be unique. <br />
 		/// If the target application is hosted and has an active version, the new application will have the active version with the same content. <br />
+		/// If the original application is hosted with versions, then only one binary version is cloned. By default it is a version with the "latest" tag. You can also specify a target version directly by using exactly one of the query parameters <c>version</c> or <c>tag</c>. <br />
 		/// 
 		/// <br /> Required roles <br />
 		///  ROLE_APPLICATION_MANAGEMENT_ADMIN 
@@ -215,9 +222,12 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the application. <br /></param>
+		/// <param name="version">The version field of the application version. <br /></param>
+		/// <param name="tag">The tag of the application version. <br /></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<Application?> CopyApplication(string id, string? xCumulocityProcessingMode = null) ;
+		Task<Application?> CopyApplication(string id, string? version = null, string? tag = null, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve applications by name <br />
@@ -240,8 +250,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="name">The name of the application. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationCollection?> GetApplicationsByName(string name) ;
+		Task<ApplicationCollection?> GetApplicationsByName(string name, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve applications by tenant <br />
@@ -264,8 +275,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationCollection?> GetApplicationsByTenant(string tenantId) ;
+		Task<ApplicationCollection?> GetApplicationsByTenant(string tenantId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve applications by owner <br />
@@ -292,8 +304,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationCollection?> GetApplicationsByOwner(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
+		Task<ApplicationCollection?> GetApplicationsByOwner(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve applications by user <br />
@@ -320,8 +333,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<ApplicationCollection?> GetApplicationsByUser(string username, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
+		Task<ApplicationCollection?> GetApplicationsByUser(string username, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

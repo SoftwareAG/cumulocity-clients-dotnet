@@ -42,7 +42,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("references")]
-		public List<References<TManagedObject>>? PReferences { get; set; }
+		public List<References<TManagedObject>> PReferences { get; set; } = new List<References<TManagedObject>>();
 	
 		/// <summary> 
 		/// Information about paging statistics. <br />

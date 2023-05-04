@@ -13,6 +13,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Com.Cumulocity.Client.Model;
@@ -34,7 +35,7 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		/// <inheritdoc />
-		public async Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null) 
+		public async Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null, CancellationToken cToken = default) 
 		{
 			var client = HttpClient;
 			var resourcePath = $"/tenant/loginOptions";
@@ -43,42 +44,102 @@ namespace Com.Cumulocity.Client.Api
 			queryString.AddIfRequired("management", management);
 			queryString.AddIfRequired("tenantId", tenantId);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
 				Method = HttpMethod.Get,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.loginoptioncollection+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<LoginOptionCollection?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<LoginOptionCollection?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body) 
+		public async Task<AuthConfig?> CreateLoginOption(AuthConfig body, CancellationToken cToken = default) 
 		{
 			var jsonNode = ToJsonNode<AuthConfig>(body);
 			jsonNode?.RemoveFromNode("self");
+			jsonNode?.RemoveFromNode("id");
 			var client = HttpClient;
 			var resourcePath = $"/tenant/loginOptions";
 			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
-				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/vnd.com.nsn.cumulocity.authconfig+json"),
+				Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.authconfig+json"),
 				Method = HttpMethod.Post,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.authconfig+json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<AuthConfig?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<AuthConfig?>(responseStream, cancellationToken: cToken);
 		}
 		
 		/// <inheritdoc />
-		public async Task<AuthConfig?> UpdateLoginOption(AuthConfigAccess body, string typeOrId, string? targetTenant = null) 
+		public async Task<AuthConfig?> GetLoginOption(string typeOrId, CancellationToken cToken = default) 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/tenant/loginOptions/{typeOrId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			using var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Get,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authConfig+json");
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<AuthConfig?>(responseStream, cancellationToken: cToken);
+		}
+		
+		/// <inheritdoc />
+		public async Task<AuthConfig?> UpdateLoginOption(AuthConfig body, string typeOrId, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
+		{
+			var jsonNode = ToJsonNode<AuthConfig>(body);
+			jsonNode?.RemoveFromNode("self");
+			var client = HttpClient;
+			var resourcePath = $"/tenant/loginOptions/{typeOrId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			using var request = new HttpRequestMessage 
+			{
+				Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/vnd.com.nsn.cumulocity.authconfig+json"),
+				Method = HttpMethod.Put,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
+			request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.authconfig+json");
+			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json");
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return await JsonSerializer.DeserializeAsync<AuthConfig?>(responseStream, cancellationToken: cToken);
+		}
+		
+		/// <inheritdoc />
+		public async Task<System.IO.Stream> DeleteLoginOption(string typeOrId, CancellationToken cToken = default) 
+		{
+			var client = HttpClient;
+			var resourcePath = $"/tenant/loginOptions/{typeOrId}";
+			var uriBuilder = new UriBuilder(new Uri(HttpClient?.BaseAddress ?? new Uri(resourcePath), resourcePath));
+			using var request = new HttpRequestMessage 
+			{
+				Method = HttpMethod.Delete,
+				RequestUri = new Uri(uriBuilder.ToString())
+			};
+			request.Headers.TryAddWithoutValidation("Accept", "application/json");
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+			response.EnsureSuccessStatusCode();
+			using var responseStream = await response.Content.ReadAsStreamAsync();
+			return responseStream;
+		}
+		
+		/// <inheritdoc />
+		public async Task<AuthConfig?> UpdateLoginOptionAccess(AuthConfigAccess body, string typeOrId, string? targetTenant = null, CancellationToken cToken = default) 
 		{
 			var jsonNode = ToJsonNode<AuthConfigAccess>(body);
 			var client = HttpClient;
@@ -87,18 +148,18 @@ namespace Com.Cumulocity.Client.Api
 			var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 			queryString.AddIfRequired("targetTenant", targetTenant);
 			uriBuilder.Query = queryString.ToString();
-			var request = new HttpRequestMessage 
+			using var request = new HttpRequestMessage 
 			{
-				Content = new StringContent(jsonNode.ToString(), Encoding.UTF8, "application/json"),
+				Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/json"),
 				Method = HttpMethod.Put,
 				RequestUri = new Uri(uriBuilder.ToString())
 			};
 			request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 			request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.authconfig+json");
-			var response = await client.SendAsync(request);
+			using var response = await client.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 			response.EnsureSuccessStatusCode();
 			using var responseStream = await response.Content.ReadAsStreamAsync();
-			return await JsonSerializer.DeserializeAsync<AuthConfig?>(responseStream);
+			return await JsonSerializer.DeserializeAsync<AuthConfig?>(responseStream, cancellationToken: cToken);
 		}
 	}
 	#nullable disable

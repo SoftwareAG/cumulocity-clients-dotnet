@@ -32,7 +32,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("cellTowers")]
-		public List<C8yCellTower>? CellTowers { get; set; }
+		public List<C8yCellTower> CellTowers { get; set; } = new List<C8yCellTower>();
 	
 		public C8yCellInfo() 
 		{

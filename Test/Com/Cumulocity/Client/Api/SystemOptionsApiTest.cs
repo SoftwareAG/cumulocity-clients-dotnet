@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetSystemOptions()
+		public async void TestGetSystemOptions()
 		{
 			var api = new SystemOptionsApi(HttpClient!);
-			var response = api.GetSystemOptions();
+			var response = await api.GetSystemOptions();
 			Debug.Assert(response != null);
 		}
 	}

@@ -66,7 +66,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("subscriptions")]
-			public List<NotificationSubscription>? Subscriptions { get; set; }
+			public List<NotificationSubscription> Subscriptions { get; set; } = new List<NotificationSubscription>();
 		
 			public override string ToString()
 			{

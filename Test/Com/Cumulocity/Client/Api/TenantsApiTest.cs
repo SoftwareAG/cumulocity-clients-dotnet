@@ -40,18 +40,18 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetTenants()
+		public async void TestGetTenants()
 		{
 			var api = new TenantsApi(HttpClient!);
-			var response = api.GetTenants<CustomProperties>();
+			var response = await api.GetTenants<CustomProperties>();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetCurrentTenant()
+		public async void TestGetCurrentTenant()
 		{
 			var api = new TenantsApi(HttpClient!);
-			var response = api.GetCurrentTenant<CustomProperties>();
+			var response = await api.GetCurrentTenant<CustomProperties>();
 			Debug.Assert(response != null);
 		}
 	}

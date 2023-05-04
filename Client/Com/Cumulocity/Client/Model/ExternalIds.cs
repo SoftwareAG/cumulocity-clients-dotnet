@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("externalIds")]
-		public List<ExternalId>? PExternalIds { get; set; }
+		public List<ExternalId> PExternalIds { get; set; } = new List<ExternalId>();
 	
 		/// <summary> 
 		/// A URL linking to this resource. <br />

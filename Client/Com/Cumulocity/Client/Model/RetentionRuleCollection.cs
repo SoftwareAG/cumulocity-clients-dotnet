@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("retentionRules")]
-		public List<RetentionRule>? RetentionRules { get; set; }
+		public List<RetentionRule> RetentionRules { get; set; } = new List<RetentionRule>();
 	
 		/// <summary> 
 		/// A URL linking to this resource. <br />

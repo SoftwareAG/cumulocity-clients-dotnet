@@ -15,7 +15,7 @@ using System.Runtime.Serialization;
 namespace Com.Cumulocity.Client.Model 
 {
 	/// <summary> 
-	/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications. <br />
+	/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups, permit access to the specified applications or to assign specific inventory roles to device groups. <br />
 	/// </summary>
 	///
 	public class JSONPredicateRepresentation 
@@ -26,7 +26,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("childPredicates")]
-		public List<JSONPredicateRepresentation>? ChildPredicates { get; set; }
+		public List<JSONPredicateRepresentation> ChildPredicates { get; set; } = new List<JSONPredicateRepresentation>();
 	
 		/// <summary> 
 		/// Operator executed on the parameter from the JWT access token claim pointed by <c>parameterPath</c> and the provided parameter <c>value</c>. <br />

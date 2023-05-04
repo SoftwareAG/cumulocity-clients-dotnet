@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -50,8 +51,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<RetentionRuleCollection?> GetRetentionRules(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null) ;
+		Task<RetentionRuleCollection?> GetRetentionRules(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Create a retention rule <br />
@@ -82,8 +84,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<RetentionRule?> CreateRetentionRule(RetentionRule body) ;
+		Task<RetentionRule?> CreateRetentionRule(RetentionRule body, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a retention rule <br />
@@ -114,8 +117,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the retention rule. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<RetentionRule?> GetRetentionRule(string id) ;
+		Task<RetentionRule?> GetRetentionRule(string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update a retention rule <br />
@@ -151,8 +155,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the retention rule. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id) ;
+		Task<RetentionRule?> UpdateRetentionRule(RetentionRule body, string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Remove a retention rule <br />
@@ -183,8 +188,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the retention rule. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteRetentionRule(string id) ;
+		Task<System.IO.Stream> DeleteRetentionRule(string id, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

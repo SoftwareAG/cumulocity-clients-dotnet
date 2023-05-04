@@ -17,7 +17,7 @@ namespace Com.Cumulocity.Client.Supplementary
 {
 	public class AdaptableApi
 	{
-		public HttpClient HttpClient { get; }
+		protected HttpClient HttpClient { get; }
 	
 		protected AdaptableApi(HttpClient httpClient)
 		{
@@ -57,21 +57,30 @@ namespace Com.Cumulocity.Client.Supplementary
 	
 	public static class NameValueCollectionExtensions
 	{
+		public static string GetStringValue(this object input)
+		{
+			if (input is System.DateTime dateTime)
+			{
+				return dateTime.ToString("O");
+			}
+			return input.ToString() ?? string.Empty;
+		}
+	
 		public static void AddIfRequired(this NameValueCollection collection, string key, object? value)
 		{
 			if (value != null)
 			{
-				collection.Add(key, value.ToString());
+				collection.Add(key, value.GetStringValue());
 			}
 		}
 	
-		public static void AddIfRequired<T>(this NameValueCollection collection, string key, List<T> value, bool explode = true)
+		public static void AddIfRequired<T>(this NameValueCollection collection, string key, List<T>? value, bool explode = true)
 		{
 			if (value != null)
 			{
 				if (explode)
 				{
-					value.ToList().ForEach(e => collection.Add(key, e.ToString()));
+					value.Where(e => e != null).ToList().ForEach(e => collection.Add(key, e.GetStringValue()));
 				}
 				else
 				{

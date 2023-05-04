@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("c8y_SupportedSeries")]
-		public List<string>? C8ySupportedSeries { get; set; }
+		public List<string> C8ySupportedSeries { get; set; } = new List<string>();
 	
 		public override string ToString()
 		{

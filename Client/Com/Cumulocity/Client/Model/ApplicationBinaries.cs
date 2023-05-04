@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("attachments")]
-		public List<Attachments>? PAttachments { get; set; }
+		public List<Attachments> PAttachments { get; set; } = new List<Attachments>();
 	
 		public class Attachments 
 		{

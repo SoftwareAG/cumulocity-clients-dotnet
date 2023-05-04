@@ -12,7 +12,7 @@ using System.Runtime.Serialization;
 
 namespace Com.Cumulocity.Client.Model 
 {
-	public class PlatformApiResource<TCustomProperties, TAlarm, TAuditRecord, TManagedObject, TEvent, TMeasurement> where TCustomProperties : CustomProperties where TAlarm : Alarm where TManagedObject : ManagedObject where TAuditRecord : AuditRecord where TEvent : Event where TMeasurement : Measurement
+	public class PlatformApiResource<TCustomProperties, TAlarm, TAuditRecord, TMeasurement, TManagedObject, TEvent> where TCustomProperties : CustomProperties where TAlarm : Alarm where TManagedObject : ManagedObject where TAuditRecord : AuditRecord where TEvent : Event where TMeasurement : Measurement
 	{
 	
 		/// <summary> 

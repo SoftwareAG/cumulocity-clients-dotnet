@@ -28,7 +28,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("inventoryAssignments")]
-		public List<InventoryAssignment>? InventoryAssignments { get; set; }
+		public List<InventoryAssignment> InventoryAssignments { get; set; } = new List<InventoryAssignment>();
 	
 		public override string ToString()
 		{

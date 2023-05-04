@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -41,8 +42,9 @@ namespace Com.Cumulocity.Client.Api
 		/// 	</item>
 		/// </list>
 		/// </summary>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<IdentityApiResource?> GetIdentityApiResource() ;
+		Task<IdentityApiResource?> GetIdentityApiResource(CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

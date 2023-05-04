@@ -173,6 +173,13 @@ namespace Com.Cumulocity.Client.Model
 		[JsonPropertyName("visibleOnLoginPage")]
 		public bool? VisibleOnLoginPage { get; set; }
 	
+		/// <summary> 
+		/// A configuration for authentication with an access token from the authorization server. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("externalTokenConfig")]
+		public ExternalTokenConfig? PExternalTokenConfig { get; set; }
+	
 		public AuthConfig() 
 		{
 		}
@@ -304,7 +311,14 @@ namespace Com.Cumulocity.Client.Model
 				/// </summary>
 				///
 				[JsonPropertyName("mappings")]
-				public List<Mappings>? PMappings { get; set; }
+				public List<Mappings> PMappings { get; set; } = new List<Mappings>();
+			
+				/// <summary> 
+				/// Represents rules used to assign inventory roles. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("inventoryMappings")]
+				public List<InventoryMappings> PInventoryMappings { get; set; } = new List<InventoryMappings>();
 			
 				/// <summary> 
 				/// Configuration of the mapping. <br />
@@ -319,6 +333,13 @@ namespace Com.Cumulocity.Client.Model
 					///
 					[JsonPropertyName("mapRolesOnlyForNewUser")]
 					public bool? MapRolesOnlyForNewUser { get; set; }
+				
+					/// <summary> 
+					/// If set to <c>true</c>, dynamic access mapping is only managed for global roles, applications and inventory roles which are listed in the configuration. Others remain unchanged. <br />
+					/// </summary>
+					///
+					[JsonPropertyName("manageRolesOnlyFromAccessMapping")]
+					public bool? ManageRolesOnlyFromAccessMapping { get; set; }
 				
 					public override string ToString()
 					{
@@ -339,7 +360,7 @@ namespace Com.Cumulocity.Client.Model
 				{
 				
 					/// <summary> 
-					/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications. <br />
+					/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups, permit access to the specified applications or to assign specific inventory roles to device groups. <br />
 					/// </summary>
 					///
 					[JsonPropertyName("when")]
@@ -350,14 +371,78 @@ namespace Com.Cumulocity.Client.Model
 					/// </summary>
 					///
 					[JsonPropertyName("thenApplications")]
-					public List<int>? ThenApplications { get; set; }
+					public List<int> ThenApplications { get; set; } = new List<int>();
 				
 					/// <summary> 
 					/// List of the groups' identifiers. <br />
 					/// </summary>
 					///
 					[JsonPropertyName("thenGroups")]
-					public List<int>? ThenGroups { get; set; }
+					public List<int> ThenGroups { get; set; } = new List<int>();
+				
+					public override string ToString()
+					{
+						var jsonOptions = new JsonSerializerOptions() 
+						{ 
+							WriteIndented = true,
+							DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+						};
+						return JsonSerializer.Serialize(this, jsonOptions);
+					}
+				}
+			
+				/// <summary> 
+				/// Represents information of mapping access to inventory roles. <br />
+				/// </summary>
+				///
+				public class InventoryMappings 
+				{
+				
+					/// <summary> 
+					/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups, permit access to the specified applications or to assign specific inventory roles to device groups. <br />
+					/// </summary>
+					///
+					[JsonPropertyName("when")]
+					public JSONPredicateRepresentation? When { get; set; }
+				
+					/// <summary> 
+					/// List of the OAuth inventory assignments. <br />
+					/// </summary>
+					///
+					[JsonPropertyName("thenInventoryRoles")]
+					public List<ThenInventoryRoles> PThenInventoryRoles { get; set; } = new List<ThenInventoryRoles>();
+				
+					/// <summary> 
+					/// Represents inventory roles for a specific device group. <br />
+					/// </summary>
+					///
+					public class ThenInventoryRoles 
+					{
+					
+						/// <summary> 
+						/// A unique identifier for the managed object for which the roles are assigned. <br />
+						/// </summary>
+						///
+						[JsonPropertyName("managedObject")]
+						public string? ManagedObject { get; set; }
+					
+						/// <summary> 
+						/// List of the inventory roles' identifiers. <br />
+						/// </summary>
+						///
+						[JsonPropertyName("roleIds")]
+						public List<int> RoleIds { get; set; } = new List<int>();
+					
+						public override string ToString()
+						{
+							var jsonOptions = new JsonSerializerOptions() 
+							{ 
+								WriteIndented = true,
+								DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+							};
+							return JsonSerializer.Serialize(this, jsonOptions);
+						}
+					}
 				
 					public override string ToString()
 					{
@@ -652,6 +737,115 @@ namespace Com.Cumulocity.Client.Model
 			}
 		}
 	
+	
+		/// <summary> 
+		/// A configuration for authentication with an access token from the authorization server. <br />
+		/// </summary>
+		///
+		public class ExternalTokenConfig 
+		{
+		
+			/// <summary> 
+			/// Indicates whether authentication is enabled or disabled. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("enabled")]
+			public bool? Enabled { get; set; }
+		
+			/// <summary> 
+			/// Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity IoT platform. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("userOrAppIdConfig")]
+			public UserOrAppIdConfig? PUserOrAppIdConfig { get; set; }
+		
+			/// <summary> 
+			/// If set to <c>true</c>, the access token is validated against the authorization server by way of introspection or user info request. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("validationRequired")]
+			public bool? ValidationRequired { get; set; }
+		
+			/// <summary> 
+			/// The method of validation of the access token. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("validationMethod")]
+			public ValidationMethod? PValidationMethod { get; set; }
+		
+			[JsonPropertyName("tokenValidationRequest")]
+			public RequestRepresentation? TokenValidationRequest { get; set; }
+		
+			/// <summary> 
+			/// The frequency (in Minutes) in which Cumulocity sends a validation request to authorization server. The recommended frequency is 1 minute. <br />
+			/// </summary>
+			///
+			[JsonPropertyName("accessTokenValidityCheckIntervalInMinutes")]
+			public int? AccessTokenValidityCheckIntervalInMinutes { get; set; }
+		
+			/// <summary> 
+			/// The method of validation of the access token. <br />
+			/// </summary>
+			///
+			[JsonConverter(typeof(EnumConverterFactory))]
+			public enum ValidationMethod 
+			{
+				[EnumMember(Value = "INTROSPECTION")]
+				INTROSPECTION,
+				[EnumMember(Value = "USERINFO")]
+				USERINFO
+			}
+		
+			/// <summary> 
+			/// Points to the claim of the access token from the authorization server that must be used as the username in the Cumulocity IoT platform. <br />
+			/// </summary>
+			///
+			public class UserOrAppIdConfig 
+			{
+			
+				/// <summary> 
+				/// Used only if <c>useConstantValue</c> is set to <c>true</c>. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("constantValue")]
+				public string? ConstantValue { get; set; }
+			
+				/// <summary> 
+				/// The name of the field containing the JWT. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("jwtField")]
+				public string? JwtField { get; set; }
+			
+				/// <summary> 
+				/// Not recommended. If set to <c>true</c>, all users share a single account in the Cumulocity IoT platform. <br />
+				/// </summary>
+				///
+				[JsonPropertyName("useConstantValue")]
+				public bool? UseConstantValue { get; set; }
+			
+				public override string ToString()
+				{
+					var jsonOptions = new JsonSerializerOptions() 
+					{ 
+						WriteIndented = true,
+						DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+					};
+					return JsonSerializer.Serialize(this, jsonOptions);
+				}
+			}
+		
+		
+			public override string ToString()
+			{
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
+			}
+		}
 	
 		public override string ToString()
 		{

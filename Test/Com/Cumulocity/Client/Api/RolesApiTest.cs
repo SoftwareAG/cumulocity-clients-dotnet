@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetUserRoles()
+		public async void TestGetUserRoles()
 		{
 			var api = new RolesApi(HttpClient!);
-			var response = api.GetUserRoles();
+			var response = await api.GetUserRoles();
 			Debug.Assert(response != null);
 		}
 	}

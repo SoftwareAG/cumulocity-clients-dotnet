@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -61,8 +62,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 		/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null) where TAlarm : Alarm;
+		Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAlarm : Alarm;
 		
 		/// <summary> 
 		/// Update alarm collections <br />
@@ -110,8 +112,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="status">The status of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
 		/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 		/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> UpdateAlarms<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null) where TAlarm : Alarm;
+		Task<System.IO.Stream> UpdateAlarms<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) where TAlarm : Alarm;
 		
 		/// <summary> 
 		/// Create an alarm <br />
@@ -169,13 +172,14 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TAlarm?> CreateAlarm<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null) where TAlarm : Alarm;
+		Task<TAlarm?> CreateAlarm<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) where TAlarm : Alarm;
 		
 		/// <summary> 
 		/// Remove alarm collections <br />
 		/// Remove alarm collections specified by query parameters. <br />
-		/// ⚠️ Important: Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.Also note that DELETE requests are not synchronous. The response could be returned before the delete request has been completed. <br />
+		/// ⚠️ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>, <c>createdFrom</c>, <c>createdTo</c>.Also note that DELETE requests are not synchronous. The response could be returned before the delete request has been completed. <br />
 		/// 
 		/// <br /> Required roles <br />
 		///  ROLE_ALARM_ADMIN 
@@ -209,8 +213,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="type">The types of alarm to search for. <br />ⓘ Info: If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. <br /></param>
 		/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 		/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteAlarms(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
+		Task<System.IO.Stream> DeleteAlarms(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a specific alarm <br />
@@ -241,8 +246,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the alarm. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TAlarm?> GetAlarm<TAlarm>(string id) where TAlarm : Alarm;
+		Task<TAlarm?> GetAlarm<TAlarm>(string id, CancellationToken cToken = default) where TAlarm : Alarm;
 		
 		/// <summary> 
 		/// Update a specific alarm <br />
@@ -280,8 +286,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the alarm. <br /></param>
 		/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<TAlarm?> UpdateAlarm<TAlarm>(TAlarm body, string id, string? xCumulocityProcessingMode = null) where TAlarm : Alarm;
+		Task<TAlarm?> UpdateAlarm<TAlarm>(TAlarm body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) where TAlarm : Alarm;
 		
 		/// <summary> 
 		/// Retrieve the total number of alarms <br />
@@ -312,8 +319,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="type">The types of alarm to search for. <br />ⓘ Info: If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. <br /></param>
 		/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 		/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null) ;
+		Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

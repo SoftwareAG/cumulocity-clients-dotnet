@@ -117,18 +117,25 @@ namespace Com.Cumulocity.Client.Model
 		public C8yIsDevice? PC8yIsDevice { get; set; }
 	
 		/// <summary> 
+		/// A fragment which identifies this managed object as a device group. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("c8y_IsDeviceGroup")]
+		public C8yIsDeviceGroup? PC8yIsDeviceGroup { get; set; }
+	
+		/// <summary> 
 		/// This fragment must be added in order to publish sample commands for a subset of devices sharing the same device type. If the fragment is present, the list of sample commands for a device type will be extended with the sample commands for the <c>c8y_DeviceTypes</c>. New sample commands created from the user interface will be created in the context of the <c>c8y_DeviceTypes</c>. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("c8y_DeviceTypes")]
-		public List<string>? C8yDeviceTypes { get; set; }
+		public List<string> C8yDeviceTypes { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// Lists the operations that are available for a particular device, so that applications can trigger the operations. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("c8y_SupportedOperations")]
-		public List<string>? C8ySupportedOperations { get; set; }
+		public List<string> C8ySupportedOperations { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <c>"property1": {}</c>, <c>"property2": "value"</c>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name. <br />
@@ -150,6 +157,24 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		public class C8yIsDevice 
+		{
+		
+			public override string ToString()
+			{
+				var jsonOptions = new JsonSerializerOptions() 
+				{ 
+					WriteIndented = true,
+					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+				};
+				return JsonSerializer.Serialize(this, jsonOptions);
+			}
+		}
+	
+		/// <summary> 
+		/// A fragment which identifies this managed object as a device group. <br />
+		/// </summary>
+		///
+		public class C8yIsDeviceGroup 
 		{
 		
 			public override string ToString()

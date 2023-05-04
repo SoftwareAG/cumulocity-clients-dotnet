@@ -35,7 +35,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("tag")]
-		public List<string>? Tag { get; set; }
+		public List<string> Tag { get; set; } = new List<string>();
 	
 		public override string ToString()
 		{

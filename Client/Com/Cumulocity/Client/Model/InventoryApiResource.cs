@@ -63,7 +63,7 @@ namespace Com.Cumulocity.Client.Model
 			/// </summary>
 			///
 			[JsonPropertyName("references")]
-			public List<TManagedObject>? References { get; set; }
+			public List<TManagedObject> References { get; set; } = new List<TManagedObject>();
 		
 			/// <summary> 
 			/// A URL linking to this resource. <br />

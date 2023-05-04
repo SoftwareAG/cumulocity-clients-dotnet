@@ -7,6 +7,7 @@
 ///
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -46,8 +47,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the application. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<BootstrapUser?> GetBootstrapUser(string id) ;
+		Task<BootstrapUser?> GetBootstrapUser(string id, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

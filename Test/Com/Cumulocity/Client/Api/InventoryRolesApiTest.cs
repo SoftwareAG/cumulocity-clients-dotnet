@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetInventoryRoles()
+		public async void TestGetInventoryRoles()
 		{
 			var api = new InventoryRolesApi(HttpClient!);
-			var response = api.GetInventoryRoles();
+			var response = await api.GetInventoryRoles();
 			Debug.Assert(response != null);
 		}
 	}

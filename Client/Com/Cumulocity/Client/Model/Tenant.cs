@@ -155,7 +155,7 @@ namespace Com.Cumulocity.Client.Model
 			/// </summary>
 			///
 			[JsonPropertyName("references")]
-			public List<Application>? References { get; set; }
+			public List<Application> References { get; set; } = new List<Application>();
 		
 			/// <summary> 
 			/// A URL linking to this resource. <br />
@@ -187,7 +187,7 @@ namespace Com.Cumulocity.Client.Model
 			/// </summary>
 			///
 			[JsonPropertyName("references")]
-			public List<Application>? References { get; set; }
+			public List<Application> References { get; set; } = new List<Application>();
 		
 			/// <summary> 
 			/// A URL linking to this resource. <br />

@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetRetentionRules()
+		public async void TestGetRetentionRules()
 		{
 			var api = new RetentionRulesApi(HttpClient!);
-			var response = api.GetRetentionRules();
+			var response = await api.GetRetentionRules();
 			Debug.Assert(response != null);
 		}
 	}

@@ -6,6 +6,7 @@
 /// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 ///
 
+using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
@@ -13,11 +14,17 @@ using System.Runtime.Serialization;
 namespace Com.Cumulocity.Client.Model 
 {
 	/// <summary> 
-	/// An object with a list of the user's device permissions. <br />
+	/// A list of device permissions. <br />
 	/// </summary>
 	///
-	public class DevicePermissions 
+	public class DevicePermissions<TCustomProperties> where TCustomProperties : CustomProperties
 	{
+	
+		[JsonPropertyName("users")]
+		public List<User<TCustomProperties>> Users { get; set; } = new List<User<TCustomProperties>>();
+	
+		[JsonPropertyName("groups")]
+		public List<Group<TCustomProperties>> Groups { get; set; } = new List<Group<TCustomProperties>>();
 	
 		public override string ToString()
 		{

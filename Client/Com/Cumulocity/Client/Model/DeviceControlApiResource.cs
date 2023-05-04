@@ -84,7 +84,7 @@ namespace Com.Cumulocity.Client.Model
 			/// </summary>
 			///
 			[JsonPropertyName("operations")]
-			public List<OperationReference>? POperations { get; set; }
+			public List<OperationReference> POperations { get; set; } = new List<OperationReference>();
 		
 			public override string ToString()
 			{

@@ -25,7 +25,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("roles")]
-		public List<Roles>? PRoles { get; set; }
+		public List<Roles> PRoles { get; set; } = new List<Roles>();
 	
 		public class Roles 
 		{

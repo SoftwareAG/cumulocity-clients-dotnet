@@ -73,6 +73,27 @@ namespace Com.Cumulocity.Client.Model
 		public System.DateTime? NotBefore { get; set; }
 	
 		/// <summary> 
+		/// Indicates whether the proof of possession for the certificate was provided. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("proofOfPossessionValid")]
+		public bool? ProofOfPossessionValid { get; set; }
+	
+		/// <summary> 
+		/// An unsigned verification code that provides proof of possession for the certificate after signing. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("proofOfPossessionUnsignedVerificationCode")]
+		public string? ProofOfPossessionUnsignedVerificationCode { get; set; }
+	
+		/// <summary> 
+		/// Validity of the verification code. <br />
+		/// </summary>
+		///
+		[JsonPropertyName("proofOfPossessionVerificationCodeUsableUntil")]
+		public System.DateTime? ProofOfPossessionVerificationCodeUsableUntil { get; set; }
+	
+		/// <summary> 
 		/// A URL linking to this resource. <br />
 		/// </summary>
 		///

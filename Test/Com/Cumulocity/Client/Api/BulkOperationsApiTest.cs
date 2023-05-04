@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetBulkOperations()
+		public async void TestGetBulkOperations()
 		{
 			var api = new BulkOperationsApi(HttpClient!);
-			var response = api.GetBulkOperations();
+			var response = await api.GetBulkOperations();
 			Debug.Assert(response != null);
 		}
 	}

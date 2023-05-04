@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("versions")]
-		public List<ApplicationVersion>? Versions { get; set; }
+		public List<ApplicationVersion> Versions { get; set; } = new List<ApplicationVersion>();
 	
 		public override string ToString()
 		{

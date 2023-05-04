@@ -94,7 +94,7 @@ namespace Com.Cumulocity.Client.Model
 			public string? Self { get; set; }
 		
 			[JsonPropertyName("auditRecords")]
-			public List<TAuditRecord>? PAuditRecords { get; set; }
+			public List<TAuditRecord> PAuditRecords { get; set; } = new List<TAuditRecord>();
 		
 			public override string ToString()
 			{

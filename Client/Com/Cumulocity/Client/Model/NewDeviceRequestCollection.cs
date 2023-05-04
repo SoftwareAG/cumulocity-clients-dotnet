@@ -21,7 +21,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("newDeviceRequests")]
-		public List<NewDeviceRequest>? NewDeviceRequests { get; set; }
+		public List<NewDeviceRequest> NewDeviceRequests { get; set; } = new List<NewDeviceRequest>();
 	
 		/// <summary> 
 		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential next page of managed objects. <br />

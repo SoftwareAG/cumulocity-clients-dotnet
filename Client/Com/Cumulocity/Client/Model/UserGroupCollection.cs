@@ -28,7 +28,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("groups")]
-		public List<Group<TCustomProperties>>? Groups { get; set; }
+		public List<Group<TCustomProperties>> Groups { get; set; } = new List<Group<TCustomProperties>>();
 	
 		/// <summary> 
 		/// A URI reference [<see href="https://tools.ietf.org/html/rfc3986" langword="RFC3986" />] to a potential previous page of managed objects. <br />

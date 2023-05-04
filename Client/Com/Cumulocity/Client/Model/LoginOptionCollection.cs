@@ -25,7 +25,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("loginOptions")]
-		public List<LoginOption>? LoginOptions { get; set; }
+		public List<LoginOption> LoginOptions { get; set; } = new List<LoginOption>();
 	
 		/// <summary> 
 		/// A URL linking to this resource. <br />

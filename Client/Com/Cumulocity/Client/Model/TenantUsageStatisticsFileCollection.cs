@@ -53,7 +53,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("statisticsFiles")]
-		public List<StatisticsFile>? StatisticsFiles { get; set; }
+		public List<StatisticsFile> StatisticsFiles { get; set; } = new List<StatisticsFile>();
 	
 		public override string ToString()
 		{

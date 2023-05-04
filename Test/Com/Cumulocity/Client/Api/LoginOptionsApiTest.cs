@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetLoginOptions()
+		public async void TestGetLoginOptions()
 		{
 			var api = new LoginOptionsApi(HttpClient!);
-			var response = api.GetLoginOptions();
+			var response = await api.GetLoginOptions();
 			Debug.Assert(response != null);
 		}
 	}

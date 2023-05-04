@@ -46,7 +46,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("statistics")]
-		public List<DeviceStatistics>? Statistics { get; set; }
+		public List<DeviceStatistics> Statistics { get; set; } = new List<DeviceStatistics>();
 	
 		public override string ToString()
 		{

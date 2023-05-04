@@ -49,7 +49,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("users")]
-		public List<User<TCustomProperties>>? Users { get; set; }
+		public List<User<TCustomProperties>> Users { get; set; } = new List<User<TCustomProperties>>();
 	
 		public override string ToString()
 		{

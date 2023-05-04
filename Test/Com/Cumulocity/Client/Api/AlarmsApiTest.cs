@@ -40,18 +40,18 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetAlarms()
+		public async void TestGetAlarms()
 		{
 			var api = new AlarmsApi(HttpClient!);
-			var response = api.GetAlarms<Alarm>();
+			var response = await api.GetAlarms<Alarm>();
 			Debug.Assert(response != null);
 		}
 		
 		[TestMethod]
-		public void TestGetNumberOfAlarms()
+		public async void TestGetNumberOfAlarms()
 		{
 			var api = new AlarmsApi(HttpClient!);
-			var response = api.GetNumberOfAlarms();
+			var response = await api.GetNumberOfAlarms();
 			Debug.Assert(response != null);
 		}
 	}

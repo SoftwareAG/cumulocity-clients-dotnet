@@ -44,7 +44,7 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("changes")]
-		public List<Changes>? PChanges { get; set; }
+		public List<Changes> PChanges { get; set; } = new List<Changes>();
 	
 		/// <summary> 
 		/// The date and time when the audit record was created. <br />

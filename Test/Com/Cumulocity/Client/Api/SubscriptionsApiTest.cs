@@ -40,10 +40,10 @@ namespace Com.Cumulocity.Client.Api
 		}
 	
 		[TestMethod]
-		public void TestGetSubscriptions()
+		public async void TestGetSubscriptions()
 		{
 			var api = new SubscriptionsApi(HttpClient!);
-			var response = api.GetSubscriptions();
+			var response = await api.GetSubscriptions();
 			Debug.Assert(response != null);
 		}
 	}

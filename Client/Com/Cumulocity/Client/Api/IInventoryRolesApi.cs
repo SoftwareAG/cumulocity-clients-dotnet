@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -45,8 +46,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="currentPage">The current page of the paginated results. <br /></param>
 		/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 		/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<InventoryRoleCollection?> GetInventoryRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null) ;
+		Task<InventoryRoleCollection?> GetInventoryRoles(int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Create an inventory role <br />
@@ -77,8 +79,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="body"></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<InventoryRole?> CreateInventoryRole(InventoryRole body) ;
+		Task<InventoryRole?> CreateInventoryRole(InventoryRole body, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a specific inventory role <br />
@@ -105,8 +108,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the inventory role. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<InventoryRole?> GetInventoryRole(int id) ;
+		Task<InventoryRole?> GetInventoryRole(int id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update a specific inventory role <br />
@@ -138,8 +142,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the inventory role. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id) ;
+		Task<InventoryRole?> UpdateInventoryRole(InventoryRole body, int id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Remove a specific inventory role <br />
@@ -170,8 +175,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the inventory role. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteInventoryRole(int id) ;
+		Task<System.IO.Stream> DeleteInventoryRole(int id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve all inventory roles assigned to a user <br />
@@ -203,8 +209,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<InventoryAssignmentCollection?> GetUserInventoryRoles(string tenantId, string userId) ;
+		Task<InventoryAssignmentCollection?> GetUserInventoryRoles(string tenantId, string userId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Assign an inventory role to a user <br />
@@ -243,8 +250,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="body"></param>
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId) ;
+		Task<InventoryAssignment?> AssignUserInventoryRole(InventoryAssignment body, string tenantId, string userId, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Retrieve a specific inventory role assigned to a user <br />
@@ -277,8 +285,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
 		/// <param name="id">Unique identifier of the inventory assignment. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<InventoryAssignment?> GetUserInventoryRole(string tenantId, string userId, int id) ;
+		Task<InventoryAssignment?> GetUserInventoryRole(string tenantId, string userId, int id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Update a specific inventory role assigned to a user <br />
@@ -318,8 +327,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
 		/// <param name="id">Unique identifier of the inventory assignment. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id) ;
+		Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Remove a specific inventory role assigned to a user <br />
@@ -352,8 +362,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 		/// <param name="userId">Unique identifier of the a user. <br /></param>
 		/// <param name="id">Unique identifier of the inventory assignment. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id) ;
+		Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

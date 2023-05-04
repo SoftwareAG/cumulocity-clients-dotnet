@@ -8,6 +8,7 @@
 
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Com.Cumulocity.Client.Model;
 
@@ -46,8 +47,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the event. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> GetEventAttachment(string id) ;
+		Task<System.IO.Stream> GetEventAttachment(string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Replace the attached file of a specific event <br />
@@ -76,8 +78,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the event. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id) ;
+		Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Attach a file to a specific event <br />
@@ -137,8 +140,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </summary>
 		/// <param name="body"></param>
 		/// <param name="id">Unique identifier of the event. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<EventBinary?> UploadEventAttachment(byte[] body, string id) ;
+		Task<EventBinary?> UploadEventAttachment(byte[] body, string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Attach a file to a specific event <br />
@@ -199,8 +203,9 @@ namespace Com.Cumulocity.Client.Api
 		/// <param name="pObject"></param>
 		/// <param name="file">Path of the file to be uploaded. <br /></param>
 		/// <param name="id">Unique identifier of the event. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id) ;
+		Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id, CancellationToken cToken = default) ;
 		
 		/// <summary> 
 		/// Remove the attached file from a specific event <br />
@@ -227,8 +232,9 @@ namespace Com.Cumulocity.Client.Api
 		/// </list>
 		/// </summary>
 		/// <param name="id">Unique identifier of the event. <br /></param>
+		/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 		///
-		Task<System.IO.Stream> DeleteEventAttachment(string id) ;
+		Task<System.IO.Stream> DeleteEventAttachment(string id, CancellationToken cToken = default) ;
 	}
 	#nullable disable
 }

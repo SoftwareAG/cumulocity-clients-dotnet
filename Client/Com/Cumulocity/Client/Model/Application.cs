@@ -88,14 +88,14 @@ namespace Com.Cumulocity.Client.Model
 		/// </summary>
 		///
 		[JsonPropertyName("roles")]
-		public List<string>? Roles { get; set; }
+		public List<string> Roles { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// List of permissions required by a microservice to work. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("requiredRoles")]
-		public List<string>? RequiredRoles { get; set; }
+		public List<string> RequiredRoles { get; set; } = new List<string>();
 	
 		/// <summary> 
 		/// A flag to indicate if the application has a breadcrumbs navigation on the UI. <br />

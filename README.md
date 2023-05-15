@@ -38,7 +38,7 @@ Those classes allow to add an arbitrary number of additional properties as a lis
 Alarm.Serialization.RegisterAdditionalProperty(String, Type);
 ```
 
-Each of the extensible objects contains a dictionary object holding instances of custom fragments. Use the custom fragment's key to access it's value.
+Each of the extensible objects contains a dictionary object holding instances of custom fragments. Use the custom fragment's key to access its value.
 ### Tests
 
 Example usage is explained within the `Test` project. To configure the tests, it's required to specify host and credentials. Locate the appsettings.test.json file and configure the settings:

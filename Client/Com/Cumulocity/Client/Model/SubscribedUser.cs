@@ -1,51 +1,40 @@
-///
-/// SubscribedUser.cs
-/// CumulocityCoreLibrary
-///
-/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-/// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
-///
+//
+// SubscribedUser.cs
+// CumulocityCoreLibrary
+//
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+//
 
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
 
-namespace Com.Cumulocity.Client.Model 
+namespace Client.Com.Cumulocity.Client.Model;
+
+public sealed class SubscribedUser 
 {
-	public class SubscribedUser 
+
+	/// <summary> 
+	/// An object with a user reference URL. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("user")]
+	public User? PUser { get; set; }
+
+	/// <summary> 
+	/// An object with a user reference URL. <br />
+	/// </summary>
+	///
+	public sealed class User 
 	{
 	
 		/// <summary> 
-		/// An object with a user reference URL. <br />
+		/// A URL linking to this resource. <br />
 		/// </summary>
 		///
-		[JsonPropertyName("user")]
-		public User? PUser { get; set; }
-	
-		/// <summary> 
-		/// An object with a user reference URL. <br />
-		/// </summary>
-		///
-		public class User 
-		{
-		
-			/// <summary> 
-			/// A URL linking to this resource. <br />
-			/// </summary>
-			///
-			[JsonPropertyName("self")]
-			public string? Self { get; set; }
-		
-			public override string ToString()
-			{
-				var jsonOptions = new JsonSerializerOptions() 
-				{ 
-					WriteIndented = true,
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-				};
-				return JsonSerializer.Serialize(this, jsonOptions);
-			}
-		}
+		[JsonPropertyName("self")]
+		public string? Self { get; set; }
 	
 		public override string ToString()
 		{
@@ -56,5 +45,15 @@ namespace Com.Cumulocity.Client.Model
 			};
 			return JsonSerializer.Serialize(this, jsonOptions);
 		}
+	}
+
+	public override string ToString()
+	{
+		var jsonOptions = new JsonSerializerOptions() 
+		{ 
+			WriteIndented = true,
+			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+		};
+		return JsonSerializer.Serialize(this, jsonOptions);
 	}
 }

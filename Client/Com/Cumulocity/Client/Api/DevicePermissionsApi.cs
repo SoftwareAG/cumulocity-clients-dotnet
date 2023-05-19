@@ -77,7 +77,7 @@ public sealed class DevicePermissionsApi : IDevicePermissionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<DevicePermissions<TCustomProperties>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<DevicePermissions<TCustomProperties>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />

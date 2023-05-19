@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
+using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Model;
 
@@ -46,10 +47,10 @@ public sealed class C8yMobile
 	/// </summary>
 	///
 	[JsonPropertyName("customFragments")]
-	public Dictionary<string, string> CustomFragments { get; set; } = new Dictionary<string, string>();
+	public IDictionary<string, string?> CustomFragments { get; set; } = new Dictionary<string, string?>();
 	
 	[JsonIgnore]
-	public string this[string key]
+	public string? this[string key]
 	{
 		get => CustomFragments[key];
 		set => CustomFragments[key] = value;
@@ -68,11 +69,6 @@ public sealed class C8yMobile
 
 	public override string ToString()
 	{
-		var jsonOptions = new JsonSerializerOptions() 
-		{ 
-			WriteIndented = true,
-			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-		};
-		return JsonSerializer.Serialize(this, jsonOptions);
+		return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 	}
 }

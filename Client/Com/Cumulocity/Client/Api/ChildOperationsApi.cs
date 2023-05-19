@@ -58,7 +58,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -170,7 +170,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -214,7 +214,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -326,7 +326,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -370,7 +370,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectReferenceCollection<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -482,7 +482,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectReference<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />

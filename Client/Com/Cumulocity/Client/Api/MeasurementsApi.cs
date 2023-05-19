@@ -62,7 +62,7 @@ public sealed class MeasurementsApi : IMeasurementsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<MeasurementCollection<TMeasurement>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<MeasurementCollection<TMeasurement>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -86,7 +86,7 @@ public sealed class MeasurementsApi : IMeasurementsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<TMeasurement?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<TMeasurement?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -111,7 +111,7 @@ public sealed class MeasurementsApi : IMeasurementsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<MeasurementCollection<TMeasurement>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<MeasurementCollection<TMeasurement>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -153,7 +153,7 @@ public sealed class MeasurementsApi : IMeasurementsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<TMeasurement?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<TMeasurement?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -196,6 +196,6 @@ public sealed class MeasurementsApi : IMeasurementsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<MeasurementSeries?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<MeasurementSeries?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 }

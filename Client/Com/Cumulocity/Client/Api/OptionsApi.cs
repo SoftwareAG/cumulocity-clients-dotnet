@@ -54,7 +54,7 @@ public sealed class OptionsApi : IOptionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<OptionCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<OptionCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -75,7 +75,7 @@ public sealed class OptionsApi : IOptionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -92,7 +92,7 @@ public sealed class OptionsApi : IOptionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<TCategoryOptions?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<TCategoryOptions?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -112,7 +112,7 @@ public sealed class OptionsApi : IOptionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<TCategoryOptions?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<TCategoryOptions?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -129,7 +129,7 @@ public sealed class OptionsApi : IOptionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -149,7 +149,7 @@ public sealed class OptionsApi : IOptionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<Option?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />

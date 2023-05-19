@@ -67,7 +67,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -86,7 +86,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -95,7 +95,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var requestContent = new MultipartFormDataContent();
-		var fileContentObject = new StringContent(JsonSerializer.Serialize(pObject));
+		var fileContentObject = new StringContent(JsonSerializerWrapper.Serialize(pObject));
 		fileContentObject.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
 		requestContent.Add(fileContentObject, "object");
 		var fileContentFile = new ByteArrayContent(file);
@@ -112,7 +112,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />

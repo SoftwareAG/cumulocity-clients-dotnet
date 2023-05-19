@@ -52,7 +52,7 @@ public sealed class ApplicationVersionsApi : IApplicationVersionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ApplicationVersion?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ApplicationVersion?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -69,7 +69,7 @@ public sealed class ApplicationVersionsApi : IApplicationVersionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ApplicationVersionCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ApplicationVersionCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -81,7 +81,7 @@ public sealed class ApplicationVersionsApi : IApplicationVersionsApi
 		var fileContentApplicationBinary = new ByteArrayContent(applicationBinary);
 		fileContentApplicationBinary.Headers.ContentType = MediaTypeHeaderValue.Parse("application/zip");
 		requestContent.Add(fileContentApplicationBinary, "applicationBinary");
-		var fileContentApplicationVersion = new StringContent(JsonSerializer.Serialize(applicationVersion));
+		var fileContentApplicationVersion = new StringContent(JsonSerializerWrapper.Serialize(applicationVersion));
 		fileContentApplicationVersion.Headers.ContentType = MediaTypeHeaderValue.Parse("text/plain");
 		requestContent.Add(fileContentApplicationVersion, "applicationVersion");
 		using var request = new HttpRequestMessage 
@@ -95,7 +95,7 @@ public sealed class ApplicationVersionsApi : IApplicationVersionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ApplicationVersion?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ApplicationVersion?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -136,6 +136,6 @@ public sealed class ApplicationVersionsApi : IApplicationVersionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		response.EnsureSuccessStatusCode();
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializer.DeserializeAsync<ApplicationVersion?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ApplicationVersion?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 }

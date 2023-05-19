@@ -6,11 +6,12 @@
 // Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
 //
 
-using Client.Com.Cumulocity.Client.Converter;
 using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
+using Client.Com.Cumulocity.Client.Converter;
+using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Model;
 
@@ -268,12 +269,7 @@ public sealed class AuthConfig
 	
 		public override string ToString()
 		{
-			var jsonOptions = new JsonSerializerOptions() 
-			{ 
-				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-			};
-			return JsonSerializer.Serialize(this, jsonOptions);
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 		}
 	}
 
@@ -343,12 +339,7 @@ public sealed class AuthConfig
 			
 				public override string ToString()
 				{
-					var jsonOptions = new JsonSerializerOptions() 
-					{ 
-						WriteIndented = true,
-						DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-					};
-					return JsonSerializer.Serialize(this, jsonOptions);
+					return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 				}
 			}
 		
@@ -382,12 +373,7 @@ public sealed class AuthConfig
 			
 				public override string ToString()
 				{
-					var jsonOptions = new JsonSerializerOptions() 
-					{ 
-						WriteIndented = true,
-						DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-					};
-					return JsonSerializer.Serialize(this, jsonOptions);
+					return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 				}
 			}
 		
@@ -435,45 +421,25 @@ public sealed class AuthConfig
 				
 					public override string ToString()
 					{
-						var jsonOptions = new JsonSerializerOptions() 
-						{ 
-							WriteIndented = true,
-							DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-						};
-						return JsonSerializer.Serialize(this, jsonOptions);
+						return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 					}
 				}
 			
 				public override string ToString()
 				{
-					var jsonOptions = new JsonSerializerOptions() 
-					{ 
-						WriteIndented = true,
-						DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-					};
-					return JsonSerializer.Serialize(this, jsonOptions);
+					return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 				}
 			}
 		
 			public override string ToString()
 			{
-				var jsonOptions = new JsonSerializerOptions() 
-				{ 
-					WriteIndented = true,
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-				};
-				return JsonSerializer.Serialize(this, jsonOptions);
+				return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			var jsonOptions = new JsonSerializerOptions() 
-			{ 
-				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-			};
-			return JsonSerializer.Serialize(this, jsonOptions);
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 		}
 	}
 
@@ -528,12 +494,7 @@ public sealed class AuthConfig
 		
 			public override string ToString()
 			{
-				var jsonOptions = new JsonSerializerOptions() 
-				{ 
-					WriteIndented = true,
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-				};
-				return JsonSerializer.Serialize(this, jsonOptions);
+				return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 			}
 		}
 	
@@ -553,12 +514,7 @@ public sealed class AuthConfig
 		
 			public override string ToString()
 			{
-				var jsonOptions = new JsonSerializerOptions() 
-				{ 
-					WriteIndented = true,
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-				};
-				return JsonSerializer.Serialize(this, jsonOptions);
+				return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 			}
 		}
 	
@@ -578,12 +534,7 @@ public sealed class AuthConfig
 		
 			public override string ToString()
 			{
-				var jsonOptions = new JsonSerializerOptions() 
-				{ 
-					WriteIndented = true,
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-				};
-				return JsonSerializer.Serialize(this, jsonOptions);
+				return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 			}
 		}
 	
@@ -666,34 +617,19 @@ public sealed class AuthConfig
 			
 				public override string ToString()
 				{
-					var jsonOptions = new JsonSerializerOptions() 
-					{ 
-						WriteIndented = true,
-						DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-					};
-					return JsonSerializer.Serialize(this, jsonOptions);
+					return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 				}
 			}
 		
 			public override string ToString()
 			{
-				var jsonOptions = new JsonSerializerOptions() 
-				{ 
-					WriteIndented = true,
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-				};
-				return JsonSerializer.Serialize(this, jsonOptions);
+				return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			var jsonOptions = new JsonSerializerOptions() 
-			{ 
-				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-			};
-			return JsonSerializer.Serialize(this, jsonOptions);
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 		}
 	}
 
@@ -728,12 +664,7 @@ public sealed class AuthConfig
 	
 		public override string ToString()
 		{
-			var jsonOptions = new JsonSerializerOptions() 
-			{ 
-				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-			};
-			return JsonSerializer.Serialize(this, jsonOptions);
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 		}
 	}
 
@@ -826,34 +757,19 @@ public sealed class AuthConfig
 		
 			public override string ToString()
 			{
-				var jsonOptions = new JsonSerializerOptions() 
-				{ 
-					WriteIndented = true,
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-				};
-				return JsonSerializer.Serialize(this, jsonOptions);
+				return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 			}
 		}
 	
 	
 		public override string ToString()
 		{
-			var jsonOptions = new JsonSerializerOptions() 
-			{ 
-				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-			};
-			return JsonSerializer.Serialize(this, jsonOptions);
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 		}
 	}
 
 	public override string ToString()
 	{
-		var jsonOptions = new JsonSerializerOptions() 
-		{ 
-			WriteIndented = true,
-			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-		};
-		return JsonSerializer.Serialize(this, jsonOptions);
+		return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 	}
 }

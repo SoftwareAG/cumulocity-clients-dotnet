@@ -9,6 +9,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
+using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Model;
 
@@ -84,12 +85,7 @@ public sealed class C8yNetwork
 	
 		public override string ToString()
 		{
-			var jsonOptions = new JsonSerializerOptions() 
-			{ 
-				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-			};
-			return JsonSerializer.Serialize(this, jsonOptions);
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 		}
 	}
 
@@ -137,12 +133,7 @@ public sealed class C8yNetwork
 	
 		public override string ToString()
 		{
-			var jsonOptions = new JsonSerializerOptions() 
-			{ 
-				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-			};
-			return JsonSerializer.Serialize(this, jsonOptions);
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 		}
 	}
 
@@ -211,33 +202,18 @@ public sealed class C8yNetwork
 		
 			public override string ToString()
 			{
-				var jsonOptions = new JsonSerializerOptions() 
-				{ 
-					WriteIndented = true,
-					DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-				};
-				return JsonSerializer.Serialize(this, jsonOptions);
+				return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 			}
 		}
 	
 		public override string ToString()
 		{
-			var jsonOptions = new JsonSerializerOptions() 
-			{ 
-				WriteIndented = true,
-				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-			};
-			return JsonSerializer.Serialize(this, jsonOptions);
+			return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 		}
 	}
 
 	public override string ToString()
 	{
-		var jsonOptions = new JsonSerializerOptions() 
-		{ 
-			WriteIndented = true,
-			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-		};
-		return JsonSerializer.Serialize(this, jsonOptions);
+		return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 	}
 }

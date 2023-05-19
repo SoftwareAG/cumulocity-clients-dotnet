@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Runtime.Serialization;
+using Client.Com.Cumulocity.Client.Supplementary;
 
 namespace Client.Com.Cumulocity.Client.Model;
 
@@ -21,10 +22,10 @@ public sealed class C8ySinglePhaseEnergyMeasurement
 {
 
 	[JsonPropertyName("additionalProperties")]
-	public Dictionary<string, C8yMeasurementValue> AdditionalProperties { get; set; } = new Dictionary<string, C8yMeasurementValue>();
+	public IDictionary<string, C8yMeasurementValue?> AdditionalProperties { get; set; } = new Dictionary<string, C8yMeasurementValue?>();
 	
 	[JsonIgnore]
-	public C8yMeasurementValue this[string key]
+	public C8yMeasurementValue? this[string key]
 	{
 		get => AdditionalProperties[key];
 		set => AdditionalProperties[key] = value;
@@ -32,11 +33,6 @@ public sealed class C8ySinglePhaseEnergyMeasurement
 
 	public override string ToString()
 	{
-		var jsonOptions = new JsonSerializerOptions() 
-		{ 
-			WriteIndented = true,
-			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-		};
-		return JsonSerializer.Serialize(this, jsonOptions);
+		return JsonSerializerWrapper.Serialize(this, JsonSerializerWrapper.ToStringJsonSerializerOptions);
 	}
 }

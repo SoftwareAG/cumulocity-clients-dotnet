@@ -91,7 +91,7 @@ public sealed class DeviceStatisticsApi : IDeviceStatisticsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<DeviceStatisticsCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -114,7 +114,7 @@ public sealed class DeviceStatisticsApi : IDeviceStatisticsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<DeviceStatisticsCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}

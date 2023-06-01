@@ -65,7 +65,7 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.bulkoperationcollection+json, application/vnd.com.nsn.cumulocity.error+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<BulkOperationCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -91,7 +91,7 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.bulkoperation+json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -108,7 +108,7 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -134,13 +134,13 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.bulkoperation+json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.bulkoperation+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> DeleteBulkOperation(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
+	public async Task<string?> DeleteBulkOperation(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"/devicecontrol/bulkoperations/{HttpUtility.UrlEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -152,8 +152,8 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		request.Headers.TryAddWithoutValidation("X-Cumulocity-Processing-Mode", xCumulocityProcessingMode);
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 }

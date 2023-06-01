@@ -46,7 +46,7 @@ public sealed class BootstrapUserApi : IBootstrapUserApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.user+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<BootstrapUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}

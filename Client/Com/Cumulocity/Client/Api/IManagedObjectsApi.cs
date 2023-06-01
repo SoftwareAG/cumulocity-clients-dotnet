@@ -19,7 +19,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IManagedObjectsApi
 {
 
@@ -260,7 +259,7 @@ public interface IManagedObjectsApi
 	/// <param name="withDeviceUser">When set to <c>true</c> and the managed object is a device, it deletes the associated device user (credentials). <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteManagedObject(string id, string? xCumulocityProcessingMode = null, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null, CancellationToken cToken = default) ;
+	Task<string?> DeleteManagedObject(string id, string? xCumulocityProcessingMode = null, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve the latest availability date of a specific managed object <br />
@@ -409,4 +408,3 @@ public interface IManagedObjectsApi
 	///
 	Task<ManagedObjectUser?> UpdateManagedObjectUser(ManagedObjectUser body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 }
-#nullable disable

@@ -52,7 +52,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryrolecollection+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<InventoryRoleCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -74,7 +74,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryrole+json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<InventoryRole?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -91,7 +91,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<InventoryRole?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -113,13 +113,13 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryrole+json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.inventoryrole+json, application/vnd.com.nsn.cumulocity.error+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<InventoryRole?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> DeleteInventoryRole(int id, CancellationToken cToken = default) 
+	public async Task<string?> DeleteInventoryRole(int id, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"/user/inventoryroles/{HttpUtility.UrlEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -130,9 +130,9 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -147,7 +147,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignmentcollection+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<InventoryAssignmentCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -169,7 +169,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryassignment+json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<InventoryAssignment?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -186,7 +186,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<InventoryAssignment?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -206,13 +206,13 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.inventoryassignment+json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.inventoryassignment+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<InventoryAssignment?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> UnassignUserInventoryRole(string tenantId, string userId, int id, CancellationToken cToken = default) 
+	public async Task<string?> UnassignUserInventoryRole(string tenantId, string userId, int id, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/roles/inventory/{HttpUtility.UrlEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -223,8 +223,8 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 }

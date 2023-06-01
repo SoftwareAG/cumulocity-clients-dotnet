@@ -47,7 +47,7 @@ public sealed class CurrentUserApi : ICurrentUserApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<CurrentUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -74,13 +74,13 @@ public sealed class CurrentUserApi : ICurrentUserApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.currentuser+json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.currentuser+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<CurrentUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body, CancellationToken cToken = default) 
+	public async Task<string?> UpdateCurrentUserPassword(PasswordChange body, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<PasswordChange>();
 		const string resourcePath = "/user/currentUser/password";
@@ -94,9 +94,9 @@ public sealed class CurrentUserApi : ICurrentUserApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -111,7 +111,7 @@ public sealed class CurrentUserApi : ICurrentUserApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<CurrentUserTotpSecret?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -128,13 +128,13 @@ public sealed class CurrentUserApi : ICurrentUserApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<CurrentUserTotpSecretActivity?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body, CancellationToken cToken = default) 
+	public async Task<string?> SetTfaState(CurrentUserTotpSecretActivity body, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<CurrentUserTotpSecretActivity>();
 		const string resourcePath = "/user/currentUser/totpSecret/activity";
@@ -148,13 +148,13 @@ public sealed class CurrentUserApi : ICurrentUserApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body, CancellationToken cToken = default) 
+	public async Task<string?> VerifyTfaCode(CurrentUserTotpCode body, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<CurrentUserTotpCode>();
 		const string resourcePath = "/user/currentUser/totpSecret/verify";
@@ -168,8 +168,8 @@ public sealed class CurrentUserApi : ICurrentUserApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 }

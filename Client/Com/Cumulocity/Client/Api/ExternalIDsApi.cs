@@ -47,7 +47,7 @@ public sealed class ExternalIDsApi : IExternalIDsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalidcollection+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<ExternalIds?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -69,7 +69,7 @@ public sealed class ExternalIDsApi : IExternalIDsApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "application/vnd.com.nsn.cumulocity.externalid+json");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalid+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<ExternalId?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -86,13 +86,13 @@ public sealed class ExternalIDsApi : IExternalIDsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.externalid+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<ExternalId?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> DeleteExternalId(string type, string externalId, CancellationToken cToken = default) 
+	public async Task<string?> DeleteExternalId(string type, string externalId, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"/identity/externalIds/{HttpUtility.UrlEncode(type.GetStringValue())}/{HttpUtility.UrlEncode(externalId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -103,8 +103,8 @@ public sealed class ExternalIDsApi : IExternalIDsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 }

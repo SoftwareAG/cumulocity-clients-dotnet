@@ -178,7 +178,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ]]>
 /// </summary>
 ///
-#nullable enable
 public interface IRealtimeNotificationApi
 {
 
@@ -208,4 +207,3 @@ public interface IRealtimeNotificationApi
 	///
 	Task<RealtimeNotification?> CreateRealtimeNotification(RealtimeNotification body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 }
-#nullable disable

@@ -19,7 +19,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IUsersApi
 {
 
@@ -209,7 +208,7 @@ public interface IUsersApi
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteUser(string tenantId, string userId, CancellationToken cToken = default) ;
+	Task<string?> DeleteUser(string tenantId, string userId, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Update a specific user's password of a specific tenant <br />
@@ -248,7 +247,7 @@ public interface IUsersApi
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> UpdateUserPassword(PasswordChange body, string tenantId, string userId, CancellationToken cToken = default) ;
+	Task<string?> UpdateUserPassword(PasswordChange body, string tenantId, string userId, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve the TFA settings of a specific user <br />
@@ -429,7 +428,7 @@ public interface IUsersApi
 	/// <param name="userId">Unique identifier of the a user. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> RemoveUserFromUserGroup(string tenantId, int groupId, string userId, CancellationToken cToken = default) ;
+	Task<string?> RemoveUserFromUserGroup(string tenantId, int groupId, string userId, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Terminate a user's session <br />
@@ -452,7 +451,7 @@ public interface IUsersApi
 	/// <param name="xXSRFTOKEN">Prevents XRSF attack of the authenticated user. This parameter is specific to OAI-Secure authentication. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> Logout(string? cookie = null, string? xXSRFTOKEN = null, CancellationToken cToken = default) ;
+	Task<string?> Logout(string? cookie = null, string? xXSRFTOKEN = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Terminate all tenant users' sessions and invalidate tokens <br />
@@ -482,6 +481,5 @@ public interface IUsersApi
 	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> LogoutAllUsers(string tenantId, CancellationToken cToken = default) ;
+	Task<string?> LogoutAllUsers(string tenantId, CancellationToken cToken = default) ;
 }
-#nullable disable

@@ -19,7 +19,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IOperationsApi
 {
 
@@ -138,7 +137,7 @@ public interface IOperationsApi
 	/// <param name="status">Status of the operation. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteOperations(string? xCumulocityProcessingMode = null, string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null, CancellationToken cToken = default) ;
+	Task<string?> DeleteOperations(string? xCumulocityProcessingMode = null, string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve a specific operation <br />
@@ -204,4 +203,3 @@ public interface IOperationsApi
 	///
 	Task<TOperation?> UpdateOperation<TOperation>(TOperation body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) where TOperation : Operation;
 }
-#nullable disable

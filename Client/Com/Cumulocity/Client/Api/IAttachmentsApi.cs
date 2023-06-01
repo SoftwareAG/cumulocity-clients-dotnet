@@ -18,7 +18,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// It is possible to store, retrieve and delete binaries for events. Each event can have one binary attached. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IAttachmentsApi
 {
 
@@ -49,7 +48,7 @@ public interface IAttachmentsApi
 	/// <param name="id">Unique identifier of the event. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> GetEventAttachment(string id, CancellationToken cToken = default) ;
+	Task<string?> GetEventAttachment(string id, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Replace the attached file of a specific event <br />
@@ -234,6 +233,5 @@ public interface IAttachmentsApi
 	/// <param name="id">Unique identifier of the event. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteEventAttachment(string id, CancellationToken cToken = default) ;
+	Task<string?> DeleteEventAttachment(string id, CancellationToken cToken = default) ;
 }
-#nullable disable

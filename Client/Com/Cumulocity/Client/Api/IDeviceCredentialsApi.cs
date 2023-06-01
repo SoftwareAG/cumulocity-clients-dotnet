@@ -20,7 +20,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IDeviceCredentialsApi
 {
 
@@ -148,4 +147,3 @@ public interface IDeviceCredentialsApi
 	///
 	Task<BulkNewDeviceRequest?> CreateBulkDeviceCredentials(byte[] file, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 }
-#nullable disable

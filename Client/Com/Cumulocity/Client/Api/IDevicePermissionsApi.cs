@@ -47,7 +47,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⚠️ Important: If there is no fragment in an object, for example, to read the object, you must use the wildcard "*" for the fragment_name part of the device permission (see the structure above). For example: <c>"10200":["MEASUREMENT:*:READ"]</c>. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IDevicePermissionsApi
 {
 
@@ -108,6 +107,5 @@ public interface IDevicePermissionsApi
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> UpdateDevicePermissionAssignments<TCustomProperties>(DevicePermissions<TCustomProperties> body, string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
+	Task<string?> UpdateDevicePermissionAssignments<TCustomProperties>(DevicePermissions<TCustomProperties> body, string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 }
-#nullable disable

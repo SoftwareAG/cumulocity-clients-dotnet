@@ -35,7 +35,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 	}
 
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> GetEventAttachment(string id, CancellationToken cToken = default) 
+	public async Task<string?> GetEventAttachment(string id, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -46,9 +46,9 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/octet-stream");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
@@ -65,7 +65,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -84,7 +84,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
@@ -110,13 +110,13 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<EventBinary?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<System.IO.Stream> DeleteEventAttachment(string id, CancellationToken cToken = default) 
+	public async Task<string?> DeleteEventAttachment(string id, CancellationToken cToken = default) 
 	{
 		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -127,8 +127,8 @@ public sealed class AttachmentsApi : IAttachmentsApi
 		};
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		response.EnsureSuccessStatusCode();
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return responseStream;
+		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 }

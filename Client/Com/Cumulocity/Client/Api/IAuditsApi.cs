@@ -37,7 +37,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IAuditsApi
 {
 
@@ -121,4 +120,3 @@ public interface IAuditsApi
 	///
 	Task<TAuditRecord?> GetAuditRecord<TAuditRecord>(string id, CancellationToken cToken = default) where TAuditRecord : AuditRecord;
 }
-#nullable disable

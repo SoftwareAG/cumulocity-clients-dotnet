@@ -19,7 +19,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IBinariesApi
 {
 
@@ -121,7 +120,7 @@ public interface IBinariesApi
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> GetBinary(string id, CancellationToken cToken = default) ;
+	Task<string?> GetBinary(string id, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Replace a file <br />
@@ -173,6 +172,5 @@ public interface IBinariesApi
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> RemoveBinary(string id, CancellationToken cToken = default) ;
+	Task<string?> RemoveBinary(string id, CancellationToken cToken = default) ;
 }
-#nullable disable

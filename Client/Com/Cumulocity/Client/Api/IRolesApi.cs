@@ -19,7 +19,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IRolesApi
 {
 
@@ -192,7 +191,7 @@ public interface IRolesApi
 	/// <param name="roleId">Unique identifier of the user role. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> UnassignGroupRole(string tenantId, int groupId, string roleId, CancellationToken cToken = default) ;
+	Task<string?> UnassignGroupRole(string tenantId, int groupId, string roleId, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Assign a role to specific user in a specific tenant <br />
@@ -269,6 +268,5 @@ public interface IRolesApi
 	/// <param name="roleId">Unique identifier of the user role. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> UnassignUserRole(string tenantId, string userId, string roleId, CancellationToken cToken = default) ;
+	Task<string?> UnassignUserRole(string tenantId, string userId, string roleId, CancellationToken cToken = default) ;
 }
-#nullable disable

@@ -20,7 +20,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IGroupsApi
 {
 
@@ -200,7 +199,7 @@ public interface IGroupsApi
 	/// <param name="groupId">Unique identifier of the user group. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteUserGroup(string tenantId, int groupId, CancellationToken cToken = default) ;
+	Task<string?> DeleteUserGroup(string tenantId, int groupId, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve a user group by group name for a specific tenant <br />
@@ -274,4 +273,3 @@ public interface IGroupsApi
 	///
 	Task<GroupReferenceCollection<TCustomProperties>?> GetUserGroups<TCustomProperties>(string tenantId, string userId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 }
-#nullable disable

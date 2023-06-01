@@ -17,7 +17,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// In order to receive subscribed notifications, a consumer application or microservice must obtain an authorization token that provides proof that the holder is allowed to receive subscribed notifications. <br />
 /// </summary>
 ///
-#nullable enable
 public interface ITokensApi
 {
 
@@ -109,4 +108,3 @@ public interface ITokensApi
 	///
 	Task<NotificationSubscriptionResult?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null, CancellationToken cToken = default) ;
 }
-#nullable disable

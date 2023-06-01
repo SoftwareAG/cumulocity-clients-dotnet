@@ -18,7 +18,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// API methods to retrieve and update the current application and to retrieve its subscribers.It is the authenticated microservice user's application. <br />
 /// </summary>
 ///
-#nullable enable
 public interface ICurrentApplicationApi
 {
 
@@ -132,4 +131,3 @@ public interface ICurrentApplicationApi
 	///
 	Task<ApplicationUserCollection?> GetSubscribedUsers(CancellationToken cToken = default) ;
 }
-#nullable disable

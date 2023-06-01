@@ -20,7 +20,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header must be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface ITrustedCertificatesApi
 {
 
@@ -229,7 +228,7 @@ public interface ITrustedCertificatesApi
 	/// <param name="fingerprint">Unique identifier of a trusted certificate. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> RemoveTrustedCertificate(string tenantId, string fingerprint, CancellationToken cToken = default) ;
+	Task<string?> RemoveTrustedCertificate(string tenantId, string fingerprint, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Provide the proof of possession for an already uploaded certificate <br />
@@ -402,4 +401,3 @@ public interface ITrustedCertificatesApi
 	///
 	Task<VerifyCertificateChain?> ValidateChainByHeader(string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) ;
 }
-#nullable disable

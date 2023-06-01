@@ -100,7 +100,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// The microservice usage's information is stored in the <c>resources</c> object. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IUsageStatisticsApi
 {
 
@@ -292,7 +291,7 @@ public interface IUsageStatisticsApi
 	/// <param name="id">Unique identifier of the statistics file. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> GetStatisticsFile(string id, CancellationToken cToken = default) ;
+	Task<string?> GetStatisticsFile(string id, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve the latest usage statistics file <br />
@@ -328,6 +327,5 @@ public interface IUsageStatisticsApi
 	/// <param name="month">Date (format YYYY-MM-dd) specifying the month for which the statistics file will be downloaded (the day value is ignored). <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> GetLatestStatisticsFile(System.DateTime month, CancellationToken cToken = default) ;
+	Task<string?> GetLatestStatisticsFile(System.DateTime month, CancellationToken cToken = default) ;
 }
-#nullable disable

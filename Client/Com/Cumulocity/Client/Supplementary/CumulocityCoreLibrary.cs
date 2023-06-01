@@ -9,40 +9,41 @@
 using System;
 using System.Net.Http;
 using Client.Com.Cumulocity.Client.Api;
+using static Client.Com.Cumulocity.Client.Supplementary.ICumulocityCoreLibrary;
 
 namespace Client.Com.Cumulocity.Client.Supplementary;
 
-public class CumulocityCoreLibrary 
+public class CumulocityCoreLibrary: ICumulocityCoreLibrary
 {
-	private readonly Lazy<ApplicationsFactory> _lazyApplications;
-	private readonly Lazy<MeasurementsFactory> _lazyMeasurements;
-	private readonly Lazy<AlarmsFactory> _lazyAlarms;
-	private readonly Lazy<TenantsFactory> _lazyTenants;
-	private readonly Lazy<UsersFactory> _lazyUsers;
-	private readonly Lazy<AuditsFactory> _lazyAudits;
-	private readonly Lazy<RealtimenotificationsFactory> _lazyRealtimeNotifications;
-	private readonly Lazy<EventsFactory> _lazyEvents;
-	private readonly Lazy<Notifications20Factory> _lazyNotifications20;
-	private readonly Lazy<RetentionsFactory> _lazyRetentions;
-	private readonly Lazy<IdentityFactory> _lazyIdentity;
-	private readonly Lazy<DevicecontrolFactory> _lazyDeviceControl;
-	private readonly Lazy<InventoryFactory> _lazyInventory;
+	private readonly Lazy<IApplicationsFactory> _lazyApplications;
+	private readonly Lazy<IMeasurementsFactory> _lazyMeasurements;
+	private readonly Lazy<IAlarmsFactory> _lazyAlarms;
+	private readonly Lazy<ITenantsFactory> _lazyTenants;
+	private readonly Lazy<IUsersFactory> _lazyUsers;
+	private readonly Lazy<IAuditsFactory> _lazyAudits;
+	private readonly Lazy<IRealtimeNotificationsFactory> _lazyRealtimeNotifications;
+	private readonly Lazy<IEventsFactory> _lazyEvents;
+	private readonly Lazy<INotifications20Factory> _lazyNotifications20;
+	private readonly Lazy<IRetentionsFactory> _lazyRetentions;
+	private readonly Lazy<IDentityFactory> _lazyIdentity;
+	private readonly Lazy<IDeviceControlFactory> _lazyDeviceControl;
+	private readonly Lazy<INventoryFactory> _lazyInventory;
 
 	public CumulocityCoreLibrary(HttpClient client)
 	{
-		_lazyApplications = new Lazy<ApplicationsFactory>(() => new ApplicationsFactory(client));
-		_lazyMeasurements = new Lazy<MeasurementsFactory>(() => new MeasurementsFactory(client));
-		_lazyAlarms = new Lazy<AlarmsFactory>(() => new AlarmsFactory(client));
-		_lazyTenants = new Lazy<TenantsFactory>(() => new TenantsFactory(client));
-		_lazyUsers = new Lazy<UsersFactory>(() => new UsersFactory(client));
-		_lazyAudits = new Lazy<AuditsFactory>(() => new AuditsFactory(client));
-		_lazyRealtimeNotifications = new Lazy<RealtimenotificationsFactory>(() => new RealtimenotificationsFactory(client));
-		_lazyEvents = new Lazy<EventsFactory>(() => new EventsFactory(client));
-		_lazyNotifications20 = new Lazy<Notifications20Factory>(() => new Notifications20Factory(client));
-		_lazyRetentions = new Lazy<RetentionsFactory>(() => new RetentionsFactory(client));
-		_lazyIdentity = new Lazy<IdentityFactory>(() => new IdentityFactory(client));
-		_lazyDeviceControl = new Lazy<DevicecontrolFactory>(() => new DevicecontrolFactory(client));
-		_lazyInventory = new Lazy<InventoryFactory>(() => new InventoryFactory(client));
+		_lazyApplications = new Lazy<IApplicationsFactory>(() => new ApplicationsFactory(client));
+		_lazyMeasurements = new Lazy<IMeasurementsFactory>(() => new MeasurementsFactory(client));
+		_lazyAlarms = new Lazy<IAlarmsFactory>(() => new AlarmsFactory(client));
+		_lazyTenants = new Lazy<ITenantsFactory>(() => new TenantsFactory(client));
+		_lazyUsers = new Lazy<IUsersFactory>(() => new UsersFactory(client));
+		_lazyAudits = new Lazy<IAuditsFactory>(() => new AuditsFactory(client));
+		_lazyRealtimeNotifications = new Lazy<IRealtimeNotificationsFactory>(() => new RealtimeNotificationsFactory(client));
+		_lazyEvents = new Lazy<IEventsFactory>(() => new EventsFactory(client));
+		_lazyNotifications20 = new Lazy<INotifications20Factory>(() => new Notifications20Factory(client));
+		_lazyRetentions = new Lazy<IRetentionsFactory>(() => new RetentionsFactory(client));
+		_lazyIdentity = new Lazy<IDentityFactory>(() => new IdentityFactory(client));
+		_lazyDeviceControl = new Lazy<IDeviceControlFactory>(() => new DeviceControlFactory(client));
+		_lazyInventory = new Lazy<INventoryFactory>(() => new InventoryFactory(client));
 	}
 
 	public CumulocityCoreLibrary(IHttpClientFactory clientFactory): this(clientFactory.CreateClient())
@@ -53,21 +54,21 @@ public class CumulocityCoreLibrary
 	{
 	}
 
-	public ApplicationsFactory Applications => _lazyApplications.Value;
-	public MeasurementsFactory Measurements => _lazyMeasurements.Value;
-	public AlarmsFactory Alarms => _lazyAlarms.Value;
-	public TenantsFactory Tenants => _lazyTenants.Value;
-	public UsersFactory Users => _lazyUsers.Value;
-	public AuditsFactory Audits => _lazyAudits.Value;
-	public RealtimenotificationsFactory RealtimeNotifications => _lazyRealtimeNotifications.Value;
-	public EventsFactory Events => _lazyEvents.Value;
-	public Notifications20Factory Notifications20 => _lazyNotifications20.Value;
-	public RetentionsFactory Retentions => _lazyRetentions.Value;
-	public IdentityFactory Identity => _lazyIdentity.Value;
-	public DevicecontrolFactory DeviceControl => _lazyDeviceControl.Value;
-	public InventoryFactory Inventory => _lazyInventory.Value;
+	public IApplicationsFactory Applications => _lazyApplications.Value;
+	public IMeasurementsFactory Measurements => _lazyMeasurements.Value;
+	public IAlarmsFactory Alarms => _lazyAlarms.Value;
+	public ITenantsFactory Tenants => _lazyTenants.Value;
+	public IUsersFactory Users => _lazyUsers.Value;
+	public IAuditsFactory Audits => _lazyAudits.Value;
+	public IRealtimeNotificationsFactory RealtimeNotifications => _lazyRealtimeNotifications.Value;
+	public IEventsFactory Events => _lazyEvents.Value;
+	public INotifications20Factory Notifications20 => _lazyNotifications20.Value;
+	public IRetentionsFactory Retentions => _lazyRetentions.Value;
+	public IDentityFactory Identity => _lazyIdentity.Value;
+	public IDeviceControlFactory DeviceControl => _lazyDeviceControl.Value;
+	public INventoryFactory Inventory => _lazyInventory.Value;
 
-	public class ApplicationsFactory
+	public class ApplicationsFactory: IApplicationsFactory
 	{
 		private readonly Lazy<IApplicationsApi> _lazyApplicationsApi;
 		private readonly Lazy<IApplicationVersionsApi> _lazyApplicationVersionsApi;
@@ -91,7 +92,7 @@ public class CumulocityCoreLibrary
 		public ICurrentApplicationApi CurrentApplicationApi => _lazyCurrentApplicationApi.Value;
 	}
 
-	public class MeasurementsFactory
+	public class MeasurementsFactory: IMeasurementsFactory
 	{
 		private readonly Lazy<IMeasurementsApi> _lazyMeasurementsApi;
 
@@ -103,7 +104,7 @@ public class CumulocityCoreLibrary
 		public IMeasurementsApi MeasurementsApi => _lazyMeasurementsApi.Value;
 	}
 
-	public class AlarmsFactory
+	public class AlarmsFactory: IAlarmsFactory
 	{
 		private readonly Lazy<IAlarmsApi> _lazyAlarmsApi;
 
@@ -115,7 +116,7 @@ public class CumulocityCoreLibrary
 		public IAlarmsApi AlarmsApi => _lazyAlarmsApi.Value;
 	}
 
-	public class TenantsFactory
+	public class TenantsFactory: ITenantsFactory
 	{
 		private readonly Lazy<ITenantsApi> _lazyTenantsApi;
 		private readonly Lazy<ITenantApplicationsApi> _lazyTenantApplicationsApi;
@@ -148,7 +149,7 @@ public class CumulocityCoreLibrary
 		public ISystemOptionsApi SystemOptionsApi => _lazySystemOptionsApi.Value;
 	}
 
-	public class UsersFactory
+	public class UsersFactory: IUsersFactory
 	{
 		private readonly Lazy<ICurrentUserApi> _lazyCurrentUserApi;
 		private readonly Lazy<IUsersApi> _lazyUsersApi;
@@ -175,7 +176,7 @@ public class CumulocityCoreLibrary
 		public IDevicePermissionsApi DevicePermissionsApi => _lazyDevicePermissionsApi.Value;
 	}
 
-	public class AuditsFactory
+	public class AuditsFactory: IAuditsFactory
 	{
 		private readonly Lazy<IAuditsApi> _lazyAuditsApi;
 
@@ -187,11 +188,11 @@ public class CumulocityCoreLibrary
 		public IAuditsApi AuditsApi => _lazyAuditsApi.Value;
 	}
 
-	public class RealtimenotificationsFactory
+	public class RealtimeNotificationsFactory: IRealtimeNotificationsFactory
 	{
 		private readonly Lazy<IRealtimeNotificationApi> _lazyRealtimeNotificationApi;
 
-		internal RealtimenotificationsFactory(HttpClient client)
+		internal RealtimeNotificationsFactory(HttpClient client)
 		{
 			_lazyRealtimeNotificationApi = new Lazy<IRealtimeNotificationApi>(() => new RealtimeNotificationApi(client));
 		}
@@ -199,7 +200,7 @@ public class CumulocityCoreLibrary
 		public IRealtimeNotificationApi RealtimeNotificationApi => _lazyRealtimeNotificationApi.Value;
 	}
 
-	public class EventsFactory
+	public class EventsFactory: IEventsFactory
 	{
 		private readonly Lazy<IEventsApi> _lazyEventsApi;
 		private readonly Lazy<IAttachmentsApi> _lazyAttachmentsApi;
@@ -214,7 +215,7 @@ public class CumulocityCoreLibrary
 		public IAttachmentsApi AttachmentsApi => _lazyAttachmentsApi.Value;
 	}
 
-	public class Notifications20Factory
+	public class Notifications20Factory: INotifications20Factory
 	{
 		private readonly Lazy<ISubscriptionsApi> _lazySubscriptionsApi;
 		private readonly Lazy<ITokensApi> _lazyTokensApi;
@@ -229,7 +230,7 @@ public class CumulocityCoreLibrary
 		public ITokensApi TokensApi => _lazyTokensApi.Value;
 	}
 
-	public class RetentionsFactory
+	public class RetentionsFactory: IRetentionsFactory
 	{
 		private readonly Lazy<IRetentionRulesApi> _lazyRetentionRulesApi;
 
@@ -241,7 +242,7 @@ public class CumulocityCoreLibrary
 		public IRetentionRulesApi RetentionRulesApi => _lazyRetentionRulesApi.Value;
 	}
 
-	public class IdentityFactory
+	public class IdentityFactory: IDentityFactory
 	{
 		private readonly Lazy<IIdentityApi> _lazyIdentityApi;
 		private readonly Lazy<IExternalIDsApi> _lazyExternalIDsApi;
@@ -256,14 +257,14 @@ public class CumulocityCoreLibrary
 		public IExternalIDsApi ExternalIDsApi => _lazyExternalIDsApi.Value;
 	}
 
-	public class DevicecontrolFactory
+	public class DeviceControlFactory: IDeviceControlFactory
 	{
 		private readonly Lazy<IOperationsApi> _lazyOperationsApi;
 		private readonly Lazy<IBulkOperationsApi> _lazyBulkOperationsApi;
 		private readonly Lazy<IDeviceCredentialsApi> _lazyDeviceCredentialsApi;
 		private readonly Lazy<INewDeviceRequestsApi> _lazyNewDeviceRequestsApi;
 
-		internal DevicecontrolFactory(HttpClient client)
+		internal DeviceControlFactory(HttpClient client)
 		{
 			_lazyOperationsApi = new Lazy<IOperationsApi>(() => new OperationsApi(client));
 			_lazyBulkOperationsApi = new Lazy<IBulkOperationsApi>(() => new BulkOperationsApi(client));
@@ -277,7 +278,7 @@ public class CumulocityCoreLibrary
 		public INewDeviceRequestsApi NewDeviceRequestsApi => _lazyNewDeviceRequestsApi.Value;
 	}
 
-	public class InventoryFactory
+	public class InventoryFactory: INventoryFactory
 	{
 		private readonly Lazy<IManagedObjectsApi> _lazyManagedObjectsApi;
 		private readonly Lazy<IBinariesApi> _lazyBinariesApi;

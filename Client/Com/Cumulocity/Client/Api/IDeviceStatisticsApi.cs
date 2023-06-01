@@ -56,7 +56,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// Separately for each child. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IDeviceStatisticsApi
 {
 
@@ -128,4 +127,3 @@ public interface IDeviceStatisticsApi
 	///
 	Task<DeviceStatisticsCollection?> GetDailyDeviceStatistics(string tenantId, System.DateTime date, int? currentPage = null, string? deviceId = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 }
-#nullable disable

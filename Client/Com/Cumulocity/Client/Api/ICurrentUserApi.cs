@@ -19,7 +19,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface ICurrentUserApi
 {
 
@@ -104,7 +103,7 @@ public interface ICurrentUserApi
 	/// <param name="body"></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> UpdateCurrentUserPassword(PasswordChange body, CancellationToken cToken = default) ;
+	Task<string?> UpdateCurrentUserPassword(PasswordChange body, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Generate secret to set up TFA <br />
@@ -191,7 +190,7 @@ public interface ICurrentUserApi
 	/// <param name="body"></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> SetTfaState(CurrentUserTotpSecretActivity body, CancellationToken cToken = default) ;
+	Task<string?> SetTfaState(CurrentUserTotpSecretActivity body, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Verify TFA code <br />
@@ -228,6 +227,5 @@ public interface ICurrentUserApi
 	/// <param name="body"></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> VerifyTfaCode(CurrentUserTotpCode body, CancellationToken cToken = default) ;
+	Task<string?> VerifyTfaCode(CurrentUserTotpCode body, CancellationToken cToken = default) ;
 }
-#nullable disable

@@ -18,7 +18,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// Methods to create, retrieve and delete notification subscriptions. <br />
 /// </summary>
 ///
-#nullable enable
 public interface ISubscriptionsApi
 {
 
@@ -161,7 +160,7 @@ public interface ISubscriptionsApi
 	/// <param name="source">The managed object ID to which the subscription is associated. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteSubscriptions(string? xCumulocityProcessingMode = null, string? context = null, string? source = null, CancellationToken cToken = default) ;
+	Task<string?> DeleteSubscriptions(string? xCumulocityProcessingMode = null, string? context = null, string? source = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve a specific subscription <br />
@@ -228,6 +227,5 @@ public interface ISubscriptionsApi
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteSubscription(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
+	Task<string?> DeleteSubscription(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 }
-#nullable disable

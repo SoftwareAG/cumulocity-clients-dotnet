@@ -32,7 +32,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface IBulkOperationsApi
 {
 
@@ -181,6 +180,5 @@ public interface IBulkOperationsApi
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteBulkOperation(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
+	Task<string?> DeleteBulkOperation(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) ;
 }
-#nullable disable

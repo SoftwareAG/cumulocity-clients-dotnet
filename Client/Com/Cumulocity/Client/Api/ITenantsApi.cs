@@ -31,7 +31,6 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
-#nullable enable
 public interface ITenantsApi
 {
 
@@ -233,7 +232,7 @@ public interface ITenantsApi
 	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<System.IO.Stream> DeleteTenant(string tenantId, CancellationToken cToken = default) ;
+	Task<string?> DeleteTenant(string tenantId, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve TFA settings of a specific tenant <br />
@@ -264,4 +263,3 @@ public interface ITenantsApi
 	///
 	Task<TenantTfaData?> GetTenantTfaSettings(string tenantId, CancellationToken cToken = default) ;
 }
-#nullable disable

@@ -42,10 +42,10 @@ public interface IOptionsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<OptionCollection?> GetOptions(int? currentPage = null, int? pageSize = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 	

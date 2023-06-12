@@ -51,6 +51,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// </summary>
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 	/// <param name="query">Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in <see href="#tag/Query-language" langword="Query language" />. <br /></param>
@@ -58,7 +59,6 @@ public interface IChildOperationsApi
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAdditions<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -330,6 +330,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// </summary>
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 	/// <param name="query">Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in <see href="#tag/Query-language" langword="Query language" />. <br /></param>
@@ -337,7 +338,6 @@ public interface IChildOperationsApi
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAssets<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -609,6 +609,7 @@ public interface IChildOperationsApi
 	/// </list>
 	/// </summary>
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="pageSize">Indicates how many entries of the collection shall be returned. The upper limit for one page is 2,000 objects. <br /></param>
 	/// <param name="query">Use query language to perform operations and/or filter the results. Details about the properties and supported operations can be found in <see href="#tag/Query-language" langword="Query language" />. <br /></param>
@@ -616,7 +617,6 @@ public interface IChildOperationsApi
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildDevices<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	

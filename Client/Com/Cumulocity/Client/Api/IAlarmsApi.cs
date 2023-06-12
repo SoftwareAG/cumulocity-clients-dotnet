@@ -44,6 +44,7 @@ public interface IAlarmsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="createdFrom">Start date or date and time of the alarm creation. <br /></param>
 	/// <param name="createdTo">End date or date and time of the alarm creation. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
@@ -61,7 +62,6 @@ public interface IAlarmsApi
 	/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<AlarmCollection<TAlarm>?> GetAlarms<TAlarm>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAlarm : Alarm;
 	
@@ -101,6 +101,7 @@ public interface IAlarmsApi
 	/// </summary>
 	/// <param name="body"></param>
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="createdFrom">Start date or date and time of the alarm creation. <br /></param>
 	/// <param name="createdTo">End date or date and time of the alarm creation. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the alarm occurrence. <br /></param>
@@ -111,7 +112,6 @@ public interface IAlarmsApi
 	/// <param name="status">The status of the alarm to search for. <br />ⓘ Info: If you query for multiple alarm statuses at once, comma-separate the values. <br /></param>
 	/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> UpdateAlarms<TAlarm>(TAlarm body, string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) where TAlarm : Alarm;
 	
@@ -201,6 +201,7 @@ public interface IAlarmsApi
 	/// </list>
 	/// </summary>
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="createdFrom">Start date or date and time of the alarm creation. <br /></param>
 	/// <param name="createdTo">End date or date and time of the alarm creation. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the alarm occurrence. <br /></param>
@@ -212,7 +213,6 @@ public interface IAlarmsApi
 	/// <param name="type">The types of alarm to search for. <br />ⓘ Info: If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. <br /></param>
 	/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> DeleteAlarms(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) ;
 	
@@ -309,6 +309,7 @@ public interface IAlarmsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the alarm occurrence. <br /></param>
 	/// <param name="dateTo">End date or date and time of the alarm occurrence. <br /></param>
 	/// <param name="resolved">When set to <c>true</c> only alarms with status CLEARED will be fetched, whereas <c>false</c> will fetch all alarms with status ACTIVE or ACKNOWLEDGED. <br /></param>
@@ -318,7 +319,6 @@ public interface IAlarmsApi
 	/// <param name="type">The types of alarm to search for. <br />ⓘ Info: If you query for multiple alarm types at once, comma-separate the values. Space characters in alarm types must be escaped. <br /></param>
 	/// <param name="withSourceAssets">When set to <c>true</c> also alarms for related source assets will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withSourceDevices">When set to <c>true</c> also alarms for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<int> GetNumberOfAlarms(System.DateTime? dateFrom = null, System.DateTime? dateTo = null, bool? resolved = null, List<string>? severity = null, string? source = null, List<string>? status = null, List<string>? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, CancellationToken cToken = default) ;
 }

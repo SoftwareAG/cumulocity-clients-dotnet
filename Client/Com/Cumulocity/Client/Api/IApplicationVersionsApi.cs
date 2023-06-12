@@ -50,9 +50,9 @@ public interface IApplicationVersionsApi
 	/// </list>
 	/// </summary>
 	/// <param name="id">Unique identifier of the application. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="version">The version field of the application version. <br /></param>
 	/// <param name="tag">The tag of the application version. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<ApplicationVersion?> GetApplicationVersion(string id, string? version = null, string? tag = null, CancellationToken cToken = default) ;
 	
@@ -162,9 +162,9 @@ public interface IApplicationVersionsApi
 	/// </list>
 	/// </summary>
 	/// <param name="id">Unique identifier of the application. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="version">The version field of the application version. <br /></param>
 	/// <param name="tag">The tag of the application version. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> DeleteApplicationVersion(string id, string? version = null, string? tag = null, CancellationToken cToken = default) ;
 	

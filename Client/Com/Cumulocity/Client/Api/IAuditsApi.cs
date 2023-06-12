@@ -56,6 +56,7 @@ public interface IAuditsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="application">Name of the application from which the audit was carried out. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the audit record. <br /></param>
@@ -66,7 +67,6 @@ public interface IAuditsApi
 	/// <param name="user">The username to search for. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<AuditRecordCollection<TAuditRecord>?> GetAuditRecords<TAuditRecord>(string? application = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, int? pageSize = null, string? source = null, string? type = null, string? user = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TAuditRecord : AuditRecord;
 	

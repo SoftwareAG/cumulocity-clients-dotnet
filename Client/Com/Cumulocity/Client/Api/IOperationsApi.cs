@@ -57,6 +57,7 @@ public interface IOperationsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="agentId">An agent ID that may be part of the operation. If this parameter is set, the operation response objects contain the <c>deviceExternalIDs</c> object. <br /></param>
 	/// <param name="bulkOperationId">The bulk operation ID that this operation belongs to. <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
@@ -69,7 +70,6 @@ public interface IOperationsApi
 	/// <param name="status">Status of the operation. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<OperationCollection<TOperation>?> GetOperations<TOperation>(string? agentId = null, string? bulkOperationId = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? fragmentType = null, int? pageSize = null, bool? revert = null, string? status = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TOperation : Operation;
 	
@@ -130,12 +130,12 @@ public interface IOperationsApi
 	/// </list>
 	/// </summary>
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="agentId">An agent ID that may be part of the operation. <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the operation. <br /></param>
 	/// <param name="dateTo">End date or date and time of the operation. <br /></param>
 	/// <param name="deviceId">The ID of the device the operation is performed for. <br /></param>
 	/// <param name="status">Status of the operation. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> DeleteOperations(string? xCumulocityProcessingMode = null, string? agentId = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? deviceId = null, string? status = null, CancellationToken cToken = default) ;
 	

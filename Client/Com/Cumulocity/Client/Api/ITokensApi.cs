@@ -103,8 +103,8 @@ public interface ITokensApi
 	/// </list>
 	/// </summary>
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
-	/// <param name="token">Subscriptions associated with this token will be removed. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	/// <param name="token">Subscriptions associated with this token will be removed. <br /></param>
 	///
 	Task<NotificationSubscriptionResult?> UnsubscribeSubscriber(string? xCumulocityProcessingMode = null, string? token = null, CancellationToken cToken = default) ;
 }

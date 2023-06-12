@@ -38,6 +38,7 @@ public interface IBinariesApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="childAdditionId">Search for a specific child addition and list all the groups to which it belongs. <br /></param>
 	/// <param name="childAssetId">Search for a specific child asset and list all the groups to which it belongs. <br /></param>
 	/// <param name="childDeviceId">Search for a specific child device and list all the groups to which it belongs. <br /></param>
@@ -48,7 +49,6 @@ public interface IBinariesApi
 	/// <param name="text">Search for managed objects where any property value is equal to the given one. Only string values are supported. <br /></param>
 	/// <param name="type">The type of managed object to search for. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<BinaryCollection?> GetBinaries(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, List<string>? ids = null, string? owner = null, int? pageSize = null, string? text = null, string? type = null, bool? withTotalPages = null, CancellationToken cToken = default) ;
 	

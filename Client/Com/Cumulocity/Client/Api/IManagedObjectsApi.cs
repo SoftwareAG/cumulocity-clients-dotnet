@@ -42,6 +42,7 @@ public interface IManagedObjectsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="childAdditionId">Search for a specific child addition and list all the groups to which it belongs. <br /></param>
 	/// <param name="childAssetId">Search for a specific child asset and list all the groups to which it belongs. <br /></param>
 	/// <param name="childDeviceId">Search for a specific child device and list all the groups to which it belongs. <br /></param>
@@ -62,7 +63,6 @@ public interface IManagedObjectsApi
 	/// <param name="withParents">When set to <c>true</c>, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<ManagedObjectCollection<TManagedObject>?> GetManagedObjects<TManagedObject>(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, int? currentPage = null, string? fragmentType = null, List<string>? ids = null, bool? onlyRoots = null, string? owner = null, int? pageSize = null, string? q = null, string? query = null, bool? skipChildrenNames = null, string? text = null, string? type = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withGroups = null, bool? withParents = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -145,6 +145,7 @@ public interface IManagedObjectsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="childAdditionId">Search for a specific child addition and list all the groups to which it belongs. <br /></param>
 	/// <param name="childAssetId">Search for a specific child asset and list all the groups to which it belongs. <br /></param>
 	/// <param name="childDeviceId">Search for a specific child device and list all the groups to which it belongs. <br /></param>
@@ -153,7 +154,6 @@ public interface IManagedObjectsApi
 	/// <param name="owner">Username of the owner of the managed objects. <br /></param>
 	/// <param name="text">Search for managed objects where any property value is equal to the given one. Only string values are supported. <br /></param>
 	/// <param name="type">The type of managed object to search for. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<int> GetNumberOfManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, string? fragmentType = null, List<string>? ids = null, string? owner = null, string? text = null, string? type = null, CancellationToken cToken = default) ;
 	
@@ -182,11 +182,11 @@ public interface IManagedObjectsApi
 	/// </list>
 	/// </summary>
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="skipChildrenNames">When set to <c>true</c>, the returned references of child devices won't contain their names. <br /></param>
 	/// <param name="withChildren">Determines if children with ID and name should be returned when fetching the managed object. Set it to <c>false</c> to improve query performance. <br /></param>
 	/// <param name="withChildrenCount">When set to <c>true</c>, the returned result will contain the total number of children in the respective objects (<c>childAdditions</c>, <c>childAssets</c> and <c>childDevices</c>). <br /></param>
 	/// <param name="withParents">When set to <c>true</c>, the returned references of child parents will return the device's parents (if any). Otherwise, it will be an empty array. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<TManagedObject?> GetManagedObject<TManagedObject>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
@@ -254,10 +254,10 @@ public interface IManagedObjectsApi
 	/// </summary>
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="cascade">When set to <c>true</c> and the managed object is a device or group, all the hierarchy will be deleted. <br /></param>
 	/// <param name="forceCascade">When set to <c>true</c> all the hierarchy will be deleted without checking the type of managed object. It takes precedence over the parameter <c>cascade</c>. <br /></param>
 	/// <param name="withDeviceUser">When set to <c>true</c> and the managed object is a device, it deletes the associated device user (credentials). <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> DeleteManagedObject(string id, string? xCumulocityProcessingMode = null, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null, CancellationToken cToken = default) ;
 	

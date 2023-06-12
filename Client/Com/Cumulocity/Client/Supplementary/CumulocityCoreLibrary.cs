@@ -13,7 +13,7 @@ using static Client.Com.Cumulocity.Client.Supplementary.ICumulocityCoreLibrary;
 
 namespace Client.Com.Cumulocity.Client.Supplementary;
 
-public class CumulocityCoreLibrary: ICumulocityCoreLibrary
+public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 {
 	private readonly Lazy<IApplicationsFactory> _lazyApplications;
 	private readonly Lazy<IMeasurementsFactory> _lazyMeasurements;

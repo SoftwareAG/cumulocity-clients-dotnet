@@ -39,9 +39,9 @@ public interface ILoginOptionsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="management">If this is set to <c>true</c>, the management tenant login options will be returned. <br />ⓘ Info: The <c>tenantId</c> parameter must not be present in the request when using the <c>management</c> parameter, otherwise it will cause an error. <br /></param>
 	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<LoginOptionCollection?> GetLoginOptions(bool? management = null, string? tenantId = null, CancellationToken cToken = default) ;
 	
@@ -205,8 +205,8 @@ public interface ILoginOptionsApi
 	/// </summary>
 	/// <param name="body"></param>
 	/// <param name="typeOrId">The type or ID of the login option. The type's value is case insensitive and can be <c>OAUTH2</c>, <c>OAUTH2_INTERNAL</c> or <c>BASIC</c>. <br /></param>
-	/// <param name="targetTenant">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	/// <param name="targetTenant">Unique identifier of a Cumulocity IoT tenant. <br /></param>
 	///
 	Task<AuthConfig?> UpdateLoginOptionAccess(AuthConfigAccess body, string typeOrId, string? targetTenant = null, CancellationToken cToken = default) ;
 }

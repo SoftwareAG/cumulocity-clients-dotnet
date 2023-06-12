@@ -30,90 +30,90 @@ public interface ICumulocityCoreLibrary
 
 	public interface IApplicationsFactory
 	{
-		public IApplicationsApi ApplicationsApi { get; }
-		public IApplicationVersionsApi ApplicationVersionsApi { get; }
-		public IApplicationBinariesApi ApplicationBinariesApi { get; }
-		public IBootstrapUserApi BootstrapUserApi { get; }
-		public ICurrentApplicationApi CurrentApplicationApi { get; }
+		IApplicationsApi ApplicationsApi { get; }
+		IApplicationVersionsApi ApplicationVersionsApi { get; }
+		IApplicationBinariesApi ApplicationBinariesApi { get; }
+		IBootstrapUserApi BootstrapUserApi { get; }
+		ICurrentApplicationApi CurrentApplicationApi { get; }
 	}
 
 	public interface IMeasurementsFactory
 	{
-		public IMeasurementsApi MeasurementsApi { get; }
+		IMeasurementsApi MeasurementsApi { get; }
 	}
 
 	public interface IAlarmsFactory
 	{
-		public IAlarmsApi AlarmsApi { get; }
+		IAlarmsApi AlarmsApi { get; }
 	}
 
 	public interface ITenantsFactory
 	{
-		public ITenantsApi TenantsApi { get; }
-		public ITenantApplicationsApi TenantApplicationsApi { get; }
-		public ITrustedCertificatesApi TrustedCertificatesApi { get; }
-		public IDeviceStatisticsApi DeviceStatisticsApi { get; }
-		public IUsageStatisticsApi UsageStatisticsApi { get; }
-		public IOptionsApi OptionsApi { get; }
-		public ILoginOptionsApi LoginOptionsApi { get; }
-		public ISystemOptionsApi SystemOptionsApi { get; }
+		ITenantsApi TenantsApi { get; }
+		ITenantApplicationsApi TenantApplicationsApi { get; }
+		ITrustedCertificatesApi TrustedCertificatesApi { get; }
+		IDeviceStatisticsApi DeviceStatisticsApi { get; }
+		IUsageStatisticsApi UsageStatisticsApi { get; }
+		IOptionsApi OptionsApi { get; }
+		ILoginOptionsApi LoginOptionsApi { get; }
+		ISystemOptionsApi SystemOptionsApi { get; }
 	}
 
 	public interface IUsersFactory
 	{
-		public ICurrentUserApi CurrentUserApi { get; }
-		public IUsersApi UsersApi { get; }
-		public IGroupsApi GroupsApi { get; }
-		public IRolesApi RolesApi { get; }
-		public IInventoryRolesApi InventoryRolesApi { get; }
-		public IDevicePermissionsApi DevicePermissionsApi { get; }
+		ICurrentUserApi CurrentUserApi { get; }
+		IUsersApi UsersApi { get; }
+		IGroupsApi GroupsApi { get; }
+		IRolesApi RolesApi { get; }
+		IInventoryRolesApi InventoryRolesApi { get; }
+		IDevicePermissionsApi DevicePermissionsApi { get; }
 	}
 
 	public interface IAuditsFactory
 	{
-		public IAuditsApi AuditsApi { get; }
+		IAuditsApi AuditsApi { get; }
 	}
 
 	public interface IRealtimeNotificationsFactory
 	{
-		public IRealtimeNotificationApi RealtimeNotificationApi { get; }
+		IRealtimeNotificationApi RealtimeNotificationApi { get; }
 	}
 
 	public interface IEventsFactory
 	{
-		public IEventsApi EventsApi { get; }
-		public IAttachmentsApi AttachmentsApi { get; }
+		IEventsApi EventsApi { get; }
+		IAttachmentsApi AttachmentsApi { get; }
 	}
 
 	public interface INotifications20Factory
 	{
-		public ISubscriptionsApi SubscriptionsApi { get; }
-		public ITokensApi TokensApi { get; }
+		ISubscriptionsApi SubscriptionsApi { get; }
+		ITokensApi TokensApi { get; }
 	}
 
 	public interface IRetentionsFactory
 	{
-		public IRetentionRulesApi RetentionRulesApi { get; }
+		IRetentionRulesApi RetentionRulesApi { get; }
 	}
 
 	public interface IDentityFactory
 	{
-		public IIdentityApi IdentityApi { get; }
-		public IExternalIDsApi ExternalIDsApi { get; }
+		IIdentityApi IdentityApi { get; }
+		IExternalIDsApi ExternalIDsApi { get; }
 	}
 
 	public interface IDeviceControlFactory
 	{
-		public IOperationsApi OperationsApi { get; }
-		public IBulkOperationsApi BulkOperationsApi { get; }
-		public IDeviceCredentialsApi DeviceCredentialsApi { get; }
-		public INewDeviceRequestsApi NewDeviceRequestsApi { get; }
+		IOperationsApi OperationsApi { get; }
+		IBulkOperationsApi BulkOperationsApi { get; }
+		IDeviceCredentialsApi DeviceCredentialsApi { get; }
+		INewDeviceRequestsApi NewDeviceRequestsApi { get; }
 	}
 
 	public interface INventoryFactory
 	{
-		public IManagedObjectsApi ManagedObjectsApi { get; }
-		public IBinariesApi BinariesApi { get; }
-		public IChildOperationsApi ChildOperationsApi { get; }
+		IManagedObjectsApi ManagedObjectsApi { get; }
+		IBinariesApi BinariesApi { get; }
+		IChildOperationsApi ChildOperationsApi { get; }
 	}
 }

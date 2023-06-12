@@ -43,6 +43,7 @@ public interface IEventsApi
 	/// 	</item>
 	/// </list>
 	/// </summary>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="createdFrom">Start date or date and time of the event's creation (set by the platform during creation). <br /></param>
 	/// <param name="createdTo">End date or date and time of the event's creation (set by the platform during creation). <br /></param>
 	/// <param name="currentPage">The current page of the paginated results. <br /></param>
@@ -60,7 +61,6 @@ public interface IEventsApi
 	/// <param name="withSourceDevices">When set to <c>true</c> also events for related source devices will be included in the request. When this parameter is provided a <c>source</c> must be specified. <br /></param>
 	/// <param name="withTotalElements">When set to <c>true</c>, the returned result will contain in the statistics object the total number of elements. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
 	/// <param name="withTotalPages">When set to <c>true</c>, the returned result will contain in the statistics object the total number of pages. Only applicable on <see href="https://en.wikipedia.org/wiki/Range_query_(database)" langword="range queries" />. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<EventCollection<TEvent>?> GetEvents<TEvent>(System.DateTime? createdFrom = null, System.DateTime? createdTo = null, int? currentPage = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? fragmentValue = null, System.DateTime? lastUpdatedFrom = null, System.DateTime? lastUpdatedTo = null, int? pageSize = null, bool? revert = null, string? source = null, string? type = null, bool? withSourceAssets = null, bool? withSourceDevices = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TEvent : Event;
 	
@@ -144,6 +144,7 @@ public interface IEventsApi
 	/// </list>
 	/// </summary>
 	/// <param name="xCumulocityProcessingMode">Used to explicitly control the processing mode of the request. See <see href="#processing-mode" langword="Processing mode" /> for more details. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	/// <param name="createdFrom">Start date or date and time of the event's creation (set by the platform during creation). <br /></param>
 	/// <param name="createdTo">End date or date and time of the event's creation (set by the platform during creation). <br /></param>
 	/// <param name="dateFrom">Start date or date and time of the event occurrence (provided by the device). <br /></param>
@@ -151,7 +152,6 @@ public interface IEventsApi
 	/// <param name="fragmentType">A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state. <br /></param>
 	/// <param name="source">The managed object ID to which the event is associated. <br /></param>
 	/// <param name="type">The type of event to search for. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> DeleteEvents(string? xCumulocityProcessingMode = null, System.DateTime? createdFrom = null, System.DateTime? createdTo = null, System.DateTime? dateFrom = null, System.DateTime? dateTo = null, string? fragmentType = null, string? source = null, string? type = null, CancellationToken cToken = default) ;
 	

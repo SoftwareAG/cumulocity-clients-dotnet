@@ -1,59 +1,57 @@
-///
-/// AlarmsApiTest.cs
-/// CumulocityCoreLibrary
-///
-/// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
-/// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
-///
+//
+// AlarmsApiTest.cs
+// CumulocityCoreLibrary
+//
+// Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
+// Use, reproduction, transfer, publication or disclosure is prohibited except as specifically provided for in your License Agreement with Software AG.
+//
 
 using System;
 using System.Diagnostics;
 using System.Net;
 using System.Net.Http;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Com.Cumulocity.Client.Supplementary;
-using Com.Cumulocity.Client.Model;
+using Client.Com.Cumulocity.Client.Api;
+using Client.Com.Cumulocity.Client.Model;
+using Test.Com.Cumulocity.Client.Supplementary;
 
-namespace Com.Cumulocity.Client.Api 
+namespace Test.Com.Cumulocity.Client.Api;
+
+[TestClass]
+public sealed class AlarmsApiTest
 {
-	#nullable enable
-	[TestClass]
-	public class AlarmsApiTest
+
+	private static HttpClient? HttpClient { get; set; }
+
+	[ClassInitialize]
+	public static void SetupHttpClient(TestContext context)
 	{
-	
-		private static HttpClient? HttpClient { get; set; }
-	
-		[ClassInitialize]
-		public static void SetupHttpClient(TestContext context)
+		var configuration = new TestConfiguration();
+		configuration.Load();
+
+		var httpClientHandler = new HttpClientHandler()
 		{
-			var configuration = new TestConfiguration();
-			configuration.Load();
-	
-			var httpClientHandler = new HttpClientHandler()
-			{
-				Credentials = new NetworkCredential(configuration.Username, configuration.Password)
-			};
-			AlarmsApiTest.HttpClient = new HttpClient(httpClientHandler)
-			{
-				BaseAddress = new Uri(configuration.Hostname)
-			};
-		}
-	
-		[TestMethod]
-		public void TestGetAlarms()
+			Credentials = new NetworkCredential(configuration.Username, configuration.Password)
+		};
+		AlarmsApiTest.HttpClient = new HttpClient(httpClientHandler)
 		{
-			var api = new AlarmsApi(HttpClient!);
-			var response = api.GetAlarms<Alarm>();
-			Debug.Assert(response != null);
-		}
-		
-		[TestMethod]
-		public void TestGetNumberOfAlarms()
-		{
-			var api = new AlarmsApi(HttpClient!);
-			var response = api.GetNumberOfAlarms();
-			Debug.Assert(response != null);
-		}
+			BaseAddress = new Uri(configuration.Hostname)
+		};
 	}
-	#nullable disable
+
+	[TestMethod]
+	public async void TestGetAlarms()
+	{
+		var api = new AlarmsApi(HttpClient!);
+		var response = await api.GetAlarms<Alarm>();
+		Debug.Assert(response != null);
+	}
+	
+	[TestMethod]
+	public async void TestGetNumberOfAlarms()
+	{
+		var api = new AlarmsApi(HttpClient!);
+		var response = await api.GetNumberOfAlarms();
+		Debug.Assert(response != null);
+	}
 }

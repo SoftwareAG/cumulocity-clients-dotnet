@@ -7,7 +7,7 @@ Use the public factory to access `API` classes. The factory is available as a si
 ```csharp
 using Com.Cumulocity.Client.Supplementary;
 
-var factory = CumulocityCoreLibrary.INSTANCE;
+var factory = new CumulocityCoreLibrary(...);
 var api = factory.Applications.ApplicationsApi;
 ```
 
@@ -17,13 +17,17 @@ In addition, each `API` class provides a public initializer.
 var api = ApplicationsApi()
 ```
 
+The `HttpClient` needs to be an argument for creating each `API` class and for creating the creating.
+
 ### Configure request information
 
 Additional request information need to be configured for each `API` class, such as HTTP scheme, host name or additional headers (i.e. Authorization header). The client is using the `System.Net` library and thus a `HttpClient` needs to be configured. Before creating the API classes, make sure that the `BaseAdress` configured as followed:
 
 ```csharp
 var uri = new Uri(...);
-factory.HttpClient.BaseAddress = uri;
+var httpClient = new HttpClient();
+httpClient.BaseAddress = uri;
+var factory = new CumulocityCoreLibrary(httpClient);
 ```
 
 ### Use your own domain model
@@ -38,7 +42,7 @@ Those classes allow to add an arbitrary number of additional properties as a lis
 Alarm.Serialization.RegisterAdditionalProperty(String, Type);
 ```
 
-Each of the extensible objects contains a dictionary object holding instances of custom fragments. Use the custom fragment's key to access it's value.
+Each of the extensible objects contains a dictionary object holding instances of custom fragments. Use the custom fragment's key to access its value.
 ### Tests
 
 Example usage is explained within the `Test` project. To configure the tests, it's required to specify host and credentials. Locate the appsettings.test.json file and configure the settings:
@@ -67,7 +71,6 @@ var httpClientHandler = new HttpClientHandler()
 	Credentials = new NetworkCredential("userName", ",***")
 };
 var httpClient = new HttpClient(httpClientHandler);
-factory.HttpClient = httpClient;
 ```
 
 ## Contribution

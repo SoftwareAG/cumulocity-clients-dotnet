@@ -24,9 +24,9 @@ public interface ICumulocityCoreLibrary
 	IEventsFactory Events { get; }
 	INotifications20Factory Notifications20 { get; }
 	IRetentionsFactory Retentions { get; }
-	IDentityFactory Identity { get; }
+	IIdentityFactory Identity { get; }
 	IDeviceControlFactory DeviceControl { get; }
-	INventoryFactory Inventory { get; }
+	IInventoryFactory Inventory { get; }
 
 	public interface IApplicationsFactory
 	{
@@ -96,7 +96,7 @@ public interface ICumulocityCoreLibrary
 		IRetentionRulesApi RetentionRulesApi { get; }
 	}
 
-	public interface IDentityFactory
+	public interface IIdentityFactory
 	{
 		IIdentityApi IdentityApi { get; }
 		IExternalIDsApi ExternalIDsApi { get; }
@@ -110,7 +110,7 @@ public interface ICumulocityCoreLibrary
 		INewDeviceRequestsApi NewDeviceRequestsApi { get; }
 	}
 
-	public interface INventoryFactory
+	public interface IInventoryFactory
 	{
 		IManagedObjectsApi ManagedObjectsApi { get; }
 		IBinariesApi BinariesApi { get; }

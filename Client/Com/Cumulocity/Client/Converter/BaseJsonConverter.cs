@@ -19,55 +19,55 @@ namespace Client.Com.Cumulocity.Client.Converter;
 
 public abstract class BaseJsonConverter<T> : JsonConverter<T> where T : class
 {
-    public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
-    {
-        writer.WriteStartObject();
-        var type = value.GetType();
+	public override void Write(Utf8JsonWriter writer, T value, JsonSerializerOptions options)
+	{
+		writer.WriteStartObject();
+		var type = value.GetType();
 
-        foreach (PropertyInfo property in type.GetProperties())
-        {
-            var isIgnoredProperty = Attribute.IsDefined(property, typeof(JsonIgnoreAttribute));
-            if (property.CanRead && isIgnoredProperty == false)
-            {
-                var propertyValue = property.GetValue(value, null);
-                if (propertyValue != null)
-                {
-                    if (typeof(IDictionary<string, object>).IsAssignableFrom(property.PropertyType))
-                    {
-                        var dictionary = propertyValue as IDictionary;
-                        if (dictionary is not null)
-                        {
-                            foreach (DictionaryEntry item in dictionary)
-                            {
-                                writer.WritePropertyName((string)item.Key);
-                                JsonSerializerWrapper.Serialize(writer, item.Value, options);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        var jsonProperty = GetJsonPropertyNameAttribute(property);
-                        var jsonPropertyName = jsonProperty?.Name ?? property.Name;
-                        writer.WritePropertyName(jsonPropertyName);
-                        JsonSerializerWrapper.Serialize(writer, propertyValue, options);
-                    }
-                }
-            }
-        }
-        writer.WriteEndObject();
-    }
+		foreach (PropertyInfo property in type.GetProperties())
+ 		{
+			var isIgnoredProperty = Attribute.IsDefined(property, typeof(JsonIgnoreAttribute));
+			if (property.CanRead && isIgnoredProperty == false)
+			{
+				var propertyValue = property.GetValue(value, null);
+				if (propertyValue != null)
+				{
+					if (typeof(IDictionary<string, object>).IsAssignableFrom(property.PropertyType))
+					{
+						var dictionary = propertyValue as IDictionary;
+						if (dictionary is not null)
+						{
+							foreach (DictionaryEntry item in dictionary)
+							{
+								writer.WritePropertyName((string)item.Key);
+								JsonSerializerWrapper.Serialize(writer, item.Value, options);
+							}
+						}
+					}
+					else
+					{
+						var jsonProperty = GetJsonPropertyNameAttribute(property);
+						var jsonPropertyName = jsonProperty?.Name ?? property.Name;
+						writer.WritePropertyName(jsonPropertyName);
+						JsonSerializerWrapper.Serialize(writer, propertyValue, options);
+					}
+				}
+			}
+		}
+		writer.WriteEndObject();
+	}
 
-    protected PropertyInfo? FindProperty(List<PropertyInfo> instanceProperties, JsonProperty current)
-    {
-        return instanceProperties.Find(propertyInfo =>
-        {
-            var attribute = GetJsonPropertyNameAttribute(propertyInfo);
-            return current.NameEquals(attribute?.Name ?? propertyInfo.Name);
-        });
-    }
+	protected PropertyInfo? FindProperty(List<PropertyInfo> instanceProperties, JsonProperty current)
+	{
+		return instanceProperties.Find(propertyInfo =>
+		{
+			var attribute = GetJsonPropertyNameAttribute(propertyInfo);
+			return current.NameEquals(attribute?.Name ?? propertyInfo.Name);
+		});
+	}
 
-    protected JsonPropertyNameAttribute? GetJsonPropertyNameAttribute(MemberInfo propertyInfo)
-    {
-        return (JsonPropertyNameAttribute?)Attribute.GetCustomAttribute(propertyInfo, typeof(JsonPropertyNameAttribute));
-    }
+	protected JsonPropertyNameAttribute? GetJsonPropertyNameAttribute(MemberInfo propertyInfo)
+	{
+		return (JsonPropertyNameAttribute?)Attribute.GetCustomAttribute(propertyInfo, typeof(JsonPropertyNameAttribute));
+	}
 }

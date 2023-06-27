@@ -25,9 +25,9 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 	private readonly Lazy<IEventsFactory> _lazyEvents;
 	private readonly Lazy<INotifications20Factory> _lazyNotifications20;
 	private readonly Lazy<IRetentionsFactory> _lazyRetentions;
-	private readonly Lazy<IDentityFactory> _lazyIdentity;
+	private readonly Lazy<IIdentityFactory> _lazyIdentity;
 	private readonly Lazy<IDeviceControlFactory> _lazyDeviceControl;
-	private readonly Lazy<INventoryFactory> _lazyInventory;
+	private readonly Lazy<IInventoryFactory> _lazyInventory;
 
 	public CumulocityCoreLibrary(HttpClient client)
 	{
@@ -41,9 +41,9 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 		_lazyEvents = new Lazy<IEventsFactory>(() => new EventsFactory(client));
 		_lazyNotifications20 = new Lazy<INotifications20Factory>(() => new Notifications20Factory(client));
 		_lazyRetentions = new Lazy<IRetentionsFactory>(() => new RetentionsFactory(client));
-		_lazyIdentity = new Lazy<IDentityFactory>(() => new IdentityFactory(client));
+		_lazyIdentity = new Lazy<IIdentityFactory>(() => new IdentityFactory(client));
 		_lazyDeviceControl = new Lazy<IDeviceControlFactory>(() => new DeviceControlFactory(client));
-		_lazyInventory = new Lazy<INventoryFactory>(() => new InventoryFactory(client));
+		_lazyInventory = new Lazy<IInventoryFactory>(() => new InventoryFactory(client));
 	}
 
 	public CumulocityCoreLibrary(IHttpClientFactory clientFactory): this(clientFactory.CreateClient())
@@ -64,9 +64,9 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 	public IEventsFactory Events => _lazyEvents.Value;
 	public INotifications20Factory Notifications20 => _lazyNotifications20.Value;
 	public IRetentionsFactory Retentions => _lazyRetentions.Value;
-	public IDentityFactory Identity => _lazyIdentity.Value;
+	public IIdentityFactory Identity => _lazyIdentity.Value;
 	public IDeviceControlFactory DeviceControl => _lazyDeviceControl.Value;
-	public INventoryFactory Inventory => _lazyInventory.Value;
+	public IInventoryFactory Inventory => _lazyInventory.Value;
 
 	public class ApplicationsFactory: IApplicationsFactory
 	{
@@ -242,7 +242,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 		public IRetentionRulesApi RetentionRulesApi => _lazyRetentionRulesApi.Value;
 	}
 
-	public class IdentityFactory: IDentityFactory
+	public class IdentityFactory: IIdentityFactory
 	{
 		private readonly Lazy<IIdentityApi> _lazyIdentityApi;
 		private readonly Lazy<IExternalIDsApi> _lazyExternalIDsApi;
@@ -278,7 +278,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 		public INewDeviceRequestsApi NewDeviceRequestsApi => _lazyNewDeviceRequestsApi.Value;
 	}
 
-	public class InventoryFactory: INventoryFactory
+	public class InventoryFactory: IInventoryFactory
 	{
 		private readonly Lazy<IManagedObjectsApi> _lazyManagedObjectsApi;
 		private readonly Lazy<IBinariesApi> _lazyBinariesApi;

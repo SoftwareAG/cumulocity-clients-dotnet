@@ -22,7 +22,7 @@ public class AlarmJsonConverter<T> : BaseJsonConverter<T> where T : Alarm
 	public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var instance = (T) Activator.CreateInstance(typeToConvert);
-        var additionalObjects = new Dictionary<string, object?>();
+		var additionalObjects = new Dictionary<string, object?>();
 		var instanceProperties = typeToConvert.GetTypeInfo().DeclaredProperties.ToList();
 		using (var jsonDocument = JsonDocument.ParseValue(ref reader))
 		{
@@ -31,19 +31,18 @@ public class AlarmJsonConverter<T> : BaseJsonConverter<T> where T : Alarm
 			{
 				var current = objectEnumerator.Current;
 				var property = FindProperty(instanceProperties, current);
-
-                if (property != null)
+				if (property != null)
 				{
 					var value = current.Value.Deserialize(property.PropertyType, options);
 					property.SetValue(instance, value);
 				}
 				else
 				{
-                    additionalObjects.Add(current.Name,
+					additionalObjects.Add(current.Name,
 						Alarm.Serialization.AdditionalPropertyClasses.TryGetValue(current.Name, out var type)
 						? current.Value.Deserialize(type, options)
 						: current.Value.Deserialize<object>(options));
-                }
+				}
 			}
 		}
 		instance.CustomFragments = additionalObjects;

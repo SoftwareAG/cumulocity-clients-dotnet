@@ -13,29 +13,33 @@ namespace Client.Com.Cumulocity.Client.Supplementary;
 
 public static class HttpResponseMessageExtensions
 {
- 	public static async Task EnsureSuccessStatusCodeWithContentInfo(this HttpResponseMessage httpResponseMessage)
-    {
-        if (!httpResponseMessage.IsSuccessStatusCode)
-        {
-            var content = await httpResponseMessage.GetContent().ConfigureAwait(false);
-            if (content != string.Empty)
-            {
-                throw new HttpRequestException($"Request failed. Status code: {httpResponseMessage.StatusCode}, Reason: {httpResponseMessage.ReasonPhrase}, Additional info: {content}");
-            }
+ 	 internal static async Task EnsureSuccessStatusCodeWithContentInfo(this HttpResponseMessage httpResponseMessage)
+ 	    {
+ 	        if (!httpResponseMessage.IsSuccessStatusCode)
+ 	        {
+ 	            var content = await httpResponseMessage.GetContent().ConfigureAwait(false);
+ 	            var messageBuilder = new StringBuilder();
+ 	            messageBuilder.Append($"Request failed. Status code: {httpResponseMessage.StatusCode}, Reason: {httpResponseMessage.ReasonPhrase}");
+ 	            if (content != string.Empty)
+ 	            {
+ 	                messageBuilder.Append($", Additional info: {content}");
+ 	            }
+ 	            var exception = new HttpRequestException(messageBuilder.ToString(), null);
+ 	            exception.SetStatusCode(httpResponseMessage.StatusCode);
 
-            throw new HttpRequestException($"Request failed. Status code: {httpResponseMessage.StatusCode}, Reason: {httpResponseMessage.ReasonPhrase}");
-        }
-    }
+ 	            throw exception;
+ 	        }
+ 	    }
 
-    private static async Task<string> GetContent(this HttpResponseMessage httpResponseMessage)
-    {
-        try
-        {
-            return await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
-        }
-        catch
-        {
-            return string.Empty;
-        }
-    }
+ 	    private static async Task<string> GetContent(this HttpResponseMessage httpResponseMessage)
+ 	    {
+ 	        try
+ 	        {
+ 	            return await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
+ 	        }
+ 	        catch
+ 	        {
+ 	            return string.Empty;
+ 	        }
+ 	    }
 }

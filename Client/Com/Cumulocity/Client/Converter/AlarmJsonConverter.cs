@@ -22,6 +22,7 @@ public class AlarmJsonConverter<T> : BaseJsonConverter<T> where T : Alarm
 	public override T? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var instance = (T) Activator.CreateInstance(typeToConvert);
+		var additionalObjects = new Dictionary<string, object?>();
 		var instanceProperties = typeToConvert.GetTypeInfo().DeclaredProperties.ToList();
 		using (var jsonDocument = JsonDocument.ParseValue(ref reader))
 		{

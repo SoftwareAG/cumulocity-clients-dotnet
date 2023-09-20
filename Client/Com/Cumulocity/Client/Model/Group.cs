@@ -44,7 +44,7 @@ public sealed class Group<TCustomProperties> where TCustomProperties : CustomPro
 	///
 	[System.Obsolete("This property might be removed in future releases.", false)]
 	[JsonPropertyName("devicePermissions")]
-	public DeprecatedDevicePermissions? DevicePermissions { get; set; }
+	public DevicePermissions? PDevicePermissions { get; set; }
 
 	/// <summary> 
 	/// A unique identifier for this group. <br />

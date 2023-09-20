@@ -1,5 +1,5 @@
 //
-// DevicePermissions.cs
+// DevicePermissionOwners.cs
 // CumulocityCoreLibrary
 //
 // Copyright (c) 2014-2023 Software AG, Darmstadt, Germany and/or Software AG USA Inc., Reston, VA, USA, and/or its subsidiaries and/or its affiliates and/or their licensors.
@@ -15,21 +15,17 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// An object with a list of the user's device permissions. <br />
+/// A list of device permissions. <br />
 /// </summary>
 ///
-public sealed class DevicePermissions 
+public sealed class DevicePermissionOwners<TCustomProperties> where TCustomProperties : CustomProperties
 {
 
-	[JsonPropertyName("additionalProperties")]
-	public IDictionary<string, List<string>?> AdditionalProperties { get; set; } = new Dictionary<string, List<string>?>();
-	
-	[JsonIgnore]
-	public List<string>? this[string key]
-	{
-		get => AdditionalProperties[key];
-		set => AdditionalProperties[key] = value;
-	}
+	[JsonPropertyName("users")]
+	public List<User<TCustomProperties>> Users { get; set; } = new List<User<TCustomProperties>>();
+
+	[JsonPropertyName("groups")]
+	public List<Group<TCustomProperties>> Groups { get; set; } = new List<Group<TCustomProperties>>();
 
 	public override string ToString()
 	{

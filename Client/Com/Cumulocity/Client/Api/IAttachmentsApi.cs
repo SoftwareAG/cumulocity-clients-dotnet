@@ -15,7 +15,7 @@ using Client.Com.Cumulocity.Client.Model;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// It is possible to store, retrieve and delete binaries for events. Each event can have one binary attached. <br />
+/// It is possible to store, retrieve and delete binaries for events. Each event can have only one binary attached. <br />
 /// </summary>
 ///
 public interface IAttachmentsApi
@@ -83,9 +83,9 @@ public interface IAttachmentsApi
 	
 	/// <summary> 
 	/// Attach a file to a specific event <br />
-	/// Upload a file (binary) as an attachment of a specific event by a given ID.<br />
-	/// The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB. <br />
-	/// After the file has been uploaded, the corresponding event will contain the fragment <c>c8y_IsBinary</c> similar to: <br />
+	/// Upload a file (binary) as an attachment of a specific event by a given ID.The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB. <br />
+	/// ⓘ Info: If there is a binary already attached to the event, the POST request results in a 409 error. <br />
+	/// When the file has been uploaded, the corresponding event contains the fragment <c>c8y_IsBinary</c> similar to: <br />
 	/// <![CDATA[
 	/// "c8y_IsBinary": {
 	///     "name": "hello.txt",
@@ -93,7 +93,7 @@ public interface IAttachmentsApi
 	///     "type": "text/plain"
 	/// }
 	/// ]]>
-	/// When using <c>multipart/form-data</c> each value is sent as a block of data (body part), with a user agent-defined delimiter (<c>boundary</c>) separating each part. The keys are given in the <c>Content-Disposition</c> header of each part. <br />
+	/// There are two request body schemas you can use for your POST requests.<c>text/plain</c> is preselected (see below).If you set it to <c>multipart/form-data</c> each value is sent as a block of data (body part), with a user agent-defined delimiter (<c>boundary</c>) separating each part.The keys are given in the <c>Content-Disposition</c> header of each part. <br />
 	/// <![CDATA[
 	/// POST /event/events/{id}/binaries
 	/// Host: https://<TENANT_DOMAIN>
@@ -145,9 +145,9 @@ public interface IAttachmentsApi
 	
 	/// <summary> 
 	/// Attach a file to a specific event <br />
-	/// Upload a file (binary) as an attachment of a specific event by a given ID.<br />
-	/// The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB. <br />
-	/// After the file has been uploaded, the corresponding event will contain the fragment <c>c8y_IsBinary</c> similar to: <br />
+	/// Upload a file (binary) as an attachment of a specific event by a given ID.The size of the attachment is configurable, and the default size is 50 MiB. The default chunk size is 5MiB. <br />
+	/// ⓘ Info: If there is a binary already attached to the event, the POST request results in a 409 error. <br />
+	/// When the file has been uploaded, the corresponding event contains the fragment <c>c8y_IsBinary</c> similar to: <br />
 	/// <![CDATA[
 	/// "c8y_IsBinary": {
 	///     "name": "hello.txt",
@@ -155,7 +155,7 @@ public interface IAttachmentsApi
 	///     "type": "text/plain"
 	/// }
 	/// ]]>
-	/// When using <c>multipart/form-data</c> each value is sent as a block of data (body part), with a user agent-defined delimiter (<c>boundary</c>) separating each part. The keys are given in the <c>Content-Disposition</c> header of each part. <br />
+	/// There are two request body schemas you can use for your POST requests.<c>text/plain</c> is preselected (see below).If you set it to <c>multipart/form-data</c> each value is sent as a block of data (body part), with a user agent-defined delimiter (<c>boundary</c>) separating each part.The keys are given in the <c>Content-Disposition</c> header of each part. <br />
 	/// <![CDATA[
 	/// POST /event/events/{id}/binaries
 	/// Host: https://<TENANT_DOMAIN>

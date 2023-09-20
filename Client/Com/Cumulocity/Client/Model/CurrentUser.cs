@@ -111,7 +111,7 @@ public sealed class CurrentUser
 	///
 	[System.Obsolete("This property might be removed in future releases.", false)]
 	[JsonPropertyName("devicePermissions")]
-	public DeprecatedDevicePermissions? DevicePermissions { get; set; }
+	public DevicePermissions? PDevicePermissions { get; set; }
 
 	public override string ToString()
 	{

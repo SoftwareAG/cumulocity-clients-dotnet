@@ -67,7 +67,7 @@ public sealed class CumulocityCoreLibrary: ICumulocityCoreLibrary
 	public IIdentityFactory Identity => _lazyIdentity.Value;
 	public IDeviceControlFactory DeviceControl => _lazyDeviceControl.Value;
 	public IInventoryFactory Inventory => _lazyInventory.Value;
-  
+
 	public class ApplicationsFactory: IApplicationsFactory
 	{
 		private readonly Lazy<IApplicationsApi> _lazyApplicationsApi;

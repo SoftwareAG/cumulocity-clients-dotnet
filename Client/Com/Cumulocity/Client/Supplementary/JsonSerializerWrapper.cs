@@ -40,7 +40,7 @@ internal static class JsonSerializerWrapper
 
 	public static ValueTask<T?> DeserializeAsync<T>(Stream utf8Stream, CancellationToken cancellationToken = default)
 	{
-		return JsonSerializer.DeserializeAsync<T>(utf8Stream, JsonSerializerOptions, cancellationToken: cancellationToken);
+	    return utf8Stream.Length == 0 ? default : JsonSerializer.DeserializeAsync<T>(utf8Stream, JsonSerializerOptions, cancellationToken: cancellationToken);
 	}
 
 	public static T? Deserialize<T>(string jsonString, JsonSerializerOptions? options = null)

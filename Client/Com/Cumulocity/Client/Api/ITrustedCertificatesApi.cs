@@ -202,7 +202,7 @@ public interface ITrustedCertificatesApi
 	
 	/// <summary> 
 	/// Remove a stored certificate <br />
-	/// Remove a stored trusted certificate (by a given fingerprint) from a specific tenant (by a given ID). <br />
+	/// Remove a stored trusted certificate (by a given fingerprint) from a specific tenant (by a given ID).When a trusted certificate is deleted, the established MQTT connection to all devices that are using the corresponding certificate are closed. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND (is the current tenant OR is the management tenant) 
@@ -332,72 +332,4 @@ public interface ITrustedCertificatesApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint, CancellationToken cToken = default) ;
-	
-	/// <summary> 
-	/// Verify a certificate chain via file upload <br />
-	/// Verify a device certificate chain against a specific tenant. Max chain length support is <b>10</b>.The tenant ID is <c>optional</c> and this api will be further enhanced to resolve the tenant from the chain in future release. <br />
-	/// 
-	/// <br /> Required roles <br />
-	///  (ROLE_TENANT_MANAGEMENT_ADMIN) AND (is the current tenant OR is current management tenant) 
-	/// 
-	/// <br /> Response Codes <br />
-	/// The following table gives an overview of the possible response codes and their meanings: <br />
-	/// <list type="bullet">
-	/// 	<item>
-	/// 		<description>HTTP 200 The request has succeeded and the validation result is sent in the response. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 400 Unable to parse certificate chain. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 404 The tenant ID does not exist. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// </list>
-	/// </summary>
-	/// <param name="tenantId"></param>
-	/// <param name="file">File to be uploaded. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	///
-	Task<VerifyCertificateChain?> ValidateChainByFileUpload(string tenantId, byte[] file, CancellationToken cToken = default) ;
-	
-	/// <summary> 
-	/// Verify a certificate chain via HTTP header <br />
-	/// Verify a device certificate chain against a specific tenant. Max chain length support is <b>6</b>.The tenant ID is <c>optional</c> and this api will be further enhanced to resolve the tenant from the chain in future release. <br />
-	/// 
-	/// <br /> Required roles <br />
-	///  (ROLE_TENANT_MANAGEMENT_ADMIN) AND (is the current tenant OR is current management tenant) 
-	/// 
-	/// <br /> Response Codes <br />
-	/// The following table gives an overview of the possible response codes and their meanings: <br />
-	/// <list type="bullet">
-	/// 	<item>
-	/// 		<description>HTTP 200 The request has succeeded and the validation result is sent in the response. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 400 Unable to parse certificate chain. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 404 The tenant ID does not exist. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// </list>
-	/// </summary>
-	/// <param name="xCumulocityTenantId">Used to send a tenant ID. <br /></param>
-	/// <param name="xCumulocityClientCertChain">Used to send a certificate chain in the header. Separate the chain with <c>,</c> and also each 64 bit block with <c> </c> (a space character). <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	///
-	Task<VerifyCertificateChain?> ValidateChainByHeader(string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) ;
 }

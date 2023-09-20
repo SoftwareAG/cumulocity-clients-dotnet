@@ -166,7 +166,7 @@ public interface IMeasurementsApi
 	/// Remove measurement collections <br />
 	/// Remove measurement collections specified by query parameters. <br />
 	/// DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when there are a lot of measurements to be deleted. <br />
-	/// ⚠️ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>. <br />
+	/// ⚠️ Important: Note that it is possible to call this endpoint without providing any parameter - it may result in deleting all measurements and it is not recommended. <br />
 	/// In case of enhanced time series measurements, both <c>dateFrom</c> and <c>dateTo</c> parameters must be truncated to full hours (for example, 2022-08-19T14:00:00.000Z), otherwise an error will be returned.The <c>fragmentType</c> parameter allows to delete measurements only by a measurement fragment when enhanced time series measurements are used.It's not possible to delete by a custom (non-measurement) fragment. <br />
 	/// Example for a valid measurement value fragment: <br />
 	/// <![CDATA[

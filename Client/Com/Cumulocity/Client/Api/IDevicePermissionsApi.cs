@@ -77,7 +77,7 @@ public interface IDevicePermissionsApi
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<DevicePermissions<TCustomProperties>?> GetDevicePermissionAssignments<TCustomProperties>(string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
+	Task<DevicePermissionOwners<TCustomProperties>?> GetDevicePermissionAssignments<TCustomProperties>(string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
 	
 	/// <summary> 
 	/// Updates the device permissions assignments <br />
@@ -107,5 +107,5 @@ public interface IDevicePermissionsApi
 	/// <param name="id">Unique identifier of the managed object. <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<string?> UpdateDevicePermissionAssignments<TCustomProperties>(DevicePermissions<TCustomProperties> body, string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties;
+	Task<string?> UpdateDevicePermissionAssignments(UpdatedDevicePermissions body, string id, CancellationToken cToken = default) ;
 }

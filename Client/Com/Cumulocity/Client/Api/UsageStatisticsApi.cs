@@ -105,6 +105,74 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// <br /> Microservice usage statistics <br />
 /// The microservice usage statistics gathers information on the resource usage for tenants for each subscribed application which are collected on a daily base. <br />
 /// The microservice usage's information is stored in the <c>resources</c> object. <br />
+/// <br /> Frequently asked questions <br />
+/// <br /> Which requests are counted as general "requestCount"? <br />
+/// All requests which the platform receives are counted, including,for example, UI requests, microservices requests, device requests and agents requests. Only a few internal endpoints are not counted: <br />
+/// <list type="bullet">
+/// 	<item>
+/// 		<description><c>/health</c> (and all endpoints including this URI fragment, like <c>/tenant/health</c>) <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description><c>/application/currentApplication</c> (and all subresources, like <c>/application/currentApplication/subscriptions</c>) <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description><c>/tenant/limit</c> <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description><c>/devicecontrol/deviceCredentials</c> <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description><c>/inventory/templates</c> (and all subresources) <br />
+/// 		</description>
+/// 	</item>
+/// </list>
+/// <br /> My devices are not sending any data, but "requestCount" is increasing, and the total number is really big. Why is this happening? <br />
+/// Not only device requests are counted. Every user interaction with UI applications generates some requests to the backend API. Additionally you may have subscribed standard or custom microservices, which also regularly send requests to the platform. <br />
+/// Example: If you have four microservices and each microservice sends five requests per minute, this setup creates <c>4 * 5 * 60 * 24 = 28800</c> requests per day. Similar numbers arise if there are multiple users working with the given tenant UI concurrently. <br />
+/// <br /> Which requests are counted as "deviceRequestCount"? <br />
+/// All requests from "requestCount" except the following: <br />
+/// <list type="bullet">
+/// 	<item>
+/// 		<description>Tenant API requests <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description>Application API requests <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description>User API requests <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description>Requests with the proper HTTP header <c>X-Cumulocity-Application-Key</c>, matching the application key of one of the applications used by a particular tenant <br />
+/// 		</description>
+/// 	</item>
+/// </list>
+/// The exclusion of the APIs in the list above means that requests to endpoints which start with the mentioned API prefixes are not counted. For example, for the Tenant API the following endpoints are not counted (the list is incomplete): <br />
+/// <list type="bullet">
+/// 	<item>
+/// 		<description><c>/tenant/tenants</c> <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description><c>/tenant/currentTenant</c> <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description><c>/tenant/statistics</c> <br />
+/// 		</description>
+/// 	</item>
+/// 	<item>
+/// 		<description><c>/tenant/options</c> <br />
+/// 		</description>
+/// 	</item>
+/// </list>
+/// ⓘ Info: Each microservice and web application must include the <c>X-Cumulocity-Application-Key</c> header in all requests.Otherwise such requests are counted as device requests which incorrectly affects the "deviceRequestCount" usage metric. <br />
 /// </summary>
 ///
 public sealed class UsageStatisticsApi : IUsageStatisticsApi

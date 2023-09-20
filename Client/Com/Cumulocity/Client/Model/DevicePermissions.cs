@@ -15,17 +15,21 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// A list of device permissions. <br />
+/// An object with a list of the user's device permissions. <br />
 /// </summary>
 ///
-public sealed class DevicePermissions<TCustomProperties> where TCustomProperties : CustomProperties
+public sealed class DevicePermissions 
 {
 
-	[JsonPropertyName("users")]
-	public List<User<TCustomProperties>> Users { get; set; } = new List<User<TCustomProperties>>();
-
-	[JsonPropertyName("groups")]
-	public List<Group<TCustomProperties>> Groups { get; set; } = new List<Group<TCustomProperties>>();
+	[JsonPropertyName("additionalProperties")]
+	public IDictionary<string, List<string>?> AdditionalProperties { get; set; } = new Dictionary<string, List<string>?>();
+	
+	[JsonIgnore]
+	public List<string>? this[string key]
+	{
+		get => AdditionalProperties[key];
+		set => AdditionalProperties[key] = value;
+	}
 
 	public override string ToString()
 	{

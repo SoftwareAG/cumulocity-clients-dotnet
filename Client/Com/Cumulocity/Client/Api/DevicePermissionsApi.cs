@@ -64,7 +64,7 @@ public sealed class DevicePermissionsApi : IDevicePermissionsApi
 	}
 
 	/// <inheritdoc />
-	public async Task<DevicePermissions<TCustomProperties>?> GetDevicePermissionAssignments<TCustomProperties>(string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties
+	public async Task<DevicePermissionOwners<TCustomProperties>?> GetDevicePermissionAssignments<TCustomProperties>(string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
 		string resourcePath = $"/user/devicePermissions/{HttpUtility.UrlEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
@@ -77,13 +77,13 @@ public sealed class DevicePermissionsApi : IDevicePermissionsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<DevicePermissions<TCustomProperties>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<DevicePermissionOwners<TCustomProperties>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> UpdateDevicePermissionAssignments<TCustomProperties>(DevicePermissions<TCustomProperties> body, string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties
+	public async Task<string?> UpdateDevicePermissionAssignments(UpdatedDevicePermissions body, string id, CancellationToken cToken = default) 
 	{
-		var jsonNode = body.ToJsonNode<DevicePermissions<TCustomProperties>>();
+		var jsonNode = body.ToJsonNode<UpdatedDevicePermissions>();
 		string resourcePath = $"/user/devicePermissions/{HttpUtility.UrlEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 

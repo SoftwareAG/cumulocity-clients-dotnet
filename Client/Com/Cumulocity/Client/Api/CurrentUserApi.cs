@@ -62,7 +62,6 @@ public sealed class CurrentUserApi : ICurrentUserApi
 		jsonNode?.RemoveFromNode("id");
 		jsonNode?.RemoveFromNode("lastPasswordChange");
 		jsonNode?.RemoveFromNode("twoFactorAuthenticationEnabled");
-		jsonNode?.RemoveFromNode("devicePermissions");
 		const string resourcePath = "/user/currentUser";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 

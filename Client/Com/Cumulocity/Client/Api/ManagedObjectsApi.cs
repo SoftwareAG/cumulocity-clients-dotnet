@@ -107,33 +107,6 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<int> GetNumberOfManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, string? fragmentType = null, List<string>? ids = null, string? owner = null, string? text = null, string? type = null, CancellationToken cToken = default) 
-	{
-		const string resourcePath = "/inventory/managedObjects/count";
-		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
-		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
-		queryString.TryAdd("childAdditionId", childAdditionId);
-		queryString.TryAdd("childAssetId", childAssetId);
-		queryString.TryAdd("childDeviceId", childDeviceId);
-		queryString.TryAdd("fragmentType", fragmentType);
-		queryString.TryAdd("ids", ids, false);
-		queryString.TryAdd("owner", owner);
-		queryString.TryAdd("text", text);
-		queryString.TryAdd("type", type);
-		uriBuilder.Query = queryString.ToString();
-		using var request = new HttpRequestMessage 
-		{
-			Method = HttpMethod.Get,
-			RequestUri = new Uri(uriBuilder.ToString())
-		};
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, text/plain,application/json");
-		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<int>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
-	}
-	
-	/// <inheritdoc />
 	public async Task<TManagedObject?> GetManagedObject<TManagedObject>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
 		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}";

@@ -22,7 +22,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
-/// It is possible to store, retrieve and delete binaries for events. Each event can have one binary attached. <br />
+/// It is possible to store, retrieve and delete binaries for events. Each event can have only one binary attached. <br />
 /// </summary>
 ///
 public sealed class AttachmentsApi : IAttachmentsApi
@@ -63,7 +63,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
 		request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
@@ -82,7 +82,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
 		request.Headers.TryAddWithoutValidation("Content-Type", "text/plain");
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
@@ -108,7 +108,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
 		request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
-		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/vnd.com.nsn.cumulocity.event+json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);

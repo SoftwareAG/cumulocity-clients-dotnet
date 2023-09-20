@@ -173,7 +173,7 @@ public sealed class User<TCustomProperties> where TCustomProperties : CustomProp
 	///
 	[System.Obsolete("This property might be removed in future releases.", false)]
 	[JsonPropertyName("devicePermissions")]
-	public DeprecatedDevicePermissions? DevicePermissions { get; set; }
+	public DevicePermissions? PDevicePermissions { get; set; }
 
 	/// <summary> 
 	/// Indicates the password strength. The value can be GREEN, YELLOW or RED for decreasing password strengths. <br />

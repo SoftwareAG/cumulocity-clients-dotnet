@@ -142,7 +142,10 @@ public sealed class NotificationSubscription
 	{
 	
 		/// <summary> 
-		/// The Notifications are available for Alarms, Alarms with children, Device control, Events, Events with children, Inventory and Measurements for the <c>mo</c> context and for Alarms, Events and Inventory for the <c>tenant</c> context. Alternatively, the wildcard <c>*</c> can be used to match all the permissible APIs within the bound context. <br />
+		/// For the <c>mo</c> (Managed object) context, notifications from the <c>alarms</c>, <c>alarmsWithChildren</c>, <c>events</c>, <c>eventsWithChildren</c>, <c>managedobjects</c> (Inventory), <c>measurements</c> and <c>operations</c> (Device control) APIs can be subscribed to.<br />
+		/// The <c>alarmsWithChildren</c> and <c>eventsWithChildren</c> APIs subscribe to alarms and events respectively from the managed object identified by the <c>source.id</c> field, and all of its descendant managed objects. <br />
+		/// For the <c>tenant</c> context, notifications from the <c>alarms</c>, <c>events</c> and <c>managedobjects</c> (Inventory) APIs can be subscribed to. <br />
+		/// For all contexts, the <c>*</c> (wildcard) value can be used to subscribe to notifications from all of the available APIs in that context. <br />
 		/// ⓘ Info: The wildcard <c>*</c> cannot be used in conjunction with other values. <br />
 		/// ⓘ Info: When filtering Events in the <c>tenant</c> context it is required to also specify the <c>typeFilter</c>. <br />
 		/// </summary>
@@ -151,9 +154,9 @@ public sealed class NotificationSubscription
 		public List<string> Apis { get; set; } = new List<string>();
 	
 		/// <summary> 
-		/// Used to match the <c>type</c> property of the data. An OData expression must be provided. <br />
-		/// ⓘ Info: The use of a <c>type</c> attribute is assumed, for example when using only a string literal <c>'c8y_Temperature'</c> it is equivalent to a <c>type eq 'c8y_Temperature'</c> OData expression. <br />
-		/// ⓘ Info: Currently only the <c>or</c> operator is allowed in the expression mode. Example usage is <c>'c8y_Temperature' or 'c8y_Pressure'</c> which will match all the data with types <c>c8y_Temperature</c> or <c>c8y_Pressure</c>. <br />
+		/// Used to match the <c>type</c> property of the data. This must either be a string to match one specific type exactly, or be an <c>or</c> OData expression, allowing the filter to match any one of a number of types. <br />
+		/// ⓘ Info: The use of a <c>type</c> attribute is assumed, for example when using only a string literal <c>'c8y_Temperature'</c> (or using <c>c8y_Temperature</c>, as quotes can be omitted when matching a single type) it is equivalent to a <c>type eq 'c8y_Temperature'</c> OData expression. <br />
+		/// ⓘ Info: Currently only the <c>or</c> operator is allowed when using an OData expression. Example usage is <c>'c8y_Temperature' or 'c8y_Pressure'</c> which will match all the data with types <c>c8y_Temperature</c> or <c>c8y_Pressure</c>. <br />
 		/// </summary>
 		///
 		[JsonPropertyName("typeFilter")]

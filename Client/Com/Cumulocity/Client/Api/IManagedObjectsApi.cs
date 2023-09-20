@@ -126,38 +126,6 @@ public interface IManagedObjectsApi
 	Task<TManagedObject?> CreateManagedObject<TManagedObject>(TManagedObject body, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) where TManagedObject : ManagedObject;
 	
 	/// <summary> 
-	/// Retrieve the total number of managed objects <br />
-	/// Retrieve the total number of managed objects (for example, devices, assets, etc.) registered in your tenant, or a subset based on queries. <br />
-	/// 
-	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ is not required, but if the current user doesn't have this role, the response will contain the number of inventory objects accessible for the user. 
-	/// 
-	/// <br /> Response Codes <br />
-	/// The following table gives an overview of the possible response codes and their meanings: <br />
-	/// <list type="bullet">
-	/// 	<item>
-	/// 		<description>HTTP 200 The request has succeeded and the number of managed objects is sent in the response. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// </list>
-	/// </summary>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	/// <param name="childAdditionId">Search for a specific child addition and list all the groups to which it belongs. <br /></param>
-	/// <param name="childAssetId">Search for a specific child asset and list all the groups to which it belongs. <br /></param>
-	/// <param name="childDeviceId">Search for a specific child device and list all the groups to which it belongs. <br /></param>
-	/// <param name="fragmentType">A characteristic which identifies a managed object or event, for example, geolocation, electricity sensor, relay state. <br /></param>
-	/// <param name="ids">The managed object IDs to search for. <br />ⓘ Info: If you query for multiple IDs at once, comma-separate the values. <br /></param>
-	/// <param name="owner">Username of the owner of the managed objects. <br /></param>
-	/// <param name="text">Search for managed objects where any property value is equal to the given one. Only string values are supported. <br /></param>
-	/// <param name="type">The type of managed object to search for. <br /></param>
-	///
-	Task<int> GetNumberOfManagedObjects(string? childAdditionId = null, string? childAssetId = null, string? childDeviceId = null, string? fragmentType = null, List<string>? ids = null, string? owner = null, string? text = null, string? type = null, CancellationToken cToken = default) ;
-	
-	/// <summary> 
 	/// Retrieve a specific managed object <br />
 	/// Retrieve a specific managed object (for example, device, group, template) by a given ID. <br />
 	/// 
@@ -227,6 +195,7 @@ public interface IManagedObjectsApi
 	/// Remove a specific managed object <br />
 	/// Remove a specific managed object (for example, device) by a given ID. <br />
 	/// ⓘ Info: Inventory DELETE requests are not synchronous. The response could be returned before the delete request has been completed. This may happen especially when the deleted managed object has a lot of associated data. After sending the request, the platform starts deleting the associated data in an asynchronous way. Finally, the requested managed object is deleted after all associated data has been deleted. <br />
+	/// ⓘ Info: By default, the delete operation is always propagated to the subgroups, but only if the deleted object is a group. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_INVENTORY_ADMIN OR owner of the source OR MANAGE_OBJECT_ADMIN permission on the source 

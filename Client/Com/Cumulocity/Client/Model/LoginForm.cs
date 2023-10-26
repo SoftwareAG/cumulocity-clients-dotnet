@@ -62,9 +62,7 @@ public sealed class LoginForm
 		[EnumMember(Value = "PASSWORD")]
 		PASSWORD,
 		[EnumMember(Value = "AUTHORIZATION_CODE")]
-		AUTHORIZATIONCODE,
-		[EnumMember(Value = "REFRESH_TOKEN")]
-		REFRESHTOKEN
+		AUTHORIZATIONCODE
 	}
 
 

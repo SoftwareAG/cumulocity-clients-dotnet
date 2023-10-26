@@ -266,6 +266,7 @@ public interface IUsageStatisticsApi
 	/// <summary> 
 	/// Retrieve usage statistics files metadata <br />
 	/// Retrieve usage statistics summary files report metadata. <br />
+	/// ⓘ Info: This is only accessible by the Management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_TENANT_MANAGEMENT_ADMIN 
@@ -306,6 +307,7 @@ public interface IUsageStatisticsApi
 	/// 		</description>
 	/// 	</item>
 	/// </list>
+	/// ⓘ Info: This is only accessible by the Management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_MANAGEMENT_CREATE 
@@ -335,6 +337,7 @@ public interface IUsageStatisticsApi
 	/// <summary> 
 	/// Retrieve a usage statistics file <br />
 	/// Retrieve a specific usage statistics file (by a given ID). <br />
+	/// ⓘ Info: This is only accessible by the Management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_TENANT_MANAGEMENT_ADMIN 
@@ -375,6 +378,7 @@ public interface IUsageStatisticsApi
 	/// 		</description>
 	/// 	</item>
 	/// </list>
+	/// ⓘ Info: This is only accessible by the Management tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_TENANT_MANAGEMENT_ADMIN 

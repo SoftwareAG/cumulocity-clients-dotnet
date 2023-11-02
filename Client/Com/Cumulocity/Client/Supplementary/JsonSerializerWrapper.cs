@@ -47,4 +47,9 @@ internal static class JsonSerializerWrapper
 	{
 		return JsonSerializer.Deserialize<T>(jsonString, options ?? JsonSerializerOptions);
 	}
+
+	public static JsonNode? ToJsonNode<T>(T body, JsonSerializerOptions? options = null)
+	{
+		return JsonSerializer.SerializeToNode(body, options ?? JsonSerializerOptions);
+	}
 }

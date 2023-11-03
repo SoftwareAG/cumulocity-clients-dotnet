@@ -67,7 +67,7 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<BulkOperationCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<BulkOperationCollection?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -93,7 +93,7 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -110,7 +110,7 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -136,7 +136,7 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<BulkOperation?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -153,7 +153,6 @@ public sealed class BulkOperationsApi : IBulkOperationsApi
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 	}
 }

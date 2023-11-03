@@ -48,6 +48,6 @@ public sealed class BootstrapUserApi : IBootstrapUserApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<BootstrapUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<BootstrapUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 }

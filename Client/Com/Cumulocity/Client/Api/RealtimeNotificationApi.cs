@@ -217,6 +217,6 @@ public sealed class RealtimeNotificationApi : IRealtimeNotificationApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<RealtimeNotification?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<RealtimeNotification?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 }

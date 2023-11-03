@@ -71,7 +71,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectCollection<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectCollection<TManagedObject>?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -103,7 +103,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<TManagedObject?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<TManagedObject?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -126,7 +126,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<TManagedObject?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<TManagedObject?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -158,7 +158,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<TManagedObject?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<TManagedObject?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -180,8 +180,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		request.Headers.TryAddWithoutValidation("Accept", "application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<string?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -198,7 +197,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<System.DateTime>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<System.DateTime>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -215,7 +214,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<SupportedMeasurements?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<SupportedMeasurements?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -232,7 +231,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<SupportedSeries?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<SupportedSeries?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -249,7 +248,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 	
 	/// <inheritdoc />
@@ -272,6 +271,6 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);;
+		return await JsonSerializerWrapper.DeserializeAsync<ManagedObjectUser?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 }

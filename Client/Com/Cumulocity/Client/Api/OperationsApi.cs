@@ -142,7 +142,6 @@ public sealed class OperationsApi : IOperationsApi
 		jsonNode?.RemoveFromNode("creationTime");
 		jsonNode?.RemoveFromNode("deviceExternalIDs", "self");
 		jsonNode?.RemoveFromNode("bulkOperationId");
-		jsonNode?.RemoveFromNode("failureReason");
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("id");
 		jsonNode?.RemoveFromNode("deviceId");

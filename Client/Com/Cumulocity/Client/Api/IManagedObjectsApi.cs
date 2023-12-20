@@ -100,7 +100,7 @@ public interface IManagedObjectsApi
 	/// ⓘ Info: For more details about fragments with specific meanings, review the sections <see href="#section/Device-management-library" langword="Device management library" /> and <see href="#section/Sensor-library" langword="Sensor library" />. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ROLE_INVENTORY_CREATE 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_INVENTORY_CREATE OR ROLE_MANAGED_OBJECT_ADMIN OR ROLE_MANAGED_OBJECT_CREATE 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -130,7 +130,7 @@ public interface IManagedObjectsApi
 	/// Retrieve a specific managed object (for example, device, group, template) by a given ID. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -165,7 +165,7 @@ public interface IManagedObjectsApi
 	/// The endpoint can also be used as a device availability heartbeat.If you only specifiy the <c>id</c>, it updates the date when the last message was received and no other property.The response then only contains the <c>id</c> instead of the full managed object. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source OR MANAGE_OBJECT_ADMIN permission on the source 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source OR MANAGE_OBJECT_ADMIN permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -198,7 +198,7 @@ public interface IManagedObjectsApi
 	/// ⓘ Info: By default, the delete operation is always propagated to the subgroups, but only if the deleted object is a group. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source OR MANAGE_OBJECT_ADMIN permission on the source 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source OR MANAGE_OBJECT_ADMIN permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -235,7 +235,7 @@ public interface IManagedObjectsApi
 	/// Retrieve the date when a specific managed object (by a given ID) sent the last message to Cumulocity IoT. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -264,7 +264,7 @@ public interface IManagedObjectsApi
 	/// Retrieve all measurement types of a specific managed object by a given ID. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -293,7 +293,7 @@ public interface IManagedObjectsApi
 	/// Retrieve all supported measurement fragments and series of a specific managed object by a given ID. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -322,7 +322,7 @@ public interface IManagedObjectsApi
 	/// Retrieve the device owner's username and state (enabled or disabled) of a specific managed object (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
+	///  ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ OR owner of the source OR MANAGE_OBJECT_READ permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -351,7 +351,7 @@ public interface IManagedObjectsApi
 	/// Update the device owner's state (enabled or disabled) of a specific managed object (by a given ID). <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the source OR MANAGE_OBJECT_ADMIN permission on the source 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_MANAGED_OBJECT_ADMIN OR owner of the source OR MANAGE_OBJECT_ADMIN permission on the source 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />

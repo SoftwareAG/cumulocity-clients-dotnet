@@ -16,7 +16,7 @@ using Client.Com.Cumulocity.Client.Supplementary;
 namespace Client.Com.Cumulocity.Client.Model;
 
 /// <summary> 
-/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups and permit access to the specified applications. <br />
+/// Represents a predicate for verification. It acts as a condition which is necessary to assign a user to the given groups, permit access to the specified applications or to assign specific inventory roles to device groups. <br />
 /// </summary>
 ///
 public sealed class JSONPredicateRepresentation 

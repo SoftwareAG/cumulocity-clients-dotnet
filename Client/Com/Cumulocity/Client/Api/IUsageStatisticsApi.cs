@@ -206,8 +206,7 @@ public interface IUsageStatisticsApi
 	/// Retrieve a usage statistics summary of a tenant. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_TENANT_STATISTICS_READ OR ROLE_INVENTORY_READ <br />
-	///  If the `tenant` request parameter is specified, then the current tenant must be the management tenant OR the parent of the requested `tenant`. 
+	///  ROLE_TENANT_STATISTICS_READ OR ROLE_INVENTORY_READ OR ROLE_MANAGED_OBJECT_READ If the `tenant` request parameter is specified, then the current tenant must be the management tenant OR the parent of the requested `tenant`. 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />

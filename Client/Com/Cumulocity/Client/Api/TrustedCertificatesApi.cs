@@ -229,4 +229,49 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
 		return await JsonSerializerWrapper.DeserializeAsync<TrustedCertificate?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
+	
+	/// <inheritdoc />
+	public async Task<VerifyCertificateChain?> ValidateChainByFileUpload(string tenantId, byte[] file, CancellationToken cToken = default) 
+	{
+		const string resourcePath = "/tenant/tenants/verify-cert-chain/fileUpload";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		var requestContent = new MultipartFormDataContent();
+		var fileContentTenantId = new StringContent(JsonSerializerWrapper.Serialize(tenantId));
+		fileContentTenantId.Headers.ContentType = MediaTypeHeaderValue.Parse("text/plain");
+		requestContent.Add(fileContentTenantId, "tenantId");
+		var fileContentFile = new ByteArrayContent(file);
+		fileContentFile.Headers.ContentType = MediaTypeHeaderValue.Parse("text/plain");
+		requestContent.Add(fileContentFile, "file");
+		using var request = new HttpRequestMessage 
+		{
+			Content = requestContent,
+			Method = HttpMethod.Post,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<VerifyCertificateChain?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+	}
+	
+	/// <inheritdoc />
+	public async Task<VerifyCertificateChain?> ValidateChainByHeader(string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) 
+	{
+		const string resourcePath = "/tenant/tenants/verify-cert-chain";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Method = HttpMethod.Post,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("X-Cumulocity-TenantId", xCumulocityTenantId);
+		request.Headers.TryAddWithoutValidation("X-Cumulocity-Client-Cert-Chain", xCumulocityClientCertChain);
+		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<VerifyCertificateChain?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+	}
 }

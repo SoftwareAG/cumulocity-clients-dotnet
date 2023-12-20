@@ -68,7 +68,7 @@ public interface IBinariesApi
 	/// After the file has been uploaded, the corresponding managed object will contain the fragment <c>c8y_IsBinary</c>. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR ROLE_INVENTORY_CREATE 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_INVENTORY_CREATE OR ROLE_BINARY_ADMIN OR ROLE_BINARY_CREATE 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -102,7 +102,7 @@ public interface IBinariesApi
 	/// Retrieve a stored file (managed object) by a given ID.Supports chunk download and resuming an interrupted download using the <see href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Range" langword="<c>Range</c> header" />. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_READ OR owner of the resource OR MANAGE_OBJECT_READ permission on the resource 
+	///  ROLE_INVENTORY_READ OR ROLE_BINARY_READ OR owner of the resource OR MANAGE_OBJECT_READ permission on the resource 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -128,7 +128,7 @@ public interface IBinariesApi
 	///  <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the resource OR MANAGE_OBJECT_ADMIN permission on the resource 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_BINARY_ADMIN OR owner of the resource OR MANAGE_OBJECT_ADMIN permission on the resource 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
@@ -154,7 +154,7 @@ public interface IBinariesApi
 	/// Remove a managed object and its stored file by a given ID. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  ROLE_INVENTORY_ADMIN OR owner of the resource OR MANAGE_OBJECT_ADMIN permission on the resource 
+	///  ROLE_INVENTORY_ADMIN OR ROLE_BINARY_ADMIN OR owner of the resource OR MANAGE_OBJECT_ADMIN permission on the resource 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />

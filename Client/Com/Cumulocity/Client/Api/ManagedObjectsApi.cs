@@ -109,7 +109,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	/// <inheritdoc />
 	public async Task<TManagedObject?> GetManagedObject<TManagedObject>(string id, bool? skipChildrenNames = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withParents = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("skipChildrenNames", skipChildrenNames);
@@ -144,7 +144,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		jsonNode?.RemoveFromNode("assetParents");
 		jsonNode?.RemoveFromNode("deviceParents");
 		jsonNode?.RemoveFromNode("id");
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -164,7 +164,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteManagedObject(string id, string? xCumulocityProcessingMode = null, bool? cascade = null, bool? forceCascade = null, bool? withDeviceUser = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("cascade", cascade);
@@ -186,7 +186,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	/// <inheritdoc />
 	public async Task<System.DateTime> GetLatestAvailability(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/availability";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/availability";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -203,7 +203,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	/// <inheritdoc />
 	public async Task<SupportedMeasurements?> GetSupportedMeasurements(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/supportedMeasurements";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/supportedMeasurements";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -220,7 +220,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	/// <inheritdoc />
 	public async Task<SupportedSeries?> GetSupportedSeries(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/supportedSeries";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/supportedSeries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -237,7 +237,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 	/// <inheritdoc />
 	public async Task<ManagedObjectUser?> GetManagedObjectUser(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/user";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/user";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -257,7 +257,7 @@ public sealed class ManagedObjectsApi : IManagedObjectsApi
 		var jsonNode = body.ToJsonNode<ManagedObjectUser>();
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("userName");
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/user";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/user";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

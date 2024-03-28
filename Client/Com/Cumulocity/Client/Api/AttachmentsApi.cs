@@ -37,7 +37,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 	/// <inheritdoc />
 	public async Task<string?> GetEventAttachment(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}/binaries";
+		string resourcePath = $"/event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -53,7 +53,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 	/// <inheritdoc />
 	public async Task<EventBinary?> ReplaceEventAttachment(byte[] body, string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}/binaries";
+		string resourcePath = $"/event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -72,7 +72,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 	/// <inheritdoc />
 	public async Task<EventBinary?> UploadEventAttachment(byte[] body, string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}/binaries";
+		string resourcePath = $"/event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -91,7 +91,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 	/// <inheritdoc />
 	public async Task<EventBinary?> UploadEventAttachment(BinaryInfo pObject, byte[] file, string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}/binaries";
+		string resourcePath = $"/event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var requestContent = new MultipartFormDataContent();
 		var fileContentObject = new StringContent(JsonSerializerWrapper.Serialize(pObject));
@@ -117,7 +117,7 @@ public sealed class AttachmentsApi : IAttachmentsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteEventAttachment(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}/binaries";
+		string resourcePath = $"/event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}/binaries";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

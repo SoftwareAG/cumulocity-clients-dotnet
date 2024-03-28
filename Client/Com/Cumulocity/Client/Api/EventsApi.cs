@@ -126,7 +126,7 @@ public sealed class EventsApi : IEventsApi
 	/// <inheritdoc />
 	public async Task<TEvent?> GetEvent<TEvent>(string id, CancellationToken cToken = default) where TEvent : Event
 	{
-		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -151,7 +151,7 @@ public sealed class EventsApi : IEventsApi
 		jsonNode?.RemoveFromNode("source");
 		jsonNode?.RemoveFromNode("time");
 		jsonNode?.RemoveFromNode("type");
-		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -171,7 +171,7 @@ public sealed class EventsApi : IEventsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteEvent(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/event/events/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/event/events/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

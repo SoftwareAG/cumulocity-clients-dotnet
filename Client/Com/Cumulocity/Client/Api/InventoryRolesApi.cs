@@ -82,7 +82,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 	/// <inheritdoc />
 	public async Task<InventoryRole?> GetInventoryRole(int id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/inventoryroles/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/user/inventoryroles/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -102,7 +102,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		var jsonNode = body.ToJsonNode<InventoryRole>();
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("id");
-		string resourcePath = $"/user/inventoryroles/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/user/inventoryroles/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -121,7 +121,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteInventoryRole(int id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/inventoryroles/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/user/inventoryroles/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -137,7 +137,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 	/// <inheritdoc />
 	public async Task<InventoryAssignmentCollection?> GetUserInventoryRoles(string tenantId, string userId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/roles/inventory";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}/roles/inventory";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -157,7 +157,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 		var jsonNode = body.ToJsonNode<InventoryAssignment>();
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("id");
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/roles/inventory";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}/roles/inventory";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -176,7 +176,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 	/// <inheritdoc />
 	public async Task<InventoryAssignment?> GetUserInventoryRole(string tenantId, string userId, int id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/roles/inventory/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}/roles/inventory/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -194,7 +194,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 	public async Task<InventoryAssignment?> UpdateUserInventoryRole(InventoryAssignmentReference body, string tenantId, string userId, int id, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<InventoryAssignmentReference>();
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/roles/inventory/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}/roles/inventory/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -213,7 +213,7 @@ public sealed class InventoryRolesApi : IInventoryRolesApi
 	/// <inheritdoc />
 	public async Task<string?> UnassignUserInventoryRole(string tenantId, string userId, int id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/roles/inventory/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}/roles/inventory/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

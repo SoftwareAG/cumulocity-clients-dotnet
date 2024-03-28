@@ -84,7 +84,7 @@ public sealed class NewDeviceRequestsApi : INewDeviceRequestsApi
 	/// <inheritdoc />
 	public async Task<NewDeviceRequest?> GetNewDeviceRequest(string requestId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlEncode(requestId.GetStringValue())}";
+		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -104,7 +104,7 @@ public sealed class NewDeviceRequestsApi : INewDeviceRequestsApi
 		var jsonNode = body.ToJsonNode<NewDeviceRequest>();
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("id");
-		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlEncode(requestId.GetStringValue())}";
+		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -123,7 +123,7 @@ public sealed class NewDeviceRequestsApi : INewDeviceRequestsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteNewDeviceRequest(string requestId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlEncode(requestId.GetStringValue())}";
+		string resourcePath = $"/devicecontrol/newDeviceRequests/{HttpUtility.UrlPathEncode(requestId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

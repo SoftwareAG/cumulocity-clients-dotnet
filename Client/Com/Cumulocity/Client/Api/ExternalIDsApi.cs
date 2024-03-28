@@ -38,7 +38,7 @@ public sealed class ExternalIDsApi : IExternalIDsApi
 	/// <inheritdoc />
 	public async Task<ExternalIds?> GetExternalIds(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/identity/globalIds/{HttpUtility.UrlEncode(id.GetStringValue())}/externalIds";
+		string resourcePath = $"/identity/globalIds/{HttpUtility.UrlPathEncode(id.GetStringValue())}/externalIds";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -58,7 +58,7 @@ public sealed class ExternalIDsApi : IExternalIDsApi
 		var jsonNode = body.ToJsonNode<ExternalId>();
 		jsonNode?.RemoveFromNode("managedObject");
 		jsonNode?.RemoveFromNode("self");
-		string resourcePath = $"/identity/globalIds/{HttpUtility.UrlEncode(id.GetStringValue())}/externalIds";
+		string resourcePath = $"/identity/globalIds/{HttpUtility.UrlPathEncode(id.GetStringValue())}/externalIds";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -77,7 +77,7 @@ public sealed class ExternalIDsApi : IExternalIDsApi
 	/// <inheritdoc />
 	public async Task<ExternalId?> GetExternalId(string type, string externalId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/identity/externalIds/{HttpUtility.UrlEncode(type.GetStringValue())}/{HttpUtility.UrlEncode(externalId.GetStringValue())}";
+		string resourcePath = $"/identity/externalIds/{HttpUtility.UrlPathEncode(type.GetStringValue())}/{HttpUtility.UrlPathEncode(externalId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -94,7 +94,7 @@ public sealed class ExternalIDsApi : IExternalIDsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteExternalId(string type, string externalId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/identity/externalIds/{HttpUtility.UrlEncode(type.GetStringValue())}/{HttpUtility.UrlEncode(externalId.GetStringValue())}";
+		string resourcePath = $"/identity/externalIds/{HttpUtility.UrlPathEncode(type.GetStringValue())}/{HttpUtility.UrlPathEncode(externalId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

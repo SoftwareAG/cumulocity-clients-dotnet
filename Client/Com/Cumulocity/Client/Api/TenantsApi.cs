@@ -124,7 +124,7 @@ public sealed class TenantsApi : ITenantsApi
 	/// <inheritdoc />
 	public async Task<Tenant<TCustomProperties>?> GetTenant<TCustomProperties>(string tenantId, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -151,7 +151,7 @@ public sealed class TenantsApi : ITenantsApi
 		jsonNode?.RemoveFromNode("ownedApplications");
 		jsonNode?.RemoveFromNode("applications");
 		jsonNode?.RemoveFromNode("status");
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -170,7 +170,7 @@ public sealed class TenantsApi : ITenantsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteTenant(string tenantId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -186,7 +186,7 @@ public sealed class TenantsApi : ITenantsApi
 	/// <inheritdoc />
 	public async Task<TenantTfaData?> GetTenantTfaSettings(string tenantId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/tfa";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/tfa";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

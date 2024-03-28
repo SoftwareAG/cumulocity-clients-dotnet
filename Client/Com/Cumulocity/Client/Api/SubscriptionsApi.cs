@@ -109,7 +109,7 @@ public sealed class SubscriptionsApi : ISubscriptionsApi
 	/// <inheritdoc />
 	public async Task<NotificationSubscription?> GetSubscription(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/notification2/subscriptions/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/notification2/subscriptions/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -126,7 +126,7 @@ public sealed class SubscriptionsApi : ISubscriptionsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteSubscription(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/notification2/subscriptions/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/notification2/subscriptions/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

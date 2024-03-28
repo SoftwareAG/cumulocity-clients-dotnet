@@ -299,7 +299,7 @@ public sealed class UsageStatisticsApi : IUsageStatisticsApi
 	/// <inheritdoc />
 	public async Task<string?> GetStatisticsFile(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/statistics/files/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/tenant/statistics/files/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -315,7 +315,7 @@ public sealed class UsageStatisticsApi : IUsageStatisticsApi
 	/// <inheritdoc />
 	public async Task<string?> GetLatestStatisticsFile(System.DateTime month, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/statistics/files/latest/{HttpUtility.UrlEncode(month.GetStringValue())}";
+		string resourcePath = $"/tenant/statistics/files/latest/{HttpUtility.UrlPathEncode(month.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

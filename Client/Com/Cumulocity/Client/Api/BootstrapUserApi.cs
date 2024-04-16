@@ -37,7 +37,7 @@ public sealed class BootstrapUserApi : IBootstrapUserApi
 	/// <inheritdoc />
 	public async Task<BootstrapUser?> GetBootstrapUser(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/application/applications/{HttpUtility.UrlEncode(id.GetStringValue())}/bootstrapUser";
+		string resourcePath = $"/application/applications/{HttpUtility.UrlPathEncode(id.GetStringValue())}/bootstrapUser";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

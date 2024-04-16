@@ -178,7 +178,7 @@ public interface IAlarmsApi
 	/// <summary> 
 	/// Remove alarm collections <br />
 	/// Remove alarm collections specified by query parameters. <br />
-	/// ⚠️ Important: Note that it is possible to call this endpoint without providing any parameter - it will result in deleting all alarms and it is not recommended.Also note that DELETE requests are not synchronous. The response could be returned before the delete request has been completed. <br />
+	/// ⚠️ Important: DELETE requires at least one of the following parameters: <c>source</c>, <c>dateFrom</c>, <c>dateTo</c>, <c>createdFrom</c>, <c>createdTo</c>.Also note that DELETE requests are not synchronous. The response could be returned before the delete request has been completed. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_ALARM_ADMIN 

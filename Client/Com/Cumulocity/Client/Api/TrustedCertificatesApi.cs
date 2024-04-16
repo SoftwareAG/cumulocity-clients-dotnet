@@ -23,7 +23,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods for managing trusted certificates used to establish device connections via MQTT. <br />
-/// More detailed information about trusted certificates and their role can be found in <see href="https://cumulocity.com/guides/users-guide/device-management/#managing-device-data" langword="Device management > Managing device data" /> in the User guide. <br />
+/// More detailed information about trusted certificates and their role can be found in <see href="https://cumulocity.com/docs/device-management-application/managing-device-data/" langword="Device management > Device management application > Managing device data" /> in the Cumulocity IoT user documentation. <br />
 /// ⓘ Info: The Accept header must be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -39,7 +39,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	/// <inheritdoc />
 	public async Task<TrustedCertificateCollection?> GetTrustedCertificates(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -63,7 +63,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	public async Task<TrustedCertificate?> AddTrustedCertificate(UploadedTrustedCertificate body, string tenantId, string? xCumulocityProcessingMode = null, bool? addToTrustStore = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<UploadedTrustedCertificate>();
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("addToTrustStore", addToTrustStore);
@@ -91,7 +91,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 		jsonNode?.RemoveFromNode("prev");
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("statistics");
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates/bulk";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates/bulk";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("addToTrustStore", addToTrustStore);
@@ -113,7 +113,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	/// <inheritdoc />
 	public async Task<TrustedCertificate?> GetTrustedCertificate(string tenantId, string fingerprint, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates/{HttpUtility.UrlEncode(fingerprint.GetStringValue())}";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates/{HttpUtility.UrlPathEncode(fingerprint.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -144,7 +144,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 		jsonNode?.RemoveFromNode("fingerprint");
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("certInPemFormat");
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates/{HttpUtility.UrlEncode(fingerprint.GetStringValue())}";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates/{HttpUtility.UrlPathEncode(fingerprint.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -163,7 +163,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	/// <inheritdoc />
 	public async Task<string?> RemoveTrustedCertificate(string tenantId, string fingerprint, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates/{HttpUtility.UrlEncode(fingerprint.GetStringValue())}";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates/{HttpUtility.UrlPathEncode(fingerprint.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -180,7 +180,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	public async Task<TrustedCertificate?> ProveCertificatePossession(UploadedTrustedCertSignedVerificationCode body, string tenantId, string fingerprint, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<UploadedTrustedCertSignedVerificationCode>();
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates-pop/{HttpUtility.UrlEncode(fingerprint.GetStringValue())}/pop";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates-pop/{HttpUtility.UrlPathEncode(fingerprint.GetStringValue())}/pop";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -199,7 +199,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	/// <inheritdoc />
 	public async Task<TrustedCertificate?> ConfirmCertificate(string tenantId, string fingerprint, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates-pop/{HttpUtility.UrlEncode(fingerprint.GetStringValue())}/confirmed";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates-pop/{HttpUtility.UrlPathEncode(fingerprint.GetStringValue())}/confirmed";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -216,7 +216,7 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	/// <inheritdoc />
 	public async Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/trusted-certificates-pop/{HttpUtility.UrlEncode(fingerprint.GetStringValue())}/verification-code";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/trusted-certificates-pop/{HttpUtility.UrlPathEncode(fingerprint.GetStringValue())}/verification-code";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -231,9 +231,9 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<VerifyCertificateChain?> ValidateChainByFileUpload(string tenantId, byte[] file, CancellationToken cToken = default) 
+	public async Task<VerifyCertificateChain?> ValidateChain(string tenantId, byte[] file, string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/tenant/tenants/verify-cert-chain/fileUpload";
+		const string resourcePath = "/tenant/trusted-certificates/verify-cert-chain";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var requestContent = new MultipartFormDataContent();
 		var fileContentTenantId = new StringContent(JsonSerializerWrapper.Serialize(tenantId));
@@ -248,6 +248,8 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 			Method = HttpMethod.Post,
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
+		request.Headers.TryAddWithoutValidation("X-Cumulocity-TenantId", xCumulocityTenantId);
+		request.Headers.TryAddWithoutValidation("X-Cumulocity-Client-Cert-Chain", xCumulocityClientCertChain);
 		request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
@@ -257,21 +259,77 @@ public sealed class TrustedCertificatesApi : ITrustedCertificatesApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<VerifyCertificateChain?> ValidateChainByHeader(string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) 
+	public async Task<System.IO.Stream> DownloadCrl(string tenantId, CancellationToken cToken = default) 
 	{
-		const string resourcePath = "/tenant/tenants/verify-cert-chain";
+		const string resourcePath = "/tenant/trusted-certificates/settings/crl";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Method = HttpMethod.Get,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Accept", "application/pkix-crl");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+	}
+	
+	/// <inheritdoc />
+	public async Task<string?> UpdateCRL(UpdateCRLEntries body, CancellationToken cToken = default) 
+	{
+		var jsonNode = body.ToJsonNode<UpdateCRLEntries>();
+		const string resourcePath = "/tenant/trusted-certificates/settings/crl";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		using var request = new HttpRequestMessage 
+		{
+			Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/json"),
+			Method = HttpMethod.Put,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
+		request.Headers.TryAddWithoutValidation("Accept", "application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+	}
+	
+	/// <inheritdoc />
+	public async Task<string?> UpdateCRL(byte[] file, CancellationToken cToken = default) 
+	{
+		const string resourcePath = "/tenant/trusted-certificates/settings/crl";
+		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
+		var requestContent = new MultipartFormDataContent();
+		var fileContentFile = new ByteArrayContent(file);
+		fileContentFile.Headers.ContentType = MediaTypeHeaderValue.Parse("text/plain");
+		requestContent.Add(fileContentFile, "file");
+		using var request = new HttpRequestMessage 
+		{
+			Content = requestContent,
+			Method = HttpMethod.Put,
+			RequestUri = new Uri(uriBuilder.ToString())
+		};
+		request.Headers.TryAddWithoutValidation("Content-Type", "multipart/form-data");
+		request.Headers.TryAddWithoutValidation("Accept", "application/json");
+		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
+		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
+		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+	}
+	
+	/// <inheritdoc />
+	public async Task<AccessToken?> ObtainAccessToken(string? xSslCertChain = null, CancellationToken cToken = default) 
+	{
+		const string resourcePath = "/devicecontrol/deviceAccessToken";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
 			Method = HttpMethod.Post,
 			RequestUri = new Uri(uriBuilder.ToString())
 		};
-		request.Headers.TryAddWithoutValidation("X-Cumulocity-TenantId", xCumulocityTenantId);
-		request.Headers.TryAddWithoutValidation("X-Cumulocity-Client-Cert-Chain", xCumulocityClientCertChain);
+		request.Headers.TryAddWithoutValidation("X-Ssl-Cert-Chain", xSslCertChain);
 		request.Headers.TryAddWithoutValidation("Accept", "application/vnd.com.nsn.cumulocity.error+json, application/json");
 		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
 		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
 		await using var responseStream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
-		return await JsonSerializerWrapper.DeserializeAsync<VerifyCertificateChain?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
+		return await JsonSerializerWrapper.DeserializeAsync<AccessToken?>(responseStream, cancellationToken: cToken).ConfigureAwait(false);
 	}
 }

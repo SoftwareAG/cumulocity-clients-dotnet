@@ -25,6 +25,27 @@ public sealed class NewDeviceRequest
 	public string? Id { get; set; }
 
 	/// <summary> 
+	/// ID of the group to which the device will be assigned. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("groupId")]
+	public string? GroupId { get; set; }
+
+	/// <summary> 
+	/// Type of the device. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("type")]
+	public string? Type { get; set; }
+
+	/// <summary> 
+	/// Tenant who owns the device. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("tenantId")]
+	public string? TenantId { get; set; }
+
+	/// <summary> 
 	/// A URL linking to this resource. <br />
 	/// </summary>
 	///
@@ -37,6 +58,27 @@ public sealed class NewDeviceRequest
 	///
 	[JsonPropertyName("status")]
 	public Status? PStatus { get; set; }
+
+	/// <summary> 
+	/// Owner of the device. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("owner")]
+	public string? Owner { get; set; }
+
+	/// <summary> 
+	/// Date and time when the device was created in the database. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("creationTime")]
+	public System.DateTime? CreationTime { get; set; }
+
+	/// <summary> 
+	/// When accepting a device request, the security token is verified against the token submitted by the device when requesting credentials.See <see href="https://cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Security token policy" /> for details on configuration.See <see href="/#operation/postDeviceCredentialsCollectionResource" langword="Create device credentials" /> for details on creating token for device registration.<c>securityToken</c> parameter can be added only when submitting <c>ACCEPTED</c> status. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("securityToken")]
+	public string? SecurityToken { get; set; }
 
 	/// <summary> 
 	/// Status of this new device request. <br />

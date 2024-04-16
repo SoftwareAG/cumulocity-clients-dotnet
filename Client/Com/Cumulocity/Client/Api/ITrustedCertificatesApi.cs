@@ -16,7 +16,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods for managing trusted certificates used to establish device connections via MQTT. <br />
-/// More detailed information about trusted certificates and their role can be found in <see href="https://cumulocity.com/guides/users-guide/device-management/#managing-device-data" langword="Device management > Managing device data" /> in the User guide. <br />
+/// More detailed information about trusted certificates and their role can be found in <see href="https://cumulocity.com/docs/device-management-application/managing-device-data/" langword="Device management > Device management application > Managing device data" /> in the Cumulocity IoT user documentation. <br />
 /// ⓘ Info: The Accept header must be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -334,21 +334,27 @@ public interface ITrustedCertificatesApi
 	Task<TrustedCertificate?> GenerateVerificationCode(string tenantId, string fingerprint, CancellationToken cToken = default) ;
 	
 	/// <summary> 
-	/// Verify a certificate chain via file upload <br />
-	/// Verify a device certificate chain against a specific tenant. Max chain length support is <b>10</b>.The tenant ID is <c>optional</c> and this api will be further enhanced to resolve the tenant from the chain in future release. <br />
+	/// Verify a certificate chain <br />
+	/// Verify a device certificate chain against a specific tenant using file upload or by HTTP headers.The tenant ID is <c>optional</c> and this api will try to resolve the tenant from the chain if not found in the request header.For file upload, the max chain length support is 10 and for a header it is 5. <br />
+	/// If CRL (certificate revocation list) check is enabled on the tenant and the certificate chain is identified to be revoked during validation the further validation of the chain stops and returns unauthorized. <br />
+	/// ⓘ Info: File upload takes precedence over HTTP headers if both are passed. <br />
 	/// 
 	/// <br /> Required roles <br />
-	///  (ROLE_TENANT_MANAGEMENT_ADMIN) AND (is the current tenant OR is current management tenant) 
+	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_MANAGEMENT_READ) AND (is the current tenant OR is current management tenant) OR (is authenticated AND is current user service user) 
 	/// 
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
 	/// 	<item>
-	/// 		<description>HTTP 200 The request has succeeded and the validation result is sent in the response. <br /> <br />
+	/// 		<description>HTTP 200 The certificate chain is valid and not revoked. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
 	/// 		<description>HTTP 400 Unable to parse certificate chain. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 One or more certificates in the chain are revoked or the certificate chain is not valid. Revoked certificates are checked first, then the validity of the certificate chain. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -363,22 +369,199 @@ public interface ITrustedCertificatesApi
 	/// </summary>
 	/// <param name="tenantId"></param>
 	/// <param name="file">File to be uploaded. <br /></param>
+	/// <param name="xCumulocityTenantId">Used to send a tenant ID. <br /></param>
+	/// <param name="xCumulocityClientCertChain">Used to send a certificate chain in the header. Separate the chain with <c>,</c> and also each 64 bit block with <c> </c> (a space character). <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<VerifyCertificateChain?> ValidateChainByFileUpload(string tenantId, byte[] file, CancellationToken cToken = default) ;
+	Task<VerifyCertificateChain?> ValidateChain(string tenantId, byte[] file, string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) ;
 	
 	/// <summary> 
-	/// Verify a certificate chain via HTTP header <br />
-	/// Verify a device certificate chain against a specific tenant. Max chain length support is <b>6</b>.The tenant ID is <c>optional</c> and this api will be further enhanced to resolve the tenant from the chain in future release. <br />
-	/// 
-	/// <br /> Required roles <br />
-	///  (ROLE_TENANT_MANAGEMENT_ADMIN) AND (is the current tenant OR is current management tenant) 
-	/// 
+	/// Get revoked certificates <br />
+	/// This endpoint downloads current CRL file containing list of revoked certificate ina binary file format with <c>content-type</c> as <c>application/pkix-crl</c>. <br />
 	/// <br /> Response Codes <br />
 	/// The following table gives an overview of the possible response codes and their meanings: <br />
 	/// <list type="bullet">
 	/// 	<item>
-	/// 		<description>HTTP 200 The request has succeeded and the validation result is sent in the response. <br /> <br />
+	/// 		<description>HTTP 200 The CRL file of the current tenant. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<System.IO.Stream> DownloadCrl(string tenantId, CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Add revoked certificates <br />
+	/// ⓘ Info: A certificate revocation list (CRL) is a list of digital certificatesthat have been revoked by the issuing certificate authority (CA) before expiration date.In Cumulocity IoT, a CRL check can be in online or offline mode or both. <br />
+	/// An endpoint to add revoked certificate serial numbers for offline CRL check via payload or file. <br />
+	/// For payload, a JSON object required with list of CRL entries, for example: <br />
+	/// <![CDATA[
+	///   {
+	///    "crls": [
+	///      {
+	///        "serialNumberInHex": "1000",
+	///        "revocationDate": "2023-01-11T16:12:36.288Z"
+	///      }
+	///     ]
+	///    }
+	/// ]]>
+	/// Each entry is composed of: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>serialNumberInHex: Needs to be in <c>Hexadecimal Value</c>. e.g As (1000)^16 == (4096)^10, So we have to enter 1000.If duplicate serial number exists in payload, the existing entry stays</br> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description><c>revocationDate</c> - accepted Date format: <c>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</c>, for example: <c>2023-01-11T16:12:36.288Z</c>.This is an optional parameter and defaults to the current server UTC date time if not specified in the payload.If specified and the date is in future then those entries will be also defaulted to current date. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// For file upload, each file can hold at maximum 5000 revocation entries.Multiple upload is allowed.In case of duplicates, the latest (last uploaded) entry is considered. <br />
+	/// See below for a sample CSV file: <br />
+	/// | SERIAL NO.  | REVOCATION DATE ||--|--|| 1000 | 2023-01-11T16:12:36.288Z | <br />
+	/// Each entry is composed of : <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>serialNumberInHex: Needs to be in <c>Hexadecimal Value</c>. e.g (1000)^16 == (4096)^10, So we have to enter 1000.If duplicate serial number exists in payload, the latest entry will be taken.</br> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>revocationDate: Accepted Date format: <c>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</c> e.g: 2023-01-11T16:12:36.288Z.This is an optional and will be default to current server UTC date time if not specified in payload.If specified and the date is in future then those entries will be skipped. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// The CRL setting for offline and online check can be enabled/disabled using <kbd><a href="#operation/putOptionResource">/tenant/options</a></kbd>.Keys are <c>crl.online.check.enabled</c> and <c>crl.offline.check.enabled</c> under the category <c>configuration</c>. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND is the current tenant 
+	/// 
+	/// ⚠️ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 204 CRLs updated successfully. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 400 Unsupported date time format. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="body"></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<string?> UpdateCRL(UpdateCRLEntries body, CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Add revoked certificates <br />
+	/// ⓘ Info: A certificate revocation list (CRL) is a list of digital certificatesthat have been revoked by the issuing certificate authority (CA) before expiration date.In Cumulocity IoT, a CRL check can be in online or offline mode or both. <br />
+	/// An endpoint to add revoked certificate serial numbers for offline CRL check via payload or file. <br />
+	/// For payload, a JSON object required with list of CRL entries, for example: <br />
+	/// <![CDATA[
+	///   {
+	///    "crls": [
+	///      {
+	///        "serialNumberInHex": "1000",
+	///        "revocationDate": "2023-01-11T16:12:36.288Z"
+	///      }
+	///     ]
+	///    }
+	/// ]]>
+	/// Each entry is composed of: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>serialNumberInHex: Needs to be in <c>Hexadecimal Value</c>. e.g As (1000)^16 == (4096)^10, So we have to enter 1000.If duplicate serial number exists in payload, the existing entry stays</br> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description><c>revocationDate</c> - accepted Date format: <c>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</c>, for example: <c>2023-01-11T16:12:36.288Z</c>.This is an optional parameter and defaults to the current server UTC date time if not specified in the payload.If specified and the date is in future then those entries will be also defaulted to current date. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// For file upload, each file can hold at maximum 5000 revocation entries.Multiple upload is allowed.In case of duplicates, the latest (last uploaded) entry is considered. <br />
+	/// See below for a sample CSV file: <br />
+	/// | SERIAL NO.  | REVOCATION DATE ||--|--|| 1000 | 2023-01-11T16:12:36.288Z | <br />
+	/// Each entry is composed of : <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>serialNumberInHex: Needs to be in <c>Hexadecimal Value</c>. e.g (1000)^16 == (4096)^10, So we have to enter 1000.If duplicate serial number exists in payload, the latest entry will be taken.</br> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>revocationDate: Accepted Date format: <c>yyyy-MM-dd'T'HH:mm:ss.SSS'Z'</c> e.g: 2023-01-11T16:12:36.288Z.This is an optional and will be default to current server UTC date time if not specified in payload.If specified and the date is in future then those entries will be skipped. <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// The CRL setting for offline and online check can be enabled/disabled using <kbd><a href="#operation/putOptionResource">/tenant/options</a></kbd>.Keys are <c>crl.online.check.enabled</c> and <c>crl.offline.check.enabled</c> under the category <c>configuration</c>. <br />
+	/// 
+	/// <br /> Required roles <br />
+	///  (ROLE_TENANT_MANAGEMENT_ADMIN OR ROLE_TENANT_ADMIN) AND is the current tenant 
+	/// 
+	/// ⚠️ Important: According to CRL policy, added serial numbers cannot be reversed. <br />
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 204 CRLs updated successfully. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 400 Unsupported date time format. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// </summary>
+	/// <param name="file">File to be uploaded. <br /></param>
+	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
+	///
+	Task<string?> UpdateCRL(byte[] file, CancellationToken cToken = default) ;
+	
+	/// <summary> 
+	/// Obtain device access token <br />
+	/// Only those devices which are registered to use cert auth can authenticate via mTLS protocol and retrieve JWT token.To establish a Two-Way SSL (Mutual Authentication) connection, you must have the following: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>private_key <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>client certificate <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>certificate authority root certificate <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>certificate authority intermediate certificates (Optional) <br />
+	/// 		</description>
+	/// 	</item>
+	/// </list>
+	/// <br /> Response Codes <br />
+	/// The following table gives an overview of the possible response codes and their meanings: <br />
+	/// <list type="bullet">
+	/// 	<item>
+	/// 		<description>HTTP 200 Successfully retrieved device access token from device certificate. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
@@ -386,18 +569,21 @@ public interface ITrustedCertificatesApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
+	/// 		<description>HTTP 401 One or more certificates in the chain are revoked or the certificate chain is not valid. Revoked certificates are checked first, then the validity of the certificate chain. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
-	/// 		<description>HTTP 404 The tenant ID does not exist. <br /> <br />
+	/// 		<description>HTTP 404 Device access token feature is disabled. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
+	/// 		<description>HTTP 422 The verification was not successful. <br /> <br />
 	/// 		</description>
 	/// 	</item>
 	/// </list>
 	/// </summary>
-	/// <param name="xCumulocityTenantId">Used to send a tenant ID. <br /></param>
-	/// <param name="xCumulocityClientCertChain">Used to send a certificate chain in the header. Separate the chain with <c>,</c> and also each 64 bit block with <c> </c> (a space character). <br /></param>
+	/// <param name="xSslCertChain">Used to send a certificate chain in the header. Separate the chain with <c> </c> (a space character) and also each 64 bit block with <c> </c> (a space character). <br /></param>
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
-	Task<VerifyCertificateChain?> ValidateChainByHeader(string? xCumulocityTenantId = null, string? xCumulocityClientCertChain = null, CancellationToken cToken = default) ;
+	Task<AccessToken?> ObtainAccessToken(string? xSslCertChain = null, CancellationToken cToken = default) ;
 }

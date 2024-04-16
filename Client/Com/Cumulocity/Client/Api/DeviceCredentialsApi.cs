@@ -23,7 +23,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to create device credentials in Cumulocity IoT. <br />
-/// Device credentials can be enquired by devices that do not have credentials for accessing a tenant yet.Since the device does not have credentials yet, a set of fixed credentials is used for this API.The credentials can be obtained by <see href="https://cumulocity.com/guides/about-doc/contacting-support/" langword="contacting support" />. <br />
+/// Device credentials can be enquired by devices that do not have credentials for accessing a tenant yet.Since the device does not have credentials yet, a set of fixed credentials is used for this API.The credentials can be obtained by <see href="https://cumulocity.com/docs/additional-resources/contacting-support/" langword="contacting support" />. <br />
 /// ⚠️ Important: Do not use your tenant credentials with this API. <br />
 /// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 /// </summary>

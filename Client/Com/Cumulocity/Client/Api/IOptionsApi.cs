@@ -56,7 +56,7 @@ public interface IOptionsApi
 	/// Any option of any tenant can be defined as "non-editable" by the "management" tenant; once done, any PUT or DELETE requests made on that option by the tenant owner will result in a 403 error (Unauthorized). <br />
 	/// <br /> Default option categories <br />
 	/// access.control <br />
-	/// | Key |	Default value |	Predefined | Description ||--|--|--|--|| allow.origin | * | Yes | Comma separated list of domains allowed for execution of CORS. Wildcards are allowed (for example, <c>*.cumuclocity.com</c>) | <br />
+	/// | Key |	Default value |	Predefined | Description ||--|--|--|--|| allow.origin | * | Yes | Comma separated list of domains allowed for execution of CORS. Wildcards are allowed (for example, <c>*.cumulocity.com</c>) | <br />
 	/// alarm.type.mapping <br />
 	/// | Key  |	Predefined | Description ||--|--|--|| <ALARM_TYPE> | No | Overrides the severity and alarm text for the alarm with type <ALARM_TYPE>. The severity and text are specified as <c><ALARM_SEVERITY>\|<ALARM_TEXT></c>. If either part is empty, the value will not be overridden. If the severity is NONE, the alarm will be suppressed. Example: <c>"CRITICAL\|temperature too high"</c>| <br />
 	/// <br /> Encrypted credentials <br />

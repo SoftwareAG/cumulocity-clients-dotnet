@@ -81,7 +81,7 @@ public sealed class OptionsApi : IOptionsApi
 	/// <inheritdoc />
 	public async Task<TCategoryOptions?> GetOptionsByCategory<TCategoryOptions>(string category, CancellationToken cToken = default) where TCategoryOptions : CategoryOptions
 	{
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlEncode(category.GetStringValue())}";
+		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -99,7 +99,7 @@ public sealed class OptionsApi : IOptionsApi
 	public async Task<TCategoryOptions?> UpdateOptionsByCategory<TCategoryOptions>(TCategoryOptions body, string category, CancellationToken cToken = default) where TCategoryOptions : CategoryOptions
 	{
 		var jsonNode = body.ToJsonNode<TCategoryOptions>();
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlEncode(category.GetStringValue())}";
+		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -118,7 +118,7 @@ public sealed class OptionsApi : IOptionsApi
 	/// <inheritdoc />
 	public async Task<Option?> GetOption(string category, string key, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlEncode(category.GetStringValue())}/{HttpUtility.UrlEncode(key.GetStringValue())}";
+		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -136,7 +136,7 @@ public sealed class OptionsApi : IOptionsApi
 	public async Task<Option?> UpdateOption(CategoryKeyOption body, string category, string key, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<CategoryKeyOption>();
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlEncode(category.GetStringValue())}/{HttpUtility.UrlEncode(key.GetStringValue())}";
+		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -155,7 +155,7 @@ public sealed class OptionsApi : IOptionsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteOption(string category, string key, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/options/{HttpUtility.UrlEncode(category.GetStringValue())}/{HttpUtility.UrlEncode(key.GetStringValue())}";
+		string resourcePath = $"/tenant/options/{HttpUtility.UrlPathEncode(category.GetStringValue())}/{HttpUtility.UrlPathEncode(key.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

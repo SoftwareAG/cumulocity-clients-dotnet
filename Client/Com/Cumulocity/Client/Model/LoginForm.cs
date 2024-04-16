@@ -32,21 +32,21 @@ public sealed class LoginForm
 	public GrantType? PGrantType { get; set; }
 
 	/// <summary> 
-	/// Used in cases of basic or OAI-Secure authentication. <br />
+	/// Used in case of OAI-Secure authentication. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("password")]
 	public string? Password { get; set; }
 
 	/// <summary> 
-	/// Current TFA code, sent by the user, if a TFA code is required to log in. <br />
+	/// Current TFA code, sent by the user, if a TFA code is required to log in. Used in case of OAI-Secure authentication. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("tfa_code")]
 	public string? TfaCode { get; set; }
 
 	/// <summary> 
-	/// Used in cases of basic or OAI-Secure authentication. <br />
+	/// Used in case of OAI-Secure authentication. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("username")]

@@ -38,7 +38,7 @@ public sealed class UsersApi : IUsersApi
 	/// <inheritdoc />
 	public async Task<UserCollection<TCustomProperties>?> GetUsers<TCustomProperties>(string tenantId, int? currentPage = null, List<string>? groups = null, bool? onlyDevices = null, string? owner = null, int? pageSize = null, string? username = null, bool? withSubusersCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -78,7 +78,7 @@ public sealed class UsersApi : IUsersApi
 		jsonNode?.RemoveFromNode("twoFactorAuthenticationEnabled");
 		jsonNode?.RemoveFromNode("devicePermissions");
 		jsonNode?.RemoveFromNode("applications");
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -97,7 +97,7 @@ public sealed class UsersApi : IUsersApi
 	/// <inheritdoc />
 	public async Task<User<TCustomProperties>?> GetUser<TCustomProperties>(string tenantId, string userId, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -127,7 +127,7 @@ public sealed class UsersApi : IUsersApi
 		jsonNode?.RemoveFromNode("twoFactorAuthenticationEnabled");
 		jsonNode?.RemoveFromNode("devicePermissions");
 		jsonNode?.RemoveFromNode("applications");
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -146,7 +146,7 @@ public sealed class UsersApi : IUsersApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteUser(string tenantId, string userId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -160,28 +160,9 @@ public sealed class UsersApi : IUsersApi
 	}
 	
 	/// <inheritdoc />
-	public async Task<string?> UpdateUserPassword(PasswordChange body, string tenantId, string userId, CancellationToken cToken = default) 
-	{
-		var jsonNode = body.ToJsonNode<PasswordChange>();
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/password";
-		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
-		using var request = new HttpRequestMessage 
-		{
-			Content = new StringContent(jsonNode?.ToString() ?? string.Empty, Encoding.UTF8, "application/json"),
-			Method = HttpMethod.Put,
-			RequestUri = new Uri(uriBuilder.ToString())
-		};
-		request.Headers.TryAddWithoutValidation("Content-Type", "application/json");
-		request.Headers.TryAddWithoutValidation("Accept", "application/json");
-		using var response = await _httpClient.SendAsync(request: request, cancellationToken: cToken).ConfigureAwait(false);
-		await response.EnsureSuccessStatusCodeWithContentInfo().ConfigureAwait(false);
-		return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-	}
-	
-	/// <inheritdoc />
 	public async Task<UserTfaData?> GetUserTfaSettings(string tenantId, string userId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/tfa";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}/tfa";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -198,7 +179,7 @@ public sealed class UsersApi : IUsersApi
 	/// <inheritdoc />
 	public async Task<User<TCustomProperties>?> GetUserByUsername<TCustomProperties>(string tenantId, string username, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/userByName/{HttpUtility.UrlEncode(username.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/userByName/{HttpUtility.UrlPathEncode(username.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -215,7 +196,7 @@ public sealed class UsersApi : IUsersApi
 	/// <inheritdoc />
 	public async Task<UserReferenceCollection<TCustomProperties>?> GetUsersFromUserGroup<TCustomProperties>(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlEncode(groupId.GetStringValue())}/users";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlPathEncode(groupId.GetStringValue())}/users";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -238,7 +219,7 @@ public sealed class UsersApi : IUsersApi
 	public async Task<UserReference<TCustomProperties>?> AssignUserToUserGroup<TCustomProperties>(SubscribedUser body, string tenantId, int groupId, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
 		var jsonNode = body.ToJsonNode<SubscribedUser>();
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlEncode(groupId.GetStringValue())}/users";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlPathEncode(groupId.GetStringValue())}/users";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -257,7 +238,7 @@ public sealed class UsersApi : IUsersApi
 	/// <inheritdoc />
 	public async Task<string?> RemoveUserFromUserGroup(string tenantId, int groupId, string userId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlEncode(groupId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlPathEncode(groupId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -291,7 +272,7 @@ public sealed class UsersApi : IUsersApi
 	/// <inheritdoc />
 	public async Task<string?> LogoutAllUsers(string tenantId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/logout/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/allUsers";
+		string resourcePath = $"/user/logout/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/allUsers";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

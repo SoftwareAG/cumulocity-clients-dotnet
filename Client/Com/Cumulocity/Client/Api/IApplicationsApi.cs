@@ -18,7 +18,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// API methods to retrieve, create, update and delete applications. <br />
 /// ### Application names <br />
 /// For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name). <br />
-/// Refer to the tables in <see href="https://cumulocity.com/guides/users-guide/administration#managing-applications" langword="Administration > Managing applications" /> in the User guide for the respective application name to be used. <br />
+/// Refer to the tables in <see href="https://cumulocity.com/docs/standard-tenant/ecosystem/#managing-applications" langword="Platform administration > Standard tenant administration > Managing the ecosystem > Managing applications" /> in the Cumulocity IoT user documentation for the respective application name to be used. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///

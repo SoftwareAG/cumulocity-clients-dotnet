@@ -38,7 +38,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAdditions<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAdditions";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAdditions";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -65,7 +65,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildAddition(ChildOperationsAddOne body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddOne>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAdditions";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAdditions";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -85,7 +85,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildAddition(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddMultiple>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAdditions";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAdditions";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -112,11 +112,12 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		jsonNode?.RemoveFromNode("childAssets");
 		jsonNode?.RemoveFromNode("creationTime");
 		jsonNode?.RemoveFromNode("childAdditions");
+		jsonNode?.RemoveFromNode("c8y_LatestMeasurements");
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("assetParents");
 		jsonNode?.RemoveFromNode("deviceParents");
 		jsonNode?.RemoveFromNode("id");
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAdditions";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAdditions";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -136,7 +137,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> UnassignChildAdditions(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddMultiple>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAdditions";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAdditions";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -155,7 +156,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<ManagedObjectReference<TManagedObject>?> GetChildAddition<TManagedObject>(string id, string childId, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAdditions/{HttpUtility.UrlEncode(childId.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAdditions/{HttpUtility.UrlPathEncode(childId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -172,7 +173,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<string?> UnassignChildAddition(string id, string childId, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAdditions/{HttpUtility.UrlEncode(childId.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAdditions/{HttpUtility.UrlPathEncode(childId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -189,7 +190,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildAssets<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAssets";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAssets";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -216,7 +217,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildAsset(ChildOperationsAddOne body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddOne>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAssets";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAssets";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -236,7 +237,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildAsset(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddMultiple>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAssets";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAssets";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -263,11 +264,12 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		jsonNode?.RemoveFromNode("childAssets");
 		jsonNode?.RemoveFromNode("creationTime");
 		jsonNode?.RemoveFromNode("childAdditions");
+		jsonNode?.RemoveFromNode("c8y_LatestMeasurements");
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("assetParents");
 		jsonNode?.RemoveFromNode("deviceParents");
 		jsonNode?.RemoveFromNode("id");
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAssets";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAssets";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -287,7 +289,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> UnassignChildAssets(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddMultiple>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAssets";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAssets";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -306,7 +308,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<ManagedObjectReference<TManagedObject>?> GetChildAsset<TManagedObject>(string id, string childId, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAssets/{HttpUtility.UrlEncode(childId.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAssets/{HttpUtility.UrlPathEncode(childId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -323,7 +325,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<string?> UnassignChildAsset(string id, string childId, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childAssets/{HttpUtility.UrlEncode(childId.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childAssets/{HttpUtility.UrlPathEncode(childId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -340,7 +342,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<ManagedObjectReferenceCollection<TManagedObject>?> GetChildDevices<TManagedObject>(string id, int? currentPage = null, int? pageSize = null, string? query = null, bool? withChildren = null, bool? withChildrenCount = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childDevices";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childDevices";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -367,7 +369,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildDevice(ChildOperationsAddOne body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddOne>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childDevices";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childDevices";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -387,7 +389,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> AssignAsChildDevice(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddMultiple>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childDevices";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childDevices";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -414,11 +416,12 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 		jsonNode?.RemoveFromNode("childAssets");
 		jsonNode?.RemoveFromNode("creationTime");
 		jsonNode?.RemoveFromNode("childAdditions");
+		jsonNode?.RemoveFromNode("c8y_LatestMeasurements");
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("assetParents");
 		jsonNode?.RemoveFromNode("deviceParents");
 		jsonNode?.RemoveFromNode("id");
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childDevices";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childDevices";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -438,7 +441,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	public async Task<string?> UnassignChildDevices(ChildOperationsAddMultiple body, string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<ChildOperationsAddMultiple>();
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childDevices";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childDevices";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -457,7 +460,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<ManagedObjectReference<TManagedObject>?> GetChildDevice<TManagedObject>(string id, string childId, CancellationToken cToken = default) where TManagedObject : ManagedObject
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childDevices/{HttpUtility.UrlEncode(childId.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childDevices/{HttpUtility.UrlPathEncode(childId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -474,7 +477,7 @@ public sealed class ChildOperationsApi : IChildOperationsApi
 	/// <inheritdoc />
 	public async Task<string?> UnassignChildDevice(string id, string childId, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlEncode(id.GetStringValue())}/childDevices/{HttpUtility.UrlEncode(childId.GetStringValue())}";
+		string resourcePath = $"/inventory/managedObjects/{HttpUtility.UrlPathEncode(id.GetStringValue())}/childDevices/{HttpUtility.UrlPathEncode(childId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

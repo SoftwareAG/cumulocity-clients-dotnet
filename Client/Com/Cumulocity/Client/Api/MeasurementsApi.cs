@@ -141,7 +141,7 @@ public sealed class MeasurementsApi : IMeasurementsApi
 	/// <inheritdoc />
 	public async Task<TMeasurement?> GetMeasurement<TMeasurement>(string id, CancellationToken cToken = default) where TMeasurement : Measurement
 	{
-		string resourcePath = $"/measurement/measurements/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/measurement/measurements/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -158,7 +158,7 @@ public sealed class MeasurementsApi : IMeasurementsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteMeasurement(string id, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/measurement/measurements/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/measurement/measurements/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

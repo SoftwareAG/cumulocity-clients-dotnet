@@ -61,7 +61,7 @@ public sealed class RolesApi : IRolesApi
 	/// <inheritdoc />
 	public async Task<Role?> GetUserRole(string name, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/roles/{HttpUtility.UrlEncode(name.GetStringValue())}";
+		string resourcePath = $"/user/roles/{HttpUtility.UrlPathEncode(name.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -78,7 +78,7 @@ public sealed class RolesApi : IRolesApi
 	/// <inheritdoc />
 	public async Task<RoleReferenceCollection?> GetGroupRoles(string tenantId, int groupId, int? currentPage = null, int? pageSize = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlEncode(groupId.GetStringValue())}/roles";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlPathEncode(groupId.GetStringValue())}/roles";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -100,7 +100,7 @@ public sealed class RolesApi : IRolesApi
 	public async Task<RoleReference?> AssignGroupRole(SubscribedRole body, string tenantId, int groupId, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<SubscribedRole>();
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlEncode(groupId.GetStringValue())}/roles";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlPathEncode(groupId.GetStringValue())}/roles";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -119,7 +119,7 @@ public sealed class RolesApi : IRolesApi
 	/// <inheritdoc />
 	public async Task<string?> UnassignGroupRole(string tenantId, int groupId, string roleId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlEncode(groupId.GetStringValue())}/roles/{HttpUtility.UrlEncode(roleId.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/groups/{HttpUtility.UrlPathEncode(groupId.GetStringValue())}/roles/{HttpUtility.UrlPathEncode(roleId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -136,7 +136,7 @@ public sealed class RolesApi : IRolesApi
 	public async Task<RoleReference?> AssignUserRole(SubscribedRole body, string tenantId, string userId, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<SubscribedRole>();
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/roles";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}/roles";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -155,7 +155,7 @@ public sealed class RolesApi : IRolesApi
 	/// <inheritdoc />
 	public async Task<string?> UnassignUserRole(string tenantId, string userId, string roleId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/user/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlEncode(userId.GetStringValue())}/roles/{HttpUtility.UrlEncode(roleId.GetStringValue())}";
+		string resourcePath = $"/user/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/users/{HttpUtility.UrlPathEncode(userId.GetStringValue())}/roles/{HttpUtility.UrlPathEncode(roleId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

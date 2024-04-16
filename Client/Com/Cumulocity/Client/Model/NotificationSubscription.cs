@@ -20,7 +20,7 @@ public sealed class NotificationSubscription
 
 	/// <summary> 
 	/// The context within which the subscription is to be processed. <br />
-	/// ⓘ Info: If the value is <c>mo</c>, then <c>source</c> must also be provided in the request body. <br />
+	/// ⓘ Info: If the value is <c>mo</c> (managed object), then <c>source</c> must also be provided in the request body. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("context")]
@@ -87,7 +87,7 @@ public sealed class NotificationSubscription
 
 	/// <summary> 
 	/// The context within which the subscription is to be processed. <br />
-	/// ⓘ Info: If the value is <c>mo</c>, then <c>source</c> must also be provided in the request body. <br />
+	/// ⓘ Info: If the value is <c>mo</c> (managed object), then <c>source</c> must also be provided in the request body. <br />
 	/// </summary>
 	///
 	[JsonConverter(typeof(EnumConverterFactory))]
@@ -142,8 +142,7 @@ public sealed class NotificationSubscription
 	{
 	
 		/// <summary> 
-		/// For the <c>mo</c> (Managed object) context, notifications from the <c>alarms</c>, <c>alarmsWithChildren</c>, <c>events</c>, <c>eventsWithChildren</c>, <c>managedobjects</c> (Inventory), <c>measurements</c> and <c>operations</c> (Device control) APIs can be subscribed to.<br />
-		/// The <c>alarmsWithChildren</c> and <c>eventsWithChildren</c> APIs subscribe to alarms and events respectively from the managed object identified by the <c>source.id</c> field, and all of its descendant managed objects. <br />
+		/// For the <c>mo</c> (managed object) context, notifications from the <c>alarms</c>, <c>alarmsWithChildren</c>, <c>events</c>, <c>eventsWithChildren</c>, <c>managedobjects</c> (Inventory), <c>measurements</c> and <c>operations</c> (Device control) APIs can be subscribed to.The <c>alarmsWithChildren</c> and <c>eventsWithChildren</c> APIs subscribe to alarms and events respectively from the managed object identified by the <c>source.id</c> field, and all of its descendant managed objects. <br />
 		/// For the <c>tenant</c> context, notifications from the <c>alarms</c>, <c>events</c> and <c>managedobjects</c> (Inventory) APIs can be subscribed to. <br />
 		/// For all contexts, the <c>*</c> (wildcard) value can be used to subscribe to notifications from all of the available APIs in that context. <br />
 		/// ⓘ Info: The wildcard <c>*</c> cannot be used in conjunction with other values. <br />

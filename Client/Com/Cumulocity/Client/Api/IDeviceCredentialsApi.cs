@@ -15,7 +15,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 
 /// <summary> 
 /// API methods to create device credentials in Cumulocity IoT. <br />
-/// Device credentials can be enquired by devices that do not have credentials for accessing a tenant yet.Since the device does not have credentials yet, a set of fixed credentials is used for this API.The credentials can be obtained by <see href="https://cumulocity.com/guides/about-doc/contacting-support/" langword="contacting support" />. <br />
+/// Device credentials can be enquired by devices that do not have credentials for accessing a tenant yet.Since the device does not have credentials yet, a set of fixed credentials is used for this API.The credentials can be obtained by <see href="https://cumulocity.com/docs/additional-resources/contacting-support/" langword="contacting support" />. <br />
 /// ⚠️ Important: Do not use your tenant credentials with this API. <br />
 /// ⓘ Info: The Accept header should be provided in all POST requests, otherwise an empty response body will be returned. <br />
 /// </summary>
@@ -58,7 +58,7 @@ public interface IDeviceCredentialsApi
 	/// Section two is the rest of the CSV file. Section two contains the device information. The order and quantity of the values must be the same as of the headers. <br />
 	/// A separator is automatically obtained from the CSV file. Valid separator values are: <c>\t</c> (tabulation mark), <c>;</c> (semicolon) and <c>,</c> (comma). <br />
 	/// ⚠️ Important: The CSV file needs the "com_cumulocity_model_Agent.active" header with a value of "true" to be added to the request. <br />
-	/// ⓘ Info: A bulk registration creates an elementary representation of the device. Then, the device needs to update it to a full representation with its own status. The device is ready to use only after it is updated to the full representation. Also see <see href="https://cumulocity.com/guides/users-guide/device-management/#creds-upload" langword="credentials upload" /> and <see href="https://cumulocity.com/guides/device-sdk/rest/#device-integration" langword="device integration" />. <br />
+	/// ⓘ Info: A bulk registration creates an elementary representation of the device. Then, the device needs to update it to a full representation with its own status. The device is ready to use only after it is updated to the full representation. Also see <see href="https://cumulocity.com/docs/device-management-application/registering-devices/#security-token-policy" langword="Device management > Device management application > Registering devices > Single device registration > Security token policy" /> and <see href="https://cumulocity.com/docs/device-integration/rest/#integration-life-cycle" langword="Device management > Device integration > Device integration using REST > Integration life cycle" />. <br />
 	/// A CSV file can appear in many forms (with regard to the optional tenant column and the occurrence of device information): <br />
 	/// <list type="bullet">
 	/// 	<item>

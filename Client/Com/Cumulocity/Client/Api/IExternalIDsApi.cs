@@ -66,6 +66,10 @@ public interface IExternalIDsApi
 	/// 		</description>
 	/// 	</item>
 	/// 	<item>
+	/// 		<description>HTTP 404 Global ID not found. <br /> <br />
+	/// 		</description>
+	/// 	</item>
+	/// 	<item>
 	/// 		<description>HTTP 409 Duplicate – Identity already bound to a different Global ID. <br /> <br />
 	/// 		</description>
 	/// 	</item>

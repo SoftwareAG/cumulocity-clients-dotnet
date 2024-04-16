@@ -121,7 +121,7 @@ public sealed class OperationsApi : IOperationsApi
 	/// <inheritdoc />
 	public async Task<TOperation?> GetOperation<TOperation>(string id, CancellationToken cToken = default) where TOperation : Operation
 	{
-		string resourcePath = $"/devicecontrol/operations/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/devicecontrol/operations/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -145,7 +145,7 @@ public sealed class OperationsApi : IOperationsApi
 		jsonNode?.RemoveFromNode("self");
 		jsonNode?.RemoveFromNode("id");
 		jsonNode?.RemoveFromNode("deviceId");
-		string resourcePath = $"/devicecontrol/operations/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/devicecontrol/operations/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

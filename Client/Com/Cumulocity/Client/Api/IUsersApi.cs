@@ -138,6 +138,7 @@ public interface IUsersApi
 	/// Update a specific user (by a given user ID) for a specific tenant (by a given tenant ID). <br />
 	/// Any change in user's roles, device permissions and groups creates corresponding audit records with type "User" and activity "User updated" with information which properties have been changed. <br />
 	/// When the user is updated with changed permissions or groups, a corresponding audit record is created with type "User" and activity "User updated". <br />
+	/// Note that you cannot update the password or email of another user, they can only be updated for the current user. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_ADMIN to update root users in a user hierarchy OR users that are not in any hierarchy<br />
@@ -209,45 +210,6 @@ public interface IUsersApi
 	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
 	///
 	Task<string?> DeleteUser(string tenantId, string userId, CancellationToken cToken = default) ;
-	
-	/// <summary> 
-	/// Update a specific user's password of a specific tenant <br />
-	/// Update a specific user's password (by a given user ID) of a specific tenant (by a given tenant ID). <br />
-	/// Changing the user's password creates a corresponding audit record of type "User" and activity "User updated", and specifying that the password has been changed. <br />
-	/// ⚠️ Important: If the tenant uses OAI-Secure authentication, the target user will be logged out. <br />
-	/// 
-	/// <br /> Required roles <br />
-	///  ROLE_USER_MANAGEMENT_ADMIN to update root users in a user hierarchy OR users that are not in any hierarchy<br />
-	///  ROLE_USER_MANAGEMENT_ADMIN to update non-root users in a user hierarchy AND whose parents have access to assigned roles, groups, device permissions and applications<br />
-	///  ROLE_USER_MANAGEMENT_CREATE to update descendants of the current user in a user hierarchy AND whose parents have access to assigned roles, groups, device permissions and applications 
-	/// 
-	/// <br /> Response Codes <br />
-	/// The following table gives an overview of the possible response codes and their meanings: <br />
-	/// <list type="bullet">
-	/// 	<item>
-	/// 		<description>HTTP 200 A user was updated. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 401 Authentication information is missing or invalid. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 403 Not enough permissions/roles to perform this operation. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// 	<item>
-	/// 		<description>HTTP 422 Unprocessable Entity – invalid payload. <br /> <br />
-	/// 		</description>
-	/// 	</item>
-	/// </list>
-	/// </summary>
-	/// <param name="body"></param>
-	/// <param name="tenantId">Unique identifier of a Cumulocity IoT tenant. <br /></param>
-	/// <param name="userId">Unique identifier of the a user. <br /></param>
-	/// <param name="cToken">Propagates notification that operations should be canceled. <br /></param>
-	///
-	Task<string?> UpdateUserPassword(PasswordChange body, string tenantId, string userId, CancellationToken cToken = default) ;
 	
 	/// <summary> 
 	/// Retrieve the TFA settings of a specific user <br />

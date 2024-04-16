@@ -66,7 +66,7 @@ public sealed class DevicePermissionsApi : IDevicePermissionsApi
 	/// <inheritdoc />
 	public async Task<DevicePermissionOwners<TCustomProperties>?> GetDevicePermissionAssignments<TCustomProperties>(string id, CancellationToken cToken = default) where TCustomProperties : CustomProperties
 	{
-		string resourcePath = $"/user/devicePermissions/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/user/devicePermissions/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -84,7 +84,7 @@ public sealed class DevicePermissionsApi : IDevicePermissionsApi
 	public async Task<string?> UpdateDevicePermissionAssignments(UpdatedDevicePermissions body, string id, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<UpdatedDevicePermissions>();
-		string resourcePath = $"/user/devicePermissions/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/user/devicePermissions/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

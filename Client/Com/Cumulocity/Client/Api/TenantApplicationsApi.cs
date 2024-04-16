@@ -38,7 +38,7 @@ public sealed class TenantApplicationsApi : ITenantApplicationsApi
 	/// <inheritdoc />
 	public async Task<ApplicationReferenceCollection?> GetSubscribedApplications(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/applications";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/applications";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -62,7 +62,7 @@ public sealed class TenantApplicationsApi : ITenantApplicationsApi
 	public async Task<ApplicationReference?> SubscribeApplication(SubscribedApplicationReference body, string tenantId, CancellationToken cToken = default) 
 	{
 		var jsonNode = body.ToJsonNode<SubscribedApplicationReference>();
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/applications";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/applications";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -81,7 +81,7 @@ public sealed class TenantApplicationsApi : ITenantApplicationsApi
 	/// <inheritdoc />
 	public async Task<string?> UnsubscribeApplication(string tenantId, string applicationId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlEncode(tenantId.GetStringValue())}/applications/{HttpUtility.UrlEncode(applicationId.GetStringValue())}";
+		string resourcePath = $"/tenant/tenants/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}/applications/{HttpUtility.UrlPathEncode(applicationId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{

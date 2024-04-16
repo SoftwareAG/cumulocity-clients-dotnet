@@ -118,6 +118,14 @@ public class ManagedObject
 	public C8yIsDevice? PC8yIsDevice { get; set; }
 
 	/// <summary> 
+	/// The read only fragment which contains the latest measurements reported by the device.The returned optionally only if the query parameter <c>withLatestValues=true</c> is used. <br />
+	/// ⚠️ Feature Preview: The feature is part of the Latest Measurement feature which is still under public feature preview. <br />
+	/// </summary>
+	///
+	[JsonPropertyName("c8y_LatestMeasurements")]
+	public C8yLatestMeasurements? PC8yLatestMeasurements { get; set; }
+
+	/// <summary> 
 	/// A fragment which identifies this managed object as a device group. <br />
 	/// </summary>
 	///
@@ -140,7 +148,7 @@ public class ManagedObject
 
 	/// <summary> 
 	/// It is possible to add an arbitrary number of additional properties as a list of key-value pairs, for example, <c>"property1": {}</c>, <c>"property2": "value"</c>. These properties are known as custom fragments and can be of any type, for example, object or string. Each custom fragment is identified by a unique name. <br />
-	/// Review the <see href="https://cumulocity.com/guides/concepts/domain-model/#naming-conventions-of-fragments" langword="Naming conventions of fragments" /> as there are characters that can not be used when naming custom fragments. <br />
+	/// Review <see href="https://cumulocity.com/docs/concepts/domain-model/#naming-conventions-of-fragments" langword="Getting started > Technical concepts > Cumulocity IoT's domain model > Inventory > Fragments > Naming conventions of fragments" /> in the Cumulocity IoT user documentation as there are characters that can not be used when naming custom fragments. <br />
 	/// </summary>
 	///
 	[JsonPropertyName("customFragments")]

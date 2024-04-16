@@ -108,7 +108,7 @@ public interface ICurrentUserApi
 	/// <summary> 
 	/// Generate secret to set up TFA <br />
 	/// Generate a secret code to create a QR code to set up the two-factor authentication functionality using a TFA app/service. <br />
-	/// For more information about the feature, see <see href="https://cumulocity.com/guides/users-guide/administration/#tfa" langword="User Guide > Administration > Two-factor authentication" /> in the Cumulocity IoT documentation. <br />
+	/// For more information about the feature, see <see href="https://cumulocity.com/docs/authentication/tfa/" langword="Platform administration > Authentication > Two-factor authentication" /> in the Cumulocity IoT user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 
@@ -161,7 +161,7 @@ public interface ICurrentUserApi
 	/// <summary> 
 	/// Activates or deactivates the two-factor authentication feature <br />
 	/// Activates or deactivates the two-factor authentication feature for the current user. <br />
-	/// For more information about the feature, see <see href="https://cumulocity.com/guides/users-guide/administration/#tfa" langword="User Guide > Administration > Two-factor authentication" /> in the Cumulocity IoT documentation. <br />
+	/// For more information about the feature, see <see href="https://cumulocity.com/docs/authentication/tfa/" langword="Platform administration > Authentication > Two-factor authentication" /> in the Cumulocity IoT user documentation. <br />
 	/// 
 	/// <br /> Required roles <br />
 	///  ROLE_USER_MANAGEMENT_OWN_READ OR ROLE_SYSTEM 

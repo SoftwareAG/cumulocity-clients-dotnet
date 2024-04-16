@@ -25,7 +25,7 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// API methods to retrieve, create, update and delete applications. <br />
 /// ### Application names <br />
 /// For each tenant, Cumulocity IoT manages the subscribed applications and provides a number of applications of various types.In case you want to subscribe a tenant to an application using an API, you must use the application name in the argument (as name). <br />
-/// Refer to the tables in <see href="https://cumulocity.com/guides/users-guide/administration#managing-applications" langword="Administration > Managing applications" /> in the User guide for the respective application name to be used. <br />
+/// Refer to the tables in <see href="https://cumulocity.com/docs/standard-tenant/ecosystem/#managing-applications" langword="Platform administration > Standard tenant administration > Managing the ecosystem > Managing applications" /> in the Cumulocity IoT user documentation for the respective application name to be used. <br />
 /// ⓘ Info: The Accept header should be provided in all POST/PUT requests, otherwise an empty response body will be returned. <br />
 /// </summary>
 ///
@@ -98,7 +98,7 @@ public sealed class ApplicationsApi : IApplicationsApi
 	/// <inheritdoc />
 	public async Task<Application?> GetApplication(string id, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/application/applications/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/application/applications/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -122,7 +122,7 @@ public sealed class ApplicationsApi : IApplicationsApi
 		jsonNode?.RemoveFromNode("id");
 		jsonNode?.RemoveFromNode("type");
 		jsonNode?.RemoveFromNode("resourcesUrl");
-		string resourcePath = $"/application/applications/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/application/applications/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -142,7 +142,7 @@ public sealed class ApplicationsApi : IApplicationsApi
 	/// <inheritdoc />
 	public async Task<string?> DeleteApplication(string id, bool? force = null, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/application/applications/{HttpUtility.UrlEncode(id.GetStringValue())}";
+		string resourcePath = $"/application/applications/{HttpUtility.UrlPathEncode(id.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("force", force);
@@ -162,7 +162,7 @@ public sealed class ApplicationsApi : IApplicationsApi
 	/// <inheritdoc />
 	public async Task<Application?> CopyApplication(string id, string? version = null, string? tag = null, string? xCumulocityProcessingMode = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/application/applications/{HttpUtility.UrlEncode(id.GetStringValue())}/clone";
+		string resourcePath = $"/application/applications/{HttpUtility.UrlPathEncode(id.GetStringValue())}/clone";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("version", version);
@@ -184,7 +184,7 @@ public sealed class ApplicationsApi : IApplicationsApi
 	/// <inheritdoc />
 	public async Task<ApplicationCollection?> GetApplicationsByName(string name, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/application/applicationsByName/{HttpUtility.UrlEncode(name.GetStringValue())}";
+		string resourcePath = $"/application/applicationsByName/{HttpUtility.UrlPathEncode(name.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -201,7 +201,7 @@ public sealed class ApplicationsApi : IApplicationsApi
 	/// <inheritdoc />
 	public async Task<ApplicationCollection?> GetApplicationsByTenant(string tenantId, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/application/applicationsByTenant/{HttpUtility.UrlEncode(tenantId.GetStringValue())}";
+		string resourcePath = $"/application/applicationsByTenant/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		using var request = new HttpRequestMessage 
 		{
@@ -218,7 +218,7 @@ public sealed class ApplicationsApi : IApplicationsApi
 	/// <inheritdoc />
 	public async Task<ApplicationCollection?> GetApplicationsByOwner(string tenantId, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/application/applicationsByOwner/{HttpUtility.UrlEncode(tenantId.GetStringValue())}";
+		string resourcePath = $"/application/applicationsByOwner/{HttpUtility.UrlPathEncode(tenantId.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);
@@ -241,7 +241,7 @@ public sealed class ApplicationsApi : IApplicationsApi
 	/// <inheritdoc />
 	public async Task<ApplicationCollection?> GetApplicationsByUser(string username, int? currentPage = null, int? pageSize = null, bool? withTotalElements = null, bool? withTotalPages = null, CancellationToken cToken = default) 
 	{
-		string resourcePath = $"/application/applicationsByUser/{HttpUtility.UrlEncode(username.GetStringValue())}";
+		string resourcePath = $"/application/applicationsByUser/{HttpUtility.UrlPathEncode(username.GetStringValue())}";
 		var uriBuilder = new UriBuilder(new Uri(_httpClient.BaseAddress ?? new Uri(resourcePath), resourcePath));
 		var queryString = HttpUtility.ParseQueryString(uriBuilder.Query);
 		queryString.TryAdd("currentPage", currentPage);

@@ -54,6 +54,10 @@ namespace Client.Com.Cumulocity.Client.Api;
 /// Yes, retrieving device logs requires from the device to create an event and attach a binary with logs to it. Those are two separate requests and both are counted. <br />
 /// <br /> When I have a device with children are the requests counted always to the root device or separately for each child? <br />
 /// Separately for each child. <br />
+/// <br /> Why do device statistics show significantly smaller request numbers than the total number of created and updated request from usage statistics? <br />
+/// The important aspect here is the moment of recording values for the counters. For inbound data usage statistics we count every request that passed authorization, including invalid requests, as stated in usage statistics description. <br />
+/// For device statistics it is different. We count requests after data is successfully stored in the database (or transient), which means the request was valid and there was no problem with persistence. <br />
+/// In summary, if you observe that your usage statistics counters are significantly larger than your device statistics counters, there is a good chance that some devices or microservices in your tenant are constantly sending invalid requests. In such a situation, the client should check the state of theirs tenant. <br />
 /// </summary>
 ///
 public interface IDeviceStatisticsApi
